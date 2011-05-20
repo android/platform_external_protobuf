@@ -1,0 +1,8 @@
+Change-Id: I3a3adcaf1d6c9692c1b0c53ad230e9286478ba30
+Code-Review+2: Jean-Baptiste Queru <jbq@google.com>
+Verified+1: Jean-Baptiste Queru <jbq@google.com>
+Submitted-by: Jean-Baptiste Queru <jbq@google.com>
+Submitted-at: Wed, 18 Mar 2009 14:03:17 -0700
+Reviewed-on: https://review.source.android.com/9214
+Project: platform/external/protobuf
+Branch: refs/heads/master
