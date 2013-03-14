@@ -260,6 +260,28 @@ This could be compiled using:
 With the result will be com/example/TestMessages.java
 
 
+Nano version
+============================
+
+Nano is even smaller than micro, especially in the number of generated
+functions. It is like micro except:
+
+- No setter/getter/hazzer functions.
+- Has state is not available. Outputs all fields not equal to their default.
+- CodedInputStreamMicro is renamed to CodedInputByteBufferNano and can only take byte[] (not InputStream).
+- Similar rename from CodedOutputStreamMicro to CodedOutputByteBufferNano.
+- Repeated fields are in arrays, not ArrayList or Vector.
+- Unset messages/groups are null, not an immutable empty default instance.
+- Required fields are always serialized.
+- toByteArray(...) and mergeFrom(...) are now static functions of MessageNano.
+
+To use nano protobufs:
+
+- Link with the generated jar file <protobuf-root>java/target/protobuf-java-2.3.0-nano.jar.
+- Invoke with --javanano_out, e.g.:
+../src/protoc '--javanano_out=java_package=src/test/proto/simple-data.proto|my_package,java_outer_classname=src/test/proto/simple-data.proto|OuterName:.' src/test/proto/simple-data.proto
+
+
 Usage
 =====
 
