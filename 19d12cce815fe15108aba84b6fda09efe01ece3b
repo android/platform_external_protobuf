@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "Sk3IeFn0",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-03-26T17:13:49Z",
+      "side": 1,
+      "message": "Move these to WireFormatNano.",
+      "revId": "19d12cce815fe15108aba84b6fda09efe01ece3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "Sk5IoWqc",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-03-26T17:13:49Z",
+      "side": 1,
+      "message": "Can we make this static final and move to WireFormatNano?",
+      "revId": "19d12cce815fe15108aba84b6fda09efe01ece3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
