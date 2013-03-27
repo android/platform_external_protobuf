@@ -16,6 +16,24 @@
       "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "Sk74Xpf8",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-03-27T22:23:17Z",
+      "side": 1,
+      "message": "I like that idea. On the other hand I want to give something to gms core folks soon so we might want to save nice-to-haves to another CL.\n\nJeff/Andrew, any comments on this API change?",
+      "parentUuid": "Sk36dvaU",
+      "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
