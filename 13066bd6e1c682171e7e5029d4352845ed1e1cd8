@@ -52,6 +52,24 @@
       "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "Sk95HCYI",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-03-28T00:29:10Z",
+      "side": 1,
+      "message": "Actually, since these functions aren\u0027t overridden in the generated code, would they result in 4 slots consumed for every generated message or only once for MessageNano?",
+      "parentUuid": "Sk-55rUM",
+      "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
