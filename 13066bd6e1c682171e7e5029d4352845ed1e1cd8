@@ -70,6 +70,24 @@
       "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "Sk.ShIIw",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-03-28T22:09:58Z",
+      "side": 1,
+      "message": "Ulas and I used \"dexdump -d\" on the advice of Brain Carlstrom to look at the generated code and it looks to us that a slot is created for each of these. He\u0027s going to try making these \"public final\" to see if that changes things.",
+      "parentUuid": "Sk95HCYI",
+      "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
