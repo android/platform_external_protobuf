@@ -88,6 +88,24 @@
       "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "Sk0S7TLY",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-03-28T22:13:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "Sk.ShIIw",
+      "revId": "13066bd6e1c682171e7e5029d4352845ed1e1cd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
