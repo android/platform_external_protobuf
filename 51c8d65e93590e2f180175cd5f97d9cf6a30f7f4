@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "SwWGO9iM",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-03-29T00:37:51Z",
+      "side": 1,
+      "message": "I think this might be slightly problematic for a couple of (somewhat weak), but relevant reasons:\n\n1) Imagine I change the default value of a field. Clients compiled against an older version of my proto continue to match against the old default, and don\u0027t send me values even though I need them to for correctness.\n\n2) The server might have semantics which explicitly depend on whether or not you set an optional field, even if what you set it to was the default. If we never send default equivalent fields, then it\u0027s impossible for a client to activate those semantics.\n\nIt seems like this is a wire format optimization. Might not be worth it, given the potential issues it causes?",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
