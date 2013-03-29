@@ -16,6 +16,24 @@
       "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "SweGrJmk",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-03-29T01:04:30Z",
+      "side": 1,
+      "message": "I wonder if we should disallow compile time defaults, instead take the go language approach and say that the only default value is the predetermined defaults defined by MessageNano. Numbers are 0 and \"strings\" are empty.",
+      "parentUuid": "SwWGO9iM",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
