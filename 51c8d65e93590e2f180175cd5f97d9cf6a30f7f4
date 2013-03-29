@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "SwYR.qHM",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-03-29T22:05:04Z",
+      "side": 1,
+      "message": "I put a comment in. Thanks Brian for raising this problem.",
+      "parentUuid": "SwSG-zks",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "SwYHzOmQ",
         "filename": "java/src/main/java/com/google/protobuf/nano/ByteStringNano.java",
         "patchSetId": 7
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "SwSeE-gE",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ByteStringNano.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-03-29T22:05:04Z",
+      "side": 1,
+      "message": "Done. Converting this was quite complex but I think was worth it.",
+      "parentUuid": "SwYHzOmQ",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "SwcH7gjo",
         "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
         "patchSetId": 7
@@ -83,6 +119,24 @@
       "writtenOn": "2013-03-29T04:11:56Z",
       "side": 1,
       "message": "It would be good to include position and limit in the exception message for debugging.",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "SwcQkMI4",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-03-29T22:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "SwcH7gjo",
       "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
