@@ -34,6 +34,58 @@
       "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "SwSG-zks",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1000701
+      },
+      "writtenOn": "2013-03-29T04:11:56Z",
+      "side": 1,
+      "message": "I could get on board with what Wink said, but I don\u0027t think it\u0027s much different whether they are 0 or some other number in terms of what Brian is worried about.  \n\nOf all the options, I think the one Ulas did is probably the most compatible.",
+      "parentUuid": "SweGrJmk",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "SwYHzOmQ",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ByteStringNano.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000701
+      },
+      "writtenOn": "2013-03-29T04:11:56Z",
+      "side": 1,
+      "message": "Is this class worth it?  It seems like it\u0027s here just to provide protection from code accidentally modifying the bytes, which is the kind of thing nanoproto is assuming apps just won\u0027t do.",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "SwcH7gjo",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1000701
+      },
+      "writtenOn": "2013-03-29T04:11:56Z",
+      "side": 1,
+      "message": "It would be good to include position and limit in the exception message for debugging.",
+      "revId": "51c8d65e93590e2f180175cd5f97d9cf6a30f7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
