@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "S1ozxpyM",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-03-31T01:14:14Z",
+      "side": 1,
+      "message": "Consider changing these \"public static final\" methods to \"public final\".",
+      "revId": "3913d662284aa6dbab83c94f72335dd6b0297521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
