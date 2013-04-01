@@ -353,6 +353,8 @@ message FieldOptions {
   // TODO: Fully-implement this, then remove the "experimental_" prefix.
   optional string experimental_map_key = 9;
 
+  optional bool java_nano_generate_has = 10 [default=false];
+
   // The parser stores options it doesn't recognize here. See above.
   repeated UninterpretedOption uninterpreted_option = 999;
 

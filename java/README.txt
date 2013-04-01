@@ -280,6 +280,13 @@ functions. It is like micro except:
 - toByteArray(...) and mergeFrom(...) are now static functions of
   MessageNano.
 - "bytes" are of java type byte[].
+- A new field option "java_nano_generate_has", if true, generates a
+  public boolean variable has<fieldname>_ accompanying the optional or
+  required field (not allowed for repeated fields). It is set to false
+  initially and upon clear(). If parseFrom(...) reads the field from
+  the wire, it is set to true. This is a way for clients to inspect
+  the "has" value upon parse. Unlike in normal protobufs, it has no
+  effect on what gets serialized in writeTo(...).
 
 IMPORTANT: If you have fields with defaults
 
