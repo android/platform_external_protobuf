@@ -291,11 +291,12 @@ void protobuf_AssignDesc_google_2fprotobuf_2fdescriptor_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(MessageOptions));
   FieldOptions_descriptor_ = file->message_type(10);
-  static const int FieldOptions_offsets_[5] = {
+  static const int FieldOptions_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FieldOptions, ctype_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FieldOptions, packed_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FieldOptions, deprecated_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FieldOptions, experimental_map_key_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FieldOptions, java_nano_generate_has_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FieldOptions, uninterpreted_option_),
   };
   FieldOptions_reflection_ =
@@ -571,32 +572,32 @@ void protobuf_AddDesc_google_2fprotobuf_2fdescriptor_2eproto() {
     "rmat\030\001 \001(\010:\005false\022.\n\037no_standard_descrip"
     "tor_accessor\030\002 \001(\010:\005false\022C\n\024uninterpret"
     "ed_option\030\347\007 \003(\0132$.google.protobuf.Unint"
-    "erpretedOption*\t\010\350\007\020\200\200\200\200\002\"\224\002\n\014FieldOptio"
+    "erpretedOption*\t\010\350\007\020\200\200\200\200\002\"\273\002\n\014FieldOptio"
     "ns\022:\n\005ctype\030\001 \001(\0162#.google.protobuf.Fiel"
     "dOptions.CType:\006STRING\022\016\n\006packed\030\002 \001(\010\022\031"
     "\n\ndeprecated\030\003 \001(\010:\005false\022\034\n\024experimenta"
-    "l_map_key\030\t \001(\t\022C\n\024uninterpreted_option\030"
-    "\347\007 \003(\0132$.google.protobuf.UninterpretedOp"
-    "tion\"/\n\005CType\022\n\n\006STRING\020\000\022\010\n\004CORD\020\001\022\020\n\014S"
-    "TRING_PIECE\020\002*\t\010\350\007\020\200\200\200\200\002\"]\n\013EnumOptions\022"
-    "C\n\024uninterpreted_option\030\347\007 \003(\0132$.google."
-    "protobuf.UninterpretedOption*\t\010\350\007\020\200\200\200\200\002\""
-    "b\n\020EnumValueOptions\022C\n\024uninterpreted_opt"
-    "ion\030\347\007 \003(\0132$.google.protobuf.Uninterpret"
-    "edOption*\t\010\350\007\020\200\200\200\200\002\"`\n\016ServiceOptions\022C\n"
-    "\024uninterpreted_option\030\347\007 \003(\0132$.google.pr"
-    "otobuf.UninterpretedOption*\t\010\350\007\020\200\200\200\200\002\"_\n"
-    "\rMethodOptions\022C\n\024uninterpreted_option\030\347"
+    "l_map_key\030\t \001(\t\022%\n\026java_nano_generate_ha"
+    "s\030\n \001(\010:\005false\022C\n\024uninterpreted_option\030\347"
     "\007 \003(\0132$.google.protobuf.UninterpretedOpt"
-    "ion*\t\010\350\007\020\200\200\200\200\002\"\205\002\n\023UninterpretedOption\022;"
-    "\n\004name\030\002 \003(\0132-.google.protobuf.Uninterpr"
-    "etedOption.NamePart\022\030\n\020identifier_value\030"
-    "\003 \001(\t\022\032\n\022positive_int_value\030\004 \001(\004\022\032\n\022neg"
-    "ative_int_value\030\005 \001(\003\022\024\n\014double_value\030\006 "
-    "\001(\001\022\024\n\014string_value\030\007 \001(\014\0323\n\010NamePart\022\021\n"
-    "\tname_part\030\001 \002(\t\022\024\n\014is_extension\030\002 \002(\010B)"
-    "\n\023com.google.protobufB\020DescriptorProtosH"
-    "\001", 3681);
+    "ion\"/\n\005CType\022\n\n\006STRING\020\000\022\010\n\004CORD\020\001\022\020\n\014ST"
+    "RING_PIECE\020\002*\t\010\350\007\020\200\200\200\200\002\"]\n\013EnumOptions\022C"
+    "\n\024uninterpreted_option\030\347\007 \003(\0132$.google.p"
+    "rotobuf.UninterpretedOption*\t\010\350\007\020\200\200\200\200\002\"b"
+    "\n\020EnumValueOptions\022C\n\024uninterpreted_opti"
+    "on\030\347\007 \003(\0132$.google.protobuf.Uninterprete"
+    "dOption*\t\010\350\007\020\200\200\200\200\002\"`\n\016ServiceOptions\022C\n\024"
+    "uninterpreted_option\030\347\007 \003(\0132$.google.pro"
+    "tobuf.UninterpretedOption*\t\010\350\007\020\200\200\200\200\002\"_\n\r"
+    "MethodOptions\022C\n\024uninterpreted_option\030\347\007"
+    " \003(\0132$.google.protobuf.UninterpretedOpti"
+    "on*\t\010\350\007\020\200\200\200\200\002\"\205\002\n\023UninterpretedOption\022;\n"
+    "\004name\030\002 \003(\0132-.google.protobuf.Uninterpre"
+    "tedOption.NamePart\022\030\n\020identifier_value\030\003"
+    " \001(\t\022\032\n\022positive_int_value\030\004 \001(\004\022\032\n\022nega"
+    "tive_int_value\030\005 \001(\003\022\024\n\014double_value\030\006 \001"
+    "(\001\022\024\n\014string_value\030\007 \001(\014\0323\n\010NamePart\022\021\n\t"
+    "name_part\030\001 \002(\t\022\024\n\014is_extension\030\002 \002(\010B)\n"
+    "\023com.google.protobufB\020DescriptorProtosH\001", 3720);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "google/protobuf/descriptor.proto", &protobuf_RegisterTypes);
   FileDescriptorSet::default_instance_ = new FileDescriptorSet();
@@ -5024,6 +5025,7 @@ const int FieldOptions::kCtypeFieldNumber;
 const int FieldOptions::kPackedFieldNumber;
 const int FieldOptions::kDeprecatedFieldNumber;
 const int FieldOptions::kExperimentalMapKeyFieldNumber;
+const int FieldOptions::kJavaNanoGenerateHasFieldNumber;
 const int FieldOptions::kUninterpretedOptionFieldNumber;
 #endif  // !_MSC_VER
 
@@ -5047,6 +5049,7 @@ void FieldOptions::SharedCtor() {
   packed_ = false;
   deprecated_ = false;
   experimental_map_key_ = const_cast< ::std::string*>(&_default_experimental_map_key_);
+  java_nano_generate_has_ = false;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -5093,6 +5096,7 @@ void FieldOptions::Clear() {
         experimental_map_key_->clear();
       }
     }
+    java_nano_generate_has_ = false;
   }
   uninterpreted_option_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -5170,6 +5174,22 @@ bool FieldOptions::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(80)) goto parse_java_nano_generate_has;
+        break;
+      }
+      
+      // optional bool java_nano_generate_has = 10 [default = false];
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_java_nano_generate_has:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &java_nano_generate_has_)));
+          _set_bit(4);
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectTag(7994)) goto parse_uninterpreted_option;
         break;
       }
@@ -5237,6 +5257,11 @@ void FieldOptions::SerializeWithCachedSizes(
       9, this->experimental_map_key(), output);
   }
   
+  // optional bool java_nano_generate_has = 10 [default = false];
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(10, this->java_nano_generate_has(), output);
+  }
+  
   // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
   for (int i = 0; i < this->uninterpreted_option_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
@@ -5279,6 +5304,11 @@ void FieldOptions::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         9, this->experimental_map_key(), target);
+  }
+  
+  // optional bool java_nano_generate_has = 10 [default = false];
+  if (_has_bit(4)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(10, this->java_nano_generate_has(), target);
   }
   
   // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -5324,6 +5354,11 @@ int FieldOptions::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->experimental_map_key());
+    }
+    
+    // optional bool java_nano_generate_has = 10 [default = false];
+    if (has_java_nano_generate_has()) {
+      total_size += 1 + 1;
     }
     
   }
@@ -5376,6 +5411,9 @@ void FieldOptions::MergeFrom(const FieldOptions& from) {
     if (from._has_bit(3)) {
       set_experimental_map_key(from.experimental_map_key());
     }
+    if (from._has_bit(4)) {
+      set_java_nano_generate_has(from.java_nano_generate_has());
+    }
   }
   _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -5408,6 +5446,7 @@ void FieldOptions::Swap(FieldOptions* other) {
     std::swap(packed_, other->packed_);
     std::swap(deprecated_, other->deprecated_);
     std::swap(experimental_map_key_, other->experimental_map_key_);
+    std::swap(java_nano_generate_has_, other->java_nano_generate_has_);
     uninterpreted_option_.Swap(&other->uninterpreted_option_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

@@ -1785,6 +1785,13 @@ class LIBPROTOBUF_EXPORT FieldOptions : public ::google::protobuf::Message {
   inline void set_experimental_map_key(const char* value, size_t size);
   inline ::std::string* mutable_experimental_map_key();
   
+  // optional bool java_nano_generate_has = 10 [default = false];
+  inline bool has_java_nano_generate_has() const;
+  inline void clear_java_nano_generate_has();
+  static const int kJavaNanoGenerateHasFieldNumber = 10;
+  inline bool java_nano_generate_has() const;
+  inline void set_java_nano_generate_has(bool value);
+  
   // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
   inline int uninterpreted_option_size() const;
   inline void clear_uninterpreted_option();
@@ -1809,12 +1816,13 @@ class LIBPROTOBUF_EXPORT FieldOptions : public ::google::protobuf::Message {
   bool deprecated_;
   ::std::string* experimental_map_key_;
   static const ::std::string _default_experimental_map_key_;
+  bool java_nano_generate_has_;
   ::google::protobuf::RepeatedPtrField< ::google::protobuf::UninterpretedOption > uninterpreted_option_;
   friend void LIBPROTOBUF_EXPORT protobuf_AddDesc_google_2fprotobuf_2fdescriptor_2eproto();
   friend void protobuf_AssignDesc_google_2fprotobuf_2fdescriptor_2eproto();
   friend void protobuf_ShutdownFile_google_2fprotobuf_2fdescriptor_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -3953,6 +3961,22 @@ inline ::std::string* FieldOptions::mutable_experimental_map_key() {
     experimental_map_key_ = new ::std::string;
   }
   return experimental_map_key_;
+}
+
+// optional bool java_nano_generate_has = 10 [default = false];
+inline bool FieldOptions::has_java_nano_generate_has() const {
+  return _has_bit(4);
+}
+inline void FieldOptions::clear_java_nano_generate_has() {
+  java_nano_generate_has_ = false;
+  _clear_bit(4);
+}
+inline bool FieldOptions::java_nano_generate_has() const {
+  return java_nano_generate_has_;
+}
+inline void FieldOptions::set_java_nano_generate_has(bool value) {
+  _set_bit(4);
+  java_nano_generate_has_ = value;
 }
 
 // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;

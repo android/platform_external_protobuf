@@ -152,6 +152,10 @@ message TestAllTypesNano {
   optional string default_cord = 85 [ctype=CORD,default="123"];
 
   required int32 id = 86;
+
+  optional int32 optional_int32_with_has = 90 [java_nano_generate_has=true];
+  optional NestedMessage optional_nested_message_with_has = 91 [java_nano_generate_has=true];
+  optional NestedEnum optional_nested_enum_with_has = 92 [java_nano_generate_has=true];
 }
 
 message ForeignMessageNano {
