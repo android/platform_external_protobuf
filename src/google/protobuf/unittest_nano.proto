@@ -153,6 +153,10 @@ message TestAllTypesNano {
 
   required int32 id = 86;
 
+  optional int32 optional_int32_with_has = 90 [java_nano_generate_has=true];
+  optional NestedMessage optional_nested_message_with_has = 91 [java_nano_generate_has=true];
+  optional NestedEnum optional_nested_enum_with_has = 92 [java_nano_generate_has=true];
+
   // Try to cause conflicts.
   optional int32 tag = 93;
   optional int32 get_serialized_size = 94;

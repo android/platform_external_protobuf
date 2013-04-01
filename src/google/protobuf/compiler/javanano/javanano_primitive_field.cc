@@ -288,12 +288,22 @@ GenerateMembers(io::Printer* printer) const {
     printer->Print(variables_,
       "public $type$ $name$ = $default$;\n");
   }
+
+  if (descriptor_->options().java_nano_generate_has()) {
+    printer->Print(variables_,
+      "public boolean has$capitalized_name$_ = false;\n");
+  }
 }
 
 void PrimitiveFieldGenerator::
 GenerateParsingCode(io::Printer* printer) const {
   printer->Print(variables_,
     "this.$name$ = input.read$capitalized_type$();\n");
+
+  if (descriptor_->options().java_nano_generate_has()) {
+    printer->Print(variables_,
+      "has$capitalized_name$_ = true;\n");
+  }
 }
 
 void PrimitiveFieldGenerator::
@@ -364,7 +374,7 @@ GenerateMembers(io::Printer* printer) const {
     "public $type$[] $name$ = $default$;\n");
   if (descriptor_->options().packed()) {
     printer->Print(variables_,
-      "private int $name$MemoizedSerializedSize;\n");
+      "private int $name$MemoizedSerializedSize_;\n");
   }
 }
 
@@ -408,7 +418,7 @@ GenerateSerializationCode(io::Printer* printer) const {
     printer->Print(variables_,
       "if (this.$name$.length > 0) {\n"
       "  output.writeRawVarint32($tag$);\n"
-      "  output.writeRawVarint32($name$MemoizedSerializedSize);\n"
+      "  output.writeRawVarint32($name$MemoizedSerializedSize_);\n"
       "}\n");
     printer->Print(variables_,
       "for ($type$ element : this.$name$) {\n"
@@ -448,7 +458,7 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
       "size += $tag_size$;\n"
       "size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
       "  .computeRawVarint32Size(dataSize);\n"
-      "$name$MemoizedSerializedSize = dataSize;\n");
+      "$name$MemoizedSerializedSize_ = dataSize;\n");
   } else {
     printer->Print(variables_,
         "size += $tag_size$ * this.$name$.length;\n");
@@ -460,7 +470,7 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
   if (descriptor_->options().packed()) {
     printer->Print(variables_,
       "} else {\n"
-      "  $name$MemoizedSerializedSize = 0;\n"
+      "  $name$MemoizedSerializedSize_ = 0;\n"
       "}\n");
   } else {
     printer->Print(

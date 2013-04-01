@@ -82,12 +82,22 @@ void EnumFieldGenerator::
 GenerateMembers(io::Printer* printer) const {
   printer->Print(variables_,
     "public int $name$ = $default$;\n");
+
+  if (descriptor_->options().java_nano_generate_has()) {
+    printer->Print(variables_,
+      "public boolean has$capitalized_name$_ = false;\n");
+  }
 }
 
 void EnumFieldGenerator::
 GenerateParsingCode(io::Printer* printer) const {
   printer->Print(variables_,
     "  this.$name$ = input.readInt32();\n");
+
+  if (descriptor_->options().java_nano_generate_has()) {
+    printer->Print(variables_,
+      "  has$capitalized_name$_ = true;\n");
+  }
 }
 
 void EnumFieldGenerator::
