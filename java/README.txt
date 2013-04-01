@@ -280,6 +280,14 @@ functions. It is like micro except:
 - toByteArray(...) and mergeFrom(...) are now static functions of
   MessageNano.
 - "bytes" are of java type byte[].
+- A new generator parameter "java_nano_generate_has", if true,
+  generates a public boolean variable has<fieldname> accompanying the
+  optional or required field (not present for repeated fields, groups
+  or messages). It is set to false initially and upon clear(). If
+  parseFrom(...) reads the field from the wire, it is set to
+  true. This is a way for clients to inspect the "has" value upon
+  parse. If it is set to true, writeTo(...) will ALWAYS output that
+  field (even if field value is equal to its default).
 
 IMPORTANT: If you have fields with defaults
 

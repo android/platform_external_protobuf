@@ -321,12 +321,44 @@ GenerateMembers(io::Printer* printer) const {
     printer->Print(variables_,
       "public $type$ $name$ = $default$;\n");
   }
+
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "public boolean has$capitalized_name$ = false;\n");
+  }
 }
 
 void PrimitiveFieldGenerator::
 GenerateParsingCode(io::Printer* printer) const {
   printer->Print(variables_,
     "this.$name$ = input.read$capitalized_type$();\n");
+
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "has$capitalized_name$ = true;\n");
+  }
+}
+
+void PrimitiveFieldGenerator::
+GenerateSerializationConditional(io::Printer* printer) const {
+  if (IsArrayType(GetJavaType(descriptor_))) {
+    printer->Print(variables_,
+      "if (!java.util.Arrays.equals(this.$name$, $default$)");
+  } else if (IsReferenceType(GetJavaType(descriptor_))) {
+    printer->Print(variables_,
+      "if (!this.$name$.equals($default$)");
+  } else if (IsDefaultNaN(descriptor_)) {
+    printer->Print(variables_,
+      "if (!$capitalized_type$.isNaN(this.$name$)");
+  } else {
+    printer->Print(variables_,
+      "if (this.$name$ != $default$");
+  }
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      " || has$capitalized_name$");
+  }
+  printer->Print(variables_, ") {\n");
 }
 
 void PrimitiveFieldGenerator::
@@ -335,20 +367,7 @@ GenerateSerializationCode(io::Printer* printer) const {
     printer->Print(variables_,
       "output.write$capitalized_type$($number$, this.$name$);\n");
   } else {
-    if (IsArrayType(GetJavaType(descriptor_))) {
-      printer->Print(variables_,
-        "if (!java.util.Arrays.equals(this.$name$, $default$)) {\n");
-    } else if (IsReferenceType(GetJavaType(descriptor_))) {
-      printer->Print(variables_,
-        "if (!this.$name$.equals($default$)) {\n");
-    } else if (IsDefaultNaN(descriptor_)) {
-      printer->Print(variables_,
-        "if (!$capitalized_type$.isNaN(this.$name$)) {\n");
-    } else {
-      printer->Print(variables_,
-        "if (this.$name$ != $default$) {\n");
-    }
-
+    GenerateSerializationConditional(printer);
     printer->Print(variables_,
       "  output.write$capitalized_type$($number$, this.$name$);\n"
       "}\n");
@@ -362,20 +381,7 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
       "size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
       "    .compute$capitalized_type$Size($number$, this.$name$);\n");
   } else {
-    if (IsArrayType(GetJavaType(descriptor_))) {
-      printer->Print(variables_,
-        "if (!java.util.Arrays.equals(this.$name$, $default$)) {\n");
-    } else  if (IsReferenceType(GetJavaType(descriptor_))) {
-      printer->Print(variables_,
-        "if (!this.$name$.equals($default$)) {\n");
-    } else if (IsDefaultNaN(descriptor_)) {
-      printer->Print(variables_,
-        "if (!$capitalized_type$.isNaN(this.$name$)) {\n");
-    } else {
-      printer->Print(variables_,
-        "if (this.$name$ != $default$) {\n");
-    }
-
+    GenerateSerializationConditional(printer);
     printer->Print(variables_,
       "  size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
       "      .compute$capitalized_type$Size($number$, this.$name$);\n"
@@ -403,7 +409,7 @@ GenerateMembers(io::Printer* printer) const {
     "public $type$[] $name$ = $default$;\n");
   if (descriptor_->options().packed()) {
     printer->Print(variables_,
-      "private int $name$MemoizedSerializedSize;\n");
+      "private int $name$MemoizedSerializedSize_;\n");
   }
 }
 
@@ -459,7 +465,7 @@ GenerateSerializationCode(io::Printer* printer) const {
     printer->Print(variables_,
       "if (this.$name$.length > 0) {\n"
       "  output.writeRawVarint32($tag$);\n"
-      "  output.writeRawVarint32($name$MemoizedSerializedSize);\n"
+      "  output.writeRawVarint32($name$MemoizedSerializedSize_);\n"
       "}\n");
     printer->Print(variables_,
       "for ($type$ element : this.$name$) {\n"
@@ -499,7 +505,7 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
       "size += $tag_size$;\n"
       "size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
       "  .computeRawVarint32Size(dataSize);\n"
-      "$name$MemoizedSerializedSize = dataSize;\n");
+      "$name$MemoizedSerializedSize_ = dataSize;\n");
   } else {
     printer->Print(variables_,
         "size += $tag_size$ * this.$name$.length;\n");
@@ -511,7 +517,7 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
   if (descriptor_->options().packed()) {
     printer->Print(variables_,
       "} else {\n"
-      "  $name$MemoizedSerializedSize = 0;\n"
+      "  $name$MemoizedSerializedSize_ = 0;\n"
       "}\n");
   } else {
     printer->Print(
