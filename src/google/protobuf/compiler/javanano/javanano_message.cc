@@ -354,6 +354,13 @@ void MessageGenerator::GenerateClear(io::Printer* printer) {
         "name", UnderscoresToCamelCase(field),
         "default", DefaultValue(params_, field));
     }
+
+    if (field->options().java_nano_generate_has() &&
+        field->label() != FieldDescriptor::LABEL_REPEATED) {
+      printer->Print(
+        "has$capitalized_name$_ = false;\n",
+        "capitalized_name", UnderscoresToCapitalizedCamelCase(field));
+    }
   }
 
   printer->Outdent();

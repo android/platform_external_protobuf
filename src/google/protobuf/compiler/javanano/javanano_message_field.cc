@@ -85,6 +85,11 @@ void MessageFieldGenerator::
 GenerateMembers(io::Printer* printer) const {
   printer->Print(variables_,
     "public $type$ $name$ = null;\n");
+
+  if (descriptor_->options().java_nano_generate_has()) {
+    printer->Print(variables_,
+      "public boolean has$capitalized_name$_ = false;\n");
+  }
 }
 
 void MessageFieldGenerator::
@@ -93,6 +98,11 @@ GenerateMergingCode(io::Printer* printer) const {
     "if (other.$name$ != null) {\n"
     "  merge$capitalized_name$(other.$name$);\n"
     "}\n");
+
+  if (descriptor_->options().java_nano_generate_has()) {
+    printer->Print(variables_,
+      "has$capitalized_name$_ = true;\n");
+  }
 }
 
 void MessageFieldGenerator::
@@ -106,6 +116,11 @@ GenerateParsingCode(io::Printer* printer) const {
   } else {
     printer->Print(variables_,
       "input.readMessage($name$);\n");
+  }
+
+  if (descriptor_->options().java_nano_generate_has()) {
+    printer->Print(variables_,
+      "has$capitalized_name$_ = true;\n");
   }
 }
 

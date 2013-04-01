@@ -2067,6 +2067,42 @@ public class NanoTest extends TestCase {
     }
   }
 
+  public void testNanoWithHas() throws Exception {
+    TestAllTypesNano msg = null;
+    // Test false on creation, after clear and upon empty parse.
+    for (int i = 0; i < 3; i++) {
+      if (i == 0) {
+        msg = new TestAllTypesNano();
+      } else if (i == 1) {
+        msg.clear();
+      } else if (i == 2) {
+        msg = TestAllTypesNano.parseFrom(new byte[0]);
+      }
+      assertFalse(msg.hasOptionalInt32WithHas_);
+      assertFalse(msg.hasOptionalNestedMessageWithHas_);
+      assertFalse(msg.hasOptionalNestedEnumWithHas_);
+      msg.optionalInt32WithHas = 123;
+      msg.optionalNestedMessageWithHas = new TestAllTypesNano.NestedMessage();
+      msg.optionalNestedMessageWithHas.bb = 2;
+      msg.optionalNestedEnumWithHas = TestAllTypesNano.BAZ;
+    }
+
+    byte [] result = msg.toByteArray();
+    int msgSerializedSize = msg.getSerializedSize();
+    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
+    assertTrue(msgSerializedSize == 14);
+    assertEquals(result.length, msgSerializedSize);
+
+    // has fields true upon parse.
+    TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
+    assertEquals(123, newMsg.optionalInt32WithHas);
+    assertTrue(newMsg.hasOptionalInt32WithHas_);
+    assertEquals(2, newMsg.optionalNestedMessageWithHas.bb);
+    assertTrue(newMsg.hasOptionalNestedMessageWithHas_);
+    assertEquals(TestAllTypesNano.BAZ, newMsg.optionalNestedEnumWithHas);
+    assertTrue(newMsg.hasOptionalNestedEnumWithHas_);
+  }
+
   /**
    * Test that a bug in skipRawBytes() has been fixed:  if the skip skips
    * exactly up to a limit, this should not break things.

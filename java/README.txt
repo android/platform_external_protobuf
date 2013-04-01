@@ -278,6 +278,12 @@ functions. It is like micro except:
   instance.
 - Required fields are always serialized.
 - "bytes" are of java type byte[].
+- A new field option "java_nano_generate_has", if true, generates a
+  public boolean variable has<fieldname>_ accompanying the field. It
+  is set to false initially and upon clear(). If parseFrom(...) reads
+  the field from the wire, it is set to true. This is a way for
+  clients to inspect the "has" value upon parse. Unlike in normal
+  protobufs, it has no effect on what gets serialized in writeTo(...).
 
 IMPORTANT: If you have fields with defaults
 
