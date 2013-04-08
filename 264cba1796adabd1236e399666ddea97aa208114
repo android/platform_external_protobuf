@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "TF7F.OHM",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-04-08T22:07:06Z",
+      "side": 1,
+      "message": "$type$ can be a byte array (byte[]). Then this doesn\u0027t work.\n\nNeed to special case this and generate new byte[i + arrayLength][]; instead.\n\nOr perhaps there is another way.\n\nSee the IsArrayType(...) helper function above.",
+      "revId": "264cba1796adabd1236e399666ddea97aa208114",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
