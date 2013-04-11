@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "TRYN6oso",
+        "filename": "java/README.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-04-11T18:05:14Z",
+      "side": 1,
+      "message": "Mention repeated field handling",
+      "revId": "dfc6dbe48a133987891a9bb604808356047b883f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "TRUNwmu4",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-04-11T18:05:14Z",
+      "side": 1,
+      "message": "Why trailing underscore?",
+      "revId": "dfc6dbe48a133987891a9bb604808356047b883f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "TRYNTwkw",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-04-11T18:05:14Z",
+      "side": 1,
+      "message": "Since we\u0027re not allowing it for repeated fields then this should probably generate an error?",
+      "revId": "dfc6dbe48a133987891a9bb604808356047b883f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
