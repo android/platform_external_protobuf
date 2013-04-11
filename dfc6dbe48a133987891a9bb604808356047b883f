@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "TRaNpngA",
+        "filename": "java/README.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-04-11T18:11:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "TRYN6oso",
+      "revId": "dfc6dbe48a133987891a9bb604808356047b883f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "TRUNwmu4",
         "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "TReNjphw",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-04-11T18:11:50Z",
+      "side": 1,
+      "message": "To avoid var name clashes. A user could define:\n\noptional bool var \u003d 1 [java_nano_generate_has\u003dtrue];\noptional bool has_var \u003d 2;\n\nIn the generated code, \"hasVar\" generated for field 1 would clash with the field 2 variable, also named \"hasVar\".",
+      "parentUuid": "TRUNwmu4",
+      "revId": "dfc6dbe48a133987891a9bb604808356047b883f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "TRYNTwkw",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2013-04-11T18:05:14Z",
       "side": 1,
       "message": "Since we\u0027re not allowing it for repeated fields then this should probably generate an error?",
+      "revId": "dfc6dbe48a133987891a9bb604808356047b883f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "TRYNMYqc",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-04-11T18:11:50Z",
+      "side": 1,
+      "message": "How do I pass up errors?",
+      "parentUuid": "TRYNTwkw",
       "revId": "dfc6dbe48a133987891a9bb604808356047b883f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
