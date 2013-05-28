@@ -125,4 +125,9 @@ public abstract class MessageNano {
                     + "never happen).");
         }
     }
+
+    @Override
+    public String toString() {
+        return MessageNanoPrinter.print(this);
+    }
 }
