@@ -125,4 +125,13 @@ public abstract class MessageNano {
                     + "never happen).");
         }
     }
+
+    /**
+     * Intended for debugging purposes only. If found to hurt performance or increase size, it
+     * could be removed in the future.
+     */
+    @Override
+    public String toString() {
+        return MessageNanoPrinter.print(this);
+    }
 }
