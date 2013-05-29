@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dd1c1e2_75ef823a",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-05-29T05:22:38Z",
+      "side": 1,
+      "message": "We gone to alot of trouble to keep the method count down and have discovered that using public static final helps save method table space, see my comments in the original change from ulas:\n\n  https://android-review.googlesource.com/#/c/54612/\n\nFirst on March 30 at 6:14 shows how to get the sizes, but I\u0027d done a bad test. The second comment on April 1 at 2:06 I used a better test and determined that using public static final was better.\n\nSince we\u0027re doing an @Override here maybe it won\u0027t make any difference, but please take my test from April 1 and see what the difference is between using toString the way you\u0027ve defined it any then making:\n\n  public static final String print(MessageNano msg) {\n    MessageNanoPrinter.print(msg);\n  }\n\nSince this is for debugging we can just have users use MessageNanoPrinter.print(msg) directly and not add any more methods. But lets see how the tests go.",
+      "revId": "9893665be4b4fe6d5ff93541f820eea93ca0592e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
