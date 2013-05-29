@@ -34,6 +34,24 @@
       "revId": "9893665be4b4fe6d5ff93541f820eea93ca0592e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d4915a3_dbaf73b2",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-05-29T18:25:04Z",
+      "side": 1,
+      "message": "Lets add a javaDoc comment something like:\n\n  \"toString is intended for debugging purposes only and if found to hurt performance or increase size could be removed in the future.\"",
+      "parentUuid": "5d4915a3_bb2b8781",
+      "revId": "9893665be4b4fe6d5ff93541f820eea93ca0592e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
