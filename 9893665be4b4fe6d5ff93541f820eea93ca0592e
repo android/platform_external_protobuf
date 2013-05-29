@@ -16,6 +16,24 @@
       "revId": "9893665be4b4fe6d5ff93541f820eea93ca0592e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d4915a3_bb2b8781",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-05-29T17:41:33Z",
+      "side": 1,
+      "message": "I followed the same test you did and created the following test:\n\n  package com.flynn.nanotest;\n\n  import android.app.Activity;\n  import android.os.Bundle;\n  import android.widget.TextView;\n\n  public class MainActivity extends Activity {\n      @Override\n      protected void onCreate(Bundle savedInstanceState) {\n          super.onCreate(savedInstanceState);\n\n          Simple1MessageNano s1 \u003d new Simple1MessageNano();\n          s1.a \u003d 1;\n          System.out.println(s1);\n          Simple2MessageNano s2 \u003d new Simple2MessageNano();\n          s2.a \u003d 1;\n          System.out.println(s2);\n\n          TextView text \u003d new TextView(this);\n          text.setText(\"Hello World\");\n          setContentView(text);\n      }\n  }\n\nAnd ran the dex commands on it before my changes and after and it looks like it doesn\u0027t change the file_size or method_ids_size, both gave the following:\n\n  file_size           : 6200\n  method_ids_size     : 46\n\nWhich is great, because I think having the ability to just have it print w/o forcing the client to call MessageNanoPrinter directly is nice. (I didn\u0027t try having a static redirect function directly inside MessageNano since it seemed unnecessary)",
+      "parentUuid": "3dd1c1e2_75ef823a",
+      "revId": "9893665be4b4fe6d5ff93541f820eea93ca0592e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
