@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d879d2a_b251c619",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-06-03T21:39:12Z",
+      "side": 1,
+      "message": "Ulas suggested removing the \"http\" check and if you do the comment probably isn\u0027t necessary.",
+      "revId": "84e4307f1fbbc46e3aeff54f6908e941b9463346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
