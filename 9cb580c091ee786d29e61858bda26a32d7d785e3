@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_efb435c4",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-03T21:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d879d2a_efea75d2",
+      "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_afb5dd09",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
         "patchSetId": 3
@@ -48,6 +66,24 @@
       "writtenOn": "2013-06-03T17:36:37Z",
       "side": 1,
       "message": "Please add a comment saying this is not the same as the ascii protobuf format.",
+      "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_0fc34934",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-03T21:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d879d2a_afb5dd09",
       "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_2fc80d4c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-03T21:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d879d2a_8f8ad958",
+      "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_4f71c1a5",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 3
@@ -82,6 +136,24 @@
       "writtenOn": "2013-06-03T17:36:37Z",
       "side": 1,
       "message": "The most robust way is: a whitelist filter for public non-static member variables that do not begin or end with \"_\" (underscore).",
+      "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_6f1045ce",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-03T21:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d879d2a_4f71c1a5",
       "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -105,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_cf41316e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-03T21:13:33Z",
+      "side": 1,
+      "message": "Added quote-escaping to escapeString().\n\nAlso gave a string in the unit tests a couple of quotes to make sure",
+      "parentUuid": "1d879d2a_6febe5fb",
+      "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_cfd93177",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 3
@@ -116,6 +206,24 @@
       "writtenOn": "2013-06-03T17:36:37Z",
       "side": 1,
       "message": "This is a bit too much of a deeply hidden hack. Pls remove \"http\" check.",
+      "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_2f32cd14",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-03T21:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d879d2a_cfd93177",
       "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
