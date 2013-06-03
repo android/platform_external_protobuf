@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_efea75d2",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-06-03T17:47:24Z",
+      "side": 1,
+      "message": "Things change but you\u0027re right taking it away is not practical. Lets leave \"Intended for debugging purposes only.\"",
+      "parentUuid": "1d879d2a_8fb81901",
+      "revId": "9cb580c091ee786d29e61858bda26a32d7d785e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_afb5dd09",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
         "patchSetId": 3
