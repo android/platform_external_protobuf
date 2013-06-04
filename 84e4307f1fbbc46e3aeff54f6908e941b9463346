@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_dd91eb47",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-04T16:28:10Z",
+      "side": 1,
+      "message": "Ah, got it. I changed it to the way you recommend, although it seems to me that it uses the same number of temp strings. In both ways, you need to create a single String per recursion that can\u0027t be collected until you\u0027re done with that level of the recursion.",
+      "parentUuid": "1d879d2a_32e1561e",
+      "revId": "84e4307f1fbbc46e3aeff54f6908e941b9463346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_b251c619",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_7da39f9c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-04T16:28:10Z",
+      "side": 1,
+      "message": "Oop sorry missed this. Although I\u0027m not sure I agree we should truncate URLs. I don\u0027t view it as a hack, but more of just a preventative measure of huge non-URL strings. It seems like we could be cutting off crucial parts of the URL (the end). Why do you not like this check?",
+      "parentUuid": "1d879d2a_b251c619",
+      "revId": "84e4307f1fbbc46e3aeff54f6908e941b9463346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_b2870652",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2013-06-03T21:43:06Z",
       "side": 1,
       "message": "Remove",
+      "revId": "84e4307f1fbbc46e3aeff54f6908e941b9463346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_fdb4efc3",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-04T16:28:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d879d2a_b2870652",
       "revId": "84e4307f1fbbc46e3aeff54f6908e941b9463346",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
