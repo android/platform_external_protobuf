@@ -16,6 +16,24 @@
       "revId": "cf66ca4451ed2daa696a9f5aa80449416376d04c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_5d6fbb30",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-04T17:44:51Z",
+      "side": 1,
+      "message": "Replaced with INDENT.length(), but I can\u0027t remove the \"if\" statement since it\u0027d result in a negative index for the base case",
+      "parentUuid": "1d879d2a_bd7c37f4",
+      "revId": "cf66ca4451ed2daa696a9f5aa80449416376d04c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
