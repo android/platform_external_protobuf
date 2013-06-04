@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_3deda7b1",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-04T16:40:59Z",
+      "side": 1,
+      "message": "Actually, someone just provided a good recommendation to make the indentLevel also a StringBuffer. Let me switch to that.\n\n(We\u0027re probably putting too much effort into optimizing a debug method, but that\u0027s fine :-)",
+      "parentUuid": "1d879d2a_dd91eb47",
+      "revId": "84e4307f1fbbc46e3aeff54f6908e941b9463346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_b251c619",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 4
