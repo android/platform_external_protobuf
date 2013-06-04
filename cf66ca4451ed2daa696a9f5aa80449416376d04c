@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d879d2a_bd7c37f4",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-04T17:37:03Z",
+      "side": 1,
+      "message": "Remove \"if\" and replace 2 with INDENT.length().",
+      "revId": "cf66ca4451ed2daa696a9f5aa80449416376d04c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
