@@ -34,6 +34,24 @@
       "revId": "cf66ca4451ed2daa696a9f5aa80449416376d04c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_fd05cf58",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-04T18:16:08Z",
+      "side": 1,
+      "message": "You have indentBuf.append(INDENT) just above the for loop, which always gets executed, right?",
+      "parentUuid": "1d879d2a_5d6fbb30",
+      "revId": "cf66ca4451ed2daa696a9f5aa80449416376d04c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
