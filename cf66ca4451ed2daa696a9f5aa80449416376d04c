@@ -52,6 +52,24 @@
       "revId": "cf66ca4451ed2daa696a9f5aa80449416376d04c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_1822b17b",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-06-04T20:26:53Z",
+      "side": 1,
+      "message": "huh you\u0027re right. I thought it was throwing and index out of bounds exception, but I guess not. Fixed",
+      "parentUuid": "1d879d2a_fd05cf58",
+      "revId": "cf66ca4451ed2daa696a9f5aa80449416376d04c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
