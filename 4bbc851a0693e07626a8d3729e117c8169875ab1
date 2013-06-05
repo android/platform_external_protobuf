@@ -33,6 +33,24 @@
       "revId": "4bbc851a0693e07626a8d3729e117c8169875ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_7542d356",
+        "filename": "src/google/protobuf/unittest_nano_enum_multiplejava.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-06-05T22:34:48Z",
+      "side": 1,
+      "message": "Yep. Verified that compilation fails before the bug fix during mvn test and succeeds after.",
+      "parentUuid": "1d879d2a_151ef76d",
+      "revId": "4bbc851a0693e07626a8d3729e117c8169875ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
