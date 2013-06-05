@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d879d2a_32c95102",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-05T21:51:45Z",
+      "side": 1,
+      "message": "Thanks for fixing. I don\u0027t know what java_multiple_files actually does but I will trust you. Can I trouble you with adding a test for this?",
+      "revId": "944c0a86dd374389e954abd4eec1533b1b714352",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
