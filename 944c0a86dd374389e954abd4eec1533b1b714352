@@ -16,6 +16,24 @@
       "revId": "944c0a86dd374389e954abd4eec1533b1b714352",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_d2b9d563",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-06-05T21:55:38Z",
+      "side": 1,
+      "message": "Are there any existing tests for the nano code gen? I want to make sure I follow whatever we\u0027re doing for other cases.\n\n[I tested this manually locally by codegen-ing both with and without java_multiple_files]",
+      "parentUuid": "1d879d2a_32c95102",
+      "revId": "944c0a86dd374389e954abd4eec1533b1b714352",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
