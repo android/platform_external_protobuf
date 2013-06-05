@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1d879d2a_759813be",
+        "filename": "java/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-06-05T22:39:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d879d2a_f52083a6",
+      "revId": "4bbc851a0693e07626a8d3729e117c8169875ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d879d2a_151ef76d",
         "filename": "src/google/protobuf/unittest_nano_enum_multiplejava.proto",
         "patchSetId": 2
