@@ -34,6 +34,24 @@
       "revId": "944c0a86dd374389e954abd4eec1533b1b714352",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_72802985",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-05T22:03:27Z",
+      "side": 1,
+      "message": "Yes, see NanoTest.java. There are some proto files in the tests directory that are nano-specific. You can add one that reproduces this failure case.",
+      "parentUuid": "1d879d2a_d2b9d563",
+      "revId": "944c0a86dd374389e954abd4eec1533b1b714352",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
