@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7dfb39ce_640d2af1",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-06-07T21:01:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dfb39ce_c4f4dec1",
+      "revId": "9dda5dcc7098ed933363d0538fac3ccb75a0b805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7dfb39ce_a4f9e2b7",
         "filename": "src/google/protobuf/unittest_enum_multiplejava_nano.proto",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2013-06-07T20:51:36Z",
       "side": 1,
       "message": "I am assuming this is also a compilation bug so there is no need to add anything to NanoTest.java.",
+      "revId": "9dda5dcc7098ed933363d0538fac3ccb75a0b805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7dfb39ce_440a2edb",
+        "filename": "src/google/protobuf/unittest_enum_multiplejava_nano.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-06-07T21:01:00Z",
+      "side": 1,
+      "message": "Yep, the field references wouldn\u0027t compile before because they were defaulting using constants from the wrong class.",
+      "parentUuid": "7dfb39ce_a4f9e2b7",
       "revId": "9dda5dcc7098ed933363d0538fac3ccb75a0b805",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
