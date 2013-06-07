@@ -226,13 +226,23 @@ string ClassName(const Params& params, const EnumDescriptor* descriptor) {
 
   // Construct the path name from the package and outer class
 
-  // Add the java package name if it exsits
+  // Add the java package name if it exists
   if (params.has_java_package(file_name)) {
     result += params.java_package(file_name);
   }
 
+  // If the java_multiple_files option is present, we will generate enums into separate
+  // classes, each named after the original enum type. This takes precedence over
+  // any outer_classname.
+  if (params.java_multiple_files()) {
+    string enum_simple_name = full_name.substr(full_name.find_last_of('.') + 1);
+    if (!result.empty()) {
+      result += ".";
+    }
+    result += enum_simple_name;
+  }
   // Add the outer classname if it exists
-  if (params.has_java_outer_classname(file_name)) {
+  else if (params.has_java_outer_classname(file_name)) {
     if (!result.empty()) {
       result += ".";
     }
