@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d879d2a_9cff6c99",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-07T16:28:04Z",
+      "side": 1,
+      "message": "Need to check for npos.",
+      "revId": "8a254c56230a1debeda8e85fa6d77ca2cd439508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d879d2a_bce35002",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-07T16:28:04Z",
+      "side": 1,
+      "message": "Move else up, next to close brace. Move comment inside.",
+      "revId": "8a254c56230a1debeda8e85fa6d77ca2cd439508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
