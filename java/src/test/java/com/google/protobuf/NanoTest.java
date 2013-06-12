@@ -38,6 +38,7 @@ import com.google.protobuf.nano.RecursiveMessageNano;
 import com.google.protobuf.nano.SimpleMessageNano;
 import com.google.protobuf.nano.UnittestImportNano;
 import com.google.protobuf.nano.CodedInputByteBufferNano;
+import com.google.protobuf.nano.SerializeAllMessage;
 
 import junit.framework.TestCase;
 
@@ -2154,5 +2155,13 @@ public class NanoTest extends TestCase {
     assertTrue(protoPrint.contains("  repeated_nested_enum: 2\n  repeated_nested_enum: 1"));
     assertTrue(protoPrint.contains("  default_int32: 41"));
     assertTrue(protoPrint.contains("  default_string: \"hello\""));
+  }
+
+  public void testSerializeAllMessage() {
+    SerializeAllMessage message = new SerializeAllMessage();
+    // All fields have their default values. But since we're serializing
+    // defaults, the serialized size is not zero.
+    assertFalse(message.getSerializedSize() == 0);
+    assertFalse(MessageNano.toByteArray(message).length == 0);
   }
 }

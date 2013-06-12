@@ -298,7 +298,7 @@ GenerateParsingCode(io::Printer* printer) const {
 
 void PrimitiveFieldGenerator::
 GenerateSerializationCode(io::Printer* printer) const {
-  if (descriptor_->is_required()) {
+  if (descriptor_->is_required() || params_.serialize_all_fields()) {
     printer->Print(variables_,
       "output.write$capitalized_type$($number$, this.$name$);\n");
   } else {
@@ -321,7 +321,7 @@ GenerateSerializationCode(io::Printer* printer) const {
 
 void PrimitiveFieldGenerator::
 GenerateSerializedSizeCode(io::Printer* printer) const {
-  if (descriptor_->is_required()) {
+  if (descriptor_->is_required() || params_.serialize_all_fields()) {
     printer->Print(variables_,
       "size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
       "    .compute$capitalized_type$Size($number$, this.$name$);\n");

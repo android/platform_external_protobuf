@@ -51,12 +51,16 @@ class Params {
   bool java_multiple_files_;
   NameMap java_packages_;
   NameMap java_outer_classnames_;
+  // Instructs the generator to serialize all fields, irrespective of whether
+  // they are equal to their default value.
+  bool serialize_all_fields_;
 
  public:
   Params(const string & base_name) :
     empty_(""),
     base_name_(base_name),
-    java_multiple_files_(false) {
+    java_multiple_files_(false),
+    serialize_all_fields_(false) {
   }
 
   const string& base_name() const {
@@ -112,6 +116,13 @@ class Params {
   }
   bool java_multiple_files() const {
     return java_multiple_files_;
+  }
+
+  void set_serialize_all_fields(bool value) {
+    serialize_all_fields_ = value;
+  }
+  bool serialize_all_fields() const {
+    return serialize_all_fields_;
   }
 
 };

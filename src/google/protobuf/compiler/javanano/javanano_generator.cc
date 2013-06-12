@@ -116,7 +116,9 @@ bool JavaNanoGenerator::Generate(const FileDescriptor* file,
         }
         params.set_java_outer_classname(parts[0], parts[1]);
     } else if (options[i].first == "java_multiple_files") {
-        params.set_java_multiple_files(options[i].second == "true");
+      params.set_java_multiple_files(options[i].second == "true");
+    } else if (options[i].first == "serialize_all_fields") {
+      params.set_serialize_all_fields(options[i].second == "true");
     } else {
       *error = "Ignore unknown javanano generator option: " + options[i].first;
     }
