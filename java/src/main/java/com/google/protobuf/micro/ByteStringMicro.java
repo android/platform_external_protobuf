@@ -114,6 +114,13 @@ public final class ByteStringMicro {
     }
   }
 
+  /**
+   * Passes the given bytes into a {@code ByteStringMicro}.
+   */
+  public static ByteStringMicro assignFrom(final byte[] bytes) {
+    return new ByteStringMicro(bytes);
+  }
+
   // =================================================================
   // ByteStringMicro -> byte[]
 
@@ -149,6 +156,13 @@ public final class ByteStringMicro {
     final byte[] copy = new byte[size];
     System.arraycopy(bytes, 0, copy, 0, size);
     return copy;
+  }
+
+  /**
+   * Returns the internal byte array. Callers should not modify it.
+   */
+  public byte[] getBytes() {
+    return bytes;
   }
 
   /**
