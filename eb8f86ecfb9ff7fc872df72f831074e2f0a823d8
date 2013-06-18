@@ -16,6 +16,23 @@
       "revId": "eb8f86ecfb9ff7fc872df72f831074e2f0a823d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a2f89b5_22cf4e0a",
+        "filename": "java/src/main/java/com/google/protobuf/micro/ByteStringMicro.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1014443
+      },
+      "writtenOn": "2013-06-18T10:48:26Z",
+      "side": 1,
+      "message": "Why do you need a getBytes method ?",
+      "revId": "eb8f86ecfb9ff7fc872df72f831074e2f0a823d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
