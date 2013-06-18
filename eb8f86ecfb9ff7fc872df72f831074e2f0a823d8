@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a2f89b5_c29662de",
+        "filename": "java/src/main/java/com/google/protobuf/micro/ByteStringMicro.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1018108
+      },
+      "writtenOn": "2013-06-18T10:47:20Z",
+      "side": 1,
+      "message": "I\u0027m not sure whether \"assignFrom\" is a better name than just \"assign\".",
+      "revId": "eb8f86ecfb9ff7fc872df72f831074e2f0a823d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
