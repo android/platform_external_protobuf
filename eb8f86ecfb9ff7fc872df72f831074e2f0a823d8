@@ -33,6 +33,24 @@
       "revId": "eb8f86ecfb9ff7fc872df72f831074e2f0a823d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a2f89b5_05ab34c4",
+        "filename": "java/src/main/java/com/google/protobuf/micro/ByteStringMicro.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1018108
+      },
+      "writtenOn": "2013-06-18T11:27:09Z",
+      "side": 1,
+      "message": "This is to avoid a copy when we want to access data read from a protobuffer.\n\n\"assignFrom\" is to avoid a copy when creating a ByteStringMicro to be written to a protobuffer.",
+      "parentUuid": "4a2f89b5_22cf4e0a",
+      "revId": "eb8f86ecfb9ff7fc872df72f831074e2f0a823d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
