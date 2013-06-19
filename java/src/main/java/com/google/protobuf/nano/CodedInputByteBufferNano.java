@@ -98,32 +98,29 @@ public final class CodedInputByteBufferNano {
 
   /**
    * Reads and discards a single field, given its tag value.
-   *
-   * @return {@code false} if the tag is an endgroup tag, in which case
-   *         nothing is skipped.  Otherwise, returns {@code true}.
    */
-  public boolean skipField(final int tag) throws IOException {
+  public void skipField(final int tag) throws IOException {
     switch (WireFormatNano.getTagWireType(tag)) {
       case WireFormatNano.WIRETYPE_VARINT:
         readInt32();
-        return true;
+        break;
       case WireFormatNano.WIRETYPE_FIXED64:
         readRawLittleEndian64();
-        return true;
+        break;
       case WireFormatNano.WIRETYPE_LENGTH_DELIMITED:
         skipRawBytes(readRawVarint32());
-        return true;
+        break;
       case WireFormatNano.WIRETYPE_START_GROUP:
         skipMessage();
         checkLastTagWas(
           WireFormatNano.makeTag(WireFormatNano.getTagFieldNumber(tag),
                              WireFormatNano.WIRETYPE_END_GROUP));
-        return true;
+        break;
       case WireFormatNano.WIRETYPE_END_GROUP:
-        return false;
+        break;
       case WireFormatNano.WIRETYPE_FIXED32:
         readRawLittleEndian32();
-        return true;
+        break;
       default:
         throw InvalidProtocolBufferNanoException.invalidWireType();
     }
@@ -136,7 +133,11 @@ public final class CodedInputByteBufferNano {
   public void skipMessage() throws IOException {
     while (true) {
       final int tag = readTag();
-      if (tag == 0 || !skipField(tag)) {
+      if (tag == 0) {
+        return;
+      }
+      skipField(tag);
+      if (WireFormatNano.getTagWireType(tag) == WireFormatNano.WIRETYPE_END_GROUP) {
         return;
       }
     }
@@ -538,6 +539,23 @@ public final class CodedInputByteBufferNano {
    */
   public int getPosition() {
     return bufferPos - bufferStart;
+  }
+
+  /**
+   * Retrieves a subset of data in the buffer. The returned array is not backed by the original
+   * buffer array.
+   *
+   * @param offset the position (relative to the buffer start position) to start at.
+   * @param length the number of bytes to retrieve.
+   */
+  public byte[] getData(int offset, int length) {
+    if (length == 0) {
+      return WireFormatNano.EMPTY_BYTES;
+    }
+    byte[] copy = new byte[length];
+    int start = bufferStart + offset;
+    System.arraycopy(buffer, start, copy, 0, length);
+    return copy;
   }
 
   /**
