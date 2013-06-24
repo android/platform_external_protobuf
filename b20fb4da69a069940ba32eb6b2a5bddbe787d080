@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8afc21ee_5c363de8",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedInputByteBufferNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-24T22:45:42Z",
+      "side": 1,
+      "message": "Why this change? When this is the case, skipField doesn\u0027t actually skip anything so your change seems to make things a bit confusing.",
+      "revId": "b20fb4da69a069940ba32eb6b2a5bddbe787d080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8afc21ee_bc202175",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2221,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-24T22:45:42Z",
+      "side": 1,
+      "message": "Please also test \"clear\".",
+      "revId": "b20fb4da69a069940ba32eb6b2a5bddbe787d080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8afc21ee_fcbf49e7",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-06-24T22:45:42Z",
+      "side": 1,
+      "message": "Should this be under the store_unknown_fields() flag?",
+      "revId": "b20fb4da69a069940ba32eb6b2a5bddbe787d080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
