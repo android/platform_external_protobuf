@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07202cdd_e80893e3",
+        "filename": "src/Makefile.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003851
+      },
+      "writtenOn": "2013-07-09T16:43:48Z",
+      "side": 0,
+      "message": "I don\u0027t know if this apparently-generated file should be checked in or not, but it was already present in the tree so I did anyway.",
+      "revId": "0a1429cc5ee4865550bcdddfae681a30cef58a5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
