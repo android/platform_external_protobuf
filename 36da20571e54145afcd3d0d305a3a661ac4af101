@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c701b489_c6906298",
+        "filename": "java/README.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2013-07-10T18:26:07Z",
+      "side": 1,
+      "message": "Is there precedent for this naming convention (esp. the trailing underscore)?\n\nWould you consider has_fieldname ?",
+      "revId": "36da20571e54145afcd3d0d305a3a661ac4af101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
