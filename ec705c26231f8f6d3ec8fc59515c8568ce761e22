@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "73d1afe1_bb74fb8d",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-18T22:21:04Z",
+      "side": 1,
+      "message": "Just a class static to this file is ok. You will call the member function from RenameJavaKeywords.",
+      "parentUuid": "136b13de_eb7dd975",
+      "revId": "ec705c26231f8f6d3ec8fc59515c8568ce761e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73d1afe1_d82d450c",
         "filename": "src/google/protobuf/unittest_nano.proto",
         "patchSetId": 1
