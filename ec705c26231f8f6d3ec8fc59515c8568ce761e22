@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53bf4b8c_a9183d86",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-18T21:08:09Z",
+      "side": 1,
+      "message": "Please create a class and instantiate statically.\n\nClass should construct a hash_set\u003cconst char *\u003e. And include a rename function.\n\nstatic const char *kJavaKeywords[] \u003d { ... \u003cyour list\u003e ... }",
+      "revId": "ec705c26231f8f6d3ec8fc59515c8568ce761e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73d1afe1_d82d450c",
+        "filename": "src/google/protobuf/unittest_nano.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-18T21:08:09Z",
+      "side": 1,
+      "message": "Also put a line somewhere in NanoTest.java that accesses this field (presumably with underscore).",
+      "revId": "ec705c26231f8f6d3ec8fc59515c8568ce761e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
