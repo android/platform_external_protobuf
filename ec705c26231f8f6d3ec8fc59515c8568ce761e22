@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "136b13de_eb7dd975",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-07-18T22:04:35Z",
+      "side": 1,
+      "message": "Should this be a nested class?",
+      "parentUuid": "53bf4b8c_a9183d86",
+      "revId": "ec705c26231f8f6d3ec8fc59515c8568ce761e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73d1afe1_d82d450c",
         "filename": "src/google/protobuf/unittest_nano.proto",
         "patchSetId": 1
