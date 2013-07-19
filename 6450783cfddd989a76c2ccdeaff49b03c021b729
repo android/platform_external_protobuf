@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f342ff7b_9ec15d73",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-19T00:41:35Z",
+      "side": 1,
+      "message": "Indentation.",
+      "revId": "6450783cfddd989a76c2ccdeaff49b03c021b729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f342ff7b_5ee07512",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-19T00:41:35Z",
+      "side": 1,
+      "message": "You need to put this in a constructor, not run it every time.",
+      "revId": "6450783cfddd989a76c2ccdeaff49b03c021b729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
