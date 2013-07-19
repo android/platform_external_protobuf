@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f342ff7b_1e854d01",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-19T03:10:58Z",
+      "side": 1,
+      "message": "C++ style: java_keywords_set_",
+      "revId": "fea2108c839230bc6aa9de1293f8bee6e10f12d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f342ff7b_7e7a9130",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-19T03:10:58Z",
+      "side": 1,
+      "message": "static const char * kJavaKeywordsList[] \u003d {",
+      "revId": "fea2108c839230bc6aa9de1293f8bee6e10f12d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f342ff7b_5e7fd51e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-19T03:10:58Z",
+      "side": 1,
+      "message": "sRenameKeywords",
+      "revId": "fea2108c839230bc6aa9de1293f8bee6e10f12d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
