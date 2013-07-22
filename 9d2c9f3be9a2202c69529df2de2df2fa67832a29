@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1325d3ee_ca6ca306",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2065,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-22T16:59:29Z",
+      "side": 1,
+      "message": "Also test your is-default-nan logic by testing serialized size.",
+      "revId": "9d2c9f3be9a2202c69529df2de2df2fa67832a29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
