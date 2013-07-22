@@ -2062,6 +2062,12 @@ public class NanoTest extends TestCase {
       assertEquals(TestAllTypesNano.BAR, msg.defaultNestedEnum);
       assertEquals(NanoOuterClass.FOREIGN_NANO_BAR, msg.defaultForeignEnum);
       assertEquals(UnittestImportNano.IMPORT_NANO_BAR, msg.defaultImportEnum);
+      assertEquals(Float.POSITIVE_INFINITY, msg.defaultFloatInf);
+      assertEquals(Float.NEGATIVE_INFINITY, msg.defaultFloatNegInf);
+      assertEquals(Float.NaN, msg.defaultFloatNan);
+      assertEquals(Double.POSITIVE_INFINITY, msg.defaultDoubleInf);
+      assertEquals(Double.NEGATIVE_INFINITY, msg.defaultDoubleNegInf);
+      assertEquals(Double.NaN, msg.defaultDoubleNan);
 
       // Default values are not output, except for required fields.
       byte [] result = MessageNano.toByteArray(msg);
