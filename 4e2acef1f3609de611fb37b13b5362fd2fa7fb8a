@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b365e72b_1ba8ad1e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1017519
+      },
+      "writtenOn": "2013-07-23T16:33:57Z",
+      "side": 1,
+      "message": "Always false unless the value is NaN :)\n\nAny comparison involving NaN returns false, which is why this needs special handling rather than the usual \"if (value !\u003d default)\" check.\n\nIf you can think of a nicer way to do the check let me know!",
+      "parentUuid": "f3c75f62_b658e890",
+      "revId": "4e2acef1f3609de611fb37b13b5362fd2fa7fb8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3c75f62_d6556457",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 4
