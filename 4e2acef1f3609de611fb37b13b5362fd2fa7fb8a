@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3c75f62_b658e890",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-23T16:18:10Z",
+      "side": 1,
+      "message": "This doesn\u0027t look correct, its comparing with itself so always false?",
+      "revId": "4e2acef1f3609de611fb37b13b5362fd2fa7fb8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3c75f62_d6556457",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-23T16:18:10Z",
+      "side": 1,
+      "message": "ditto here?",
+      "revId": "4e2acef1f3609de611fb37b13b5362fd2fa7fb8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
