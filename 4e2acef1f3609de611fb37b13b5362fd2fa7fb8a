@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "337c97f0_2813ab70",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-23T17:57:48Z",
+      "side": 1,
+      "message": "People always point out equality inconsistencies in Javascript but here is one in C!\n\nAgree with Wink that this is a bit cryptic.\n\nCan you change to use math.h\u0027s isnan?",
+      "parentUuid": "b365e72b_1ba8ad1e",
+      "revId": "4e2acef1f3609de611fb37b13b5362fd2fa7fb8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3c75f62_d6556457",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 4
