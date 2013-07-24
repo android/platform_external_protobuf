@@ -34,6 +34,24 @@
       "revId": "680cbe42f9de9fca953d8bbcc0e7b1929e269f8a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "934d4312_e448308d",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-24T22:17:19Z",
+      "side": 1,
+      "message": "I don\u0027t think it needs specified as in build/core/java.mk there is:\n\nproto_sources :\u003d $(filter %.proto,$(LOCAL_SRC_FILES))\nifneq ($(proto_sources),)\nifeq ($(LOCAL_PROTOC_OPTIMIZE_TYPE),micro)\n    LOCAL_STATIC_JAVA_LIBRARIES +\u003d libprotobuf-java-2.3.0-micro\nelse\n  ifeq ($(LOCAL_PROTOC_OPTIMIZE_TYPE),nano)\n    LOCAL_STATIC_JAVA_LIBRARIES +\u003d libprotobuf-java-2.3.0-nano\n  else\n    LOCAL_STATIC_JAVA_LIBRARIES +\u003d libprotobuf-java-2.3.0-lite\n  endif\nendif\nendif",
+      "parentUuid": "934d4312_e4611013",
+      "revId": "680cbe42f9de9fca953d8bbcc0e7b1929e269f8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
