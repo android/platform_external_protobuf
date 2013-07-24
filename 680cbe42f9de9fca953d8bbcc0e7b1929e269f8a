@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "934d4312_c48974b5",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-24T22:06:42Z",
+      "side": 1,
+      "message": "I is not necessary its better if we don\u0027t  specify so that \"when\" we upgrade to 2.5 we won\u0027t have to update this.",
+      "revId": "680cbe42f9de9fca953d8bbcc0e7b1929e269f8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
