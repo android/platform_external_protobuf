@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "934d4312_caa73bb2",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-25T17:52:19Z",
+      "side": 1,
+      "message": "nit: const string\u0026 file_name",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "934d4312_2a97bf3f",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-25T17:52:19Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "934d4312_4a948b38",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_params.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-25T17:52:19Z",
+      "side": 1,
+      "message": "Remove \"e\"",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "934d4312_6a74e73f",
+        "filename": "src/google/protobuf/unittest_multiple_nano.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-25T17:52:19Z",
+      "side": 1,
+      "message": "Would it be useful to refer to these in NanoTest.java?",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
