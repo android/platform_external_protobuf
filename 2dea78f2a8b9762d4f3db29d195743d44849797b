@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "53210b30_5f74433f",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-07-25T18:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "934d4312_caa73bb2",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "934d4312_2a97bf3f",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2013-07-25T17:52:19Z",
       "side": 1,
       "message": "ditto",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53210b30_7f71074e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-07-25T18:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "934d4312_2a97bf3f",
       "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "53210b30_1f6ecb6d",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_params.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-07-25T18:50:43Z",
+      "side": 1,
+      "message": "javamicro_params.h has a preexisting enum with prefix e. Break consistency?",
+      "parentUuid": "934d4312_4a948b38",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "934d4312_2a6edf6d",
         "filename": "src/google/protobuf/unittest_multiple_micro.proto",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2013-07-25T17:54:12Z",
       "side": 1,
       "message": "What about actually testing the generated code here and for nano?",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53210b30_df961338",
+        "filename": "src/google/protobuf/unittest_multiple_micro.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-07-25T18:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "934d4312_2a6edf6d",
       "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "53210b30_3f6b8f5e",
+        "filename": "src/google/protobuf/unittest_multiple_micro.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-07-25T18:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "934d4312_aa798f3c",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "934d4312_6a74e73f",
         "filename": "src/google/protobuf/unittest_multiple_nano.proto",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2013-07-25T17:52:19Z",
       "side": 1,
       "message": "Would it be useful to refer to these in NanoTest.java?",
+      "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53210b30_ff9bd75e",
+        "filename": "src/google/protobuf/unittest_multiple_nano.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-07-25T18:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "934d4312_6a74e73f",
       "revId": "2dea78f2a8b9762d4f3db29d195743d44849797b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
