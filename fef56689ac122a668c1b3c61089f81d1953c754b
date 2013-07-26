@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3189b2e_b5616014",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2013-07-26T23:54:59Z",
+      "side": 1,
+      "message": "wouldn\u0027t it be more efficient to test this first, before the more expensive tests above?  Something like:\n\n  if (generate_has)\n    print(\"if (has$capitalized_name$ || \")\n  else\n    print(\"if (\")",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
