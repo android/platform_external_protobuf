@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d3189b2e_98873961",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-27T01:21:28Z",
+      "side": 1,
+      "message": "Add that optionalNestedMessage \"has\" is working?",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3189b2e_b5616014",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 5
@@ -13,6 +30,57 @@
       "writtenOn": "2013-07-26T23:54:59Z",
       "side": 1,
       "message": "wouldn\u0027t it be more efficient to test this first, before the more expensive tests above?  Something like:\n\n  if (generate_has)\n    print(\"if (has$capitalized_name$ || \")\n  else\n    print(\"if (\")",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3189b2e_78a17deb",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-27T01:21:28Z",
+      "side": 1,
+      "message": "Should we make this a separate change, its just clean up, correct?",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3189b2e_589e41ab",
+        "filename": "src/google/protobuf/unittest_has_nano.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-27T01:21:28Z",
+      "side": 1,
+      "message": "fix alignment of the \"string\" here and below?",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3189b2e_986e19c1",
+        "filename": "src/google/protobuf/unittest_has_nano.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-27T01:21:28Z",
+      "side": 1,
+      "message": "Add required NestedEnum and required NestedMessage for completeness?",
       "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
