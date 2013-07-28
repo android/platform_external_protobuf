@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d3189b2e_182b29f8",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-28T21:34:18Z",
+      "side": 1,
+      "message": "Messages don\u0027t have has fields. Just comparing against null does the trick.",
+      "parentUuid": "d3189b2e_98873961",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3189b2e_b5616014",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2013-07-26T23:54:59Z",
       "side": 1,
       "message": "wouldn\u0027t it be more efficient to test this first, before the more expensive tests above?  Something like:\n\n  if (generate_has)\n    print(\"if (has$capitalized_name$ || \")\n  else\n    print(\"if (\")",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3189b2e_d81891ec",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-28T21:34:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3189b2e_b5616014",
       "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d3189b2e_382ee507",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-28T21:34:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3189b2e_78a17deb",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3189b2e_589e41ab",
         "filename": "src/google/protobuf/unittest_has_nano.proto",
         "patchSetId": 5
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "d3189b2e_981e19d7",
+        "filename": "src/google/protobuf/unittest_has_nano.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-28T21:34:18Z",
+      "side": 1,
+      "message": "I just copied the indentation from the other file. Looks ok to me...",
+      "parentUuid": "d3189b2e_589e41ab",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3189b2e_986e19c1",
         "filename": "src/google/protobuf/unittest_has_nano.proto",
         "patchSetId": 5
@@ -81,6 +153,24 @@
       "writtenOn": "2013-07-27T01:21:28Z",
       "side": 1,
       "message": "Add required NestedEnum and required NestedMessage for completeness?",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3189b2e_f813cdcc",
+        "filename": "src/google/protobuf/unittest_has_nano.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-28T21:34:18Z",
+      "side": 1,
+      "message": "Those are not really different from a \"has\" perspective. They behave the same as before. I wanted to limit this test to just exercising the changes brought on by java_nano_generate_has.",
+      "parentUuid": "d3189b2e_986e19c1",
       "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
