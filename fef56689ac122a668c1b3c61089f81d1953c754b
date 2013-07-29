@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d3189b2e_1872091c",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-29T05:10:21Z",
+      "side": 1,
+      "message": "What about newMsg.optionalNestedMessage.hasBb?",
+      "parentUuid": "d3189b2e_182b29f8",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3189b2e_b5616014",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 5
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "I just copied the indentation from the other file. Looks ok to me...",
       "parentUuid": "d3189b2e_589e41ab",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3189b2e_787fbde3",
+        "filename": "src/google/protobuf/unittest_has_nano.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-29T05:10:21Z",
+      "side": 1,
+      "message": "I\u0027m was suggestiong int32 and string be aligned here and below, not a big deal just looked a little funny to me.\n\n  optional   int32 ...    \u003d  1;\n  optional   string ...   \u003d 14;",
+      "parentUuid": "d3189b2e_981e19d7",
       "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
