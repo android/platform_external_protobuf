@@ -32,6 +32,8 @@ package com.google.protobuf;
 
 import com.google.protobuf.micro.ByteStringMicro;
 import com.google.protobuf.micro.CodedInputStreamMicro;
+import com.google.protobuf.micro.FileScopeEnumRefMicro;
+import com.google.protobuf.micro.MessageScopeEnumRefMicro;
 import com.google.protobuf.micro.MicroOuterClass;
 import com.google.protobuf.micro.MicroOuterClass.TestAllTypesMicro;
 import com.google.protobuf.micro.MultipleImportingNonMultipleMicro1;
@@ -40,6 +42,7 @@ import com.google.protobuf.micro.RecursiveMessageMicro;
 import com.google.protobuf.micro.SimpleMessageMicro;
 import com.google.protobuf.micro.StringUtf8;
 import com.google.protobuf.micro.UnittestImportMicro;
+import com.google.protobuf.micro.UnittestMultipleMicro;
 
 import junit.framework.TestCase;
 
@@ -2101,6 +2104,18 @@ public class MicroTest extends TestCase {
     assertEquals(2, newMsg.getRepeatedCordCount());
     assertEquals("hello", newMsg.getRepeatedCord(0));
     assertEquals("world", newMsg.getRepeatedCord(1));
+  }
+
+  /**
+   * Tests that code generation correctly handles enums in different scopes in
+   * a source file with the option java_multiple_files set to true. Any error
+   * would cause this method to fail compilation.
+   */
+  public void testMicroMultipleEnumScoping() throws Exception {
+    FileScopeEnumRefMicro msg1 = new FileScopeEnumRefMicro();
+    msg1.setEnumField(UnittestMultipleMicro.ONE);
+    MessageScopeEnumRefMicro msg2 = new MessageScopeEnumRefMicro();
+    msg2.setEnumField(MessageScopeEnumRefMicro.TWO);
   }
 
   /**
