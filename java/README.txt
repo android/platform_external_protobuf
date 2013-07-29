@@ -91,9 +91,11 @@ Micro version
 ============================
 
 The runtime and generated code for MICRO_RUNTIME is smaller
-because it does not include support for the descriptor,
-reflection or extensions. Also, not currently supported
-are packed repeated elements nor testing of java_multiple_files.
+because it does not include support for the descriptor and
+reflection, and enums are generated as integer constants in
+the parent message or the file's outer class. Also, not
+currently supported are packed repeated elements or
+extensions.
 
 To create a jar file for the runtime and run tests invoke
 "mvn package -P micro" from the <protobuf-root>/java
@@ -128,6 +130,7 @@ opt                  -> speed or space
 java_use_vector      -> true or false
 java_package         -> <file-name>|<package-name>
 java_outer_classname -> <file-name>|<package-name>
+java_multiple_files  -> true or false
 
 opt:
   This changes the code generation to optimize for speed,
@@ -173,8 +176,8 @@ java_use_vector:
 
 java_package:
   The allows setting/overriding the java_package option
-  and associates allows a package name for a file to
-  be specified on the command line. Overriding any
+  and allows a package name for a file to be specified
+  on the command line, overriding any
   "option java_package xxxx" in the file. The default
   if not present is to use the value from the package
   statment or "option java_package xxxx" in the file.
@@ -182,15 +185,35 @@ java_package:
 java_outer_classname:
   This allows the setting/overriding of the outer
   class name option and associates a class name
-  to a file. An outer class name is required and
-  must be specified if there are multiple messages
-  in a single proto file either in the proto source
-  file or on the command line. If not present the
-  no outer class name will be used.
+  to a file, overriding any
+  "option java_outer_classname xxxx" in the file. The
+  default if not present is to use the value from the
+  in-file option or infer a suitable class name from
+  the file name. Unlike previous implementations, the
+  outer class will be generated even if the source
+  file contains only one message and no explicitly
+  defined outer class name. This is to re-align with
+  the specs and the main Java generator's behavior.
+  See below for an exception.
+
+java_multiple_files:
+  This allows setting/overriding the java_multiple_files
+  option. If true, all file-scope messages are generated
+  as top-level classes, i.e. siblings of the file's
+  outer class. The outer class is generated only if
+  necessary for the file-scope enum constants. If there
+  are no file-scope enums, the outer class name can be
+  used by a file-scope message. If false, all file-scope
+  messages and enum constants are contained in the outer
+  class, whose name cannot be reused by a file-scope
+  message. When overriding this option in the command
+  line sub-parameter, all source files and their imports
+  are considered to have the overridden value.
+
 
 Below are a series of examples for clarification of the
 various javamicro_out parameters using
-src/test/proto/simple-data.proto:
+src/test/proto/simple-data-protos.proto:
 
 package testprotobuf;
 
@@ -200,64 +223,85 @@ message SimpleData {
   optional bool ok = 3 [default = false];
 };
 
-
 Assuming you've only compiled and not installed protoc and
 your current working directory java/, then a simple
 command line to compile simple-data would be:
 
-../src/protoc --javamicro_out=. src/test/proto/simple-data.proto
+../src/protoc --javamicro_out=. src/test/proto/simple-data-protos.proto
 
-This will create testprotobuf/SimpleData.java
+This will create testprotobuf/SimpleDataProtos.java, which
+is an outer class containing the message class SimpleData.
 
 The directory testprotobuf is created because on line 1
-of simple-data.proto is "package testprotobuf;". If you
-wanted a different package name you could use the
+of simple-data-protos.proto is "package testprotobuf;".
+If you wanted a different package name you could use the
 java_package option command line sub-parameter:
 
-../src/protoc '--javamicro_out=java_package=src/test/proto/simple-data.proto|my_package:.' src/test/proto/simple-data.proto
+../src/protoc '--javamicro_out=java_package=src/test/proto/simple-data-protos.proto|my_package:.' src/test/proto/simple-data-protos.proto
 
 Here you see the new java_package sub-parameter which
 itself needs two parameters the file name and the
 package name, these are separated by "|". Now you'll
-find my_package/SimpleData.java.
+find my_package/SimpleDataProtos.java.
 
 If you wanted to also change the optimization for
 speed you'd add opt=speed with the comma seperator
 as follows:
 
-../src/protoc '--javamicro_out=opt=speed,java_package=src/test/proto/simple-data.proto|my_package:.' src/test/proto/simple-data.proto
+../src/protoc '--javamicro_out=opt=speed,java_package=src/test/proto/simple-data-protos.proto|my_package:.' src/test/proto/simple-data-protos.proto
 
-Finally if you also wanted an outer class name you'd
+If you also wanted a different outer class name you'd
 do the following:
 
-../src/protoc '--javamicro_out=opt=speed,java_package=src/test/proto/simple-data.proto|my_package,java_outer_classname=src/test/proto/simple-data.proto|OuterName:.' src/test/proto/simple-data.proto
+../src/protoc '--javamicro_out=opt=speed,java_package=src/test/proto/simple-data-protos.proto|my_package,java_outer_classname=src/test/proto/simple-data-protos.proto|OuterName:.' src/test/proto/simple-data-protos.proto
 
-Now you'll find my_packate/OuterName.java.
+Now you'll find my_package/OuterName.java.
 
-As mentioned java_package and java_outer_classname
-may also be specified in the file. In the example
-below we must define java_outer_classname because
-there are multiple messages in
-src/test/proto/two-messages.proto
+If you don't want the outer class at all, do this:
+
+../src/protoc '--javamicro_out=opt=speed,java_package=src/test/proto/simple-data-protos.proto|my_package,java_multiple_files=true:.' src/test/proto/simple-data-protos.proto
+
+Now you'll find my_package/SimpleData.java without
+the outer class.
+
+As mentioned java_package, java_outer_classname and
+java_multiple_files may also be specified in the file.
+In the example below we must define
+java_outer_classname because otherwise the outer class
+and one of the message classes will have the same name:
+src/test/proto/sample-message.proto:
 
 package testmicroruntime;
 
 option java_package = "com.example";
-option java_outer_classname = "TestMessages";
+option java_outer_classname = "SampleMessageProtos";
 
-message TestMessage1 {
+message SampleMessage {
   required int32 id = 1;
 }
 
-message TestMessage2 {
-  required int32 id = 1;
+message SampleMessageContainer {
+  required SampleMessage message = 1;
 }
 
 This could be compiled using:
 
-../src/protoc --javamicro_out=. src/test/proto/two-message.proto
+../src/protoc --javamicro_out=. src/test/proto/sample-message.proto
 
-With the result will be com/example/TestMessages.java
+With the result will be com/example/SampleMessageProtos.java
+
+Alternatively, the line with option java_outer_classname
+can be replaced with
+
+option java_multiple_files = true;
+
+If so, despite the clash between the message class name
+and the implicit outer class name, because the outer
+class is not needed, compiling this file with the same
+command line will succeed and yield two message classes:
+
+com/example/SampleMessage.java
+com/example/SampleMessageContainer.java
 
 
 Nano version
