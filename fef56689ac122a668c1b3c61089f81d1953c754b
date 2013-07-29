@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "d3189b2e_984d799c",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-29T16:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3189b2e_1872091c",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3189b2e_b5616014",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 5
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "I\u0027m was suggestiong int32 and string be aligned here and below, not a big deal just looked a little funny to me.\n\n  optional   int32 ...    \u003d  1;\n  optional   string ...   \u003d 14;",
       "parentUuid": "d3189b2e_981e19d7",
+      "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3189b2e_183a09fd",
+        "filename": "src/google/protobuf/unittest_has_nano.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-29T16:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3189b2e_787fbde3",
       "revId": "fef56689ac122a668c1b3c61089f81d1953c754b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
