@@ -127,7 +127,9 @@
                   <arg value="../src/google/protobuf/unittest_stringutf8_micro.proto" />
                   <arg value="../src/google/protobuf/unittest_recursive_micro.proto" />
                   <arg value="../src/google/protobuf/unittest_import_micro.proto" />
+                  <arg value="../src/google/protobuf/unittest_single_micro.proto" />
                   <arg value="../src/google/protobuf/unittest_multiple_micro.proto" />
+                  <arg value="../src/google/protobuf/unittest_multiple_nameclash_micro.proto" />
                 </exec>
 		<!-- java nano -->
                 <exec executable="../src/protoc">
