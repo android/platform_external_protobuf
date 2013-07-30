@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "138a339d_e58cf286",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-30T13:28:38Z",
+      "side": 1,
+      "message": "How about we cause the \"build\" to break with a message saying behavior has changed and how to fix it? Then we can add tests for change 1 and 3?",
+      "revId": "e1749b073037281f2f4e3393d398517f1b0f96d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
