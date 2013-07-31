@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3741b7d_1574b43e",
+        "filename": "java/README.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-07-31T21:15:23Z",
+      "side": 1,
+      "message": "This \"outer class is generated only if necessary\" doesn\u0027t seem like a good idea in that you have to look what\u0027s defined in the message to know if an outer class is going to be generated. Can this be simpler or maybe I\u0027m missing something?\n\nI think may need some more examples here that clearly shows here is the input proto file and here is the output java file. I probably should have done more of that originally.",
+      "revId": "35dd741f6c52f7e50279fe04afbad6979a3a767f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
