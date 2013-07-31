@@ -16,6 +16,24 @@
       "revId": "f02363f4ec9ffb5e921d7826825eaa68aea99253",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3741b7d_b59b0060",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-07-31T21:15:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3189b2e_5bf8fba9",
+      "revId": "f02363f4ec9ffb5e921d7826825eaa68aea99253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
