@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b804e402_6286b210",
+        "filename": "java/README.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-08-02T16:55:08Z",
+      "side": 1,
+      "message": "Do we want to add something in the nano section for this?",
+      "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b804e402_42ee16aa",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-08-02T16:55:08Z",
+      "side": 1,
+      "message": "Remove this.",
+      "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b804e402_a2c95a40",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-08-02T16:55:08Z",
+      "side": 1,
+      "message": "There is a GOOGLE_LOG(INFO) \u003c\u003c ...",
+      "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
