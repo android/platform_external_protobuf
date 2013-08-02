@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b83224ef_cf17e197",
+        "filename": "java/README.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2013-08-02T21:03:57Z",
+      "side": 1,
+      "message": "As this CL introduces a change in generated code, there\u0027s going to be a real need for \"do it the old way\" (e.g. for older branches in maintenance mode, and you don\u0027t want to have to make a bunch of changes to existing code).\n\nThe descriptions of java_multiple_files are quite detailed, but I think it would really help if you could provide a summary of the proper settings for \n\n(a) \"Do it the right way\" as recommended for new code\n\n(b) \"Do it the old way\" for legacy code that you really don\u0027t want to change",
+      "revId": "7e0b01fa95f8235557dfb52f70f1a4ac8ec223af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b83224ef_0fbba972",
+        "filename": "java/README.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2013-08-02T21:03:57Z",
+      "side": 1,
+      "message": "Can you please call out the default clearly and at the top of each description?  It\u0027s not so bad here (called out explicitly at the end of the paragraph) but it\u0027s pretty bad in some of the subsequent sections, buried in the middle of very long descriptions.",
+      "revId": "7e0b01fa95f8235557dfb52f70f1a4ac8ec223af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
