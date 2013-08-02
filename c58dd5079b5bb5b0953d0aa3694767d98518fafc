@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f8fadc2e_847aeac6",
+        "filename": "java/README.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-08-02T17:20:44Z",
+      "side": 1,
+      "message": "Added something.",
+      "parentUuid": "b804e402_6286b210",
+      "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b804e402_42ee16aa",
         "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
         "patchSetId": 10
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "f8fadc2e_c4c232cd",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-08-02T17:20:44Z",
+      "side": 1,
+      "message": "See below",
+      "parentUuid": "b804e402_42ee16aa",
+      "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b804e402_a2c95a40",
         "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
         "patchSetId": 10
@@ -47,6 +83,24 @@
       "writtenOn": "2013-08-02T16:55:08Z",
       "side": 1,
       "message": "There is a GOOGLE_LOG(INFO) \u003c\u003c ...",
+      "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8fadc2e_a4bf2651",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-08-02T17:20:44Z",
+      "side": 1,
+      "message": "That\u0027s for logging *this* program\u0027s states (it will log this file name (javanano_file.cc) and this line number (123)), whereas I want the following message to be actual output of the codegen execution about the source file (file_-\u003ename()).",
+      "parentUuid": "b804e402_a2c95a40",
       "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
