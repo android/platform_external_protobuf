@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b83224ef_b245186f",
+        "filename": "java/README.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-08-02T21:55:22Z",
+      "side": 1,
+      "message": "The old branches have the old compiler, which they can continue to use. If they wish to use the new compiler they\u0027ll get compile time errors with information on how to fix it.\n\nSo for now I\u0027d like us to not support the \"old way\", but if it turns out this isn\u0027t practical then we can \"fix\" the compiler in the future.",
+      "parentUuid": "b83224ef_cf17e197",
+      "revId": "7e0b01fa95f8235557dfb52f70f1a4ac8ec223af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b83224ef_0fbba972",
         "filename": "java/README.txt",
         "patchSetId": 11
