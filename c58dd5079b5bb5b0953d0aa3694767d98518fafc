@@ -122,6 +122,24 @@
       "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8fadc2e_c445926e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-08-02T17:47:10Z",
+      "side": 1,
+      "message": "that needs cstdio I think? so you\u0027ll end up including something anyway.\n\nalso I used cout because the indirect caller of this FileGenerator::Validate method, in command_line_interface.cc:1122, uses cerr in the same iostream module at line 1126.",
+      "parentUuid": "b804e402_25ed547b",
+      "revId": "c58dd5079b5bb5b0953d0aa3694767d98518fafc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
