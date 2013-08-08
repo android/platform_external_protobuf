@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8e864cc_4bc4512e",
+        "filename": "build.gradle",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-08-08T17:45:24Z",
+      "side": 1,
+      "message": "Just wondering why not C++ full/lite and java full/lite?",
+      "revId": "57faa14e5c5b678b38dcae1288f3e5eb34bd819f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
