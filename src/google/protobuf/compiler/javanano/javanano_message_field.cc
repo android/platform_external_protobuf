@@ -177,7 +177,9 @@ void RepeatedMessageFieldGenerator::
 GenerateSerializationCode(io::Printer* printer) const {
   printer->Print(variables_,
     "for ($type$ element : this.$name$) {\n"
-    "  output.write$group_or_message$($number$, element);\n"
+    "  if (element != null) {\n"
+    "    output.write$group_or_message$($number$, element);\n"
+    "  }\n"
     "}\n");
 }
 
@@ -185,8 +187,10 @@ void RepeatedMessageFieldGenerator::
 GenerateSerializedSizeCode(io::Printer* printer) const {
   printer->Print(variables_,
     "for ($type$ element : this.$name$) {\n"
-    "  size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
-    "    .compute$group_or_message$Size($number$, element);\n"
+    "  if (element != null) {\n"
+    "    size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
+    "      .compute$group_or_message$Size($number$, element);\n"
+    "  }\n"
     "}\n");
 }
 
