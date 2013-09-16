@@ -407,3 +407,26 @@ LOCAL_PROTO_JAVA_OUTPUT_PARAMS := java_package=$(LOCAL_PATH)/src/google/protobuf
 
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
+# To test javamini proto params build rules.
+# =======================================================
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := aprotoc-test-mini-params
+LOCAL_MODULE_TAGS := tests
+LOCAL_SDK_VERSION := current
+
+LOCAL_PROTOC_OPTIMIZE_TYPE := mini
+
+LOCAL_SRC_FILES := \
+        src/google/protobuf/unittest_import_mini.proto \
+        src/google/protobuf/unittest_simple_mini.proto \
+        src/google/protobuf/unittest_stringutf8_mini.proto \
+        src/google/protobuf/unittest_recursive_mini.proto
+
+
+LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/src
+
+LOCAL_PROTO_JAVA_OUTPUT_PARAMS := java_package=$(LOCAL_PATH)/src/google/protobuf/unittest_import_mini.proto|com.google.protobuf.mini,java_outer_classname=$(LOCAL_PATH)/src/google/protobuf/unittest_import_mini.proto|UnittestImportMini
+
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
