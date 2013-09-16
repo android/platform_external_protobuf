@@ -116,6 +116,16 @@ COMPILER_SRC_FILES :=  \
     src/google/protobuf/compiler/javanano/javanano_message.cc \
     src/google/protobuf/compiler/javanano/javanano_message_field.cc \
     src/google/protobuf/compiler/javanano/javanano_primitive_field.cc \
+    src/google/protobuf/compiler/javamini/javamini_enum.cc \
+    src/google/protobuf/compiler/javamini/javamini_enum_field.cc \
+    src/google/protobuf/compiler/javamini/javamini_extension.cc \
+    src/google/protobuf/compiler/javamini/javamini_field.cc \
+    src/google/protobuf/compiler/javamini/javamini_file.cc \
+    src/google/protobuf/compiler/javamini/javamini_generator.cc \
+    src/google/protobuf/compiler/javamini/javamini_helpers.cc \
+    src/google/protobuf/compiler/javamini/javamini_message.cc \
+    src/google/protobuf/compiler/javamini/javamini_message_field.cc \
+    src/google/protobuf/compiler/javamini/javamini_primitive_field.cc \
     src/google/protobuf/compiler/python/python_generator.cc \
     src/google/protobuf/io/coded_stream.cc \
     src/google/protobuf/io/gzip_stream.cc \
@@ -130,6 +140,29 @@ COMPILER_SRC_FILES :=  \
     src/google/protobuf/stubs/structurally_valid.cc \
     src/google/protobuf/stubs/strutil.cc \
     src/google/protobuf/stubs/substitute.cc
+
+# Java mini library (for device-side users)
+# =======================================================
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libprotobuf-java-2.3.0-mini
+LOCAL_MODULE_TAGS := optional
+LOCAL_SDK_VERSION := 8
+
+LOCAL_SRC_FILES := $(call all-java-files-under, java/src/main/java/com/google/protobuf/mini)
+
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+# Java mini library (for host-side users)
+# =======================================================
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := host-libprotobuf-java-2.3.0-mini
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_SRC_FILES := $(call all-java-files-under, java/src/main/java/com/google/protobuf/mini)
+
+include $(BUILD_HOST_JAVA_LIBRARY)
 
 # Java nano library (for device-side users)
 # =======================================================
@@ -351,7 +384,7 @@ LOCAL_LDLIBS := -lpthread
 
 include $(BUILD_HOST_EXECUTABLE)
 
-# To test java proto params build rules.
+# To test javanano proto params build rules.
 # =======================================================
 include $(CLEAR_VARS)
 
@@ -373,3 +406,4 @@ LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/src
 LOCAL_PROTO_JAVA_OUTPUT_PARAMS := java_package=$(LOCAL_PATH)/src/google/protobuf/unittest_import_nano.proto|com.google.protobuf.nano,java_outer_classname=$(LOCAL_PATH)/src/google/protobuf/unittest_import_nano.proto|UnittestImportNano
 
 include $(BUILD_STATIC_JAVA_LIBRARY)
+

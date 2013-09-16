@@ -36,6 +36,7 @@
 #include <google/protobuf/compiler/java/java_generator.h>
 #include <google/protobuf/compiler/javamicro/javamicro_generator.h>
 #include <google/protobuf/compiler/javanano/javanano_generator.h>
+#include <google/protobuf/compiler/javamini/javamini_generator.h>
 
 
 int main(int argc, char* argv[]) {
@@ -68,6 +69,11 @@ int main(int argc, char* argv[]) {
   google::protobuf::compiler::javanano::JavaNanoGenerator javanano_generator;
   cli.RegisterGenerator("--javanano_out", &javanano_generator,
                         "Generate Java source file nano runtime.");
+
+  // Proto2 JavaMini
+  google::protobuf::compiler::javamini::JavaMiniGenerator javamini_generator;
+  cli.RegisterGenerator("--javamini_out", &javamini_generator,
+                        "Generate Java source file mini runtime.");
 
   return cli.Run(argc, argv);
 }

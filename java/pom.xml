@@ -157,6 +157,32 @@
                   <arg value="--proto_path=src/test/java" />
                   <arg value="../src/google/protobuf/unittest_has_nano.proto" />
                 </exec>
+		<!-- java mini -->
+                <exec executable="../src/protoc">
+                  <arg value="--javamini_out=java_package=google/protobuf/unittest_import_mini.proto|com.google.protobuf.mini,java_outer_classname=google/protobuf/unittest_import_mini.proto|UnittestImportMini:target/generated-test-sources" />
+                  <arg value="--proto_path=../src" />
+                  <arg value="--proto_path=src/test/java" />
+                  <arg value="../src/google/protobuf/unittest_mini.proto" />
+                  <arg value="../src/google/protobuf/unittest_simple_mini.proto" />
+                  <arg value="../src/google/protobuf/unittest_stringutf8_mini.proto" />
+                  <arg value="../src/google/protobuf/unittest_recursive_mini.proto" />
+                  <arg value="../src/google/protobuf/unittest_import_mini.proto" />
+                  <arg value="../src/google/protobuf/unittest_single_mini.proto" />
+                  <arg value="../src/google/protobuf/unittest_multiple_mini.proto" />
+                  <arg value="../src/google/protobuf/unittest_multiple_nameclash_mini.proto" />
+                </exec>
+                <exec executable="../src/protoc">
+                  <arg value="--javamini_out=store_unknown_fields=true:target/generated-test-sources" />
+                  <arg value="--proto_path=../src" />
+                  <arg value="--proto_path=src/test/java" />
+                  <arg value="../src/google/protobuf/unittest_extension_mini.proto" />
+                </exec>
+                <exec executable="../src/protoc">
+                  <arg value="--javamini_out=java_mini_generate_has=true:target/generated-test-sources" />
+                  <arg value="--proto_path=../src" />
+                  <arg value="--proto_path=src/test/java" />
+                  <arg value="../src/google/protobuf/unittest_has_mini.proto" />
+                </exec>
               </tasks>
               <testSourceRoot>target/generated-test-sources</testSourceRoot>
               <!--testSourceRoot>target/generated-test-sources/opt-space</testSourceRoot-->
@@ -294,6 +320,48 @@
             <artifactId>maven-jar-plugin</artifactId>
             <configuration>
               <classifier>nano</classifier>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>mini</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <includes>
+                <include>**/MessageMini.java</include>
+                <include>**/CodedInputByteBufferMini.java</include>
+                <include>**/CodedOutputByteBufferMini.java</include>
+                <include>**/InternalMini.java</include>
+                <include>**/InvalidProtocolBufferMiniException.java</include>
+                <include>**/WireFormatMini.java</include>
+              </includes>
+              <testIncludes>
+                <testInclude>**/MiniTest.java</testInclude>
+                <testInclude>**/MiniOuterClass.java</testInclude>
+                <testInclude>**/SimpleMessageMini.java</testInclude>
+                <testInclude>**/StringUtf8.java</testInclude>
+                <testInclude>**/RecursiveMessageMini.java</testInclude>
+                <testInclude>**/UnittestImportMini.java</testInclude>
+              </testIncludes>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <includes>
+                <include>**/MiniTest.java</include>
+              </includes>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <classifier>mini</classifier>
             </configuration>
           </plugin>
         </plugins>

@@ -74,6 +74,7 @@ nobase_include_HEADERS =                                       \
   google/protobuf/compiler/java/java_generator.h               \
   google/protobuf/compiler/javamicro/javamicro_generator.h     \
   google/protobuf/compiler/javanano/javanano_generator.h       \
+  google/protobuf/compiler/javamini/javamini_generator.h       \
   google/protobuf/compiler/python/python_generator.h
 
 lib_LTLIBRARIES = libprotobuf-lite.la libprotobuf.la libprotoc.la
@@ -216,6 +217,25 @@ libprotoc_la_SOURCES =                                         \
   google/protobuf/compiler/javanano/javanano_message_field.h \
   google/protobuf/compiler/javanano/javanano_primitive_field.cc\
   google/protobuf/compiler/javanano/javanano_primitive_field.h\
+  google/protobuf/compiler/javamini/javamini_enum.cc         \
+  google/protobuf/compiler/javamini/javamini_enum.h          \
+  google/protobuf/compiler/javamini/javamini_enum_field.cc   \
+  google/protobuf/compiler/javamini/javamini_enum_field.h    \
+  google/protobuf/compiler/javamini/javamini_extension.cc    \
+  google/protobuf/compiler/javamini/javamini_extension.h     \
+  google/protobuf/compiler/javamini/javamini_field.cc        \
+  google/protobuf/compiler/javamini/javamini_field.h         \
+  google/protobuf/compiler/javamini/javamini_file.cc         \
+  google/protobuf/compiler/javamini/javamini_file.h          \
+  google/protobuf/compiler/javamini/javamini_generator.cc    \
+  google/protobuf/compiler/javamini/javamini_helpers.cc      \
+  google/protobuf/compiler/javamini/javamini_helpers.h       \
+  google/protobuf/compiler/javamini/javamini_message.cc      \
+  google/protobuf/compiler/javamini/javamini_message.h       \
+  google/protobuf/compiler/javamini/javamini_message_field.cc\
+  google/protobuf/compiler/javamini/javamini_message_field.h \
+  google/protobuf/compiler/javamini/javamini_primitive_field.cc\
+  google/protobuf/compiler/javamini/javamini_primitive_field.h\
   google/protobuf/compiler/python/python_generator.cc
 
 bin_PROGRAMS = protoc
