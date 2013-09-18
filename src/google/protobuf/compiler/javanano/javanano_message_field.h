@@ -51,6 +51,7 @@ class MessageFieldGenerator : public FieldGenerator {
 
   // implements FieldGenerator ---------------------------------------
   void GenerateMembers(io::Printer* printer) const;
+  void GenerateClearCode(io::Printer* printer) const;
   void GenerateParsingCode(io::Printer* printer) const;
   void GenerateSerializationCode(io::Printer* printer) const;
   void GenerateSerializedSizeCode(io::Printer* printer) const;
@@ -64,6 +65,28 @@ class MessageFieldGenerator : public FieldGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageFieldGenerator);
 };
 
+class AccessorMessageFieldGenerator : public FieldGenerator {
+ public:
+  explicit AccessorMessageFieldGenerator(const FieldDescriptor* descriptor,
+      const Params& params, int has_bit_index);
+  ~AccessorMessageFieldGenerator();
+
+  // implements FieldGenerator ---------------------------------------
+  void GenerateMembers(io::Printer* printer) const;
+  void GenerateClearCode(io::Printer* printer) const;
+  void GenerateParsingCode(io::Printer* printer) const;
+  void GenerateSerializationCode(io::Printer* printer) const;
+  void GenerateSerializedSizeCode(io::Printer* printer) const;
+
+  string GetBoxedType() const;
+
+ private:
+  const FieldDescriptor* descriptor_;
+  map<string, string> variables_;
+
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(AccessorMessageFieldGenerator);
+};
+
 class RepeatedMessageFieldGenerator : public FieldGenerator {
  public:
   explicit RepeatedMessageFieldGenerator(const FieldDescriptor* descriptor,
@@ -72,6 +95,7 @@ class RepeatedMessageFieldGenerator : public FieldGenerator {
 
   // implements FieldGenerator ---------------------------------------
   void GenerateMembers(io::Printer* printer) const;
+  void GenerateClearCode(io::Printer* printer) const;
   void GenerateParsingCode(io::Printer* printer) const;
   void GenerateSerializationCode(io::Printer* printer) const;
   void GenerateSerializedSizeCode(io::Printer* printer) const;
