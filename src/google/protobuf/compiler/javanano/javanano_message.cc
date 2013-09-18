@@ -167,6 +167,13 @@ void MessageGenerator::Generate(io::Printer* printer) {
     MessageGenerator(descriptor_->nested_type(i), params_).Generate(printer);
   }
 
+  // Integers for bit fields
+  int totalInts = (field_generators_.total_bits() + 31) / 32;
+  for (int i = 0; i < totalInts; i++) {
+    printer->Print("private int $bit_field_name$;\n",
+      "bit_field_name", GetBitFieldName(i));
+  }
+
   // Fields
   for (int i = 0; i < descriptor_->field_count(); i++) {
     PrintFieldComment(printer, descriptor_->field(i));
@@ -379,30 +386,7 @@ void MessageGenerator::GenerateClear(io::Printer* printer) {
   // Call clear for all of the fields.
   for (int i = 0; i < descriptor_->field_count(); i++) {
     const FieldDescriptor* field = descriptor_->field(i);
-
-    if (field->type() == FieldDescriptor::TYPE_BYTES &&
-        !field->default_value_string().empty()) {
-      // Need to clone the default value because it is of a mutable
-      // type.
-      printer->Print(
-        "$name$ = $default$.clone();\n",
-        "name", RenameJavaKeywords(UnderscoresToCamelCase(field)),
-        "default", DefaultValue(params_, field));
-    } else {
-      printer->Print(
-        "$name$ = $default$;\n",
-        "name", RenameJavaKeywords(UnderscoresToCamelCase(field)),
-        "default", DefaultValue(params_, field));
-    }
-
-    if (params_.generate_has() &&
-        field->label() != FieldDescriptor::LABEL_REPEATED &&
-        field->type() != FieldDescriptor::TYPE_GROUP &&
-        field->type() != FieldDescriptor::TYPE_MESSAGE) {
-      printer->Print(
-        "has$capitalized_name$ = false;\n",
-        "capitalized_name", UnderscoresToCapitalizedCamelCase(field));
-    }
+    field_generators_.get(field).GenerateClearCode(printer);
   }
 
   // Clear unknown fields.
