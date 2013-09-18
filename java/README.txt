@@ -411,9 +411,10 @@ Nano version
 Nano is even smaller than micro, especially in the number of generated
 functions. It is like micro except:
 
-- No setter/getter/hazzer functions.
-- Has state is not available. Outputs all fields not equal to their
-  default. (See important implications below.)
+- Setter/getter/hazzer/clearer functions are opt-in.
+- If not opted in, has state is not available. Serialization outputs
+  all fields not  equal to their default. (See important implications
+  below.)
 - CodedInputStreamMicro is renamed to CodedInputByteBufferNano and can
   only take byte[] (not InputStream).
 - Similar rename from CodedOutputStreamMicro to
@@ -426,7 +427,7 @@ functions. It is like micro except:
   MessageNano.
 - "bytes" are of java type byte[].
 
-IMPORTANT: If you have fields with defaults
+IMPORTANT: If you have fields with defaults and opt out of accessors
 
 How fields with defaults are serialized has changed. Because we don't
 keep "has" state, any field equal to its default is assumed to be not
@@ -435,7 +436,8 @@ change the default value of a field. Senders compiled against an older
 version of the proto continue to match against the old default, and
 don't send values to the receiver even though the receiver assumes the
 new default value. Therefore, think carefully about the implications
-of changing the default value.
+of changing the default value. Alternatively, turn on accessors and
+enjoy the benefit of the explicit has() checks.
 
 IMPORTANT: If you have "bytes" fields with non-empty defaults
 
@@ -451,7 +453,8 @@ Nano Generator options
 java_package           -> <file-name>|<package-name>
 java_outer_classname   -> <file-name>|<package-name>
 java_multiple_files    -> true or false
-java_nano_generate_has -> true or false
+java_nano_generate_has -> true or false [deprecated]
+optional_field_style   -> default or accessors
 
 java_package:
 java_outer_classname:
@@ -459,6 +462,8 @@ java_multiple_files:
   Same as Micro version.
 
 java_nano_generate_has={true,false} (default: false)
+  DEPRECATED. Use optional_field_style=accessors.
+
   If true, generates a public boolean variable has<fieldname>
   accompanying each optional or required field (not present for
   repeated fields, groups or messages). It is set to false initially
@@ -472,6 +477,38 @@ java_nano_generate_has={true,false} (default: false)
   the message. Think carefully about whether you really need this. In
   many cases reading the default works and determining whether the
   field was received over the wire is irrelevant.
+
+optional_field_style={default,accessors} (default: default)
+  Defines the style of the generated code for _optional_ fields only.
+  In the default style, optional fields translate into public mutable
+  Java fields, and the serialization process is as discussed in the
+  "IMPORTANT" section above. When set to 'accessors', each optional
+  field is backed by one private field, one bit in a shared integer
+  bit-field, and public get<fieldname>(), set<fieldname>(),
+  has<fieldname>() and clear<fieldname>() methods. The has() method
+  returns whether this field has been set explicitly, even if it is
+  set to the default value; the clear() method clears the has-bit and
+  restores the field to its default value. Note: for reference types
+  (byte[], String and message types), you cannot set the field to null
+  (an NPE will be thrown), and the instance returned from the getter
+  is the same instance last given to the setter.
+
+  Required fields are still translated to one public mutable Java
+  field each, and repeated fields are still translated to arrays. No
+  accessors are generated for them.
+
+  optional_field_style=accessors cannot be used together with
+  java_nano_generate_has=true. If you need the 'has' bit for any
+  required field (you have no reason to), you can only use
+  java_nano_generate_has=true.
+
+  IMPORTANT: The 'accessor' style costs at least 1 bit (at most 4
+  bytes) and 4 method definitions more, per optional field, than the
+  default style. ProGuard is strongly recommended with the extra
+  option '-allowaccessmodification' to allow inlining the accessor
+  methods to all call sites. The extra option is for promoting the
+  private data fields and bit fields to public at the bytecode level
+  for successful inlining.
 
 To use nano protobufs:
 
