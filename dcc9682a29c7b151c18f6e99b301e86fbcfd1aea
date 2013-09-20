@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44d6a7dc_11fdec21",
+        "filename": "java/README.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "Make this stand out more, e.g. [DEPRECATED]",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a47923b7_746c4805",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2251,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "Do we want to make this optimization for required fields or make them have accessors as well for consistency with lite/micro? (A question not a recommendation.)",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a47923b7_f4c138ce",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_field.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "Omit inline",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a47923b7_148874b2",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "Parse means any old message needs to be discarded (as opposed to merge). So we need to revert this I think.",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44d6a7dc_51a85421",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "Isn\u0027t null a sufficient indicator for \"has\" in the message field case? You can simply omit the bit field ops in this case. And if not too difficult, you can even avoid reserving a has bit spot at all for these.",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a47923b7_d4919ce1",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "Clear has. (Or if you follow comment below, leave as is here.)",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d1ebe1_d291a4e1",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "You don\u0027t want merge. You need to always allocate a new one. Or call \"clear\" on any existing. (Maybe that\u0027s better actually.)",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44d6a7dc_31b7d084",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T17:01:13Z",
+      "side": 1,
+      "message": "Can you rename this to default_copy_if_needed",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
