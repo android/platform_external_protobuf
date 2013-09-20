@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "44d6a7dc_74bc66cf",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2251,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T21:03:54Z",
+      "side": 1,
+      "message": "Fine with me.\n\nBTW, repeated field api is totally different (add* instead of set*), so you wouldn\u0027t necessarily do this for repeated fields. In case you wanted to reconsider your decision...",
+      "parentUuid": "84cb3f3c_aef277c4",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47923b7_f4c138ce",
         "filename": "src/google/protobuf/compiler/javanano/javanano_field.h",
         "patchSetId": 3
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "This is called from MessageGenerator::GenerateMergeFromMethods only, though. I\u0027m changing this method name instead.",
       "parentUuid": "a47923b7_148874b2",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a47923b7_9772464e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T21:03:54Z",
+      "side": 1,
+      "message": "Can you cover this in a test pls? (I.e., make sure parseFrom doesn\u0027t merge in all the relevant cases: string, primitive type, repeated, message field.) It would be a huge and subtle bug.",
+      "parentUuid": "a4ce8349_ecc16bce",
       "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
