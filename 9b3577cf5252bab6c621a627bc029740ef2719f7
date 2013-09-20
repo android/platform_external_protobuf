@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "64bacb9d_0d53951c",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T17:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d6a7dc_11e40c94",
+      "revId": "9b3577cf5252bab6c621a627bc029740ef2719f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64d1ebe1_12b2cc93",
         "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "64bacb9d_2d58d933",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T17:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64d1ebe1_12b2cc93",
+      "revId": "9b3577cf5252bab6c621a627bc029740ef2719f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64d1ebe1_d29be40e",
         "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.h",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2013-09-20T16:40:09Z",
       "side": 1,
       "message": "bit_index, etc.",
+      "revId": "9b3577cf5252bab6c621a627bc029740ef2719f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64bacb9d_cd4c9d78",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T17:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64d1ebe1_d29be40e",
       "revId": "9b3577cf5252bab6c621a627bc029740ef2719f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
