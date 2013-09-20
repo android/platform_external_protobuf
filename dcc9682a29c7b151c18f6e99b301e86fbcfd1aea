@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "a4ce8349_6f356deb",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T21:54:09Z",
+      "side": 1,
+      "message": "parseFrom() is a static method though, so it\u0027ll definitely not have a \"previous state\". parseFrom() is implemented as new Msg().mergeFrom(...).",
+      "parentUuid": "a47923b7_9772464e",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44d6a7dc_51a85421",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
         "patchSetId": 3
