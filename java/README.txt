@@ -411,9 +411,10 @@ Nano version
 Nano is even smaller than micro, especially in the number of generated
 functions. It is like micro except:
 
-- No setter/getter/hazzer functions.
-- Has state is not available. Outputs all fields not equal to their
-  default. (See important implications below.)
+- Setter/getter/hazzer/clearer functions are opt-in.
+- If not opted in, has state is not available. Serialization outputs
+  all fields not  equal to their default. (See important implications
+  below.)
 - CodedInputStreamMicro is renamed to CodedInputByteBufferNano and can
   only take byte[] (not InputStream).
 - Similar rename from CodedOutputStreamMicro to
@@ -426,7 +427,7 @@ functions. It is like micro except:
   MessageNano.
 - "bytes" are of java type byte[].
 
-IMPORTANT: If you have fields with defaults
+IMPORTANT: If you have fields with defaults and opt out of accessors
 
 How fields with defaults are serialized has changed. Because we don't
 keep "has" state, any field equal to its default is assumed to be not
@@ -435,7 +436,8 @@ change the default value of a field. Senders compiled against an older
 version of the proto continue to match against the old default, and
 don't send values to the receiver even though the receiver assumes the
 new default value. Therefore, think carefully about the implications
-of changing the default value.
+of changing the default value. Alternatively, turn on accessors and
+enjoy the benefit of the explicit has() checks.
 
 IMPORTANT: If you have "bytes" fields with non-empty defaults
 
@@ -451,7 +453,8 @@ Nano Generator options
 java_package           -> <file-name>|<package-name>
 java_outer_classname   -> <file-name>|<package-name>
 java_multiple_files    -> true or false
-java_nano_generate_has -> true or false
+java_nano_generate_has -> true or false [DEPRECATED]
+optional_field_style   -> default or accessors
 
 java_package:
 java_outer_classname:
@@ -459,6 +462,8 @@ java_multiple_files:
   Same as Micro version.
 
 java_nano_generate_has={true,false} (default: false)
+  DEPRECATED. Use optional_field_style=accessors.
+
   If true, generates a public boolean variable has<fieldname>
   accompanying each optional or required field (not present for
   repeated fields, groups or messages). It is set to false initially
@@ -472,6 +477,41 @@ java_nano_generate_has={true,false} (default: false)
   the message. Think carefully about whether you really need this. In
   many cases reading the default works and determining whether the
   field was received over the wire is irrelevant.
+
+optional_field_style={default,accessors} (default: default)
+  Defines the style of the generated code for _optional_ fields only.
+  In the default style, optional fields translate into public mutable
+  Java fields, and the serialization process is as discussed in the
+  "IMPORTANT" section above. When set to 'accessors', each optional
+  field is encapsulated behind 4 accessors, namely get<fieldname>(),
+  set<fieldname>(), has<fieldname>() and clear<fieldname>() methods.
+  A primitive or enum field is backed by one private field and one bit
+  (the 'has-bit') in a shared integer bit-field. If the field is set
+  explicitly (via set() or parsed from the wire), even to the default
+  value, its has-bit will be set and its has() will return true, and
+  it will be serialized. Its clear() method resets the has-bit and
+  restores the backing field to the default value. A message field is
+  backed by one private field only, because Nano uses 'null', an
+  invalid value for a message field, as the default, and its has()
+  method simply checks whether the backing field is non-null. Note:
+  for reference types (byte[], String, message), the setter throws NPE
+  if you attempt to set null, and the instance returned from the
+  getter is the same instance last given to the setter.
+
+  Required fields are still translated to one public mutable Java
+  field each, and repeated fields are still translated to arrays. No
+  accessors are generated for them.
+
+  optional_field_style=accessors cannot be used together with
+  java_nano_generate_has=true. If you need the 'has' bit for any
+  required field (you have no reason to), you can only use
+  java_nano_generate_has=true.
+
+  IMPORTANT: The 'accessor' style should always be accompanied by
+  ProGuard to remove the unused accessors and maybe inline the rest
+  at the call sites. To allow method inlining, the extra option
+  '-allowaccessmodification' must be used to help promote the private
+  backing fields to public at the bytecode level.
 
 To use nano protobufs:
 
