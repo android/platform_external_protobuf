@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a4ce8349_ac7123db",
+        "filename": "java/README.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d6a7dc_11fdec21",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47923b7_746c4805",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2013-09-20T17:01:13Z",
       "side": 1,
       "message": "Do we want to make this optimization for required fields or make them have accessors as well for consistency with lite/micro? (A question not a recommendation.)",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb3f3c_aef277c4",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2251,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "I prefer not, otherwise I\u0027ll have to go that extra length for the repeated fields too. It\u0027s OK for this nano\u0027 to be different.",
+      "parentUuid": "a47923b7_746c4805",
       "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "84cb3f3c_4e219365",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_field.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a47923b7_f4c138ce",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47923b7_148874b2",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2013-09-20T17:01:13Z",
       "side": 1,
       "message": "Parse means any old message needs to be discarded (as opposed to merge). So we need to revert this I think.",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4ce8349_ecc16bce",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "This is called from MessageGenerator::GenerateMergeFromMethods only, though. I\u0027m changing this method name instead.",
+      "parentUuid": "a47923b7_148874b2",
       "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "64bacb9d_cdb01d23",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "Done. And kinda rewritten the whole readme",
+      "parentUuid": "44d6a7dc_51a85421",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47923b7_d4919ce1",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2013-09-20T17:01:13Z",
       "side": 1,
       "message": "Clear has. (Or if you follow comment below, leave as is here.)",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb3f3c_2eb687ef",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a47923b7_d4919ce1",
       "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "64bacb9d_edade1c5",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "See the other reply.",
+      "parentUuid": "64d1ebe1_d291a4e1",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44d6a7dc_31b7d084",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 3
@@ -132,6 +258,24 @@
       "writtenOn": "2013-09-20T17:01:13Z",
       "side": 1,
       "message": "Can you rename this to default_copy_if_needed",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb3f3c_ceca635a",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-20T19:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d6a7dc_31b7d084",
       "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
