@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44d6a7dc_f4c7f650",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T21:09:15Z",
+      "side": 1,
+      "message": "You don\u0027t have to re-explain standard (i.e. lite) behavior or refer to the implementation. Just talk about the difference.",
+      "revId": "f4012b71290aae187048614511cfd87afcf3225d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a47923b7_57926e4a",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T21:09:15Z",
+      "side": 1,
+      "message": "Pls give a command-line or build file example.",
+      "revId": "f4012b71290aae187048614511cfd87afcf3225d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44d6a7dc_b4c16e3d",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_field.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T21:09:15Z",
+      "side": 1,
+      "message": "Comment: \"We need a has bit for ... but not for ... because...\"",
+      "revId": "f4012b71290aae187048614511cfd87afcf3225d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
