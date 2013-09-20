@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44d6a7dc_11e40c94",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T16:40:09Z",
+      "side": 1,
+      "message": "static const char *kBitMasks\n\nor put in anonymous namespace",
+      "revId": "9b3577cf5252bab6c621a627bc029740ef2719f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d1ebe1_12b2cc93",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T16:40:09Z",
+      "side": 1,
+      "message": "var_name, etc. google3 style guidelines.",
+      "revId": "9b3577cf5252bab6c621a627bc029740ef2719f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d1ebe1_d29be40e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-20T16:40:09Z",
+      "side": 1,
+      "message": "bit_index, etc.",
+      "revId": "9b3577cf5252bab6c621a627bc029740ef2719f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
