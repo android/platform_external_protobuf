@@ -196,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "a44cc3b3_5f6eafbc",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-09-21T16:30:36Z",
+      "side": 1,
+      "message": "Got it, so this should really be GenerateMergingCode. (I think you made a change in the later patch.) SGTM.",
+      "parentUuid": "a4ce8349_6f356deb",
+      "revId": "dcc9682a29c7b151c18f6e99b301e86fbcfd1aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44d6a7dc_51a85421",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
         "patchSetId": 3
