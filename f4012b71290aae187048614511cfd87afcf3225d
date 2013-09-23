@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e46b1bfc_7688f0b3",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-23T15:02:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d6a7dc_f4c7f650",
+      "revId": "f4012b71290aae187048614511cfd87afcf3225d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47923b7_57926e4a",
         "filename": "java/README.txt",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "84f7bf98_6b9ca15a",
+        "filename": "java/README.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-23T15:02:25Z",
+      "side": 1,
+      "message": "I\u0027m myself having problems with ProGuard. Will update this before announcing this feature.",
+      "parentUuid": "a47923b7_57926e4a",
+      "revId": "f4012b71290aae187048614511cfd87afcf3225d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44d6a7dc_b4c16e3d",
         "filename": "src/google/protobuf/compiler/javanano/javanano_field.cc",
         "patchSetId": 7
@@ -47,6 +83,24 @@
       "writtenOn": "2013-09-20T21:09:15Z",
       "side": 1,
       "message": "Comment: \"We need a has bit for ... but not for ... because...\"",
+      "revId": "f4012b71290aae187048614511cfd87afcf3225d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e46b1bfc_d698e402",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_field.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-23T15:02:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d6a7dc_b4c16e3d",
       "revId": "f4012b71290aae187048614511cfd87afcf3225d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
