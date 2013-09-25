@@ -299,6 +299,10 @@ void MessageGenerator::GenerateMergeFromMethods(io::Printer* printer) {
   printer->Indent();
   if (params_.store_unknown_fields()) {
     printer->Print(
+        "if (com.google.protobuf.nano.WireFormatNano.getTagWireType(tag) ==\n"
+        "    com.google.protobuf.nano.WireFormatNano.WIRETYPE_END_GROUP) {\n"
+        "  return this;\n"
+        "}\n"
         "if (unknownFieldData == null) {\n"
         "  unknownFieldData = \n"
         "      new java.util.ArrayList<com.google.protobuf.nano.UnknownFieldData>();\n"
