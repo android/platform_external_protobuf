@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04a82f8f_6f8db1c2",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-09-25T03:17:26Z",
+      "side": 1,
+      "message": "We could use an interface instead of spending a method on this. Then we wouldn\u0027t need the is_own_file logic either.",
+      "revId": "dd15f39ea7318b21c4ac92d113438cf9dd084717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
