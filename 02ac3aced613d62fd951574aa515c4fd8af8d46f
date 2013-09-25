@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "24a373b4_96166ca0",
+        "filename": "java/src/main/java/com/google/protobuf/nano/WireFormatNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-09-25T18:41:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4b4c3fc_fce1c947",
+      "revId": "02ac3aced613d62fd951574aa515c4fd8af8d46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4aa3b99_9ef07d13",
         "filename": "java/src/main/java/com/google/protobuf/nano/WireFormatNano.java",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "24a373b4_b61370af",
+        "filename": "java/src/main/java/com/google/protobuf/nano/WireFormatNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-09-25T18:41:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4aa3b99_9ef07d13",
+      "revId": "02ac3aced613d62fd951574aa515c4fd8af8d46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4b4c3fc_bceb4124",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2013-09-25T17:44:29Z",
       "side": 1,
       "message": "I don\u0027t see any use of unknown fields. Maybe you need two message definitions differing by one having an extra group:\n\n  message MessageWithoutGroup {\n  }\n\n  message MessageWithGroup {\n    optional group Group \u003d 1 {\n      optional int32 a \u003d 2;\n    }\n  }\n\nand after you get the byte[] serialized (Ln510),\n\n  MessageWithoutGroup parsed \u003d\n     MessageWithoutGroup.parseFrom(serialized);\n  byte[] serialized2 \u003d MessageNano.toByteArray(parsed);\n  // assert the two byte[]s equal\n\n  MessageWithGroup parsed2 \u003d\n      MessageWithGroup.parseFrom(seralized2);\n  assertTrue(msg.group !\u003d null);\n  assertEquals(1, msg.group.a);",
+      "revId": "02ac3aced613d62fd951574aa515c4fd8af8d46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24a373b4_3608607c",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-09-25T18:41:47Z",
+      "side": 1,
+      "message": "Fixed method name to ...WithUnknownFieldsEnabled",
+      "parentUuid": "a4b4c3fc_bceb4124",
       "revId": "02ac3aced613d62fd951574aa515c4fd8af8d46f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
