@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24a373b4_d3464655",
+        "filename": "java/README.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-09-25T04:45:45Z",
+      "side": 1,
+      "message": "Those options look right to me. Those are what I tested with and verified inlining.",
+      "revId": "e74fe623e115237968a3de1143d7cdb4df710858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
