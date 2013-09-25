@@ -16,6 +16,24 @@
       "revId": "dd15f39ea7318b21c4ac92d113438cf9dd084717",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84e5fff4_1e8449d2",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-09-25T11:42:21Z",
+      "side": 1,
+      "message": "A class is needed to host the upcoming public static final boolean isValid(int value) method. An interface can\u0027t have a static method member.",
+      "parentUuid": "04a82f8f_6f8db1c2",
+      "revId": "dd15f39ea7318b21c4ac92d113438cf9dd084717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
