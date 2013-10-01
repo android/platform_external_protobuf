@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "213fe5b6_b34c02a0",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-10-01T21:40:06Z",
+      "side": 1,
+      "message": "Does javanano_enum_field.cc::generate_clear_code work when it\u0027s a reference type? You can\u0027t assign an int[] to an Integer[] because the arrays aren\u0027t covariant.",
+      "revId": "0fc2c6876e46153ddb1159f34d6c71606405b69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
