@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e425db90_ece83f69",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_generator.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-01T18:52:42Z",
+      "side": 1,
+      "message": "Ok, pls add comment.",
+      "parentUuid": "242c537a_6e99ab04",
+      "revId": "63d0907fc16438eb9033ab081ee45b49c15ae1db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e425db90_4cb073d7",
         "filename": "src/google/protobuf/compiler/javanano/javanano_params.h",
         "patchSetId": 1
