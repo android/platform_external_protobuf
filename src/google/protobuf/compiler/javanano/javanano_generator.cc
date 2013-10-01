@@ -124,15 +124,18 @@ bool JavaNanoGenerator::Generate(const FileDescriptor* file,
       params.set_java_enum_style(options[i].second == "java");
     } else if (options[i].first == "optional_field_style") {
       params.set_optional_field_accessors(options[i].second == "accessors");
+      params.set_use_reference_types_for_primitives(options[i].second == "reftypes");
     } else {
       *error = "Ignore unknown javanano generator option: " + options[i].first;
     }
   }
 
   // Check illegal parameter combinations
-  if (params.generate_has() && params.optional_field_accessors()) {
+  if (params.generate_has()
+      && (params.optional_field_accessors()
+          || params.use_reference_types_for_primitives())) {
     error->assign("java_nano_generate_has=true cannot be used in conjunction"
-        " with optional_field_style=accessors");
+        " with optional_field_style=accessors or optional_field_style=reftypes");
     return false;
   }
 
