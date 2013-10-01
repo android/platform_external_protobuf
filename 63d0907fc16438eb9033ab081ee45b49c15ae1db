@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "242c537a_6e99ab04",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_generator.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-01T18:49:44Z",
+      "side": 1,
+      "message": "field accessors and reftype can\u0027t co-exist, because they\u0027re controlled by the optional_field_style generator param, which can only be one of \"accessors\" or \"reftypes\" but not both.",
+      "parentUuid": "242c537a_ce3ff738",
+      "revId": "63d0907fc16438eb9033ab081ee45b49c15ae1db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e425db90_4cb073d7",
         "filename": "src/google/protobuf/compiler/javanano/javanano_params.h",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2013-10-01T18:27:16Z",
       "side": 1,
       "message": "Perhaps we should make reftypes, accessors and generate_has an enum?",
+      "revId": "63d0907fc16438eb9033ab081ee45b49c15ae1db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e425db90_4c5b138f",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_params.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-01T18:49:44Z",
+      "side": 1,
+      "message": "They\u0027re enum-like when they come in as generator options, but inside the code they\u0027re booleans. I think the boolean approach is easier \u0026 a tiny bit more efficient within the code.",
+      "parentUuid": "e425db90_4cb073d7",
       "revId": "63d0907fc16438eb9033ab081ee45b49c15ae1db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
