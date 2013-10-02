@@ -16,6 +16,24 @@
       "revId": "0fc2c6876e46153ddb1159f34d6c71606405b69c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21660513_780f61b9",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-02T03:55:43Z",
+      "side": 1,
+      "message": "When it\u0027s a repeated enum field, the type of the field is int[], and the default is always WireFormat.EMPTY_INT_ARRAY, which is int[].",
+      "parentUuid": "213fe5b6_b34c02a0",
+      "revId": "0fc2c6876e46153ddb1159f34d6c71606405b69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
