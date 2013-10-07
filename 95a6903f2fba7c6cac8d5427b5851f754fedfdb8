@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "21ba85ee_78f5c1fc",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-07T23:26:07Z",
+      "side": 1,
+      "message": "We just fortuitously caught a bug today that would have slipped through unless this NPE happened (it was resulting in a serverside error before, which we don\u0027t monitor or notice nearly so much).\n\nAdded a comment to the README.",
+      "parentUuid": "c1db6937_bdaeffc2",
+      "revId": "95a6903f2fba7c6cac8d5427b5851f754fedfdb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1db6937_fda887b7",
         "filename": "src/google/protobuf/unittest_reference_types_nano.proto",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2013-10-07T11:22:21Z",
       "side": 1,
       "message": "All other files have a ton of comments here. Do you want to copy them over to this file too?",
+      "revId": "95a6903f2fba7c6cac8d5427b5851f754fedfdb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61c0fd68_1ad23d48",
+        "filename": "src/google/protobuf/unittest_reference_types_nano.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-07T23:26:07Z",
+      "side": 1,
+      "message": "I\u0027m not sure what value comments would add. I\u0027d actually like to not have to have a separate file at all, and just share the original file that this is a copy of. But I couldn\u0027t figure out how to wrangle the generator options.",
+      "parentUuid": "c1db6937_fda887b7",
       "revId": "95a6903f2fba7c6cac8d5427b5851f754fedfdb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
