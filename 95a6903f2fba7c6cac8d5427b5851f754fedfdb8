@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1db6937_bdaeffc2",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-07T11:22:21Z",
+      "side": 1,
+      "message": "This means there\u0027s no protection against nullified required field. Inside Google we might never reach this bug (or feature that NPE is thrown when serializing a required field), but maybe you just want to do one of:\n\n- skip serialization of this require field;\n- explain the NPE feature in the README file.",
+      "revId": "95a6903f2fba7c6cac8d5427b5851f754fedfdb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1db6937_fda887b7",
+        "filename": "src/google/protobuf/unittest_reference_types_nano.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-07T11:22:21Z",
+      "side": 1,
+      "message": "All other files have a ton of comments here. Do you want to copy them over to this file too?",
+      "revId": "95a6903f2fba7c6cac8d5427b5851f754fedfdb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
