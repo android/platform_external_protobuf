@@ -16,6 +16,24 @@
       "revId": "67cc2f09e1325154e50445ef340ff0e7ca5a1ba1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41c5b977_5f966396",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-10-08T19:47:33Z",
+      "side": 1,
+      "message": "good idea! done",
+      "parentUuid": "4113f9db_4cafefc0",
+      "revId": "67cc2f09e1325154e50445ef340ff0e7ca5a1ba1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
