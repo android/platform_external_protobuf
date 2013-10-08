@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4113f9db_4cafefc0",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-08T19:09:02Z",
+      "side": 1,
+      "message": "Maybe just do one step extra and inline the whole null_check variable logic here. I.e.\n\nif (IsReferenceType(GetJavaType(descriptor_))) {\n  printer-\u003ePrint(\n    \"  if (value \u003d\u003d null) {\\n\"\n    \"    throw new java.lang.NullPointerException();\\n\"\n    \"  }\\n\");\n}",
+      "revId": "67cc2f09e1325154e50445ef340ff0e7ca5a1ba1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
