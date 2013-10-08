@@ -69,6 +69,24 @@
       "revId": "95a6903f2fba7c6cac8d5427b5851f754fedfdb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4113f9db_e91b35ea",
+        "filename": "src/google/protobuf/unittest_reference_types_nano.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-08T11:54:37Z",
+      "side": 1,
+      "message": "in java/pom.xml:\n\n\u003cexec executable\u003d\"../src/protoc\"\u003e\n  \u003carg value\u003d\"--javanano_out\u003doptional_field_style\u003dreftypes,java_outer_classname\u003dgoogle/protobuf/unittest_reference_types_nano.proto|NanoReferenceTypes:target/generated-test-sources\" /\u003e\n  \u003carg value\u003d\"--proto_path\u003d../src\" /\u003e\n  \u003carg value\u003d\"--proto_path\u003dsrc/test/java\" /\u003e\n  \u003carg value\u003d\"../src/google/protobuf/unittest_nano.proto\" /\u003e\n\u003c/exec\u003e",
+      "parentUuid": "61c0fd68_1ad23d48",
+      "revId": "95a6903f2fba7c6cac8d5427b5851f754fedfdb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
