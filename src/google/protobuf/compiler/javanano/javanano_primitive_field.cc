@@ -283,11 +283,7 @@ void SetPrimitiveVariables(const FieldDescriptor* descriptor, const Params param
       WireFormat::TagSize(descriptor->number(), descriptor->type()));
   if (IsReferenceType(GetJavaType(descriptor))) {
     (*variables)["null_check"] =
-        "  if (value == null) {\n"
-        "    throw new java.lang.NullPointerException();\n"
-        "  }\n";
-  } else {
-    (*variables)["null_check"] = "";
+        "  if (value == null) throw new java.lang.NullPointerException();";
   }
   int fixed_size = FixedSize(descriptor->type());
   if (fixed_size != -1) {
@@ -425,8 +421,12 @@ GenerateMembers(io::Printer* printer) const {
     "public $type$ get$capitalized_name$() {\n"
     "  return $name$_;\n"
     "}\n"
-    "public void set$capitalized_name$($type$ value) {\n"
-    "$null_check$"
+    "public void set$capitalized_name$($type$ value) {\n");
+  if (variables_.find("null_check") != variables_.end()) {
+    printer->Print(variables_,
+      "$null_check$\n");
+  }
+  printer->Print(variables_,
     "  $name$_ = value;\n"
     "  $set_has$;\n"
     "}\n"
