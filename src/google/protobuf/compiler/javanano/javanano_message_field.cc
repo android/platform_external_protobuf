@@ -257,7 +257,7 @@ GenerateMembers(io::Printer* printer) const {
 void RepeatedMessageFieldGenerator::
 GenerateClearCode(io::Printer* printer) const {
   printer->Print(variables_,
-    "$name$ = $type$.EMPTY_ARRAY;\n");
+    "$name$ = $type$.emptyArray();\n");
 }
 
 void RepeatedMessageFieldGenerator::
