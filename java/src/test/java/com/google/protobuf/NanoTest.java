@@ -2677,13 +2677,45 @@ public class NanoTest extends TestCase {
     assertHasWireData(message, false);
   }
 
+  public void testNullRepeatedFields() {
+    // Check that serialization after explicitly setting a repeated field
+    // to null doesn't NPE.
+    TestAllTypesNano message = new TestAllTypesNano();
+    message.repeatedInt32 = null;
+    MessageNano.toByteArray(message);  // should not NPE
+    message.toString(); // should not NPE
+
+    message = new TestAllTypesNano();
+    message.repeatedNestedEnum = null;
+    MessageNano.toByteArray(message);  // should not NPE
+    message.toString(); // should not NPE
+
+    message = new TestAllTypesNano();
+    message.repeatedBytes = null;
+    MessageNano.toByteArray(message); // should not NPE
+    message.toString(); // should not NPE
+  }
+
   private void assertHasWireData(MessageNano message, boolean expected) {
-    int wireLength = MessageNano.toByteArray(message).length;
+    byte[] bytes = MessageNano.toByteArray(message);
+    int wireLength = bytes.length;
     if (expected) {
       assertFalse(wireLength == 0);
     } else {
-      assertEquals(0, wireLength);
+      if (wireLength != 0) {
+        fail("Expected no wire data for message \n" + message
+            + "\nBut got:\n"
+            + hexDump(bytes));
+      }
     }
+  }
+
+  private static String hexDump(byte[] bytes) {
+    StringBuilder sb = new StringBuilder();
+    for (byte b : bytes) {
+      sb.append(String.format("%02x ", b));
+    }
+    return sb.toString();
   }
 
   private <T> List<T> list(T first, T... remaining) {
