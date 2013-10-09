@@ -138,15 +138,11 @@ void MessageGenerator::Generate(io::Printer* printer) {
   printer->Print(
     "@SuppressWarnings(\"hiding\")\n"
     "public $modifiers$final class $classname$ extends\n"
-    "    com.google.protobuf.nano.MessageNano {\n",
+    "    com.google.protobuf.nano.MessageNano {\n"
+    "  \n",
     "modifiers", is_own_file ? "" : "static ",
     "classname", descriptor_->name());
   printer->Indent();
-  printer->Print(
-    "public static final $classname$ EMPTY_ARRAY[] = {};\n"
-    "public $classname$() {}\n"
-    "\n",
-    "classname", descriptor_->name());
 
   if (params_.store_unknown_fields()) {
     printer->Print(
