@@ -82,7 +82,7 @@ MessageFieldGenerator(const FieldDescriptor* descriptor, const Params& params)
 MessageFieldGenerator::~MessageFieldGenerator() {}
 
 void MessageFieldGenerator::
-GenerateMembers(io::Printer* printer) const {
+GenerateMembers(io::Printer* printer, bool /* unused lazy_init */) const {
   printer->Print(variables_,
     "public $type$ $name$;\n");
 }
@@ -159,7 +159,7 @@ AccessorMessageFieldGenerator(
 AccessorMessageFieldGenerator::~AccessorMessageFieldGenerator() {}
 
 void AccessorMessageFieldGenerator::
-GenerateMembers(io::Printer* printer) const {
+GenerateMembers(io::Printer* printer, bool /* unused lazy_init */) const {
   printer->Print(variables_,
     "private $type$ $name$_;\n"
     "public $type$ get$capitalized_name$() {\n"
@@ -249,7 +249,7 @@ RepeatedMessageFieldGenerator(const FieldDescriptor* descriptor, const Params& p
 RepeatedMessageFieldGenerator::~RepeatedMessageFieldGenerator() {}
 
 void RepeatedMessageFieldGenerator::
-GenerateMembers(io::Printer* printer) const {
+GenerateMembers(io::Printer* printer, bool /* unused lazy_init */) const {
   printer->Print(variables_,
     "public $type$[] $name$;\n");
 }
@@ -257,7 +257,7 @@ GenerateMembers(io::Printer* printer) const {
 void RepeatedMessageFieldGenerator::
 GenerateClearCode(io::Printer* printer) const {
   printer->Print(variables_,
-    "$name$ = $type$.EMPTY_ARRAY;\n");
+    "$name$ = $type$.emptyArray();\n");
 }
 
 void RepeatedMessageFieldGenerator::
