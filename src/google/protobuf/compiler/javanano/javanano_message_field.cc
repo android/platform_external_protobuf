@@ -59,6 +59,7 @@ void SetMessageVariables(const Params& params,
     RenameJavaKeywords(UnderscoresToCamelCase(descriptor));
   (*variables)["capitalized_name"] =
     RenameJavaKeywords(UnderscoresToCapitalizedCamelCase(descriptor));
+  (*variables)["default_constant"] = FieldDefaultConstantName(descriptor);
   (*variables)["number"] = SimpleItoa(descriptor->number());
   (*variables)["type"] = ClassName(params, descriptor->message_type());
   (*variables)["group_or_message"] =
@@ -257,7 +258,7 @@ GenerateMembers(io::Printer* printer) const {
 void RepeatedMessageFieldGenerator::
 GenerateClearCode(io::Printer* printer) const {
   printer->Print(variables_,
-    "$name$ = $type$.EMPTY_ARRAY;\n");
+    "$name$ = $type$.emptyArray();\n");
 }
 
 void RepeatedMessageFieldGenerator::

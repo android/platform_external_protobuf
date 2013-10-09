@@ -155,9 +155,21 @@ void MessageGenerator::Generate(io::Printer* printer) {
       "    com.google.protobuf.nano.MessageNano {\n");
   }
   printer->Indent();
+
+  // Note: a class initializer prevents ProGuard from inlining any methods in
+  // this class, because it conservatively thinks the class initializer has side
+  // effects. Therefore we lazily instantiate the singleton empty array, instead
+  // of using a field initializer (which introduces the class initializer).
   printer->Print(
     "\n"
-    "public static final $classname$[] EMPTY_ARRAY = {};\n"
+    "// The singleton empty array without the class initializer.\n"
+    "private static $classname$[] emptyArray;\n"
+    "public static $classname$[] emptyArray() {\n"
+    "  if (emptyArray == null) {\n"
+    "    emptyArray = new $classname$[0];\n"
+    "  }\n"
+    "  return emptyArray;\n"
+    "}\n"
     "\n"
     "public $classname$() {\n"
     "  clear();\n"
