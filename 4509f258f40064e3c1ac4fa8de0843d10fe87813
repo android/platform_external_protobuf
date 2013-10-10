@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e125cd90_864faa40",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-10T12:20:49Z",
+      "side": 1,
+      "message": "could you add back the indentation (4sp for android)",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e125cd90_a654a6d1",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2686,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-10T12:20:49Z",
+      "side": 1,
+      "message": "If it\u0027s just to test if NPE is thrown you don\u0027t need to wrap an assert around it, I think?",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e125cd90_665b8efd",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2691,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-10T12:20:49Z",
+      "side": 1,
+      "message": "Maybe add a block for repeated \u0027bytes\u0027 too, because it\u0027s byte[][] and could be interesting.",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "212c457a_08ed8778",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2709,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-10T12:20:49Z",
+      "side": 1,
+      "message": "Either be super lazy and just use Arrays.toString(bytes), or do it properly :)",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e125cd90_e6093efb",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-10T12:20:49Z",
+      "side": 1,
+      "message": "- prefer newline between variables_ and the generated code, like everywhere else in this project.\n- it seems to me you can move the \"length \u003e 0\" check here, so the generated code is a bit more efficient.",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
