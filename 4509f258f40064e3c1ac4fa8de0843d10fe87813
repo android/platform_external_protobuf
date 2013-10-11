@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "de23489b_3c8699ac",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-11T18:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e125cd90_864faa40",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e125cd90_a654a6d1",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2013-10-10T12:20:49Z",
       "side": 1,
       "message": "If it\u0027s just to test if NPE is thrown you don\u0027t need to wrap an assert around it, I think?",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e15442f_42e04812",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2686,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-11T18:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e125cd90_a654a6d1",
       "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1e0a4014_5e06e575",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2691,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-11T18:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e125cd90_665b8efd",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "212c457a_08ed8778",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "de23489b_3c31f914",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2709,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-11T18:44:34Z",
+      "side": 1,
+      "message": "This hack is better than Arrays.toString(bytes) because it\u0027s in hex (so you don\u0027t get negative numbers), and doesn\u0027t have to be terribly efficient, since it\u0027s running in a test. It\u0027s also not *that* inefficient, so removed comment :)",
+      "parentUuid": "212c457a_08ed8778",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e125cd90_e6093efb",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2013-10-10T12:20:49Z",
       "side": 1,
       "message": "- prefer newline between variables_ and the generated code, like everywhere else in this project.\n- it seems to me you can move the \"length \u003e 0\" check here, so the generated code is a bit more efficient.",
+      "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e15442f_a25ba4fa",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-11T18:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e125cd90_e6093efb",
       "revId": "4509f258f40064e3c1ac4fa8de0843d10fe87813",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
