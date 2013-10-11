@@ -16,6 +16,24 @@
       "revId": "5ae438cf71487d5bc8cb5c0d0e637f976734d110",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e3fa0b6_50394c53",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-11T17:39:20Z",
+      "side": 1,
+      "message": "clear() does the initialization to -1.",
+      "parentUuid": "1e0a4014_3e3c51d3",
+      "revId": "5ae438cf71487d5bc8cb5c0d0e637f976734d110",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
