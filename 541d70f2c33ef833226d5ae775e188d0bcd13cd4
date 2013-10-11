@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de28a883_ae4b7785",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-11T18:54:04Z",
+      "side": 1,
+      "message": "Second point of comment not addressed. On second thought I would probably like to enforce it rather than suggest it, because it looks strange for the generated code to do this:\n\nif (this.x !\u003d null) {\n  if (this.x.length \u003e 0) {\n    //write tag and data size\n  }\n  for (X element : this.x) {\n    // write element\n  }\n}\n\nIf you move this condition up to L573:\n\nif (this.x !\u003d null \u0026\u0026 this.x.length \u003e 0) {\n  // write tag and data size\n  for (X element : this.x) {\n    // write element\n  }\n}\n\nand this doesn\u0027t break the non-packed case; it\u0027ll in fact save the time and the allocation of an iterator that won\u0027t do anything (over an empty array).",
+      "revId": "541d70f2c33ef833226d5ae775e188d0bcd13cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
