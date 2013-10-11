@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e0a4014_3e3c51d3",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2013-10-11T17:30:56Z",
+      "side": 1,
+      "message": "It looks like getCachedSize() is relying on this being -1 to populate the cache? (Might be misunderstanding something)",
+      "revId": "5ae438cf71487d5bc8cb5c0d0e637f976734d110",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
