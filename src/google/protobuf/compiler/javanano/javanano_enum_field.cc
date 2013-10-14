@@ -111,11 +111,11 @@ GenerateClearCode(io::Printer* printer) const {
 void EnumFieldGenerator::
 GenerateMergingCode(io::Printer* printer) const {
   printer->Print(variables_,
-    "  this.$name$ = input.readInt32();\n");
+    "this.$name$ = input.readInt32();\n");
 
   if (params_.generate_has()) {
     printer->Print(variables_,
-      "  has$capitalized_name$ = true;\n");
+      "has$capitalized_name$ = true;\n");
   }
 }
 
@@ -276,7 +276,8 @@ GenerateMergingCode(io::Printer* printer) const {
       "input.popLimit(limit);\n");
   } else {
     printer->Print(variables_,
-      "int arrayLength = com.google.protobuf.nano.WireFormatNano.getRepeatedFieldArrayLength(input, $tag$);\n"
+      "int arrayLength = com.google.protobuf.nano.WireFormatNano\n"
+      "    .getRepeatedFieldArrayLength(input, $tag$);\n"
       "int i = this.$name$.length;\n"
       "int[] newArray = new int[i + arrayLength];\n"
       "System.arraycopy(this.$name$, 0, newArray, 0, i);\n"
