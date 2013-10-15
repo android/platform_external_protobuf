@@ -16,6 +16,24 @@
       "revId": "334a7d1117a576bc6010c14677fb6444639c1dda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e588040_ce2d9708",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-15T17:51:11Z",
+      "side": 1,
+      "message": "because you want to play nice with a message System or enum System in scope.",
+      "parentUuid": "be4e9480_530946f7",
+      "revId": "334a7d1117a576bc6010c14677fb6444639c1dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
