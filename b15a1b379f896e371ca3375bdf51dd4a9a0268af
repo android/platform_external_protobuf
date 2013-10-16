@@ -1,0 +1,9 @@
+Code-Review+1: Vladimir Marko <vmarko@google.com>
+Code-Review+1: Ulas Kirazci <ulas@google.com>
+Code-Review+2: Max Cai <maxtroy@google.com>
+Verified+1: Max Cai <maxtroy@google.com>
+Submitted-by: Max Cai <maxtroy@google.com>
+Submitted-at: Wed, 16 Oct 2013 18:02:22 +0000
+Reviewed-on: https://android-review.googlesource.com/67984
+Project: platform/external/protobuf
+Branch: refs/heads/master
