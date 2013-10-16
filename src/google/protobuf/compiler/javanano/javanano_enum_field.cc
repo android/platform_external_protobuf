@@ -159,8 +159,41 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
   }
 }
 
-string EnumFieldGenerator::GetBoxedType() const {
-  return ClassName(params_, descriptor_->enum_type());
+void EnumFieldGenerator::GenerateEqualsCode(io::Printer* printer) const {
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "if (this.has$capitalized_name$ != other.has$capitalized_name$) {\n"
+      "  return false;\n"
+      "} else ");
+  }
+
+  printer->Print("if (");
+
+  if (params_.use_reference_types_for_primitives()) {
+    printer->Print(variables_,
+      "this.$name$ == null ? other.$name$ != null\n"
+      "    : !this.$name$.equals(other.$name$)");
+  } else {
+    printer->Print(variables_,
+      "this.$name$ != other.$name$");
+  }
+
+  printer->Print(") {\n"
+    "  return false;\n"
+    "}\n");
+}
+
+void EnumFieldGenerator::GenerateHashCodeCode(io::Printer* printer) const {
+  printer->Print(
+    "result = 31 * result + ");
+  if (params_.use_reference_types_for_primitives()) {
+    printer->Print(variables_,
+      "(this.$name$ == null ? 0 : this.$name$)");
+  } else {
+    printer->Print(variables_,
+      "this.$name$");
+  }
+  printer->Print(";\n");
 }
 
 // ===================================================================
@@ -227,8 +260,19 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
     "}\n");
 }
 
-string AccessorEnumFieldGenerator::GetBoxedType() const {
-  return ClassName(params_, descriptor_->enum_type());
+void AccessorEnumFieldGenerator::
+GenerateEqualsCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "if ($get_has$ != $get_others_has$\n"
+    "    || $name$_ != other.$name$_) {\n"
+    "  return false;\n"
+    "}\n");
+}
+
+void AccessorEnumFieldGenerator::
+GenerateHashCodeCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "result = 31 * result + $name$_;\n");
 }
 
 // ===================================================================
@@ -366,8 +410,20 @@ GenerateSerializedSizeCode(io::Printer* printer) const {
   }
 }
 
-string RepeatedEnumFieldGenerator::GetBoxedType() const {
-  return ClassName(params_, descriptor_->enum_type());
+void RepeatedEnumFieldGenerator::
+GenerateEqualsCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "if (!com.google.protobuf.nano.InternalNano.equals(\n"
+    "    this.$name$, other.$name$)) {\n"
+    "  return false;\n"
+    "}\n");
+}
+
+void RepeatedEnumFieldGenerator::
+GenerateHashCodeCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "result = 31 * result\n"
+    "    + com.google.protobuf.nano.InternalNano.hashCode(this.$name$);\n");
 }
 
 }  // namespace javanano
