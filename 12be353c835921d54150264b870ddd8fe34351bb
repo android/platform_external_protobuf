@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de51881f_8c48cb89",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2708,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-16T10:42:33Z",
+      "side": 1,
+      "message": "maybe useful to make message.repeatedX \u003d null and other.repeatedX \u003d new X[0], and assertEquals.",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe5c8c37_8de685f9",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2820,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-16T10:42:33Z",
+      "side": 1,
+      "message": "reference types use null as the default and ignore the proto default option, no?",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e588040_d1941690",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-16T10:42:33Z",
+      "side": 1,
+      "message": "break string after \\n.\n\nremove \u0027final\u0027 keyword because all message classes are made final at the class level so the compiler will add the final for you.",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de51881f_6fe0e144",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-16T10:42:33Z",
+      "side": 1,
+      "message": "I prefer the FieldGenerator::GenerateEqualsCode treatment in the main protobuf repo (i.e. 2.4 or above; 2.3 doesn\u0027t have equals() and hashCode()). It\u0027s cleaner to read and maintain and you don\u0027t need the separate IsReferenceType function above.",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe5c8c37_cdc59d4d",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-16T10:42:33Z",
+      "side": 1,
+      "message": "break after \\n",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
