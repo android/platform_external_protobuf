@@ -2677,6 +2677,150 @@ public class NanoTest extends TestCase {
     assertHasWireData(message, false);
   }
 
+  public void testHashCodeEquals() throws Exception {
+    TestAllTypesNano message = new TestAllTypesNano();
+    populate(message);
+
+    TestAllTypesNano other = new TestAllTypesNano();
+    populate(other);
+
+    assertEquals(message, other);
+    assertEquals(message.hashCode(), other.hashCode());
+
+    other.optionalInt32 = 7;
+    assertFalse(message.equals(other));
+
+    other.optionalInt32 = message.optionalInt32;
+    other.repeatedInt32[0] = message.repeatedInt32[0] + 1;
+    assertFalse(message.equals(other));
+    other.repeatedInt32[0] = message.repeatedInt32[0];
+
+    other.repeatedBytes[0][1] = (byte) (message.repeatedBytes[0][1] + 1);
+    assertFalse(message.equals(other));
+    other.repeatedBytes[0][1] = message.repeatedBytes[0][1];
+
+    other.repeatedBytes = null;
+    assertFalse(message.equals(other));
+    other.repeatedBytes = message.repeatedBytes;
+
+    other.repeatedInt32 = null;
+    assertFalse(message.equals(other));
+    other.repeatedInt32 = message.repeatedInt32;
+  }
+
+  private void populate(TestAllTypesNano message) {
+    message.optionalInt32 = 5;
+    message.optionalInt64 = 777;
+    message.optionalFloat = 1.0f;
+    message.optionalDouble = 2.0;
+    message.optionalBool = true;
+    message.optionalString = "Hello";
+    message.optionalBytes = new byte[] { 1, 2, 3 };
+    message.optionalNestedMessage = new TestAllTypesNano.NestedMessage();
+    message.optionalNestedMessage.bb = 27;
+    message.optionalNestedEnum = TestAllTypesNano.BAR;
+    message.repeatedInt32 = new int[] { 5, 6, 7, 8 };
+    message.repeatedInt64 = new long[] { 27L, 28L, 29L };
+    message.repeatedFloat = new float[] { 5.0f, 6.0f };
+    message.repeatedDouble = new double[] { 99.1, 22.5 };
+    message.repeatedBool = new boolean[] { true, false, true };
+    message.repeatedString = new String[] { "One", "Two" };
+    message.repeatedBytes = new byte[][] { { 2, 7 }, { 2, 7 } };
+    message.repeatedNestedMessage = new TestAllTypesNano.NestedMessage[] {
+      message.optionalNestedMessage,
+      message.optionalNestedMessage
+    };
+    message.repeatedNestedEnum = new int[] {
+      TestAllTypesNano.BAR,
+      TestAllTypesNano.BAZ
+    };
+
+    // We set the _nan fields to something other than nan, because equality
+    // is defined for nan such that Float.NaN != Float.NaN, which makes any
+    // instance of TestAllTypesNano unequal to any other instance unless
+    // these fields are set. This is also the behavior of the regular java
+    // generator when the value of a field is NaN.
+    message.defaultFloatNan = 1.0f;
+    message.defaultDoubleNan = 1.0;
+  }
+
+  public void testHashCodeEqualsReferenceTypes() throws Exception {
+    NanoReferenceTypes.TestAllTypesNano message =
+        new NanoReferenceTypes.TestAllTypesNano();
+    populate(message);
+
+    NanoReferenceTypes.TestAllTypesNano other =
+        new NanoReferenceTypes.TestAllTypesNano();
+    populate(other);
+
+    assertEquals(message, other);
+    assertEquals(message.hashCode(), other.hashCode());
+
+    other.optionalInt32 = 7;
+    assertFalse(message.equals(other));
+
+    other.optionalInt32 = message.optionalInt32;
+    other.repeatedInt32[0] = message.repeatedInt32[0] + 1;
+    assertFalse(message.equals(other));
+    other.repeatedInt32[0] = message.repeatedInt32[0];
+
+    other.repeatedBytes[0][1] = (byte) (message.repeatedBytes[0][1] + 1);
+    assertFalse(message.equals(other));
+    other.repeatedBytes[0][1] = message.repeatedBytes[0][1];
+
+    other.repeatedBytes = null;
+    assertFalse(message.equals(other));
+    other.repeatedBytes = message.repeatedBytes;
+
+    other.repeatedInt32 = null;
+    assertFalse(message.equals(other));
+    other.repeatedInt32 = message.repeatedInt32;
+
+    other.optionalInt32 = null;
+    assertFalse(message.equals(other));
+
+    message.optionalInt32 = null;
+    assertEquals(message, other);
+  }
+
+  private void populate(NanoReferenceTypes.TestAllTypesNano message) {
+    message.optionalInt32 = 5;
+    message.optionalInt64 = 777L;
+    message.optionalFloat = 1.0f;
+    message.optionalDouble = 2.0;
+    message.optionalBool = true;
+    message.optionalString = "Hello";
+    message.optionalBytes = new byte[] { 1, 2, 3 };
+    message.optionalNestedMessage =
+        new NanoReferenceTypes.TestAllTypesNano.NestedMessage();
+    message.optionalNestedMessage.foo = 27;
+    message.optionalNestedEnum = NanoReferenceTypes.TestAllTypesNano.BAR;
+    message.repeatedInt32 = new int[] { 5, 6, 7, 8 };
+    message.repeatedInt64 = new long[] { 27L, 28L, 29L };
+    message.repeatedFloat = new float[] { 5.0f, 6.0f };
+    message.repeatedDouble = new double[] { 99.1, 22.5 };
+    message.repeatedBool = new boolean[] { true, false, true };
+    message.repeatedString = new String[] { "One", "Two" };
+    message.repeatedBytes = new byte[][] { { 2, 7 }, { 2, 7 } };
+    message.repeatedNestedMessage =
+        new NanoReferenceTypes.TestAllTypesNano.NestedMessage[] {
+          message.optionalNestedMessage,
+          message.optionalNestedMessage
+        };
+    message.repeatedNestedEnum = new int[] {
+      NanoReferenceTypes.TestAllTypesNano.BAR,
+      NanoReferenceTypes.TestAllTypesNano.BAZ
+    };
+
+    // We set the _nan fields to something other than nan, because equality
+    // is defined for nan such that Float.NaN != Float.NaN, which makes any
+    // instance of TestAllTypesNano unequal to any other instance unless
+    // these fields are set. This is also the behavior of the regular java
+    // generator when the value of a field is NaN.
+    message.defaultFloatNan = 1.0f;
+    message.defaultDoubleNan = 1.0;
+  }
+
   public void testNullRepeatedFields() throws Exception {
     // Check that serialization after explicitly setting a repeated field
     // to null doesn't NPE.

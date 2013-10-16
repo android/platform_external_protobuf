@@ -61,6 +61,7 @@ class Params {
   bool java_enum_style_;
   bool optional_field_accessors_;
   bool use_reference_types_for_primitives_;
+  bool generate_hash_code_equals_to_string_;
 
  public:
   Params(const string & base_name) :
@@ -71,7 +72,8 @@ class Params {
     generate_has_(false),
     java_enum_style_(false),
     optional_field_accessors_(false),
-    use_reference_types_for_primitives_(false) {
+    use_reference_types_for_primitives_(false),
+    generate_hash_code_equals_to_string_(false) {
   }
 
   const string& base_name() const {
@@ -185,6 +187,13 @@ class Params {
   }
   bool use_reference_types_for_primitives() const {
     return use_reference_types_for_primitives_;
+  }
+
+  void set_generate_hash_code_equals_to_string(bool value) {
+    generate_hash_code_equals_to_string_ = value;
+  }
+  bool generate_hash_code_equals_to_string() const {
+    return generate_hash_code_equals_to_string_;
   }
 };
 

@@ -185,6 +185,12 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
   GenerateClear(printer);
 
+  if (params_.generate_hash_code_equals_to_string()) {
+    GenerateEquals(printer);
+    GenerateHashCode(printer);
+    // TODO(bduff): toString()
+  }
+
   // If we have an extension range, generate accessors for extensions.
   if (params_.store_unknown_fields()
       && descriptor_->extension_range_count() > 0) {
@@ -409,6 +415,165 @@ void MessageGenerator::GenerateClear(io::Printer* printer) {
     "  return this;\n"
     "}\n"
     "\n");
+}
+
+// Returns true if the specified field descriptor is generated as a
+// reference type.
+bool IsReferenceType(const FieldDescriptor* field, const Params params) {
+  JavaType java_type = GetJavaType(field);
+  return java_type == JAVATYPE_MESSAGE
+      || java_type == JAVATYPE_STRING
+      || params.use_reference_types_for_primitives();
+}
+
+void MessageGenerator::GenerateEquals(io::Printer* printer) {
+  // Don't override if there are no fields. We could generate an
+  // equals method that compares types, but often empty messages
+  // are used as namespaces.
+  if (descriptor_->field_count() == 0) {
+    return;
+  }
+
+  printer->Print(
+      "@Override\npublic final boolean equals(Object o) {\n");
+  printer->Indent();
+
+  printer->Print(
+      "if (o == this) return true;\n"
+      "if (!(o instanceof $classname$)) return false;\n"
+      "$classname$ other = ($classname$) o;\n",
+      "classname", descriptor_->name());
+  printer->Print("boolean result = true;\n");
+  for (int i = 0; i < descriptor_->field_count(); i++) {
+    const FieldDescriptor* field = descriptor_->field(i);
+    string field_name = RenameJavaKeywords(UnderscoresToCamelCase(field));
+
+    if (field->is_repeated()
+        && field->type() == FieldDescriptor::TYPE_BYTES) {
+      printer->Print(
+          "result = result && (($name$ == null ? 0 : $name$.length)\n"
+          "    == (other.$name$ == null ? 0 : other.$name$.length));\n"
+          "for (int i = 0; i < ($name$ == null ? 0 : $name$.length); i++) {\n"
+          "  result = result && java.util.Arrays.equals($name$[i], other.$name$[i]);\n"
+          "}\n",
+          "name", field_name);
+    } else if (field->is_repeated()
+               || field->type() == FieldDescriptor::TYPE_BYTES) {
+      printer->Print(
+          "result = result && java.util.Arrays.equals($name$, other.$name$);\n",
+          "name", field_name);
+    } else if (IsReferenceType(field, params_)) {
+      printer->Print(
+          "result = result && ($name$ == null ? other.$name$ == null "
+          ": $name$.equals(other.$name$));\n",
+          "name", field_name);
+    } else {
+      printer->Print("result = result && ($name$ == other.$name$);\n",
+                      "name", field_name);
+    }
+  }
+  if (params_.store_unknown_fields()) {
+    printer->Print("result = result && "
+                   "(unknownFieldData == null ? other.unknownFieldData == null : "
+                   "unknownFieldData.equals(other.unknownFieldData));\n");
+  }
+  printer->Print("return result;\n");
+
+  printer->Outdent();
+  printer->Print("}\n");
+}
+
+void MessageGenerator::GenerateHashCode(io::Printer* printer) {
+  if (descriptor_->field_count() == 0) {
+    return;
+  }
+
+  printer->Print("@Override\npublic int hashCode() {\n");
+  printer->Indent();
+
+  printer->Print("int result = 17;\n");
+  for (int i = 0; i < descriptor_->field_count(); i++) {
+    const FieldDescriptor* field = descriptor_->field(i);
+    string field_name = RenameJavaKeywords(UnderscoresToCamelCase(field));
+    JavaType java_type = GetJavaType(field);
+
+    if (field->is_repeated() || java_type == JAVATYPE_BYTES) {
+      printer->Print("if (this.$name$ == null) result = 31 * result;\n", "name", field_name);
+      printer->Print("else {\n");
+      printer->Indent();
+      printer->Print("for (int i = 0; i < this.$name$.length; i++) {\n", "name", field_name);
+      printer->Indent();
+      // Deal with "repeated bytes" fields, which are byte[][].
+      if (field->is_repeated() && java_type == JAVATYPE_BYTES) {
+        printer->Print("for (int j = 0; j < this.$name$[i].length; j++) {\n",
+                       "name", field_name);
+        GenerateHashCodeOneField(printer, field, field_name + "[i][j]", false);
+        printer->Print("}\n");
+      } else {
+        GenerateHashCodeOneField(printer, field, field_name + "[i]",
+                                 java_type == JAVATYPE_MESSAGE ||
+                                 java_type == JAVATYPE_STRING);
+      }
+      printer->Outdent();
+      printer->Print("}\n");
+      printer->Outdent();
+      printer->Print("}\n");
+    } else {
+      GenerateHashCodeOneField(printer, field, field_name,
+                               IsReferenceType(field, params_));
+    }
+  }
+  if (params_.store_unknown_fields()) {
+    printer->Print("result = 31 * result + (unknownFieldData == null ? 0 : "
+                   "unknownFieldData.hashCode());\n");
+  }
+
+  printer->Print("return result;\n");
+
+  printer->Outdent();
+  printer->Print("}\n");
+}
+
+void MessageGenerator::GenerateHashCodeOneField(io::Printer* printer,
+                                                const FieldDescriptor* field,
+                                                const string& field_name,
+                                                bool may_be_null) {
+  JavaType java_type = GetJavaType(field);
+  printer->Print("result = 31 * result + (");
+
+  if (may_be_null) {
+    printer->Print("this.$name$ == null ? 0 : ", "name", field_name);
+  }
+
+  // From this point on, this.$name$ is guaranteed to not be null.
+  switch (GetJavaType(field)) {
+    case JAVATYPE_INT:
+    case JAVATYPE_ENUM:
+      printer->Print("this.$name$", "name", field_name);
+      break;
+    case JAVATYPE_BYTES:
+      printer->Print("(int) this.$name$", "name", field_name);
+      break;
+    case JAVATYPE_LONG:
+      printer->Print("(int) (this.$name$ ^ (this.$name$ >>> 32))", "name", field_name);
+      break;
+    case JAVATYPE_FLOAT:
+      printer->Print("Float.floatToIntBits(this.$name$)", "name", field_name);
+      break;
+    case JAVATYPE_DOUBLE:
+      printer->Print("(int) (Double.doubleToLongBits(this.$name$) ^ "
+                     "(Double.doubleToLongBits(this.$name$) >>> 32))", "name", field_name);
+      break;
+    case JAVATYPE_BOOLEAN:
+      // Use 2 rather than 0 because null is 0.
+      printer->Print("(this.$name$ ? 1 : 2)", "name", field_name);
+      break;
+    case JAVATYPE_STRING:
+    case JAVATYPE_MESSAGE:
+      printer->Print("this.$name$.hashCode()", "name", field_name);
+      break;
+  }
+  printer->Print(");\n");
 }
 
 // ===================================================================
