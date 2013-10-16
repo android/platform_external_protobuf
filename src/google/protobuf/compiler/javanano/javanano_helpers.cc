@@ -477,12 +477,16 @@ string GetBitFieldNameForBit(int bit_index) {
   return GetBitFieldName(bit_index / 32);
 }
 
-string GenerateGetBit(int bit_index) {
+string GenerateGetBit(int bit_index, const char* qualifier_prefix) {
   string var_name = GetBitFieldNameForBit(bit_index);
   int bit_in_var_index = bit_index % 32;
 
   string mask = kBitMasks[bit_in_var_index];
-  string result = "((" + var_name + " & " + mask + ") == " + mask + ")";
+  string result = "((";
+  if (qualifier_prefix == NULL) {
+    result += qualifier_prefix;
+  }
+  result += var_name + " & " + mask + ") != 0)";
   return result;
 }
 
@@ -506,7 +510,8 @@ string GenerateClearBit(int bit_index) {
 
 void SetBitOperationVariables(const string name,
     int bitIndex, map<string, string>* variables) {
-  (*variables)["get_" + name] = GenerateGetBit(bitIndex);
+  (*variables)["get_" + name] = GenerateGetBit(bitIndex, NULL);
+  (*variables)["get_others_" + name] = GenerateGetBit(bitIndex, "others.");
   (*variables)["set_" + name] = GenerateSetBit(bitIndex);
   (*variables)["clear_" + name] = GenerateClearBit(bitIndex);
 }
