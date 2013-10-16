@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "3e346406_81e29a89",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-16T17:56:26Z",
+      "side": 1,
+      "message": "I thought we already had a function for this somewhere.",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e588040_d1941690",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 1
@@ -47,6 +64,23 @@
       "writtenOn": "2013-10-16T10:42:33Z",
       "side": 1,
       "message": "break string after \\n.\n\nremove \u0027final\u0027 keyword because all message classes are made final at the class level so the compiler will add the final for you.",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e2f58b5_4509bc42",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-16T17:56:26Z",
+      "side": 1,
+      "message": "Any reason not to just exit early with return false upon the first inequality?",
       "revId": "12be353c835921d54150264b870ddd8fe34351bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -70,6 +104,24 @@
     },
     {
       "key": {
+        "uuid": "7ea41c87_c6d564d4",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-16T17:56:26Z",
+      "side": 1,
+      "message": "Also pls add more comments.",
+      "parentUuid": "de51881f_6fe0e144",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe5c8c37_cdc59d4d",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 1
@@ -81,6 +133,23 @@
       "writtenOn": "2013-10-16T10:42:33Z",
       "side": 1,
       "message": "break after \\n",
+      "revId": "12be353c835921d54150264b870ddd8fe34351bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e2f58b5_a52248ae",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-16T17:56:26Z",
+      "side": 1,
+      "message": "Arrays.hashCode?",
       "revId": "12be353c835921d54150264b870ddd8fe34351bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
