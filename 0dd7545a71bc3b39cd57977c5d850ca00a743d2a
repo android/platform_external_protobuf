@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "3e6f0478_2caa9bae",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-24T21:49:32Z",
+      "side": 1,
+      "message": "This is probably a wrong way to declare inequality. The right way (that would match the serialization code) is:\n\nif the two values are unequal then return false;\nelse if they both equal to default but hasValue is different then return false;\notherwise it\u0027s equal for this enum field.\n\nI had thought of a super simple equals() and hashCode() design: just test the class equality (for the message type) and the serialized byte array equality. Then we don\u0027t need that many methods (in both the compiler and the generated code) altogether. But the runtime cost is slightly high.",
+      "parentUuid": "9efc70ee_25d354f0",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "def26816_ad7109a0",
         "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
         "patchSetId": 2
