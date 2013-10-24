@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "def26816_2d2339b6",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-24T17:51:59Z",
+      "side": 1,
+      "message": "Tests for the various equals flavors? Test putting several messages into a HashMap then try looking them up. This is a black-box test for hashCode and equals.",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9efc70ee_25d354f0",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-24T17:51:59Z",
+      "side": 1,
+      "message": "Not sure if this is the right behavior. If so, then shouldn\u0027t GenerateHashCodeCode below check for has as well?",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "def26816_ad7109a0",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-24T17:51:59Z",
+      "side": 1,
+      "message": "Instead have GenerateGetBit take a const char *qualifier_prefix. Then append this between \"((\" and var_name.",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "def26816_ede4b127",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-24T17:51:59Z",
+      "side": 1,
+      "message": "Pls expand out this ternary within if.",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9efc70ee_254514c4",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-10-24T17:51:59Z",
+      "side": 1,
+      "message": "Not sure if checking has is the right behavior.",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
