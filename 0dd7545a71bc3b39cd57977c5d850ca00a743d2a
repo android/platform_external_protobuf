@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5e7bd85f_625d367f",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-25T15:11:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "def26816_2d2339b6",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9efc70ee_25d354f0",
         "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
         "patchSetId": 2
@@ -71,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "de8ee8b0_de3185ce",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-25T15:11:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "def26816_ad7109a0",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "def26816_ede4b127",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
         "patchSetId": 2
@@ -88,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "7ec09cbf_83d05e17",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-25T15:11:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "def26816_ede4b127",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9efc70ee_254514c4",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 2
@@ -99,6 +153,24 @@
       "writtenOn": "2013-10-24T17:51:59Z",
       "side": 1,
       "message": "Not sure if checking has is the right behavior.",
+      "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e7bd85f_625ff6e8",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-10-25T15:11:36Z",
+      "side": 1,
+      "message": "I define equality as serialized form equality. If one message has this field and the other doesn\u0027t, the serialized form will be different. See also my earlier reply about the generate_has() option, where there\u0027s no guarantee that has will be true if the value has changed, and therefore a different logic should be used.",
+      "parentUuid": "9efc70ee_254514c4",
       "revId": "0dd7545a71bc3b39cd57977c5d850ca00a743d2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
