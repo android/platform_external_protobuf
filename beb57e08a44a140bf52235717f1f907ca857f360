@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fe93ad15_5d805b99",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-05T19:22:43Z",
+      "side": 1,
+      "message": "Yes. And for the primitive type arrays, the potential boxing and unboxing operations.",
+      "parentUuid": "9e5e312a_5e43952d",
+      "revId": "beb57e08a44a140bf52235717f1f907ca857f360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e5e312a_be4bb140",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-05T18:51:54Z",
       "side": 1,
       "message": "What is \"is_packable\"?",
+      "revId": "beb57e08a44a140bf52235717f1f907ca857f360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dea0a95c_9f133772",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-05T19:22:43Z",
+      "side": 1,
+      "message": "whether the field type is actually packable. bytes, string, message and groups are the only 4 unpackable types, so even if they have the [ packed \u003d true ] annotation, they should not be considered packed.\n\nOn a related note, we\u0027re parsing the packed serialized fields wrong. In the main implementation, for compatibility, all packable repeated fields will have 2 \u0027case\u0027 blocks of parsing code, one for unpacked parsing (wire format is the element type\u0027s wire format) and the other for for packed parsing (wire format is LENGTH_DELIMITED), regardless of whether they\u0027re packed in the message definition. I\u0027ll handle this in another CL.",
+      "parentUuid": "9e5e312a_be4bb140",
       "revId": "beb57e08a44a140bf52235717f1f907ca857f360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
