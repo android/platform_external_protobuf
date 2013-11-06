@@ -69,6 +69,24 @@
       "revId": "beb57e08a44a140bf52235717f1f907ca857f360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "decee94a_95046671",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-11-06T17:34:16Z",
+      "side": 1,
+      "message": "Good finds.",
+      "parentUuid": "dea0a95c_9f133772",
+      "revId": "beb57e08a44a140bf52235717f1f907ca857f360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
