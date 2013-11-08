@@ -159,13 +159,6 @@ void MessageGenerator::Generate(io::Printer* printer) {
     "}\n",
     "classname", descriptor_->name());
 
-  if (params_.store_unknown_fields()) {
-    printer->Print(
-        "\n"
-        "private java.util.List<com.google.protobuf.nano.UnknownFieldData>\n"
-        "    unknownFieldData;\n");
-  }
-
   // Nested types and extensions
   for (int i = 0; i < descriptor_->extension_count(); i++) {
     ExtensionGenerator(descriptor_->extension(i), params_).Generate(printer);
@@ -267,36 +260,32 @@ GenerateMessageSerializationMethods(io::Printer* printer) {
   printer->Outdent();
   printer->Print(
     "}\n"
-    "\n"
-    "private int cachedSize;\n"
-    "@Override\n"
-    "public int getCachedSize() {\n"
-    "  if (cachedSize < 0) {\n"
-    "    // getSerializedSize sets cachedSize\n"
-    "    getSerializedSize();\n"
-    "  }\n"
-    "  return cachedSize;\n"
-    "}\n"
-    "\n"
-    "@Override\n"
-    "public int getSerializedSize() {\n"
-    "  int size = 0;\n");
-  printer->Indent();
+    "\n");
 
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(sorted_fields[i]).GenerateSerializedSizeCode(printer);
-  }
-
-  if (params_.store_unknown_fields()) {
+  // Rely on the parent implementation of getSerializedSize if there are no fields to
+  // serialize in this MessageNano.
+  if (descriptor_->field_count() != 0) {
     printer->Print(
-      "size += com.google.protobuf.nano.WireFormatNano.computeWireSize(unknownFieldData);\n");
-  }
+      "@Override\n"
+      "public int getSerializedSize() {\n"
+      "  int size = 0;\n");
+    printer->Indent();
 
-  printer->Outdent();
-  printer->Print(
-    "  cachedSize = size;\n"
-    "  return size;\n"
-    "}\n");
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(sorted_fields[i]).GenerateSerializedSizeCode(printer);
+    }
+
+    if (params_.store_unknown_fields()) {
+      printer->Print(
+        "size += com.google.protobuf.nano.WireFormatNano.computeWireSize(unknownFieldData);\n");
+    }
+
+    printer->Outdent();
+    printer->Print(
+      "  cachedSize = size;\n"
+      "  return size;\n"
+      "}\n");
+    }
 }
 
 void MessageGenerator::GenerateMergeFromMethods(io::Printer* printer) {

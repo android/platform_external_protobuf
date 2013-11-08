@@ -39,20 +39,42 @@ import java.io.IOException;
  */
 public abstract class MessageNano {
     /**
+     * unknownFieldData contains information about extensions.  These will be deserialized
+     * into protos through the getExtension() method.
+     */
+    protected java.util.List<com.google.protobuf.nano.UnknownFieldData> unknownFieldData;
+
+    protected int cachedSize = -1;
+
+    /**
      * Get the number of bytes required to encode this message.
      * Returns the cached size or calls getSerializedSize which
      * sets the cached size. This is used internally when serializing
      * so the size is only computed once. If a member is modified
      * then this could be stale call getSerializedSize if in doubt.
      */
-    abstract public int getCachedSize();
+    public int getCachedSize() {
+      if (cachedSize < 0) {
+        // getSerializedSize sets cachedSize
+        getSerializedSize();
+      }
+      return cachedSize;
+    }
 
     /**
      * Computes the number of bytes required to encode this message.
      * The size is cached and the cached result can be retrieved
      * using getCachedSize().
+     *
+     * This is the default implementation where there are no submessages.
+     * Protos that have submessages will override this method.
      */
-    abstract public int getSerializedSize();
+    public int getSerializedSize() {
+      int size = 0;
+      size += com.google.protobuf.nano.WireFormatNano.computeWireSize(unknownFieldData);
+      cachedSize = size;
+      return size;
+    }
 
     /**
      * Serializes the message and writes it to {@code output}.  This does not
