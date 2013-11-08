@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "defa6981_b25ef8ab",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-08T18:13:09Z",
+      "side": 1,
+      "message": "You\u0027re in a developer-managed class (not a codegen code) so it\u0027s ok to import the referenced classes.\n\n-\u003e List\u003cUnknownFieldData\u003e",
+      "revId": "c16be8fb6ec9638edde2f02a2b3b6e5d41919919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e025d43_372de0af",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-08T18:13:09Z",
+      "side": 1,
+      "message": "just say int size \u003d WireFormatNano.computeWireSize(unknownFieldData);",
+      "revId": "c16be8fb6ec9638edde2f02a2b3b6e5d41919919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e025d43_573ce4e1",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-08T18:13:09Z",
+      "side": 1,
+      "message": "just fyi, I\u0027m pretty sure ProGuard can remove the constructor since it\u0027s unused. But since we\u0027re using interface for enum wrappers already, this is a good change.",
+      "revId": "c16be8fb6ec9638edde2f02a2b3b6e5d41919919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
