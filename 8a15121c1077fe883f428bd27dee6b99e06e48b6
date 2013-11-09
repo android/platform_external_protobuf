@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e570543_cabf8693",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-11-09T21:39:40Z",
+      "side": 0,
+      "message": "Duh. Good find. :-)",
+      "revId": "8a15121c1077fe883f428bd27dee6b99e06e48b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
