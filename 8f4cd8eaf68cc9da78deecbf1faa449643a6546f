@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5e52f951_928b0c05",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feed6dca_f341a850",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "defa6981_520d148f",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageWithUnknownFieldsNano.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-09T00:33:32Z",
       "side": 1,
       "message": "Hmm, same-package classes don\u0027t need import statements, I suppose?\njava.util.List is worth importing, though.",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be621522_6792faca",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageWithUnknownFieldsNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "defa6981_520d148f",
       "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5e52f951_7290f830",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageWithUnknownFieldsNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feed6dca_d33e2cce",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "feed6dca_337b30a7",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageWithUnknownFieldsNano.java",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2013-11-09T00:33:32Z",
       "side": 1,
       "message": "A container for fields unknown to the message, including extensions. Extension fields can be accessed through the generated {@code getExtension()} and {@code setExtension()} methods.\n\nSpeaking of which, the get/setExtension methods can also be moved here, I think, and it fits all cases:\n- if a project doesn\u0027t need extension or unknown fields at all, this whole class and the class Extension can be ProGuarded away.\n- if a project needs only to store unknown fields but not extension, then the get/setExtension methods and the class Extension can be ProGuarded away.\n- if a project needs extensions, having get/setExtension methods here means you save 2n - 2 methods.\n\nIf you do so you can even @link to the methods in the javadoc. And you can rename this class to ExtendableMessageNano -- much easier to the eyes :)",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e52f951_d2c2a41d",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageWithUnknownFieldsNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Nice 2n win!\nDone",
+      "parentUuid": "feed6dca_337b30a7",
       "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "fe680d04_0f9eb97b",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageWithUnknownFieldsNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "defa6981_72081081",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e025d43_f7e238ef",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2013-11-09T00:33:32Z",
       "side": 1,
       "message": "this part can simply be moved out of the \"if (is_own_file)\" block so both the then-branch and the else-branch can share it.",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe680d04_2f1c554f",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e025d43_f7e238ef",
       "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "5e52f951_b271f070",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e025d43_d7cd746d",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e025d43_f7f9989f",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 3
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "fe680d04_8fef69dd",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e025d43_f7f9989f",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e025d43_97c3ec40",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 3
@@ -149,6 +293,24 @@
       "writtenOn": "2013-11-09T00:33:32Z",
       "side": 1,
       "message": "too much indentation",
+      "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e52f951_72be389c",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-09T01:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e025d43_97c3ec40",
       "revId": "8f4cd8eaf68cc9da78deecbf1faa449643a6546f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
