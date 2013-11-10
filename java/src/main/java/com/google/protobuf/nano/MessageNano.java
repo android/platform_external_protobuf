@@ -127,10 +127,20 @@ public abstract class MessageNano {
     }
 
     /**
-     * Intended for debugging purposes only. It does not use ASCII protobuf formatting.
+     * Returns a string that is (mostly) compatible with ProtoBuffer's TextFormat. Note that groups
+     * (which are deprecated) are not serialized with the correct field name.
      */
+    public String toText() {
+        return MessageNanoPrinter.print(this);
+    }
+
+    /**
+     * Returns a brief debugging string. This currently returns the result of {@code toText}, but
+     * will soon return the default {@code toString} result.
+     */
+    @Deprecated
     @Override
     public String toString() {
-        return MessageNanoPrinter.print(this);
+        return toText();
     }
 }
