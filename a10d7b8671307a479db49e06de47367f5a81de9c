@@ -104,6 +104,24 @@
     },
     {
       "key": {
+        "uuid": "7e5dfd5e_0a97b9b9",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-10T01:12:59Z",
+      "side": 1,
+      "message": "I don\u0027t have any concrete numbers in general, but in G+, we have 1668 total messages we generate (some of these will get proguarded), and 139 of them are completely empty (presumably some of these would also get proguarded).  I assume they were added to change the scope of the sub-messages.",
+      "parentUuid": "de65092b_c5893dcb",
+      "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "defa6981_529234ca",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 5
