@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e5dfd5e_9bd5ddd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-11-11T19:13:20Z",
+      "side": 1,
+      "message": "Line too long?",
+      "revId": "0cf87c81eacaa6c404b48f5f3f1b249b1e527558",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e5dfd5e_1bca6d34",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2013-11-11T19:13:20Z",
+      "side": 1,
+      "message": "TWS",
+      "revId": "0cf87c81eacaa6c404b48f5f3f1b249b1e527558",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
