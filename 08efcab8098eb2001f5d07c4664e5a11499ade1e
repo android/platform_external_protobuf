@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "feed6dca_13ec3479",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-11T18:10:12Z",
+      "side": 1,
+      "message": "Did you know the \"reftype\" optional field style? It generates (e.g.) java.lang.Integer-typed fields vs int fields and the clients can stuff null to them to mean \"I don\u0027t want to set any value to these optional fields\". Then this assert will break bad.\n\nWhile we\u0027re at this topic, did you know that the \"accessors\" optional field style would use private fields instead, with \"_\" at the end of the names?\n\nThere\u0027s been no maintenance to this file because we\u0027re thinking of deleting it and inventing a proper printer not using reflection. My experiment showed reflection would stop ProGuard from doing useful optimizations, sometimes completely disabling it (but the exact behavior is still unknown). We really want to guarantee ProGuard runs well on the generated code.",
+      "revId": "08efcab8098eb2001f5d07c4664e5a11499ade1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
