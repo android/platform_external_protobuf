@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7e5dfd5e_9b3ddda8",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-11T19:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e025d43_37afa069",
+      "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "feed6dca_1380b42f",
         "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
         "patchSetId": 5
@@ -47,6 +65,24 @@
       "writtenOn": "2013-11-09T13:36:27Z",
       "side": 1,
       "message": "\"Gets the value stored in the specified extension of this message.\"\n\nNot all extensions are protos.",
+      "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de65092b_c6bf8446",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-11T19:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feed6dca_1380b42f",
       "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "de65092b_a6c408dc",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-11T19:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e025d43_17b41cba",
+      "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e5dfd5e_8ae74996",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
         "patchSetId": 5
@@ -81,6 +135,24 @@
       "writtenOn": "2013-11-09T21:39:40Z",
       "side": 1,
       "message": "Comment: \"function overridden if the generated message has serialized fields.\"",
+      "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e5dfd5e_dbfc7592",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-11T19:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e5dfd5e_8ae74996",
       "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -133,6 +205,24 @@
       "writtenOn": "2013-11-09T13:36:27Z",
       "side": 1,
       "message": "break string before @ so the string looks like the generated code.",
+      "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e570543_89b59b6a",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1022933
+      },
+      "writtenOn": "2013-11-11T19:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "defa6981_529234ca",
       "revId": "a10d7b8671307a479db49e06de47367f5a81de9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
