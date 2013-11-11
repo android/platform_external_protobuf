@@ -16,6 +16,24 @@
       "revId": "08efcab8098eb2001f5d07c4664e5a11499ade1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e5dfd5e_9b903d32",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-11T19:18:05Z",
+      "side": 1,
+      "message": "Excellent review comment, thanks. I didn\u0027t know about reftype style. Dropped the assert, updated comment.\n\nI did see accessor style, and it looks like message printer has not worked with it for awhile. Sounds like there are valid reasons not to fix it now.",
+      "parentUuid": "feed6dca_13ec3479",
+      "revId": "08efcab8098eb2001f5d07c4664e5a11499ade1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
