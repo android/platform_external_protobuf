@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "defa6981_e04b8a96",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2493,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-12T18:05:48Z",
+      "side": 1,
+      "message": "space before {; same on L2500; but no space between { and first element, and between last element and } (L2517)",
+      "revId": "1499a5513d160eec3eadc2e0d0176781b8aa9936",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "feed6dca_f6b23679",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2519,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-12T18:05:48Z",
+      "side": 1,
+      "message": "You\u0027ll want to change this to toText().",
+      "revId": "1499a5513d160eec3eadc2e0d0176781b8aa9936",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
