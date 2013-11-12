@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "defa6981_c05beee3",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-12T11:57:40Z",
+      "side": 1,
+      "message": "{@link #getExtension} or {@link #getExtension(Extension)};\n{@link #setExtension} or {@link #setExtension(Extension, Object)}.\n\n- Without # the javadoc compiler will look for a class/interface named \"getExtension()\" at the current scope.\n- \"()\" specifies the overload with zero parameters. Without \"()\", (technically) the link refers to all overloads of the method with the given name, and in this case where there\u0027s only one overload per name, it\u0027ll just point to the right method.",
+      "revId": "7e02f374901ff471db5140f415de157ac6243050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
