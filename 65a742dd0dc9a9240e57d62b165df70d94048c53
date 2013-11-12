@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e5dfd5e_24ae2980",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-12T19:26:34Z",
+      "side": 1,
+      "message": "Overall I love this change, but I\u0027m not a huge fan of no longer overriding toString() since that removes the ability to just pass the proto around have a readable string representation of it be producible. The caller needs to know to call toText() which isn\u0027t ideal in my opinion",
+      "revId": "65a742dd0dc9a9240e57d62b165df70d94048c53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
