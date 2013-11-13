@@ -77,6 +77,7 @@ template <>
 struct hash<const char*> {
   // Dummy, just to make derivative hash functions compile.
   int operator()(const char* key) {
+    (void)key;
     GOOGLE_LOG(FATAL) << "Should never be called.";
     return 0;
   }

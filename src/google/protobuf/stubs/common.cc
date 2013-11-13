@@ -117,6 +117,10 @@ void DefaultLogHandler(LogLevel level, const char* filename, int line,
 
 void NullLogHandler(LogLevel level, const char* filename, int line,
                     const string& message) {
+  (void)level;
+  (void)filename;
+  (void)line;
+  (void)message;
   // Nothing.
 }
 
