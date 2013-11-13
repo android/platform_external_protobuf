@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e8de144_eef7df6f",
+        "filename": "src/google/protobuf/stubs/common.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-13T19:28:47Z",
+      "side": 1,
+      "message": "I thought you were already suppressing these warnings. do you still need this? ditto for hash.h and wire_format_lite.cc",
+      "revId": "c654110c6e52706843add81897e0510222cf6e99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ea8e58f_8f4575d0",
+        "filename": "src/google/protobuf/wire_format_lite_inl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-13T19:28:47Z",
+      "side": 1,
+      "message": "the indentation at the start of this line is unnecessary, I\u0027m pretty sure.",
+      "revId": "c654110c6e52706843add81897e0510222cf6e99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
