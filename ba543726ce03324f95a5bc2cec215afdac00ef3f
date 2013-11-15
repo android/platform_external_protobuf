@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ed9616f_7745e284",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T15:37:02Z",
+      "side": 1,
+      "message": "Commit msg needs updating",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dee2691a_f52c2ab4",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T15:37:02Z",
+      "side": 1,
+      "message": "Now that we don\u0027t have the debugging-purposes-only warning, could you add some wording here saying that it uses reflection so has poor performance and shouldn\u0027t be used in performance-sensitive operations?",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fed56d33_764606dc",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T15:37:02Z",
+      "side": 1,
+      "message": "If you extract this from the above if statement and check it early, you can remove the below (message \u003d\u003d null) check and consolidate down into one location",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ed9616f_37a19a14",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T15:37:02Z",
+      "side": 1,
+      "message": "+4 indent",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fed56d33_36407ebb",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T15:37:02Z",
+      "side": 1,
+      "message": "why not keep indentBuf.length() - INDENT.length\n\n  indentBuf.setLength(indentBuf.length() - INDENT.length());\n\nand then you don\u0027t have to track origIndentBufLength",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fed56d33_56430aca",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T15:37:02Z",
+      "side": 1,
+      "message": "+4 indent",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ed9616f_777e02cb",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T15:37:02Z",
+      "side": 1,
+      "message": "can you just do\n\n  buf.append(new String(message));\n\ninstead?",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
