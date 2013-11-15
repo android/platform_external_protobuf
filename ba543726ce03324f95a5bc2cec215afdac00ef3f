@@ -177,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "1e30817d_16147c58",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T16:47:38Z",
+      "side": 1,
+      "message": "De gustibus non est disputandum",
+      "parentUuid": "dee2691a_1528d696",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fed56d33_56430aca",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 5
@@ -241,6 +259,24 @@
       "side": 1,
       "message": "No, that would not quote the bytes at all.",
       "parentUuid": "1ed9616f_777e02cb",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e30817d_7617f05f",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-11-15T16:47:38Z",
+      "side": 1,
+      "message": "I see",
+      "parentUuid": "fed56d33_768de6d5",
       "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
