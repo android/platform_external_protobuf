@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dee2691a_75483a77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-15T16:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ed9616f_7745e284",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dee2691a_f52c2ab4",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-15T15:37:02Z",
       "side": 1,
       "message": "Now that we don\u0027t have the debugging-purposes-only warning, could you add some wording here saying that it uses reflection so has poor performance and shouldn\u0027t be used in performance-sensitive operations?",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fed56d33_f698b61e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-15T16:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dee2691a_f52c2ab4",
       "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1ed9616f_772cc2c6",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-15T16:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fed56d33_764606dc",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ed9616f_37a19a14",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2013-11-15T15:37:02Z",
       "side": 1,
       "message": "+4 indent",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fed56d33_d69dba0c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-15T16:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ed9616f_37a19a14",
       "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "dee2691a_1528d696",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-15T16:22:10Z",
+      "side": 1,
+      "message": "Keeping track of the original length conveys what we\u0027re trying to do a lot better.",
+      "parentUuid": "fed56d33_36407ebb",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fed56d33_56430aca",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 5
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "1ed9616f_374f5aa7",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-15T16:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fed56d33_56430aca",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ed9616f_777e02cb",
         "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
         "patchSetId": 5
@@ -115,6 +223,24 @@
       "writtenOn": "2013-11-15T15:37:02Z",
       "side": 1,
       "message": "can you just do\n\n  buf.append(new String(message));\n\ninstead?",
+      "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fed56d33_768de6d5",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1026788
+      },
+      "writtenOn": "2013-11-15T16:22:10Z",
+      "side": 1,
+      "message": "No, that would not quote the bytes at all.",
+      "parentUuid": "1ed9616f_777e02cb",
       "revId": "ba543726ce03324f95a5bc2cec215afdac00ef3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
