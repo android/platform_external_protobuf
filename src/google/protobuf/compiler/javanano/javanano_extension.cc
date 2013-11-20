@@ -42,28 +42,94 @@ namespace compiler {
 namespace javanano {
 
 using internal::WireFormat;
+using internal::WireFormatLite;
+
+namespace {
+
+const char* GetTypeConstantName(const FieldDescriptor::Type type) {
+  switch (type) {
+    case FieldDescriptor::TYPE_INT32   : return "TYPE_INT32"   ;
+    case FieldDescriptor::TYPE_UINT32  : return "TYPE_UINT32"  ;
+    case FieldDescriptor::TYPE_SINT32  : return "TYPE_SINT32"  ;
+    case FieldDescriptor::TYPE_FIXED32 : return "TYPE_FIXED32" ;
+    case FieldDescriptor::TYPE_SFIXED32: return "TYPE_SFIXED32";
+    case FieldDescriptor::TYPE_INT64   : return "TYPE_INT64"   ;
+    case FieldDescriptor::TYPE_UINT64  : return "TYPE_UINT64"  ;
+    case FieldDescriptor::TYPE_SINT64  : return "TYPE_SINT64"  ;
+    case FieldDescriptor::TYPE_FIXED64 : return "TYPE_FIXED64" ;
+    case FieldDescriptor::TYPE_SFIXED64: return "TYPE_SFIXED64";
+    case FieldDescriptor::TYPE_FLOAT   : return "TYPE_FLOAT"   ;
+    case FieldDescriptor::TYPE_DOUBLE  : return "TYPE_DOUBLE"  ;
+    case FieldDescriptor::TYPE_BOOL    : return "TYPE_BOOL"    ;
+    case FieldDescriptor::TYPE_STRING  : return "TYPE_STRING"  ;
+    case FieldDescriptor::TYPE_BYTES   : return "TYPE_BYTES"   ;
+    case FieldDescriptor::TYPE_ENUM    : return "TYPE_ENUM"    ;
+    case FieldDescriptor::TYPE_GROUP   : return "TYPE_GROUP"   ;
+    case FieldDescriptor::TYPE_MESSAGE : return "TYPE_MESSAGE" ;
+
+    // No default because we want the compiler to complain if any new
+    // types are added.
+  }
+
+  GOOGLE_LOG(FATAL) << "Can't get here.";
+  return NULL;
+}
+
+}  // namespace
 
 void SetVariables(const FieldDescriptor* descriptor, const Params params,
                   map<string, string>* variables) {
-  (*variables)["name"] = 
-    RenameJavaKeywords(UnderscoresToCamelCase(descriptor));
-  (*variables)["number"] = SimpleItoa(descriptor->number());
+  (*variables)["name"] = RenameJavaKeywords(UnderscoresToCamelCase(descriptor));
+  (*variables)["type"] = GetTypeConstantName(descriptor->type());
+  (*variables)["tag"] = SimpleItoa(WireFormat::MakeTag(descriptor));
+  if (!descriptor->is_repeated()) {
+    // Not repeated; no need for non_packed_tag and packed_tag variables
+  } else if (!descriptor->is_packable()) {
+    // Not packable
+    (*variables)["non_packed_tag"] = (*variables)["tag"];
+    (*variables)["packed_tag"] = "0";
+  } else if (descriptor->options().packed()){
+    // Packable and packed
+    (*variables)["non_packed_tag"] = SimpleItoa(WireFormatLite::MakeTag(
+        descriptor->number(),
+        WireFormat::WireTypeForFieldType(descriptor->type())));
+    (*variables)["packed_tag"] = (*variables)["tag"];
+  } else {
+    // Packable and non-packed
+    (*variables)["non_packed_tag"] = (*variables)["tag"];
+    (*variables)["packed_tag"] = SimpleItoa(WireFormatLite::MakeTag(
+        descriptor->number(), WireFormatLite::WIRETYPE_LENGTH_DELIMITED));
+  }
   (*variables)["extends"] = ClassName(params, descriptor->containing_type());
 
-  string type;
   JavaType java_type = GetJavaType(descriptor->type());
-  switch (java_type) {
-    case JAVATYPE_ENUM:
-      type = "java.lang.Integer";
-      break;
-    case JAVATYPE_MESSAGE:
-      type = ClassName(params, descriptor->message_type());
-      break;
-    default:
-      type = BoxedPrimitiveTypeName(java_type);
-      break;
+  if (descriptor->is_repeated()) {
+    switch (java_type) {
+      case JAVATYPE_ENUM:
+        (*variables)["class"] = "int[]";
+        break;
+      case JAVATYPE_MESSAGE:
+        (*variables)["class"] =
+            ClassName(params, descriptor->message_type()) + "[]";
+        break;
+      default:
+        (*variables)["class"] = PrimitiveTypeName(java_type) + "[]";
+        break;
+    }
+  } else {
+    // For singular extensions, the type param must be boxed types.
+    switch (java_type) {
+      case JAVATYPE_ENUM:
+        (*variables)["class"] = "java.lang.Integer";
+        break;
+      case JAVATYPE_MESSAGE:
+        (*variables)["class"] = ClassName(params, descriptor->message_type());
+        break;
+      default:
+        (*variables)["class"] = BoxedPrimitiveTypeName(java_type);
+        break;
+    }
   }
-  (*variables)["type"] = type;
 }
 
 ExtensionGenerator::
@@ -75,20 +141,24 @@ ExtensionGenerator(const FieldDescriptor* descriptor, const Params& params)
 ExtensionGenerator::~ExtensionGenerator() {}
 
 void ExtensionGenerator::Generate(io::Printer* printer) const {
+  printer->Print("\n");
+  PrintFieldComment(printer, descriptor_);
+  printer->Print(variables_,
+    "public static final com.google.protobuf.nano.Extension<\n"
+    "    $extends$,\n"
+    "    $class$> $name$ =\n");
   if (descriptor_->is_repeated()) {
     printer->Print(variables_,
-      "\n"
-      "// extends $extends$\n"
-      "public static final com.google.protobuf.nano.Extension<java.util.List<$type$>> $name$ = \n"
-      "    com.google.protobuf.nano.Extension.createRepeated($number$,\n"
-      "        new com.google.protobuf.nano.Extension.TypeLiteral<java.util.List<$type$>>(){});\n");
+      "        com.google.protobuf.nano.Extension.createRepeated(\n"
+      "            com.google.protobuf.nano.Extension.$type$,\n"
+      "            $class$.class,\n"
+      "            $tag$, $non_packed_tag$, $packed_tag$);\n");
   } else {
     printer->Print(variables_,
-      "\n"
-      "// extends $extends$\n"
-      "public static final com.google.protobuf.nano.Extension<$type$> $name$ =\n"
-      "    com.google.protobuf.nano.Extension.create($number$,\n"
-      "        new com.google.protobuf.nano.Extension.TypeLiteral<$type$>(){});\n");
+      "        com.google.protobuf.nano.Extension.create(\n"
+      "            com.google.protobuf.nano.Extension.$type$,\n"
+      "            $class$.class,\n"
+      "            $tag$);\n");
   }
 }
 
