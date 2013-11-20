@@ -2557,18 +2557,18 @@ public class NanoTest extends TestCase {
     another.value = true;
     message.setExtension(Extensions.someMessage, another);
 
-    message.setExtension(Extensions.someRepeatedString, list("a", "bee", "seeya"));
-    message.setExtension(Extensions.someRepeatedBool, list(true, false, true));
-    message.setExtension(Extensions.someRepeatedInt, list(4, 8, 15, 16, 23, 42));
-    message.setExtension(Extensions.someRepeatedLong, list(4L, 8L, 15L, 16L, 23L, 42L));
-    message.setExtension(Extensions.someRepeatedFloat, list(1.0f, 3.0f));
-    message.setExtension(Extensions.someRepeatedDouble, list(55.133, 3.14159));
-    message.setExtension(Extensions.someRepeatedEnum, list(Extensions.FIRST_VALUE,
-        Extensions.SECOND_VALUE));
+    message.setExtension(Extensions.someRepeatedString, new String[] {"a", "bee", "seeya"});
+    message.setExtension(Extensions.someRepeatedBool, new boolean[] {true, false, true});
+    message.setExtension(Extensions.someRepeatedInt, new int[] {4, 8, 15, 16, 23, 42});
+    message.setExtension(Extensions.someRepeatedLong, new long[] {4L, 8L, 15L, 16L, 23L, 42L});
+    message.setExtension(Extensions.someRepeatedFloat, new float[] {1.0f, 3.0f});
+    message.setExtension(Extensions.someRepeatedDouble, new double[] {55.133, 3.14159});
+    message.setExtension(Extensions.someRepeatedEnum,
+        new int[] {Extensions.FIRST_VALUE, Extensions.SECOND_VALUE});
     AnotherMessage second = new AnotherMessage();
     second.string = "Whee";
     second.value = false;
-    message.setExtension(Extensions.someRepeatedMessage, list(another, second));
+    message.setExtension(Extensions.someRepeatedMessage, new AnotherMessage[] {another, second});
 
     byte[] data = MessageNano.toByteArray(message);
 
@@ -2584,18 +2584,24 @@ public class NanoTest extends TestCase {
         deserialized.getExtension(Extensions.someEnum));
     assertEquals(another.string, deserialized.getExtension(Extensions.someMessage).string);
     assertEquals(another.value, deserialized.getExtension(Extensions.someMessage).value);
-    assertEquals(list("a", "bee", "seeya"), deserialized.getExtension(Extensions.someRepeatedString));
-    assertEquals(list(true, false, true), deserialized.getExtension(Extensions.someRepeatedBool));
-    assertEquals(list(4, 8, 15, 16, 23, 42), deserialized.getExtension(Extensions.someRepeatedInt));
-    assertEquals(list(4L, 8L, 15L, 16L, 23L, 42L), deserialized.getExtension(Extensions.someRepeatedLong));
-    assertEquals(list(1.0f, 3.0f), deserialized.getExtension(Extensions.someRepeatedFloat));
-    assertEquals(list(55.133, 3.14159), deserialized.getExtension(Extensions.someRepeatedDouble));
-    assertEquals(list(Extensions.FIRST_VALUE,
-        Extensions.SECOND_VALUE), deserialized.getExtension(Extensions.someRepeatedEnum));
-    assertEquals("Foo", deserialized.getExtension(Extensions.someRepeatedMessage).get(0).string);
-    assertEquals(true, deserialized.getExtension(Extensions.someRepeatedMessage).get(0).value);
-    assertEquals("Whee", deserialized.getExtension(Extensions.someRepeatedMessage).get(1).string);
-    assertEquals(false, deserialized.getExtension(Extensions.someRepeatedMessage).get(1).value);
+    assertTrue(Arrays.equals(new String[] {"a", "bee", "seeya"},
+        deserialized.getExtension(Extensions.someRepeatedString)));
+    assertTrue(Arrays.equals(new boolean[] {true, false, true},
+        deserialized.getExtension(Extensions.someRepeatedBool)));
+    assertTrue(Arrays.equals(new int[] {4, 8, 15, 16, 23, 42},
+        deserialized.getExtension(Extensions.someRepeatedInt)));
+    assertTrue(Arrays.equals(new long[] {4L, 8L, 15L, 16L, 23L, 42L},
+        deserialized.getExtension(Extensions.someRepeatedLong)));
+    assertTrue(Arrays.equals(new float[] {1.0f, 3.0f},
+        deserialized.getExtension(Extensions.someRepeatedFloat)));
+    assertTrue(Arrays.equals(new double[] {55.133, 3.14159},
+        deserialized.getExtension(Extensions.someRepeatedDouble)));
+    assertTrue(Arrays.equals(new int[] {Extensions.FIRST_VALUE, Extensions.SECOND_VALUE},
+        deserialized.getExtension(Extensions.someRepeatedEnum)));
+    assertEquals("Foo", deserialized.getExtension(Extensions.someRepeatedMessage)[0].string);
+    assertEquals(true, deserialized.getExtension(Extensions.someRepeatedMessage)[0].value);
+    assertEquals("Whee", deserialized.getExtension(Extensions.someRepeatedMessage)[1].string);
+    assertEquals(false, deserialized.getExtension(Extensions.someRepeatedMessage)[1].value);
   }
 
   public void testUnknownFields() throws Exception {
