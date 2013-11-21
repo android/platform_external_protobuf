@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "deaa69eb_bb2c93b3",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2103,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-11-21T18:13:49Z",
+      "side": 1,
+      "message": "I assume this is to remove warnings.\n\nAny possibility that a smart compiler could optimize this away completely, should we do like the tests below and assign a field. Actually I\u0027d probably do an assertEquals or some such in these cases just to make sure.",
+      "revId": "6decff28acc1816dfe2db078a161ae056977f01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "deaa69eb_5b280f98",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2444,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-11-21T18:13:49Z",
+      "side": 1,
+      "message": "Again, do an assert?",
+      "revId": "6decff28acc1816dfe2db078a161ae056977f01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ed03988_716eca46",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2450,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-11-21T18:13:49Z",
+      "side": 1,
+      "message": "assert instead?",
+      "revId": "6decff28acc1816dfe2db078a161ae056977f01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
