@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ed03988_5dc47776",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-11-22T18:17:58Z",
+      "side": 1,
+      "message": "This is not thread safe, not absolutely sure it matters but it makes me nervous.",
+      "revId": "4038f4f97167c2df7dd9b12fc3d2883f55a8b886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
