@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43e062af_2f3be9ea",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-11-26T16:21:25Z",
+      "side": 0,
+      "message": "Is this related to the goal of this change?",
+      "revId": "f5271c9ca4a237221c0ba722dc548050ad131064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

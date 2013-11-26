@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43e062af_8f29b59d",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-11-26T16:21:25Z",
+      "side": 1,
+      "message": "related?",
+      "revId": "a1963a768df95e18964f20e84ac28a4732c2fc4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63dba606_f045c05e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2013-11-26T16:21:25Z",
+      "side": 1,
+      "message": "What about using this:\n\n http://en.wikipedia.org/wiki/Initialization-on-demand_holder_idiom",
+      "revId": "a1963a768df95e18964f20e84ac28a4732c2fc4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
