@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e37956b6_d4f99c38",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_helpers.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-26T16:35:29Z",
+      "side": 1,
+      "message": "Yes, because now the static fields whose names are created by this method could be non-final, and some linters complain if you use a CONSTANT_CASE in non-final variable names.",
+      "parentUuid": "43e062af_8f29b59d",
+      "revId": "a1963a768df95e18964f20e84ac28a4732c2fc4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63dba606_f045c05e",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-26T16:21:25Z",
       "side": 1,
       "message": "What about using this:\n\n http://en.wikipedia.org/wiki/Initialization-on-demand_holder_idiom",
+      "revId": "a1963a768df95e18964f20e84ac28a4732c2fc4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e37956b6_b400a05c",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-26T16:35:29Z",
+      "side": 1,
+      "message": "This is worse -- it introduces new types and each new type costs ~500 bytes runtime memory (I think it\u0027s used by the class loader).\n\nI had thought about sharing a holder class, but then too many protos use java_multiple_files\u003dtrue, the benefit is minimized.",
+      "parentUuid": "63dba606_f045c05e",
       "revId": "a1963a768df95e18964f20e84ac28a4732c2fc4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false

@@ -16,6 +16,24 @@
       "revId": "f5271c9ca4a237221c0ba722dc548050ad131064",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3a0765c_9cca65db",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-11-26T16:35:29Z",
+      "side": 0,
+      "message": "Kind of related; I found that \"MessageNano.class\" (L92 in the base patch set) could somehow block the method inlining. Absolutely no idea why.",
+      "parentUuid": "43e062af_2f3be9ea",
+      "revId": "f5271c9ca4a237221c0ba722dc548050ad131064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
