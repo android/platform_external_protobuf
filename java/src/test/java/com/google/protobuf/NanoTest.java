@@ -94,7 +94,6 @@ public class NanoTest extends TestCase {
 
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -127,7 +126,6 @@ public class NanoTest extends TestCase {
 
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 16);
     assertEquals(result.length, msgSerializedSize);
 
@@ -151,7 +149,6 @@ public class NanoTest extends TestCase {
     msg.id = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 3);
     assertEquals(result.length, msgSerializedSize);
 
@@ -171,7 +168,6 @@ public class NanoTest extends TestCase {
     msg.optionalInt32 = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 5);
     assertEquals(result.length, msgSerializedSize);
 
@@ -192,7 +188,6 @@ public class NanoTest extends TestCase {
     msg.optionalInt64 = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 5);
     assertEquals(result.length, msgSerializedSize);
 
@@ -213,7 +208,6 @@ public class NanoTest extends TestCase {
     msg.optionalUint32 = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 5);
     assertEquals(result.length, msgSerializedSize);
 
@@ -234,7 +228,6 @@ public class NanoTest extends TestCase {
     msg.optionalUint64 = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 5);
     assertEquals(result.length, msgSerializedSize);
 
@@ -255,7 +248,6 @@ public class NanoTest extends TestCase {
     msg.optionalSint32 = -123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
 
@@ -276,7 +268,6 @@ public class NanoTest extends TestCase {
     msg.optionalSint64 = -123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
 
@@ -297,7 +288,6 @@ public class NanoTest extends TestCase {
     msg.optionalFixed32 = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -318,7 +308,6 @@ public class NanoTest extends TestCase {
     msg.optionalFixed64 = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 12);
     assertEquals(result.length, msgSerializedSize);
 
@@ -339,7 +328,6 @@ public class NanoTest extends TestCase {
     msg.optionalSfixed32 = 123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -360,7 +348,6 @@ public class NanoTest extends TestCase {
     msg.optionalSfixed64 = -123;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 12);
     assertEquals(result.length, msgSerializedSize);
 
@@ -381,7 +368,6 @@ public class NanoTest extends TestCase {
     msg.optionalFloat = -123.456f;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -402,7 +388,6 @@ public class NanoTest extends TestCase {
     msg.optionalDouble = -123.456;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 12);
     assertEquals(result.length, msgSerializedSize);
 
@@ -423,7 +408,6 @@ public class NanoTest extends TestCase {
     msg.optionalBool = true;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 5);
     assertEquals(result.length, msgSerializedSize);
 
@@ -446,7 +430,6 @@ public class NanoTest extends TestCase {
     msg.optionalString = "bye";
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -472,7 +455,6 @@ public class NanoTest extends TestCase {
     msg.optionalBytes = InternalNano.copyFromUtf8("bye");
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -501,7 +483,6 @@ public class NanoTest extends TestCase {
     msg.optionalGroup = grp;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 10);
     assertEquals(result.length, msgSerializedSize);
 
@@ -546,7 +527,6 @@ public class NanoTest extends TestCase {
     msg.optionalNestedMessage = nestedMsg;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -575,7 +555,6 @@ public class NanoTest extends TestCase {
     msg.optionalForeignMessage = nestedMsg;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -604,7 +583,6 @@ public class NanoTest extends TestCase {
     msg.optionalImportMessage = nestedMsg;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -626,7 +604,6 @@ public class NanoTest extends TestCase {
     msg.optionalNestedEnum = TestAllTypesNano.BAR;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
 
@@ -647,7 +624,6 @@ public class NanoTest extends TestCase {
     msg.optionalForeignEnum = NanoOuterClass.FOREIGN_NANO_BAR;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
 
@@ -668,7 +644,6 @@ public class NanoTest extends TestCase {
     msg.optionalImportEnum = UnittestImportNano.IMPORT_NANO_BAR;
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
 
@@ -691,7 +666,6 @@ public class NanoTest extends TestCase {
     msg.optionalStringPiece = "bye";
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -715,7 +689,6 @@ public class NanoTest extends TestCase {
     msg.optionalCord = "bye";
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -745,7 +718,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedInt32.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -758,7 +730,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedInt32.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 10);
     assertEquals(result.length, msgSerializedSize);
 
@@ -789,7 +760,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedInt64.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -802,7 +772,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedInt64.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 10);
     assertEquals(result.length, msgSerializedSize);
 
@@ -833,7 +802,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedUint32.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -846,7 +814,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedUint32.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 10);
     assertEquals(result.length, msgSerializedSize);
 
@@ -877,7 +844,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedUint64.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -890,7 +856,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedUint64.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 10);
     assertEquals(result.length, msgSerializedSize);
 
@@ -921,7 +886,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedSint32.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 7);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -934,7 +898,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedSint32.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 11);
     assertEquals(result.length, msgSerializedSize);
 
@@ -965,7 +928,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedSint64.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 7);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -978,7 +940,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedSint64.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 11);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1009,7 +970,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedFixed32.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1022,7 +982,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedFixed32.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 15);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1053,7 +1012,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedFixed64.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 13);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1066,7 +1024,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedFixed64.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 23);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1097,7 +1054,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedSfixed32.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1110,7 +1066,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedSfixed32.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 15);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1141,7 +1096,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedSfixed64.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 13);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1154,7 +1108,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedSfixed64.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 23);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1185,7 +1138,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedFloat.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1198,7 +1150,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedFloat.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 15);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1229,7 +1180,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedDouble.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 13);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1242,7 +1192,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedDouble.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 23);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1273,7 +1222,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedBool.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1286,7 +1234,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedBool.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1317,7 +1264,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedString.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1330,7 +1276,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedString.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 19);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1365,7 +1310,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedBytes.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1381,7 +1325,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedBytes.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 19);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1423,7 +1366,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedGroup.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 7);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1436,7 +1378,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedGroup.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 14);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1479,7 +1420,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedNestedMessage.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1492,7 +1432,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedNestedMessage.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 11);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1535,7 +1474,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedForeignMessage.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1548,7 +1486,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedForeignMessage.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 11);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1591,7 +1528,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedImportMessage.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1604,7 +1540,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedImportMessage.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 11);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1639,7 +1574,6 @@ public class NanoTest extends TestCase {
        .repeatedNestedEnum = new int[] { TestAllTypesNano.FOO };
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1652,7 +1586,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedNestedEnum.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1687,7 +1620,6 @@ public class NanoTest extends TestCase {
        .repeatedForeignEnum = new int[] { NanoOuterClass.FOREIGN_NANO_FOO };
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1703,7 +1635,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedForeignEnum.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1738,7 +1669,6 @@ public class NanoTest extends TestCase {
        .repeatedImportEnum = new int[] { UnittestImportNano.IMPORT_NANO_FOO };
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1754,7 +1684,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedImportEnum.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1785,7 +1714,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedStringPiece.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1798,7 +1726,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedStringPiece.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 19);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1829,7 +1756,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedCord.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 6);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1842,7 +1768,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedCord.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 19);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1873,7 +1798,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedPackedInt32.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 7);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1886,7 +1810,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedPackedInt32.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 9);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1917,7 +1840,6 @@ public class NanoTest extends TestCase {
     assertEquals(1, msg.repeatedPackedSfixed64.length);
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 14);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1930,7 +1852,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedPackedSfixed64.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 22);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1965,7 +1886,6 @@ public class NanoTest extends TestCase {
        .repeatedPackedNestedEnum = new int[] { TestAllTypesNano.FOO };
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 7);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano newMsg = TestAllTypesNano.parseFrom(result);
@@ -1978,7 +1898,6 @@ public class NanoTest extends TestCase {
     assertEquals(2, msg.repeatedPackedNestedEnum.length);
     result = MessageNano.toByteArray(msg);
     msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 8);
     assertEquals(result.length, msgSerializedSize);
 
@@ -1993,7 +1912,6 @@ public class NanoTest extends TestCase {
     msg.repeatedPackedInt32 = new int[] { 123, 789, 456 };
     int msgSerializedSize = msg.getSerializedSize();
     byte [] result = MessageNano.toByteArray(msg);
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 11);
     assertEquals(result.length, msgSerializedSize);
     TestAllTypesNano msg2 = new TestAllTypesNano();
@@ -2174,7 +2092,6 @@ public class NanoTest extends TestCase {
       // Default values are not output, except for required fields.
       byte [] result = MessageNano.toByteArray(msg);
       int msgSerializedSize = msg.getSerializedSize();
-      //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
       assertTrue(msgSerializedSize == 3);
       assertEquals(result.length, msgSerializedSize);
       msg.clear();
@@ -2210,7 +2127,6 @@ public class NanoTest extends TestCase {
 
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 13);
     assertEquals(result.length, msgSerializedSize);
 
@@ -2271,9 +2187,10 @@ public class NanoTest extends TestCase {
   public void testNanoWithAccessorsBasic() throws Exception {
     TestNanoAccessors msg = new TestNanoAccessors();
 
-    // Makes sure required and repeated fields are still public fields
+    // Makes sure required, repeated, and message fields are still public
     msg.id = 3;
     msg.repeatedBytes = new byte[2][3];
+    msg.optionalNestedMessage = null;
 
     // Test accessors
     assertEquals(0, msg.getOptionalInt32());
@@ -2293,10 +2210,6 @@ public class NanoTest extends TestCase {
     } catch (NullPointerException expected) {}
     try {
       msg.setOptionalString(null);
-      fail();
-    } catch (NullPointerException expected) {}
-    try {
-      msg.setOptionalNestedMessage(null);
       fail();
     } catch (NullPointerException expected) {}
 
@@ -2352,22 +2265,21 @@ public class NanoTest extends TestCase {
       assertFalse(msg.hasDefaultBytes());
       assertFalse(msg.hasDefaultFloatNan());
       assertFalse(msg.hasDefaultNestedEnum());
-      msg.setOptionalNestedMessage(new TestNanoAccessors.NestedMessage());
-      msg.getOptionalNestedMessage().setBb(2);
+      msg.optionalNestedMessage = new TestNanoAccessors.NestedMessage();
+      msg.optionalNestedMessage.setBb(2);
       msg.setOptionalNestedEnum(TestNanoAccessors.BAZ);
       msg.setDefaultInt32(msg.getDefaultInt32());
     }
 
     byte [] result = MessageNano.toByteArray(msg);
     int msgSerializedSize = msg.getSerializedSize();
-    //System.out.printf("mss=%d result.length=%d\n", msgSerializedSize, result.length);
     assertTrue(msgSerializedSize == 14);
     assertEquals(result.length, msgSerializedSize);
 
     // Has fields true upon parse.
     TestNanoAccessors newMsg = TestNanoAccessors.parseFrom(result);
-    assertEquals(2, newMsg.getOptionalNestedMessage().getBb());
-    assertTrue(newMsg.getOptionalNestedMessage().hasBb());
+    assertEquals(2, newMsg.optionalNestedMessage.getBb());
+    assertTrue(newMsg.optionalNestedMessage.hasBb());
     assertEquals(TestNanoAccessors.BAZ, newMsg.getOptionalNestedEnum());
     assertTrue(newMsg.hasOptionalNestedEnum());
 
@@ -2383,7 +2295,7 @@ public class NanoTest extends TestCase {
     msg.setOptionalBytes(msg.getOptionalBytes());
     TestNanoAccessors.NestedMessage nestedMessage = new TestNanoAccessors.NestedMessage();
     nestedMessage.setBb(nestedMessage.getBb());
-    msg.setOptionalNestedMessage(nestedMessage);
+    msg.optionalNestedMessage = nestedMessage;
     msg.setOptionalNestedEnum(msg.getOptionalNestedEnum());
     msg.setDefaultInt32(msg.getDefaultInt32());
     msg.setDefaultString(msg.getDefaultString());
@@ -2400,8 +2312,7 @@ public class NanoTest extends TestCase {
     assertTrue(newMsg.hasOptionalInt32());
     assertTrue(newMsg.hasOptionalString());
     assertTrue(newMsg.hasOptionalBytes());
-    assertTrue(newMsg.hasOptionalNestedMessage());
-    assertTrue(newMsg.getOptionalNestedMessage().hasBb());
+    assertTrue(newMsg.optionalNestedMessage.hasBb());
     assertTrue(newMsg.hasOptionalNestedEnum());
     assertTrue(newMsg.hasDefaultInt32());
     assertTrue(newMsg.hasDefaultString());
@@ -2411,7 +2322,7 @@ public class NanoTest extends TestCase {
     assertEquals(0, newMsg.getOptionalInt32());
     assertEquals(0, newMsg.getOptionalString().length());
     assertEquals(0, newMsg.getOptionalBytes().length);
-    assertEquals(0, newMsg.getOptionalNestedMessage().getBb());
+    assertEquals(0, newMsg.optionalNestedMessage.getBb());
     assertEquals(TestNanoAccessors.FOO, newMsg.getOptionalNestedEnum());
     assertEquals(41, newMsg.getDefaultInt32());
     assertEquals("hello", newMsg.getDefaultString());
@@ -2856,15 +2767,15 @@ public class NanoTest extends TestCase {
         .setOptionalInt32(5)
         .setOptionalString("Hello")
         .setOptionalBytes(new byte[] {1, 2, 3})
-        .setOptionalNestedMessage(new TestNanoAccessors.NestedMessage().setBb(27))
         .setOptionalNestedEnum(TestNanoAccessors.BAR)
         .setDefaultFloatNan(1.0f);
+    message.optionalNestedMessage = new TestNanoAccessors.NestedMessage().setBb(27);
     message.repeatedInt32 = new int[] { 5, 6, 7, 8 };
     message.repeatedString = new String[] { "One", "Two" };
     message.repeatedBytes = new byte[][] { { 2, 7 }, { 2, 7 } };
     message.repeatedNestedMessage = new TestNanoAccessors.NestedMessage[] {
-      message.getOptionalNestedMessage(),
-      message.getOptionalNestedMessage()
+      message.optionalNestedMessage,
+      message.optionalNestedMessage
     };
     message.repeatedNestedEnum = new int[] {
       TestAllTypesNano.BAR,
