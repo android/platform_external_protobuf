@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "836fba75_69b965fe",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2376,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-12-06T12:31:01Z",
+      "side": 1,
+      "message": "Not too sure what this test actually does...",
+      "revId": "16621a7e806004d112d6c56ac3b9122779e5e4bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e35796b2_845cc62e",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2393,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-12-06T12:31:01Z",
+      "side": 1,
+      "message": "this line depends on the \u003c? extends MessageNano\u003e.equals() implementation. Just assign a non-default primitive value into nestedMessage and do assertEquals on that primitive?",
+      "revId": "16621a7e806004d112d6c56ac3b9122779e5e4bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
