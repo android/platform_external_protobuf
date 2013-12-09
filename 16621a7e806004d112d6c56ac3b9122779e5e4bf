@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "43eea235_3393a0ce",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2376,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-12-09T19:40:12Z",
+      "side": 1,
+      "message": "It just tests out that serializing/deserializing the non-accessor field types does the expected thing for both missing and present values",
+      "parentUuid": "836fba75_69b965fe",
+      "revId": "16621a7e806004d112d6c56ac3b9122779e5e4bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e35796b2_845cc62e",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2013-12-06T12:31:01Z",
       "side": 1,
       "message": "this line depends on the \u003c? extends MessageNano\u003e.equals() implementation. Just assign a non-default primitive value into nestedMessage and do assertEquals on that primitive?",
+      "revId": "16621a7e806004d112d6c56ac3b9122779e5e4bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3df5e7e_5c8e3563",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2393,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-12-09T19:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e35796b2_845cc62e",
       "revId": "16621a7e806004d112d6c56ac3b9122779e5e4bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
