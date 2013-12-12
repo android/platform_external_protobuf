@@ -22,6 +22,30 @@
       "revId": "6b594c228e7954eb98353ad8e242b83fb255a277",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08abe757_0b34e10e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-12-12T17:59:23Z",
+      "side": 1,
+      "message": "Oh I understand now (although I am going to ignore the generate_has option since it\u0027s deprecated). It\u0027s a fair point, although that seems to be a shortcoming of public mutable fields that should be fixed. Won\u0027t happen in this change, but I\u0027d rather keep the more nuanced printing for accessors",
+      "parentUuid": "6839c300_23e2b447",
+      "range": {
+        "startLine": 133,
+        "startChar": 24,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "6b594c228e7954eb98353ad8e242b83fb255a277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
