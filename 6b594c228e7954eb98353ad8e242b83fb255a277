@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6839c300_23e2b447",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-12-12T17:49:04Z",
+      "side": 1,
+      "message": "I mean, in here, there\u0027s no logic to skip printing if the appropriate \"has\" representation evaluates to false (e.g. (hasX \u003d\u003d false) if generate_has, or (x \u003d\u003d xDefault) if not), so even if this field would not be serialized, it would still be printed to the string output.\n\nSo you could just ignore the hasX() accessor.",
+      "range": {
+        "startLine": 133,
+        "startChar": 24,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "6b594c228e7954eb98353ad8e242b83fb255a277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
