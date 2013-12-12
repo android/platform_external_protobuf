@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8a77388_0462962e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-12-12T17:30:27Z",
+      "side": 1,
+      "message": "hazzer won\u0027t be null because you \u0027continue\u0027d above. Did you mean to ignore the NoSuchMethodException?",
+      "range": {
+        "startLine": 155,
+        "startChar": 34,
+        "endLine": 155,
+        "endChar": 38
+      },
+      "revId": "2973c9286303110dfc645c6373b84790710a7a8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
