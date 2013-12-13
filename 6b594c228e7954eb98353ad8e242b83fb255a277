@@ -46,6 +46,30 @@
       "revId": "6b594c228e7954eb98353ad8e242b83fb255a277",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68d543ff_a076da64",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2013-12-13T12:17:30Z",
+      "side": 1,
+      "message": "agreed, but I would probably prefer erring on the safe side, so if you can\u0027t find the hazzer, don\u0027t assume !has.",
+      "parentUuid": "08abe757_0b34e10e",
+      "range": {
+        "startLine": 133,
+        "startChar": 24,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "6b594c228e7954eb98353ad8e242b83fb255a277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
