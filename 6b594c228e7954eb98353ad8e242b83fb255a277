@@ -70,6 +70,30 @@
       "revId": "6b594c228e7954eb98353ad8e242b83fb255a277",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8cbbb64_426fd288",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2013-12-13T15:15:57Z",
+      "side": 1,
+      "message": "I think we do need to assume !has if we can\u0027t find the hazzer, although it seems the odds of finding the getter, but not the hazzer are very slim.\n\nI think in the world of stripped/in-lined methods, this printer becomes best-effort at best",
+      "parentUuid": "68d543ff_a076da64",
+      "range": {
+        "startLine": 133,
+        "startChar": 24,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "6b594c228e7954eb98353ad8e242b83fb255a277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
