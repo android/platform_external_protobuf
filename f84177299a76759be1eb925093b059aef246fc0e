@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ad33cd7d_c2564294",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2260,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-01-10T16:05:11Z",
+      "side": 1,
+      "message": "previously even if hasId \u003d\u003d false, the serialization code will include id, because it\u0027s \u0027required\u0027, and then the deserialized message suddenly has hasId \u003d\u003d true because it\u0027s found in the wire.",
+      "parentUuid": "0dd1393f_5732c7da",
+      "range": {
+        "startLine": 2260,
+        "startChar": 0,
+        "endLine": 2260,
+        "endChar": 29
+      },
+      "revId": "f84177299a76759be1eb925093b059aef246fc0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2dd43d2d_0c332014",
         "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2014-01-10T16:00:56Z",
       "side": 1,
       "message": "I\u0027m curious, are you removing the initializing to false because that\u0027s the language default or from some other reason?",
+      "revId": "f84177299a76759be1eb925093b059aef246fc0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad33cd7d_625c16b2",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-01-10T16:05:11Z",
+      "side": 1,
+      "message": "the constructor will call clear() which sets hasX to false. So this field will still be initialized explicitly. So this inline initializer is redundant.",
+      "parentUuid": "2dd43d2d_0c332014",
       "revId": "f84177299a76759be1eb925093b059aef246fc0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
