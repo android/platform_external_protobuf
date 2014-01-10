@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0dd1393f_5732c7da",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2260,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2014-01-10T16:00:56Z",
+      "side": 1,
+      "message": "How did this test before line 2241 was added?",
+      "range": {
+        "startLine": 2260,
+        "startChar": 0,
+        "endLine": 2260,
+        "endChar": 29
+      },
+      "revId": "f84177299a76759be1eb925093b059aef246fc0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2dd43d2d_0c332014",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2014-01-10T16:00:56Z",
+      "side": 1,
+      "message": "I\u0027m curious, are you removing the initializing to false because that\u0027s the language default or from some other reason?",
+      "revId": "f84177299a76759be1eb925093b059aef246fc0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
