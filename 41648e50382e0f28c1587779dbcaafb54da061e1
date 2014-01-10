@@ -16,6 +16,24 @@
       "revId": "41648e50382e0f28c1587779dbcaafb54da061e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0dd6993f_10a46a9c",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2977,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-01-10T16:40:59Z",
+      "side": 1,
+      "message": "I thought about it too, but then m1 and m2 are the same class using the same equals() implementation, which treats \u0027this\u0027 and \u0027other\u0027 quite symmetrically. Let me know if you still want it explicit.",
+      "parentUuid": "cdcac190_7f4eba54",
+      "revId": "41648e50382e0f28c1587779dbcaafb54da061e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
