@@ -34,6 +34,24 @@
       "revId": "41648e50382e0f28c1587779dbcaafb54da061e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0dd1393f_f76f9385",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2977,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2014-01-10T17:44:23Z",
+      "side": 1,
+      "message": "That\u0027s because you looked at the implementation which could change. But how about adding to the comment above saying the assumption is that equality is symmetrical so we only test one order or some such wording.",
+      "parentUuid": "0dd6993f_10a46a9c",
+      "revId": "41648e50382e0f28c1587779dbcaafb54da061e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
