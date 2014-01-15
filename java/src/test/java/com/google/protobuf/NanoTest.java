@@ -33,6 +33,8 @@ package com.google.protobuf;
 import com.google.protobuf.nano.CodedInputByteBufferNano;
 import com.google.protobuf.nano.EnumClassNanoMultiple;
 import com.google.protobuf.nano.EnumClassNanos;
+import com.google.protobuf.nano.EnumValidity;
+import com.google.protobuf.nano.EnumValidityAccessors;
 import com.google.protobuf.nano.Extensions;
 import com.google.protobuf.nano.Extensions.AnotherMessage;
 import com.google.protobuf.nano.Extensions.MessageWithGroup;
@@ -2090,6 +2092,126 @@ public class NanoTest extends TestCase {
     assertEquals(nestedMsg0.bb, newMsg.repeatedNestedMessage[0].bb);
     assertEquals(nestedMsg1.bb, newMsg.repeatedNestedMessage[1].bb);
     assertEquals(nestedMsg2.bb, newMsg.repeatedNestedMessage[2].bb);
+  }
+
+  /**
+   * Tests that invalid enum values from the wire are not accepted.
+   */
+  public void testNanoEnumValidity() throws Exception {
+    final int invalid = 120;
+    final int alsoInvalid = 121;
+
+    EnumValidity.M m = new EnumValidity.M();
+    // Sanity check & baseline of the assertions for the first case below.
+    assertEquals(EnumValidityAccessors.default_, m.optionalE);
+    assertEquals(EnumValidityAccessors.BAZ, m.defaultE);
+
+    m.optionalE = invalid;
+    m.defaultE = invalid;
+    // E contains all valid values
+    m.repeatedE = new int[] {EnumValidityAccessors.FOO, EnumValidityAccessors.BAR};
+    m.packedE = new int[] {EnumValidityAccessors.FOO, EnumValidityAccessors.BAZ};
+    // E2 contains some invalid values
+    m.repeatedE2 = new int[] {invalid, EnumValidityAccessors.BAR, alsoInvalid};
+    m.packedE2 = new int[] {EnumValidityAccessors.FOO, invalid, alsoInvalid};
+    // E3 contains all invalid values
+    m.repeatedE3 = new int[] {invalid, invalid};
+    m.packedE3 = new int[] {alsoInvalid, alsoInvalid};
+    byte[] serialized = MessageNano.toByteArray(m);
+    // Sanity check that we do have all data in the byte array.
+    assertEquals(31, serialized.length);
+
+    // Test 1: tests that invalid values aren't included in the deserialized message.
+    EnumValidity.M deserialized = MessageNano.mergeFrom(new EnumValidity.M(), serialized);
+    assertEquals(EnumValidityAccessors.default_, deserialized.optionalE);
+    assertEquals(EnumValidityAccessors.BAZ, deserialized.defaultE);
+    assertTrue(Arrays.equals(
+        new int[] {EnumValidityAccessors.FOO, EnumValidityAccessors.BAR}, deserialized.repeatedE));
+    assertTrue(Arrays.equals(
+        new int[] {EnumValidityAccessors.FOO, EnumValidityAccessors.BAZ}, deserialized.packedE));
+    assertTrue(Arrays.equals(
+        new int[] {EnumValidityAccessors.BAR}, deserialized.repeatedE2));
+    assertTrue(Arrays.equals(
+        new int[] {EnumValidityAccessors.FOO}, deserialized.packedE2));
+    assertEquals(0, deserialized.repeatedE3.length);
+    assertEquals(0, deserialized.packedE3.length);
+
+    // Test 2: tests that invalid values do not override previous values in the field, including
+    // arrays, including pre-existing invalid values.
+    deserialized.optionalE = EnumValidityAccessors.BAR;
+    deserialized.defaultE = alsoInvalid;
+    deserialized.repeatedE = new int[] {EnumValidityAccessors.BAZ};
+    deserialized.packedE = new int[] {EnumValidityAccessors.BAZ, alsoInvalid};
+    deserialized.repeatedE2 = new int[] {invalid, alsoInvalid};
+    deserialized.packedE2 = null;
+    deserialized.repeatedE3 = null;
+    deserialized.packedE3 = new int[0];
+    MessageNano.mergeFrom(deserialized, serialized);
+    assertEquals(EnumValidityAccessors.BAR, deserialized.optionalE);
+    assertEquals(alsoInvalid, deserialized.defaultE);
+    assertTrue(Arrays.equals(
+        new int[] {EnumValidityAccessors.BAZ, /* + */ EnumValidityAccessors.FOO, EnumValidityAccessors.BAR},
+        deserialized.repeatedE));
+    assertTrue(Arrays.equals(
+        new int[] {EnumValidityAccessors.BAZ, alsoInvalid, /* + */ EnumValidityAccessors.FOO, EnumValidityAccessors.BAZ},
+        deserialized.packedE));
+    assertTrue(Arrays.equals(
+        new int[] {invalid, alsoInvalid, /* + */ EnumValidityAccessors.BAR},
+        deserialized.repeatedE2));
+    assertTrue(Arrays.equals(
+        new int[] {/* <null> + */ EnumValidityAccessors.FOO},
+        deserialized.packedE2));
+    assertNull(deserialized.repeatedE3); // null + all invalid == null
+    assertEquals(0, deserialized.packedE3.length); // empty + all invalid == empty
+
+    // Test 3: reading by alternative forms
+    EnumValidity.Alt alt = MessageNano.mergeFrom(new EnumValidity.Alt(), serialized);
+    assertEquals(EnumValidityAccessors.BAR, // last valid value in m.repeatedE2
+        alt.repeatedE2AsOptional);
+    assertTrue(Arrays.equals(new int[] {EnumValidityAccessors.FOO}, alt.packedE2AsNonPacked));
+    assertEquals(0, alt.nonPackedE3AsPacked.length);
+  }
+
+  /**
+   * Tests the same as {@link #testNanoEnumValidity()} with accessor style. Repeated fields are
+   * not re-tested here because they are not affected by the accessor style.
+   */
+  public void testNanoEnumValidityAccessors() throws Exception {
+    final int invalid = 120;
+    final int alsoInvalid = 121;
+
+    EnumValidityAccessors.M m = new EnumValidityAccessors.M();
+    // Sanity check & baseline of the assertions for the first case below.
+    assertEquals(EnumValidityAccessors.default_, m.getOptionalE());
+    assertEquals(EnumValidityAccessors.BAZ, m.getDefaultE());
+
+    m.setOptionalE(invalid);
+    m.setDefaultE(invalid);
+    // Set repeatedE2 for Alt.repeatedE2AsOptional
+    m.repeatedE2 = new int[] {invalid, EnumValidityAccessors.BAR, alsoInvalid};
+    byte[] serialized = MessageNano.toByteArray(m);
+    // Sanity check that we do have all data in the byte array.
+    assertEquals(10, serialized.length);
+
+    // Test 1: tests that invalid values aren't included in the deserialized message.
+    EnumValidityAccessors.M deserialized =
+        MessageNano.mergeFrom(new EnumValidityAccessors.M(), serialized);
+    assertEquals(EnumValidityAccessors.default_, deserialized.getOptionalE());
+    assertEquals(EnumValidityAccessors.BAZ, deserialized.getDefaultE());
+
+    // Test 2: tests that invalid values do not override previous values in the field, including
+    // pre-existing invalid values.
+    deserialized.setOptionalE(EnumValidityAccessors.BAR);
+    deserialized.setDefaultE(alsoInvalid);
+    MessageNano.mergeFrom(deserialized, serialized);
+    assertEquals(EnumValidityAccessors.BAR, deserialized.getOptionalE());
+    assertEquals(alsoInvalid, deserialized.getDefaultE());
+
+    // Test 3: reading by alternative forms
+    EnumValidityAccessors.Alt alt =
+        MessageNano.mergeFrom(new EnumValidityAccessors.Alt(), serialized);
+    assertEquals(EnumValidityAccessors.BAR, // last valid value in m.repeatedE2
+        alt.getRepeatedE2AsOptional());
   }
 
   /**
