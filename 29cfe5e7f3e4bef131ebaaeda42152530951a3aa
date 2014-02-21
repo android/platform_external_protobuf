@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f78b56e_76d405ff",
+        "filename": "src/google/protobuf/message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2014-02-21T19:27:38Z",
+      "side": 1,
+      "message": "\u003cistream\u003e then \u003cstack\u003e",
+      "revId": "29cfe5e7f3e4bef131ebaaeda42152530951a3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
