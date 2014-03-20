@@ -105,6 +105,14 @@ public class NanoTest extends TestCase {
     assertEquals(456, newMsg.d);
     assertEquals(2, msg.nestedMsg.bb);
     assertEquals(SimpleMessageNano.BAR, msg.defaultNestedEnum);
+
+    msg.nestedMsg = null;
+    assertEquals(msgSerializedSize, msg.getCachedSize());
+    assertTrue(msgSerializedSize != msg.getSerializedSize());
+
+    msg.clear();
+    assertEquals(0, msg.getCachedSize());
+    assertEquals(0, msg.getSerializedSize());
   }
 
   public void testRecursiveMessageNano() throws Exception {
