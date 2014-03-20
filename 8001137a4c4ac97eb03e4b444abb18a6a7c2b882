@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c8b4d70_501c4cc6",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1043228
+      },
+      "writtenOn": "2014-03-20T18:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c864164_b439eeed",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "8001137a4c4ac97eb03e4b444abb18a6a7c2b882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc26f94e_561f5273",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fc29fd1f_744848a4",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1043228
+      },
+      "writtenOn": "2014-03-20T18:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc26f94e_561f5273",
+      "range": {
+        "startLine": 307,
+        "startChar": 5,
+        "endLine": 307,
+        "endChar": 11
+      },
+      "revId": "8001137a4c4ac97eb03e4b444abb18a6a7c2b882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc26f94e_362656ca",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2014-03-20T17:28:26Z",
       "side": 1,
       "message": "hmm... since we use \"unknownFieldData \u003d null\" above to clear unknown fields, for the sake of symmetry let\u0027s just leave cachedSize as protected and set it to -1 here :)",
+      "range": {
+        "startLine": 462,
+        "startChar": 7,
+        "endLine": 462,
+        "endChar": 22
+      },
+      "revId": "8001137a4c4ac97eb03e4b444abb18a6a7c2b882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc29fd1f_544bcca1",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1043228
+      },
+      "writtenOn": "2014-03-20T18:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc26f94e_362656ca",
       "range": {
         "startLine": 462,
         "startChar": 7,
