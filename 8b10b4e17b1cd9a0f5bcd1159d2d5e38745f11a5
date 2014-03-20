@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc4d1911_300e4e50",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2014-03-20T18:49:57Z",
+      "side": 1,
+      "message": "I feel this should be volatile otherwise we might as well just remove it because -1 is the only guaranteed value visible across threads and thus each thread will recalculate anyway.",
+      "revId": "8b10b4e17b1cd9a0f5bcd1159d2d5e38745f11a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
