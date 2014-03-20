@@ -437,6 +437,14 @@ and the runtime overhead. An overview of Nano features:
   MessageNano.
 - The 'bytes' type translates to the Java type byte[].
 
+The generated messages are not thread-safe for writes, but may be
+used simultaneously from multiple threads in a read-only manner.
+In other words, if a message is being modified then the message, its
+ancestors, and its descendents must not be accessed from any other
+thread at the same time. Field reads, getter methods,
+toByteArray(...), writeTo(...), getCachedSize(), and
+getSerializedSize() are all considered read-only operations.
+
 IMPORTANT: If you have fields with defaults and opt out of accessors
 
 How fields with defaults are serialized has changed. Because we don't
