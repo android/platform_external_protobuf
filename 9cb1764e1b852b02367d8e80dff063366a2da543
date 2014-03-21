@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cee8935_e25b28bf",
+        "filename": "java/README.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2014-03-21T02:21:46Z",
+      "side": 1,
+      "message": "From this jsr 133 FAQ (http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html) I\u0027m not sure we can guarantee even the read-only consistency without some type of \"sync\" mechanism (volatile or synchronized or ...) used by both the readers and writers.\n\nAs I understand it, if Thread A updates a field that has no \"sync\" mechanism then Thread B accessing that field has no guarantee when it might see that new value. Thus if Thread A modifies a field but then Thread B does the serialization I don\u0027t think we can guarantee Thread B will serialize the value written by Thread A as Thread A never \"signaled\" any other thread that it modified the field.\n\nWe could add something like below:\n\n  public void MessageNano#sync() {\n     synchronized(LAZY_INIT_LOCK) {}\n  }\n\nAnd then suggest that if users want a strong guarantee of consistency that reader and writer threads need to call sync().",
+      "revId": "9cb1764e1b852b02367d8e80dff063366a2da543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
