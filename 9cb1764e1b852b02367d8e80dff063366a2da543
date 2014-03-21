@@ -34,6 +34,24 @@
       "revId": "9cb1764e1b852b02367d8e80dff063366a2da543",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5cee8935_85c7c631",
+        "filename": "java/README.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2014-03-21T06:20:38Z",
+      "side": 1,
+      "message": "So you\u0027re requiring explicit external synchronization, that works fine, but it doesn\u0027t say that to me. Do you mean to say something like:\n\n\"In other words, if a message is being modified the readers and writers of the message, plus the messages ancestors and its descendants must be accessed using an appropriate synchronization mechanism.\"",
+      "parentUuid": "1cf0910e_5da11bb8",
+      "revId": "9cb1764e1b852b02367d8e80dff063366a2da543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
