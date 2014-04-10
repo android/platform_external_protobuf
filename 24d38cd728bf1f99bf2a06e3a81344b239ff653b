@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9544bb3_a3377abf",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1043228
+      },
+      "writtenOn": "2014-04-10T14:23:35Z",
+      "side": 1,
+      "message": "If it returns different results, that means there was a concurrent write and you\u0027re going to have much bigger problems soon \u003d)\n\nMarking the field volatile was just an optimization to help avoid extra unnecessary calls to getSerializedSize() if multiple threads call this at the same time, since without volatile the other threads might not see the updated value.",
+      "parentUuid": "39f3a71c_9e3d5da3",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "24d38cd728bf1f99bf2a06e3a81344b239ff653b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59ee9b35_5f2bcb61",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d9544bb3_434d665a",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1043228
+      },
+      "writtenOn": "2014-04-10T14:23:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59ee9b35_5f2bcb61",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 61
+      },
+      "revId": "24d38cd728bf1f99bf2a06e3a81344b239ff653b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79e99f2a_20d34a28",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 1
@@ -59,6 +107,24 @@
       "writtenOn": "2014-04-10T10:40:57Z",
       "side": 1,
       "message": "The method below is owned wholly by the method above, so don\u0027t break the chain and move this new test method somewhere else :)",
+      "revId": "24d38cd728bf1f99bf2a06e3a81344b239ff653b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9544bb3_634ae245",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3543,
+      "author": {
+        "id": 1043228
+      },
+      "writtenOn": "2014-04-10T14:23:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79e99f2a_20d34a28",
       "revId": "24d38cd728bf1f99bf2a06e3a81344b239ff653b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
