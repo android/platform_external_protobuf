@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39f3a71c_9e3d5da3",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-04-10T10:40:57Z",
+      "side": 1,
+      "message": "Because the field is volatile, this read and the next read on L55 may actually get different results.\n\nHow about:\n\nint size \u003d cachedSize;\nif (size \u003c 0) {\n    // getSerializedSize sets cachedSize\n    return getSerializedSize();\n} else {\n    return size;\n}",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "24d38cd728bf1f99bf2a06e3a81344b239ff653b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59ee9b35_5f2bcb61",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-04-10T10:40:57Z",
+      "side": 1,
+      "message": "IMO this bit should not be enforced by test. getCachedSize() is just implementation detail and it doesn\u0027t need to carry any guarantee.\n\nMoreover, I\u0027ve asked that clients don\u0027t ever use getCachedSize(), so if their code is broken, it\u0027s due to their misuse :)",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 61
+      },
+      "revId": "24d38cd728bf1f99bf2a06e3a81344b239ff653b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79e99f2a_20d34a28",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3543,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-04-10T10:40:57Z",
+      "side": 1,
+      "message": "The method below is owned wholly by the method above, so don\u0027t break the chain and move this new test method somewhere else :)",
+      "revId": "24d38cd728bf1f99bf2a06e3a81344b239ff653b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
