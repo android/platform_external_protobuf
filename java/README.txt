@@ -475,6 +475,7 @@ java_multiple_files    -> true or false
 java_nano_generate_has -> true or false [DEPRECATED]
 optional_field_style   -> default or accessors
 enum_style             -> c or java
+parcelable_messages    -> true or false
 
 java_package:
 java_outer_classname:
@@ -580,6 +581,9 @@ enum_style={c,java} (default: c)
   compiler inlines all referenced enum constants into the call sites,
   the interface remains unused and can be removed by ProGuard.
 
+parcelable_messages={true,false} (default: false)
+  Android-specific option to generate Parcelable messages.
+
 
 To use nano protobufs within the Android repo:
 
@@ -630,8 +634,13 @@ Please run the following steps to test:
 - cd ../../..
 - . build/envsetup.sh
 - lunch 1
-- "make -j12 aprotoc libprotobuf-java-2.3.0-nano aprotoc-test-nano-params" and
+- "make -j12 aprotoc libprotobuf-java-2.3.0-nano aprotoc-test-nano-params NanoAndroidTest" and
   check for build errors.
+- Plug in an Android device or start an emulator.
+- adb install -r out/target/product/generic/data/app/NanoAndroidTest.apk
+- Run:
+  "adb shell am instrument -w com.google.protobuf.nano.test/android.test.InstrumentationTestRunner"
+  and verify all tests pass.
 - repo sync -c -j256
 - "make -j12" and check for build errors
 
