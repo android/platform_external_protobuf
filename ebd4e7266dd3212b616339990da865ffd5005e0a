@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e516c38e_0575124f",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelingUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2014-04-23T17:28:10Z",
+      "side": 1,
+      "message": "You should be able to genericize this so you don\u0027t have to cast the return value",
+      "range": {
+        "startLine": 42,
+        "startChar": 11,
+        "endLine": 42,
+        "endChar": 22
+      },
+      "revId": "ebd4e7266dd3212b616339990da865ffd5005e0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85fd0775_1c38ba59",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelingUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2014-04-23T17:28:10Z",
+      "side": 1,
+      "message": "probably here too",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 29
+      },
+      "revId": "ebd4e7266dd3212b616339990da865ffd5005e0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
