@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5137f9f_e43c3ab9",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2014-04-23T18:32:04Z",
+      "side": 1,
+      "message": "can you not avoid this by including M?",
+      "range": {
+        "startLine": 46,
+        "startChar": 34,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "4e65cfcc66cd3fc7cc9e7d65d00794acf110661c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
