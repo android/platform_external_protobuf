@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e516c38e_8b60f189",
+        "filename": "AndroidManifest.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2014-04-23T20:22:10Z",
+      "side": 1,
+      "message": "Maybe move this off the top level? Say java/device/test/...?",
+      "revId": "fd4e0d1a082fb67b6a7d6e196386ef5d749cd624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
