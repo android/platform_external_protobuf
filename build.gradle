@@ -1,4 +1,3 @@
-=======
 /*
  * Copyright (C) 2013 The Android Open Source Project
  *
@@ -25,15 +24,25 @@ configurations {
 sourceSets {
     micro {
         java {
-            srcDirs = ['java/src/main/java/com/google/protobuf/micro']
+            srcDirs = ['java/src/main/java/']
+            include("com/google/protobuf/micro/*")
         }
     }
 
     nano {
         java {
-            srcDirs = ['java/src/main/java/com/google/protobuf/nano']
+            srcDirs = [
+                    'java/src/main/java/',
+                    'java/src/device/main/java/'
+            ]
+            include("com/google/protobuf/nano/**")
         }
     }
+}
+
+dependencies {
+    compile getAndroidPrebuilt('8')
+    nanoCompile getAndroidPrebuilt('8')
 }
 
 jar {
@@ -65,5 +74,11 @@ task microJar(type: Jar) {
 artifacts {
     micro microJar
     nano nanoJar
+}
+
+if (rootProject == project) {
+    getAndroidPrebuilt = { apiLevel ->
+        files("$rootDir/../../prebuilts/sdk/$apiLevel/android.jar")
+    }
 }
 
