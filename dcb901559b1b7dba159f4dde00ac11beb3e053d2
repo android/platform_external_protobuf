@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a5620b22_a8685f32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T16:55:48Z",
+      "side": 1,
+      "message": "See host-libprotobuf-java-2.3.0-nano in Android.mk. Two versions of libnanoproto.jar are generated; one meant for devices and one meant for desktops (the host jar).",
+      "parentUuid": "2557fb42_8c63f31f",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 57
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2557fb42_4c59db6f",
         "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "2557fb42_6025c3cd",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T16:55:48Z",
+      "side": 1,
+      "message": "The host jar build rule sets:\n\nLOCAL_SRC_FILES :\u003d $(call all-java-files-under, java/src/main/java/com/google/protobuf/nano)\n\nSo placing device-specific code under there would cause it to end up in the host jar, and my understanding is that would be bad for the cases where this isn\u0027t used on Android.",
+      "parentUuid": "2557fb42_4c59db6f",
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2557fb42_ec7c2fc8",
         "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2014-04-23T15:25:53Z",
       "side": 1,
       "message": "I understand the need for two superclasses, but could we still store the actual functionality in a common place and just have these hook into that so we don\u0027t have duplicate locations for the code?",
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2557fb42_e0b553d5",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T16:55:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2557fb42_ec7c2fc8",
       "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "a5620b22_e82a57af",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T16:55:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8526e7f6_4aca7351",
+      "range": {
+        "startLine": 49,
+        "startChar": 69,
+        "endLine": 49,
+        "endChar": 75
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "652bb3c3_29a2ad9e",
         "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
         "patchSetId": 1
@@ -93,6 +177,24 @@
       "writtenOn": "2014-04-23T11:48:36Z",
       "side": 1,
       "message": "do you need to also suppress unspecified generic type parameters?",
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2557fb42_20b0ebe0",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T16:55:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "652bb3c3_29a2ad9e",
       "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -122,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "2557fb42_0084c7f5",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T16:55:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8526e7f6_8a790b52",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 68
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8526e7f6_4ab6f3ca",
         "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
         "patchSetId": 1
@@ -133,6 +259,30 @@
       "writtenOn": "2014-04-23T11:48:36Z",
       "side": 1,
       "message": "From the javadoc and source code of Parcel, writeByteArray() already writes the length, which can be used by createByteArray(). readByteArray() is just createByteArray() + System.arraycopy().",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 33
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2557fb42_205e2bcc",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T16:55:48Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "8526e7f6_4ab6f3ca",
       "range": {
         "startLine": 100,
         "startChar": 0,
