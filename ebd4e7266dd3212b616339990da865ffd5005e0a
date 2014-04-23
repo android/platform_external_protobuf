@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "85fd0775_9c102ab3",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelingUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T17:39:51Z",
+      "side": 1,
+      "message": "Done. Note that you could actually do this without an unchecked cast warning if you declared the method as:\n\nstatic \u003cX extends MessageNano, T extends X\u003e X createFromParcel(Class\u003cX\u003e parent, Parcel in) {\n\nand passed in Parcelable*MessageNano.class as the first argument. But based on Max\u0027s comment from before, this would be bad for proguard, so I\u0027ve just done an unchecked cast.",
+      "parentUuid": "e516c38e_0575124f",
+      "range": {
+        "startLine": 42,
+        "startChar": 11,
+        "endLine": 42,
+        "endChar": 22
+      },
+      "revId": "ebd4e7266dd3212b616339990da865ffd5005e0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85fd0775_1c38ba59",
         "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelingUtil.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2014-04-23T17:28:10Z",
       "side": 1,
       "message": "probably here too",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 29
+      },
+      "revId": "ebd4e7266dd3212b616339990da865ffd5005e0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2557fb42_c35659e3",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelingUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-04-23T17:39:51Z",
+      "side": 1,
+      "message": "What is there to make generic here?",
+      "parentUuid": "85fd0775_1c38ba59",
       "range": {
         "startLine": 66,
         "startChar": 4,
