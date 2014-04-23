@@ -1,4 +1,3 @@
-=======
 /*
  * Copyright (C) 2013 The Android Open Source Project
  *
@@ -15,55 +14,73 @@
  * limitations under the License.
  */
 
-apply plugin: 'java'
+// The outputs here are just plain .jar files for micro and nano. However, since nano contains
+// (optional) features which depend on the Android SDK, we build with the Android SDK and package
+// .jar files from the output classes.
+
+import com.android.builder.BuilderConstants
+
+apply plugin: 'android-library'
 
 configurations {
     micro
     nano
 }
 
-sourceSets {
-    micro {
-        java {
-            srcDirs = ['java/src/main/java/com/google/protobuf/micro']
+android {
+    compileSdkVersion 8
+    buildToolsVersion = "19.0.3"
+
+    productFlavors {
+        micro {
+            packageName "com.google.protobuf.micro"
+        }
+        nano {
+            packageName "com.google.protobuf.nano"
         }
     }
 
-    nano {
-        java {
-            srcDirs = ['java/src/main/java/com/google/protobuf/nano']
+    sourceSets {
+        main.manifest.srcFile 'java/src/main/AndroidManifest.xml'
+
+        micro {
+            java {
+                srcDirs = ['java/src/main/java/']
+                include("com/google/protobuf/micro/*")
+            }
+        }
+
+        nano {
+            java {
+                srcDirs = [
+                    'java/src/main/java/',
+                    'java/src/device/main/java/'
+                ]
+                include("com/google/protobuf/nano/**")
+            }
         }
     }
 }
 
-jar {
-    from sourceSets.nano.output, sourceSets.micro.output
-    baseName "libprotobuf"
-    appendix "java"
-    version "2.3"
-    classifier "micronano"
+// Generate jar libraries for each variant (nano, micro).
+android.libraryVariants.all { variant ->
+    def name = variant.buildType.name
+    if (name.equals(BuilderConstants.RELEASE)) {
+        def productFlavor = getProductFlavor(variant)
+        def task = project.tasks.create "${productFlavor.name}Jar", Jar
+        task.from variant.javaCompile.destinationDir
+        task.dependsOn variant.javaCompile
+        task.baseName "libprotobuf"
+        task.appendix "java"
+        task.version "2.3"
+        task.classifier productFlavor.name
+        artifacts.add(productFlavor.name, task);
+    }
 }
 
-task nanoJar(type: Jar) {
-    from sourceSets.nano.output
-    dependsOn nanoClasses
-    baseName "libprotobuf"
-    appendix "java"
-    version "2.3"
-    classifier "nano"
-}
-
-task microJar(type: Jar) {
-    from sourceSets.micro.output
-    dependsOn microClasses
-    baseName "libprotobuf"
-    appendix "java"
-    version "2.3"
-    classifier "micro"
-}
-
-artifacts {
-    micro microJar
-    nano nanoJar
+// until the plugin gives us this directly
+def getProductFlavor(def variant) {
+    String flavorName = variant.name[0..-(variant.buildType.name.length() + 1)]
+    return android.productFlavors[flavorName]
 }
 
