@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8526e7f6_4aca7351",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-04-23T11:48:36Z",
+      "side": 1,
+      "message": "For some reason, if you use .class, you will accidentally disable quite a lot of ProGuard optimization. Maybe just use a string literal here.",
+      "range": {
+        "startLine": 49,
+        "startChar": 69,
+        "endLine": 49,
+        "endChar": 75
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "652bb3c3_29a2ad9e",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-04-23T11:48:36Z",
+      "side": 1,
+      "message": "do you need to also suppress unspecified generic type parameters?",
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8526e7f6_8a790b52",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-04-23T11:48:36Z",
+      "side": 1,
+      "message": "Just \"MessageNano.mergeFrom(proto, data);\" should be enough. It also checks last tag was 0.",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 68
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8526e7f6_4ab6f3ca",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-04-23T11:48:36Z",
+      "side": 1,
+      "message": "From the javadoc and source code of Parcel, writeByteArray() already writes the length, which can be used by createByteArray(). readByteArray() is just createByteArray() + System.arraycopy().",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 33
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
