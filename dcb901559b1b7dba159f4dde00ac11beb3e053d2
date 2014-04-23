@@ -2,6 +2,63 @@
   "comments": [
     {
       "key": {
+        "uuid": "2557fb42_8c63f31f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2014-04-23T15:25:53Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 57
+      },
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2557fb42_4c59db6f",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2014-04-23T15:25:53Z",
+      "side": 1,
+      "message": "Should these files live in java/src/main/java/com/google/protobuf/nano/android? why the separation so high up the hierarchy?",
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2557fb42_ec7c2fc8",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1021924
+      },
+      "writtenOn": "2014-04-23T15:25:53Z",
+      "side": 1,
+      "message": "I understand the need for two superclasses, but could we still store the actual functionality in a common place and just have these hook into that so we don\u0027t have duplicate locations for the code?",
+      "revId": "dcb901559b1b7dba159f4dde00ac11beb3e053d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8526e7f6_4aca7351",
         "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelableExtendableMessageNano.java",
         "patchSetId": 1
