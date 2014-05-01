@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea205093_ca8fcf63",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2014-05-01T17:55:43Z",
+      "side": 1,
+      "message": ".isEmpty()",
+      "revId": "e456dabc3c131bb51d272f4189cabbdb79f5405d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
