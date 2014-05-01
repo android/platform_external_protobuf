@@ -16,6 +16,24 @@
       "revId": "e456dabc3c131bb51d272f4189cabbdb79f5405d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea205093_2a70835c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1045893
+      },
+      "writtenOn": "2014-05-01T18:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea205093_ca8fcf63",
+      "revId": "e456dabc3c131bb51d272f4189cabbdb79f5405d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
