@@ -52,8 +52,7 @@ public abstract class ExtendableMessageNano<M extends ExtendableMessageNano<M>>
         int unknownFieldCount = unknownFieldData == null ? 0 : unknownFieldData.size();
         for (int i = 0; i < unknownFieldCount; i++) {
             UnknownFieldData unknownField = unknownFieldData.get(i);
-            size += CodedOutputByteBufferNano.computeRawVarint32Size(unknownField.tag);
-            size += unknownField.bytes.length;
+            size += unknownField.computeSerializedSize();
         }
         return size;
     }
@@ -63,8 +62,7 @@ public abstract class ExtendableMessageNano<M extends ExtendableMessageNano<M>>
         int unknownFieldCount = unknownFieldData == null ? 0 : unknownFieldData.size();
         for (int i = 0; i < unknownFieldCount; i++) {
             UnknownFieldData unknownField = unknownFieldData.get(i);
-            output.writeRawVarint32(unknownField.tag);
-            output.writeRawBytes(unknownField.bytes);
+            unknownField.writeTo(output);
         }
     }
 

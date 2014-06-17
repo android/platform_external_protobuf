@@ -30,6 +30,7 @@
 
 package com.google.protobuf.nano;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -38,34 +39,121 @@ import java.util.Arrays;
  *
  * @author bduff@google.com (Brian Duff)
  */
-public final class UnknownFieldData {
+final class UnknownFieldData {
 
-  final int tag;
-  final byte[] bytes;
+    final int tag;
+    private byte[] bytes;
+    private Extension<?, ?> extension;
+    private Object value;
 
-  UnknownFieldData(int tag, byte[] bytes) {
-    this.tag = tag;
-    this.bytes = bytes;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (o == this) {
-      return true;
-    }
-    if (!(o instanceof UnknownFieldData)) {
-      return false;
+    UnknownFieldData(int tag, byte[] bytes) {
+        this.tag = tag;
+        this.bytes = bytes;
+        this.extension = null;
+        this.value = null;
     }
 
-    UnknownFieldData other = (UnknownFieldData) o;
-    return tag == other.tag && Arrays.equals(bytes, other.bytes);
-  }
+    UnknownFieldData(Extension<?, ?> extension, Object value) {
+        this.tag = extension.tag;
+        this.bytes = null;
+        this.extension = extension;
+        this.value = value;
+    }
 
-  @Override
-  public int hashCode() {
-    int result = 17;
-    result = 31 * result + tag;
-    result = 31 * result + Arrays.hashCode(bytes);
-    return result;
-  }
+    void setValue(Extension<?, ?> extension, Object value) {
+        bytes = null;
+        this.extension = extension;
+        this.value = value;
+    }
+
+    int computeSerializedSize() {
+        int size = 0;
+        if (bytes != null) {
+            size += CodedOutputByteBufferNano.computeRawVarint32Size(tag);
+            size += bytes.length;
+        } else {
+            size = extension.computeSerializedSize(value);
+        }
+        return size;
+    }
+
+    void writeTo(CodedOutputByteBufferNano output) throws IOException {
+        if (bytes != null) {
+            output.writeRawVarint32(tag);
+            output.writeRawBytes(bytes);
+        } else {
+            extension.writeTo(value, output);
+        }
+    }
+
+    byte[] getBytes() {
+        return bytes;
+    }
+
+    boolean hasValue(Extension<?, ?> extension) {
+        if (value != null){
+            if (this.extension != extension) {  // Extension objects are singletons.
+                throw new IllegalStateException(
+                        "Tried to getExtension with a differernt Extension.");
+            }
+            return true;
+        }
+        return false;
+    }
+
+    Object getValue() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof UnknownFieldData)) {
+            return false;
+        }
+
+        UnknownFieldData other = (UnknownFieldData) o;
+        if (tag != other.tag) {
+            return false;
+        }
+        if (value != null && other.value != null) {
+            // If both objects have deserialized values, compare those.
+            // Since unknown fields are only compared if messages have generated equals methods
+            // we know this will be a meaningful comparison (not identity) for all values.
+            return extension == other.extension && value.equals(other.value);
+        }
+        if (bytes != null && other.bytes != null) {
+            // If both objects have byte arrays compare those directly.
+            return Arrays.equals(bytes, other.bytes);
+        }
+        try {
+            // As a last resort, serialize and compare the resulting byte arrays.
+            return Arrays.equals(toByteArray(), other.toByteArray());
+        } catch (IOException e) {
+            // Should not happen.
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        try {
+            // The only way to generate a consistent hash is to use the serialized form.
+            result = 31 * result + Arrays.hashCode(toByteArray());
+        } catch (IOException e) {
+            // Should not happen.
+            throw new IllegalStateException(e);
+        }
+        return result;
+    }
+
+    private byte[] toByteArray() throws IOException {
+        byte[] result = new byte[computeSerializedSize()];
+        CodedOutputByteBufferNano output = CodedOutputByteBufferNano.newInstance(result);
+        writeTo(output);
+        return result;
+    }
 }
