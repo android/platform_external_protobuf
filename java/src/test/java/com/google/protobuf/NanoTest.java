@@ -2826,6 +2826,8 @@ public class NanoTest extends TestCase {
     assertEquals(group2.a, message.getExtension(SingularExtensions.someGroup).a);
 
     // Test reading back using RepeatedExtensions: the arrays should be equal.
+    message = Extensions.ExtendableMessage.parseFrom(data);
+    assertEquals(5, message.field);
     assertTrue(Arrays.equals(int32s, message.getExtension(RepeatedExtensions.repeatedInt32)));
     assertTrue(Arrays.equals(uint32s, message.getExtension(RepeatedExtensions.repeatedUint32)));
     assertTrue(Arrays.equals(sint32s, message.getExtension(RepeatedExtensions.repeatedSint32)));
@@ -2860,6 +2862,8 @@ public class NanoTest extends TestCase {
 
     // Test reading back using PackedExtensions: the arrays should be equal, even the fields
     // are non-packed.
+    message = Extensions.ExtendableMessage.parseFrom(data);
+    assertEquals(5, message.field);
     assertTrue(Arrays.equals(int32s, message.getExtension(PackedExtensions.packedInt32)));
     assertTrue(Arrays.equals(uint32s, message.getExtension(PackedExtensions.packedUint32)));
     assertTrue(Arrays.equals(sint32s, message.getExtension(PackedExtensions.packedSint32)));
@@ -2902,12 +2906,71 @@ public class NanoTest extends TestCase {
     assertTrue(Arrays.equals(sint64s, message.getExtension(RepeatedExtensions.repeatedSint64)));
     assertTrue(Arrays.equals(fixed32s, message.getExtension(RepeatedExtensions.repeatedFixed32)));
     assertTrue(Arrays.equals(sfixed32s, message.getExtension(RepeatedExtensions.repeatedSfixed32)));
-    assertTrue(Arrays.equals(fixed64s, message.getExtension(RepeatedExtensions.repeatedFixed64)));
+    org.junit.Assert.assertArrayEquals(fixed64s, message.getExtension(RepeatedExtensions.repeatedFixed64));
+//    assertTrue(Arrays.equals(fixed64s, message.getExtension(RepeatedExtensions.repeatedFixed64)));
     assertTrue(Arrays.equals(sfixed64s, message.getExtension(RepeatedExtensions.repeatedSfixed64)));
     assertTrue(Arrays.equals(bools, message.getExtension(RepeatedExtensions.repeatedBool)));
     assertTrue(Arrays.equals(floats, message.getExtension(RepeatedExtensions.repeatedFloat)));
     assertTrue(Arrays.equals(doubles, message.getExtension(RepeatedExtensions.repeatedDouble)));
     assertTrue(Arrays.equals(enums, message.getExtension(RepeatedExtensions.repeatedEnum)));
+  }
+
+  public void testExtensionsMinimal() throws Exception {
+    Extensions.ExtendableMessage message = new Extensions.ExtendableMessage();
+    message.field = 5;
+    int[] int32s = {1, 2};
+    int[] uint32s = {3, 4};
+    int[] sint32s = {-5, -6};
+    long[] int64s = {7, 8};
+    long[] uint64s = {9, 10};
+    long[] sint64s = {-11, -12};
+    int[] fixed32s = {13, 14};
+    int[] sfixed32s = {-15, -16};
+    long[] fixed64s = {17, 18};
+
+    message.setExtension(RepeatedExtensions.repeatedInt32, int32s);
+    message.setExtension(RepeatedExtensions.repeatedUint32, uint32s);
+    message.setExtension(RepeatedExtensions.repeatedSint32, sint32s);
+    message.setExtension(RepeatedExtensions.repeatedInt64, int64s);
+    message.setExtension(RepeatedExtensions.repeatedUint64, uint64s);
+    message.setExtension(RepeatedExtensions.repeatedSint64, sint64s);
+    message.setExtension(RepeatedExtensions.repeatedFixed32, fixed32s);
+    message.setExtension(RepeatedExtensions.repeatedSfixed32, sfixed32s);
+    message.setExtension(RepeatedExtensions.repeatedFixed64, fixed64s);
+    byte[] data = MessageNano.toByteArray(message);
+
+    message = Extensions.ExtendableMessage.parseFrom(data);
+    assertEquals(5, message.field);
+
+    assertTrue(Arrays.equals(int32s, message.getExtension(PackedExtensions.packedInt32)));
+    assertTrue(Arrays.equals(uint32s, message.getExtension(PackedExtensions.packedUint32)));
+    assertTrue(Arrays.equals(sint32s, message.getExtension(PackedExtensions.packedSint32)));
+    assertTrue(Arrays.equals(int64s, message.getExtension(PackedExtensions.packedInt64)));
+    assertTrue(Arrays.equals(uint64s, message.getExtension(PackedExtensions.packedUint64)));
+    assertTrue(Arrays.equals(sint64s, message.getExtension(PackedExtensions.packedSint64)));
+    assertTrue(Arrays.equals(fixed32s, message.getExtension(PackedExtensions.packedFixed32)));
+    assertTrue(Arrays.equals(sfixed32s, message.getExtension(PackedExtensions.packedSfixed32)));
+    assertTrue(Arrays.equals(fixed64s, message.getExtension(PackedExtensions.packedFixed64)));
+
+    message.setExtension(PackedExtensions.packedInt32, int32s);
+    message.setExtension(PackedExtensions.packedUint32, uint32s);
+    message.setExtension(PackedExtensions.packedSint32, sint32s);
+    message.setExtension(PackedExtensions.packedInt64, int64s);
+    message.setExtension(PackedExtensions.packedUint64, uint64s);
+    message.setExtension(PackedExtensions.packedSint64, sint64s);
+    message.setExtension(PackedExtensions.packedFixed32, fixed32s);
+    message.setExtension(PackedExtensions.packedSfixed32, sfixed32s);
+    message.setExtension(PackedExtensions.packedFixed64, fixed64s);
+
+    assertTrue(Arrays.equals(int32s, message.getExtension(RepeatedExtensions.repeatedInt32)));
+    assertTrue(Arrays.equals(uint32s, message.getExtension(RepeatedExtensions.repeatedUint32)));
+    assertTrue(Arrays.equals(sint32s, message.getExtension(RepeatedExtensions.repeatedSint32)));
+    assertTrue(Arrays.equals(int64s, message.getExtension(RepeatedExtensions.repeatedInt64)));
+    assertTrue(Arrays.equals(uint64s, message.getExtension(RepeatedExtensions.repeatedUint64)));
+    assertTrue(Arrays.equals(sint64s, message.getExtension(RepeatedExtensions.repeatedSint64)));
+    assertTrue(Arrays.equals(fixed32s, message.getExtension(RepeatedExtensions.repeatedFixed32)));
+    assertTrue(Arrays.equals(sfixed32s, message.getExtension(RepeatedExtensions.repeatedSfixed32)));
+    assertTrue(Arrays.equals(fixed64s, message.getExtension(RepeatedExtensions.repeatedFixed64)));
   }
 
   public void testNullExtensions() throws Exception {
@@ -2922,6 +2985,26 @@ public class NanoTest extends TestCase {
     assertTrue(MessageNano.toByteArray(message).length > 0);
     message.setExtension(SingularExtensions.someMessage, null);
     assertEquals(0, MessageNano.toByteArray(message).length);
+  }
+
+  public void testExtensionsMutation() {
+    Extensions.ExtendableMessage extendableMessage = new Extensions.ExtendableMessage();
+    extendableMessage.setExtension(SingularExtensions.someMessage,
+        new Extensions.AnotherMessage());
+
+    extendableMessage.getExtension(SingularExtensions.someMessage).string = "not empty";
+
+    assertEquals("not empty",
+        extendableMessage.getExtension(SingularExtensions.someMessage).string);
+  }
+
+  public void testExtensionsCaching() {
+    Extensions.ExtendableMessage extendableMessage = new Extensions.ExtendableMessage();
+    extendableMessage.setExtension(SingularExtensions.someMessage,
+        new Extensions.AnotherMessage());
+    assertSame("Consecutive calls to getExtensions should return the same object",
+        extendableMessage.getExtension(SingularExtensions.someMessage),
+        extendableMessage.getExtension(SingularExtensions.someMessage));
   }
 
   public void testUnknownFields() throws Exception {

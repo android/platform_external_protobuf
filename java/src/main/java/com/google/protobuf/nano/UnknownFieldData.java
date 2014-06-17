@@ -30,6 +30,7 @@
 
 package com.google.protobuf.nano;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -40,32 +41,67 @@ import java.util.Arrays;
  */
 public final class UnknownFieldData {
 
-  final int tag;
-  final byte[] bytes;
+    final int tag;
+    final byte[] bytes;
+    final Extension extension;
+    final Object value;
 
-  UnknownFieldData(int tag, byte[] bytes) {
-    this.tag = tag;
-    this.bytes = bytes;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (o == this) {
-      return true;
-    }
-    if (!(o instanceof UnknownFieldData)) {
-      return false;
+    UnknownFieldData(int tag, byte[] bytes) {
+        this.tag = tag;
+        this.bytes = bytes;
+        this.extension = null;
+        this.value = null;
     }
 
-    UnknownFieldData other = (UnknownFieldData) o;
-    return tag == other.tag && Arrays.equals(bytes, other.bytes);
-  }
+    UnknownFieldData(Extension extension, Object value) {
+        this.tag = extension.tag;
+        this.bytes = null;
+        this.extension = extension;
+        this.value = value;
+    }
 
-  @Override
-  public int hashCode() {
-    int result = 17;
-    result = 31 * result + tag;
-    result = 31 * result + Arrays.hashCode(bytes);
-    return result;
-  }
+    public int computeSerializedSize() {
+        int size = 0;
+        if (bytes != null) {
+            size += CodedOutputByteBufferNano.computeRawVarint32Size(tag);
+            size += bytes.length;
+        } else {
+            size = extension.computeSerializedSize(value);
+        }
+        return size;
+    }
+
+    public void writeTo(CodedOutputByteBufferNano output) throws IOException {
+        if (bytes != null) {
+            output.writeRawVarint32(tag);
+            output.writeRawBytes(bytes);
+        } else {
+            extension.writeTo(value, output);
+        }
+    }
+
+    public boolean hasValue() {
+        return value != null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof UnknownFieldData)) {
+            return false;
+        }
+
+        UnknownFieldData other = (UnknownFieldData) o;
+        return tag == other.tag && Arrays.equals(bytes, other.bytes);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + tag;
+        result = 31 * result + Arrays.hashCode(bytes);
+        return result;
+    }
 }
