@@ -45,6 +45,7 @@ public abstract class ExtendableMessageNano<M extends ExtendableMessageNano<M>>
      * can be accessed through the {@link #getExtension} and {@link #setExtension} methods.
      */
     protected List<UnknownFieldData> unknownFieldData;
+    private List<ExtensionData> knownExtensionData;
 
     @Override
     protected int computeSerializedSize() {
@@ -55,11 +56,29 @@ public abstract class ExtendableMessageNano<M extends ExtendableMessageNano<M>>
             size += CodedOutputByteBufferNano.computeRawVarint32Size(unknownField.tag);
             size += unknownField.bytes.length;
         }
+        int knownFieldCount = knownExtensionData == null ? 0 : knownExtensionData.size();
+        for (int i = 0; i < knownFieldCount; i++) {
+            ExtensionData knownField = knownExtensionData.get(i);
+            size += knownField.computeSerializedSize();
+        }
         return size;
     }
 
     @Override
     public void writeTo(CodedOutputByteBufferNano output) throws IOException {
+        // Write known extensions first.
+        int knownExtensionCount = knownExtensionData == null ? 0 : knownExtensionData.size();
+        List<UnknownFieldData> knownUnknown = new ArrayList<UnknownFieldData>(knownExtensionCount);
+        for (int i = 0; i < knownExtensionCount; i++) {
+            ExtensionData knownField = knownExtensionData.get(i);
+            knownField.storeValueIn(knownUnknown);
+        }
+        for (UnknownFieldData unknownField : knownUnknown) {
+            output.writeRawVarint32(unknownField.tag);
+            output.writeRawBytes(unknownField.bytes);
+        }
+
+        // And then any unknown fields.
         int unknownFieldCount = unknownFieldData == null ? 0 : unknownFieldData.size();
         for (int i = 0; i < unknownFieldCount; i++) {
             UnknownFieldData unknownField = unknownFieldData.get(i);
@@ -72,14 +91,65 @@ public abstract class ExtendableMessageNano<M extends ExtendableMessageNano<M>>
      * Gets the value stored in the specified extension of this message.
      */
     public final <T> T getExtension(Extension<M, T> extension) {
-        return extension.getValueFrom(unknownFieldData);
+        if (knownExtensionData == null) {
+            knownExtensionData = new ArrayList<ExtensionData>();
+        }
+        for (int i = knownExtensionData.size() - 1; i >= 0; --i) {
+            ExtensionData<?, ?> fieldData = knownExtensionData.get(i);
+            if (fieldData.extension.tag == extension.tag) {
+                if (fieldData.extension.equals(extension)) {
+                    ExtensionData<Extension<M, T>, T> castedFieldData =
+                            (ExtensionData<Extension<M, T>, T>) fieldData;
+                    return castedFieldData.value;
+                } else {
+                    // Different extension type, delete the cached version
+                    unknownFieldData = fieldData.storeValueIn(unknownFieldData);
+                    knownExtensionData.remove(i);
+                }
+            }
+        }
+        // If the value is not in knownExtensionData then deserialize and add it.
+        T value = extension.getValueFrom(unknownFieldData);
+        if (value != null) {
+            ExtensionData<Extension<M, T>, T> fieldData =
+                    new ExtensionData<Extension<M, T>, T>(extension, value);
+            knownExtensionData.add(fieldData);
+            // Remove data from unknownFieldData.
+            unknownFieldData = extension.setValueTo(null, unknownFieldData);
+        }
+        return value;
     }
 
     /**
      * Sets the value of the specified extension of this message.
      */
     public final <T> M setExtension(Extension<M, T> extension, T value) {
-        unknownFieldData = extension.setValueTo(value, unknownFieldData);
+        if (knownExtensionData == null) {
+            knownExtensionData = new ArrayList<ExtensionData>();
+        }
+        boolean knownField = false;
+        for (int i = knownExtensionData.size() - 1; i >= 0 && !knownField; --i) {
+            ExtensionData<?, ?> fieldData = knownExtensionData.get(i);
+            if (fieldData.extension.tag == extension.tag) {
+                if (fieldData.extension.equals(extension)) {
+                    ExtensionData<Extension<M, T>, T> castedFieldData =
+                           (ExtensionData<Extension<M, T>, T>) fieldData;
+                    castedFieldData.value = value;
+                    if (value == null) {
+                        knownExtensionData.remove(i);
+                    }
+                    knownField = true;
+                } else {
+                    // Different extension type, delete the cached version.
+                    knownExtensionData.remove(i);
+                }
+            }
+        }
+        if (!knownField && value != null) {
+            knownExtensionData.add(new ExtensionData<Extension<M, T>, T>(extension, value));
+        }
+        // Remove data from unknownFieldData.
+        unknownFieldData = extension.setValueTo(null, unknownFieldData);
 
         @SuppressWarnings("unchecked") // Generated code should guarantee type safety
         M typedThis = (M) this;
