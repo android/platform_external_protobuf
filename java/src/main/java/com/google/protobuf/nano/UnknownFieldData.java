@@ -30,6 +30,7 @@
 
 package com.google.protobuf.nano;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -38,34 +39,90 @@ import java.util.Arrays;
  *
  * @author bduff@google.com (Brian Duff)
  */
-public final class UnknownFieldData {
+final class UnknownFieldData {
 
-  final int tag;
-  final byte[] bytes;
+    final int tag;
+    private byte[] bytes;
+    private Extension<?, ?> extension;
+    private Object value;
 
-  UnknownFieldData(int tag, byte[] bytes) {
-    this.tag = tag;
-    this.bytes = bytes;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (o == this) {
-      return true;
-    }
-    if (!(o instanceof UnknownFieldData)) {
-      return false;
+    UnknownFieldData(int tag, byte[] bytes) {
+        this.tag = tag;
+        this.bytes = bytes;
+        this.extension = null;
+        this.value = null;
     }
 
-    UnknownFieldData other = (UnknownFieldData) o;
-    return tag == other.tag && Arrays.equals(bytes, other.bytes);
-  }
+    UnknownFieldData(Extension<?, ?> extension, Object value) {
+        this.tag = extension.tag;
+        this.bytes = null;
+        this.extension = extension;
+        this.value = value;
+    }
 
-  @Override
-  public int hashCode() {
-    int result = 17;
-    result = 31 * result + tag;
-    result = 31 * result + Arrays.hashCode(bytes);
-    return result;
-  }
+    void setValue(Extension<?, ?> extension, Object value) {
+        bytes = null;
+        this.extension = extension;
+        this.value = value;
+    }
+
+    int computeSerializedSize() {
+        int size = 0;
+        if (getBytes() != null) {
+            size += CodedOutputByteBufferNano.computeRawVarint32Size(tag);
+            size += getBytes().length;
+        } else {
+            size = extension.computeSerializedSize(value);
+        }
+        return size;
+    }
+
+    void writeTo(CodedOutputByteBufferNano output) throws IOException {
+        if (getBytes() != null) {
+            output.writeRawVarint32(tag);
+            output.writeRawBytes(getBytes());
+        } else {
+            extension.writeTo(value, output);
+        }
+    }
+
+    byte[] getBytes() {
+        return bytes;
+    }
+
+    boolean hasValue(Extension<?, ?> extension) {
+        if (value != null){
+            if (this.extension != extension) {  // Extension objects are singletons.
+                throw new IllegalStateException(
+                        "Tried to getExtension with a differernt Extension.");
+            }
+            return true;
+        }
+        return false;
+    }
+
+    Object getValue() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof UnknownFieldData)) {
+            return false;
+        }
+
+        UnknownFieldData other = (UnknownFieldData) o;
+        return tag == other.tag && Arrays.equals(getBytes(), other.getBytes());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + tag;
+        result = 31 * result + Arrays.hashCode(getBytes());
+        return result;
+    }
 }
