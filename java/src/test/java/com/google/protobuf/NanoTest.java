@@ -41,6 +41,7 @@ import com.google.protobuf.nano.Extensions.MessageWithGroup;
 import com.google.protobuf.nano.FileScopeEnumMultiple;
 import com.google.protobuf.nano.FileScopeEnumRefNano;
 import com.google.protobuf.nano.InternalNano;
+import com.google.protobuf.nano.InvalidProtocolBufferNanoException;
 import com.google.protobuf.nano.MessageNano;
 import com.google.protobuf.nano.MessageScopeEnumRefNano;
 import com.google.protobuf.nano.MultipleImportingNonMultipleNano1;
@@ -2826,6 +2827,8 @@ public class NanoTest extends TestCase {
     assertEquals(group2.a, message.getExtension(SingularExtensions.someGroup).a);
 
     // Test reading back using RepeatedExtensions: the arrays should be equal.
+    message = Extensions.ExtendableMessage.parseFrom(data);
+    assertEquals(5, message.field);
     assertTrue(Arrays.equals(int32s, message.getExtension(RepeatedExtensions.repeatedInt32)));
     assertTrue(Arrays.equals(uint32s, message.getExtension(RepeatedExtensions.repeatedUint32)));
     assertTrue(Arrays.equals(sint32s, message.getExtension(RepeatedExtensions.repeatedSint32)));
@@ -2860,6 +2863,8 @@ public class NanoTest extends TestCase {
 
     // Test reading back using PackedExtensions: the arrays should be equal, even the fields
     // are non-packed.
+    message = Extensions.ExtendableMessage.parseFrom(data);
+    assertEquals(5, message.field);
     assertTrue(Arrays.equals(int32s, message.getExtension(PackedExtensions.packedInt32)));
     assertTrue(Arrays.equals(uint32s, message.getExtension(PackedExtensions.packedUint32)));
     assertTrue(Arrays.equals(sint32s, message.getExtension(PackedExtensions.packedSint32)));
@@ -2922,6 +2927,59 @@ public class NanoTest extends TestCase {
     assertTrue(MessageNano.toByteArray(message).length > 0);
     message.setExtension(SingularExtensions.someMessage, null);
     assertEquals(0, MessageNano.toByteArray(message).length);
+  }
+
+  public void testExtensionsMutation() {
+    Extensions.ExtendableMessage extendableMessage = new Extensions.ExtendableMessage();
+    extendableMessage.setExtension(SingularExtensions.someMessage,
+        new Extensions.AnotherMessage());
+
+    extendableMessage.getExtension(SingularExtensions.someMessage).string = "not empty";
+
+    assertEquals("not empty",
+        extendableMessage.getExtension(SingularExtensions.someMessage).string);
+  }
+
+  public void testExtensionsMutation_Equals() throws InvalidProtocolBufferNanoException {
+    Extensions.ExtendableMessage extendableMessage = new Extensions.ExtendableMessage();
+    Extensions.AnotherMessage anotherMessage = new Extensions.AnotherMessage();
+    anotherMessage.string = "some string";
+    extendableMessage.setExtension(SingularExtensions.someMessage, anotherMessage);
+    byte[] data = MessageNano.toByteArray(extendableMessage);
+
+    extendableMessage = Extensions.ExtendableMessage.parseFrom(data);
+    Extensions.ExtendableMessage messageCopy = Extensions.ExtendableMessage.parseFrom(data);
+
+    // Without deserialising.
+    assertEquals(extendableMessage, messageCopy);
+    assertEquals(extendableMessage.hashCode(), messageCopy.hashCode());
+
+    // Only one deserialized.
+    assertEquals(anotherMessage, extendableMessage.getExtension(SingularExtensions.someMessage));
+    assertEquals(extendableMessage, messageCopy);
+    assertEquals(extendableMessage.hashCode(), messageCopy.hashCode());
+
+    // Both deserialized.
+    assertEquals(anotherMessage, messageCopy.getExtension(SingularExtensions.someMessage));
+    assertEquals(extendableMessage, messageCopy);
+    assertEquals(extendableMessage.hashCode(), messageCopy.hashCode());
+
+    // Change one, make sure they are still different.
+    messageCopy.getExtension(SingularExtensions.someMessage).string = "not empty";
+    assertFalse(extendableMessage.equals(messageCopy));
+
+    // Even if the extension hasn't been deserialized.
+    extendableMessage = Extensions.ExtendableMessage.parseFrom(data);
+    assertFalse(extendableMessage.equals(messageCopy));
+  }
+
+  public void testExtensionsCaching() {
+    Extensions.ExtendableMessage extendableMessage = new Extensions.ExtendableMessage();
+    extendableMessage.setExtension(SingularExtensions.someMessage,
+        new Extensions.AnotherMessage());
+    assertSame("Consecutive calls to getExtensions should return the same object",
+        extendableMessage.getExtension(SingularExtensions.someMessage),
+        extendableMessage.getExtension(SingularExtensions.someMessage));
   }
 
   public void testUnknownFields() throws Exception {
