@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "44db1506_701c703d",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-06-18T17:47:02Z",
+      "side": 1,
+      "message": "Extract these two lines to a method (maybe writeUnknownField(UnknownFieldData, CodedOutputByteBufferNano)) and use here and at line 85.",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 53
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "246b81de_5a17f11b",
         "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
         "patchSetId": 1
@@ -19,6 +42,52 @@
     },
     {
       "key": {
+        "uuid": "44db1506_90aeb485",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-06-18T17:47:02Z",
+      "side": 1,
+      "message": "Extension doesn\u0027t implement hashCode / equals, so I\u0027d be wary of doing this. It\u0027ll probably be fine in practice since the generator creates exactly one instance of each extension.\n\nIt might be worth implementing hashCode / equals in Extension to be safe.",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 58
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44db1506_b0abb874",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-06-18T17:47:02Z",
+      "side": 1,
+      "message": "Does this generate a compilation warning?",
+      "range": {
+        "startLine": 102,
+        "startChar": 28,
+        "endLine": 102,
+        "endChar": 74
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04803dc3_59ee27de",
         "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
         "patchSetId": 1
@@ -30,6 +99,24 @@
       "writtenOn": "2014-06-18T17:31:16Z",
       "side": 1,
       "message": "And when setting extension values to null, you also don\u0027t want to create the ArrayList.\n\nI think it would be logically easier if UnknownFieldData is extended with the fields currently in ExtensionData and the methods to compute serialized size / write to output. The methods would delegate to the Extension object if there is one. In other words, the switching between UnknownFieldData and ExtensionData in this patch set is done within each UnknownFieldData.\n\nThat means getExtension/setExtension in this file will be fully reverted. Most of the heavy lifting is done in the Extension class.\n\nThere is a slightly tricky case. When you have a repeated extension read from a list of UnknownFieldData, it may want to remove all matching UnknownFieldData objects but the first one, and put the parsed array there.",
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04c59d23_aeb8375f",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-06-18T17:47:02Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "04803dc3_59ee27de",
       "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
