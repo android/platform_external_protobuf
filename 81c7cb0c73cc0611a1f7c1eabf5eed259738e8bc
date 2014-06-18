@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "246b81de_5a17f11b",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-18T17:31:16Z",
+      "side": 1,
+      "message": "If you\u0027re getting an extension, you can definitely ignore the null knownExtensionData.\n\nE.g. with:\n\n  int size \u003d knownExtensionData \u003d\u003d null ? 0 : knownExtensionData.size();\n  for (int i \u003d size - 1; ...",
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04803dc3_59ee27de",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-18T17:31:16Z",
+      "side": 1,
+      "message": "And when setting extension values to null, you also don\u0027t want to create the ArrayList.\n\nI think it would be logically easier if UnknownFieldData is extended with the fields currently in ExtensionData and the methods to compute serialized size / write to output. The methods would delegate to the Extension object if there is one. In other words, the switching between UnknownFieldData and ExtensionData in this patch set is done within each UnknownFieldData.\n\nThat means getExtension/setExtension in this file will be fully reverted. Most of the heavy lifting is done in the Extension class.\n\nThere is a slightly tricky case. When you have a repeated extension read from a list of UnknownFieldData, it may want to remove all matching UnknownFieldData objects but the first one, and put the parsed array there.",
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04803dc3_5945c72b",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-18T17:31:16Z",
+      "side": 1,
+      "message": "Singular?",
+      "range": {
+        "startLine": 320,
+        "startChar": 26,
+        "endLine": 320,
+        "endChar": 37
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e47c09a6_f807ede6",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-18T17:31:16Z",
+      "side": 1,
+      "message": "Extension\u003c?, ?\u003e, just to shut the linter up",
+      "range": {
+        "startLine": 360,
+        "startChar": 8,
+        "endLine": 360,
+        "endChar": 17
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
