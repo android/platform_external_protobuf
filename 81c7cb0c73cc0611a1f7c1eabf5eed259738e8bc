@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "04803dc3_b9841bfb",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-19T16:10:23Z",
+      "side": 1,
+      "message": "Move to UnknownFieldData.writeto",
+      "parentUuid": "44db1506_701c703d",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 53
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "246b81de_5a17f11b",
         "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2014-06-18T17:31:16Z",
       "side": 1,
       "message": "If you\u0027re getting an extension, you can definitely ignore the null knownExtensionData.\n\nE.g. with:\n\n  int size \u003d knownExtensionData \u003d\u003d null ? 0 : knownExtensionData.size();\n  for (int i \u003d size - 1; ...",
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "246b81de_da7d413b",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-19T16:10:23Z",
+      "side": 1,
+      "message": "I needed a non-null knonwExtensionData so I can store the value after deserialising (see line 116). But this is not relevant anymore.",
+      "parentUuid": "246b81de_5a17f11b",
       "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "246b81de_ba5dedcc",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-19T16:10:23Z",
+      "side": 1,
+      "message": "I added an equals in Extension already but I removed this comparison because I don\u0027t think it\u0027s worth supporting.",
+      "parentUuid": "44db1506_90aeb485",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 58
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44db1506_b0abb874",
         "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
         "patchSetId": 1
@@ -76,6 +142,30 @@
       "writtenOn": "2014-06-18T17:47:02Z",
       "side": 1,
       "message": "Does this generate a compilation warning?",
+      "range": {
+        "startLine": 102,
+        "startChar": 28,
+        "endLine": 102,
+        "endChar": 74
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04803dc3_19c2ef3b",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-19T16:10:23Z",
+      "side": 1,
+      "message": "It does, but I couldn\u0027t think of a better way to do this. I\u0027ve deleted this code now.",
+      "parentUuid": "44db1506_b0abb874",
       "range": {
         "startLine": 102,
         "startChar": 28,
@@ -123,6 +213,24 @@
     },
     {
       "key": {
+        "uuid": "e47c09a6_9b8fd3d6",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-19T16:10:23Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "04c59d23_aeb8375f",
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04803dc3_5945c72b",
         "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
         "patchSetId": 1
@@ -146,6 +254,30 @@
     },
     {
       "key": {
+        "uuid": "246b81de_9a60298c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-19T16:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04803dc3_5945c72b",
+      "range": {
+        "startLine": 320,
+        "startChar": 26,
+        "endLine": 320,
+        "endChar": 37
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e47c09a6_f807ede6",
         "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
         "patchSetId": 1
@@ -157,6 +289,30 @@
       "writtenOn": "2014-06-18T17:31:16Z",
       "side": 1,
       "message": "Extension\u003c?, ?\u003e, just to shut the linter up",
+      "range": {
+        "startLine": 360,
+        "startChar": 8,
+        "endLine": 360,
+        "endChar": 17
+      },
+      "revId": "81c7cb0c73cc0611a1f7c1eabf5eed259738e8bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04803dc3_9987dfff",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-19T16:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e47c09a6_f807ede6",
       "range": {
         "startLine": 360,
         "startChar": 8,
