@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "246b81de_3d723765",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-20T11:10:25Z",
+      "side": 1,
+      "message": "might as well just use a single-line ternary :)",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 22
+      },
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c413859f_64268aad",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-20T11:10:25Z",
+      "side": 1,
+      "message": "For paranoia, should we also check data.extension \u003d\u003d this and this is the first match? It\u0027s OK to just throw IllegalStateException.",
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e416c98e_a50a3eee",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-20T11:10:25Z",
+      "side": 1,
+      "message": "You can probably remove it now (if it\u0027s not the first match) and decrement i. Breaks some [non-documented] java style but saves some object allocations.",
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "246b81de_7d450fd3",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-20T11:10:25Z",
+      "side": 1,
+      "message": "I think it\u0027s more readable to just return null here, like the base revision.",
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e416c98e_65f8469c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-20T11:10:25Z",
+      "side": 1,
+      "message": "I think it\u0027s fine for UnknownFieldData to be stateful and have non-final bytes, extension and value fields. This breaks thread safety when the message is used as a read-only object, but this change breaks the promise anyway (getExtension is not a read-only operation -- should add it to README.txt in the paragraph talking about thead safety).\n\nHmm......\n\nBecause of this breaking, should we actually keep the current behavior and invent a (boolean mutable) parameter or getMutableExtension() method that shouts \"I\u0027m not thread-safe!\"?",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 9
+      },
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c413859f_24abf2ad",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-20T11:10:25Z",
+      "side": 1,
+      "message": "Add \u003c?, ?\u003e? Same for the other reference in this file.",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
