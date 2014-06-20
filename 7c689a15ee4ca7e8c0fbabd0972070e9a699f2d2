@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c413859f_04bd16c5",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-20T13:15:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "246b81de_3d723765",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 22
+      },
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c413859f_64268aad",
         "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2014-06-20T11:10:25Z",
       "side": 1,
       "message": "For paranoia, should we also check data.extension \u003d\u003d this and this is the first match? It\u0027s OK to just throw IllegalStateException.",
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4105196_43726665",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-20T13:15:04Z",
+      "side": 1,
+      "message": "Added check in hasValue.",
+      "parentUuid": "c413859f_64268aad",
       "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "c413859f_64c20a3d",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-20T13:15:04Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e416c98e_a50a3eee",
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "246b81de_7d450fd3",
         "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
         "patchSetId": 2
@@ -70,6 +130,47 @@
       "writtenOn": "2014-06-20T11:10:25Z",
       "side": 1,
       "message": "I think it\u0027s more readable to just return null here, like the base revision.",
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e416c98e_c5849afc",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-20T13:15:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "246b81de_7d450fd3",
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4105196_a366baa7",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-20T13:15:04Z",
+      "side": 1,
+      "message": "Also tightened the visibility to package for the class and methods.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 6
+      },
       "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -110,6 +211,54 @@
       "writtenOn": "2014-06-20T11:10:25Z",
       "side": 1,
       "message": "Add \u003c?, ?\u003e? Same for the other reference in this file.",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e416c98e_656de685",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-20T13:15:04Z",
+      "side": 1,
+      "message": "I keep them final to force an API through the constructors (you can have non-null bytes or non-null value) but as discussed made the fields non-final private and added a setValue method.\n\nAlso updated the README file to clarify that getExtension is not thread-safe.",
+      "parentUuid": "e416c98e_65f8469c",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 9
+      },
+      "revId": "7c689a15ee4ca7e8c0fbabd0972070e9a699f2d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e416c98e_2573ee6c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-20T13:15:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c413859f_24abf2ad",
       "range": {
         "startLine": 46,
         "startChar": 10,
