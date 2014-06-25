@@ -31,6 +31,7 @@
 package com.google.protobuf.nano;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Abstract interface implemented by Protocol Message objects.
@@ -160,5 +161,44 @@ public abstract class MessageNano {
     @Override
     public String toString() {
         return MessageNanoPrinter.print(this);
+    }
+
+    /**
+     * Compares two {@code MessageNano}s and returns true if the message's are the same class and
+     * have serialized form equality (i.e. all of the field values are the same).
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (this == null || o == null) {
+            return false;
+        }
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        MessageNano message = (MessageNano) o;
+        final int serializedSize = this.getSerializedSize();
+        if (message.getSerializedSize() != serializedSize) {
+            return false;
+        }
+        final byte[] aByteArray = new byte[serializedSize];
+        final byte[] bByteArray = new byte[serializedSize];
+        toByteArray(this, aByteArray, 0, serializedSize);
+        toByteArray(message, bByteArray, 0, serializedSize);
+        return Arrays.equals(aByteArray, bByteArray);
+    }
+
+    /**
+     * Calculates a hash value based on class name and serializedSize.
+     */
+    @Override
+    public int hashCode() {
+        // See Effective Java Second Edition Item 9.
+        int result = 17;
+        result = 31 * result + getClass().getName().hashCode();
+        result = 31 * result + getSerializedSize();
+        return result;
     }
 }

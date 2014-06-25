@@ -47,6 +47,7 @@ import com.google.protobuf.nano.MultipleImportingNonMultipleNano1;
 import com.google.protobuf.nano.MultipleImportingNonMultipleNano2;
 import com.google.protobuf.nano.MultipleNameClashNano;
 import com.google.protobuf.nano.NanoAccessorsOuterClass.TestNanoAccessors;
+import com.google.protobuf.nano.NanoDefaultEqualsOuterClass.TestAllTypesNanoDefaultEquals;
 import com.google.protobuf.nano.NanoHasOuterClass.TestAllTypesNanoHas;
 import com.google.protobuf.nano.NanoOuterClass;
 import com.google.protobuf.nano.NanoOuterClass.TestAllTypesNano;
@@ -3076,6 +3077,18 @@ public class NanoTest extends TestCase {
     iDifferent.optionalInt32 = i.optionalInt32;
     iDifferent.optionalFloat = 0.0f;
 
+    // Complete equality for messages with default equals implementation:
+    TestAllTypesNanoDefaultEquals j = createMessageForDefaultEqualsTest();
+    TestAllTypesNanoDefaultEquals jEquivalent = createMessageForDefaultEqualsTest();
+
+    // Clearing a field should make the message different.
+    TestAllTypesNanoDefaultEquals k = createMessageForDefaultEqualsTest();
+    k.optionalNestedMessage = null;
+
+    // Changing the value of an int field should make the message different without changing size.
+    TestAllTypesNanoDefaultEquals l = createMessageForDefaultEqualsTest();
+    l.optionalInt32 = 6;
+
     HashMap<MessageNano, String> hashMap = new HashMap<MessageNano, String>();
     hashMap.put(a, "a");
     hashMap.put(b, "b");
@@ -3086,8 +3099,11 @@ public class NanoTest extends TestCase {
     hashMap.put(g, "g");
     hashMap.put(h, "h");
     hashMap.put(i, "i");
+    hashMap.put(j, "j");
+    hashMap.put(k, "k");
+    hashMap.put(l, "l");
 
-    assertEquals(9, hashMap.size()); // a-i should be different from each other.
+    assertEquals(12, hashMap.size()); // a-l should be different from each other.
 
     assertEquals("a", hashMap.get(a));
     assertEquals("a", hashMap.get(aEquivalent));
@@ -3115,6 +3131,12 @@ public class NanoTest extends TestCase {
 
     assertEquals("i", hashMap.get(i));
     assertNull(hashMap.get(iDifferent));
+
+    assertEquals("j", hashMap.get(j));
+    assertEquals("j", hashMap.get(jEquivalent));
+
+    assertEquals("k", hashMap.get(k));
+    assertEquals("l", hashMap.get(l));
   }
 
   private TestAllTypesNano createMessageForHashCodeEqualsTest() {
@@ -3221,6 +3243,30 @@ public class NanoTest extends TestCase {
     };
     return message;
   }
+
+  private TestAllTypesNanoDefaultEquals createMessageForDefaultEqualsTest() {
+    TestAllTypesNanoDefaultEquals message = new TestAllTypesNanoDefaultEquals();
+    message.optionalInt32 = 5;
+    message.optionalFloat = 1.0f;
+    message.optionalString = "Hello";
+    message.optionalBytes = new byte[] { 1, 2, 3 };
+    message.optionalNestedMessage = new TestAllTypesNanoDefaultEquals.NestedMessage();
+    message.optionalNestedMessage.bb = 27;
+    message.optionalNestedEnum = TestAllTypesNano.BAR;
+    message.repeatedInt32 = new int[] { 5, 6, 7, 8 };
+    message.repeatedString = new String[] { "One", "Two" };
+    message.repeatedBytes = new byte[][] { { 2, 7 }, { 2, 7 } };
+    message.repeatedNestedMessage = new TestAllTypesNanoDefaultEquals.NestedMessage[] {
+      message.optionalNestedMessage,
+      message.optionalNestedMessage
+    };
+    message.repeatedNestedEnum = new int[] {
+      TestAllTypesNano.BAR,
+      TestAllTypesNano.BAZ
+    };
+    return message;
+  }
+
 
   public void testEqualsWithSpecialFloatingPointValues() throws Exception {
     // Checks that the nano implementation complies with Object.equals() when treating
