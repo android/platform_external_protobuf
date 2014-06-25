@@ -477,6 +477,7 @@ optional_field_style   -> default or accessors
 enum_style             -> c or java
 ignore_services        -> true or false
 parcelable_messages    -> true or false
+generate_equals        -> true or false
 
 java_package:
 java_outer_classname:
@@ -591,6 +592,18 @@ ignore_services={true,false} (default: false)
 
 parcelable_messages={true,false} (default: false)
   Android-specific option to generate Parcelable messages.
+
+generate_equals={true,false} (default: false)
+  Generates equals and hashCode methods for each message.
+
+  This replaces the default implementation which compares messages by
+  serializing them and comparing the resulting byte arrays, and calculates hash
+  values using the tag value and seralized size.
+
+  The default implementation is inefficient and can result in high numbers of
+  collisions if similar messages are stored in a hash table. Enabling this
+  option will make equals and hashCode much more efficient but will result in 2
+  extra methods per message.
 
 
 To use nano protobufs within the Android repo:
