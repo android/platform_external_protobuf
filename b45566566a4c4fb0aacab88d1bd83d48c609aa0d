@@ -22,6 +22,30 @@
       "revId": "b45566566a4c4fb0aacab88d1bd83d48c609aa0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6487392a_fdab0f73",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-26T15:55:55Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "e472491f_794e4f7f",
+      "range": {
+        "startLine": 175,
+        "startChar": 12,
+        "endLine": 175,
+        "endChar": 24
+      },
+      "revId": "b45566566a4c4fb0aacab88d1bd83d48c609aa0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
