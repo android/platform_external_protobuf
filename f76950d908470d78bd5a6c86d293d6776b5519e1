@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6487392a_5d6dfb84",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-26T16:11:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e472491f_59535315",
+      "revId": "f76950d908470d78bd5a6c86d293d6776b5519e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e472491f_d98d836f",
         "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-26T16:04:46Z",
       "side": 1,
       "message": "toByteArray() already contains the tag, so either have a byte array extractor without the tag, or forget the tag in hash code calculation.",
+      "revId": "f76950d908470d78bd5a6c86d293d6776b5519e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6487392a_1d73836c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-26T16:11:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e472491f_d98d836f",
       "revId": "f76950d908470d78bd5a6c86d293d6776b5519e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
