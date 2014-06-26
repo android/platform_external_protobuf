@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "44d5d5fe_231c9455",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-26T15:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c413859f_44a0ae95",
+      "revId": "3809682e8624fec5cd2d582d179d73b32e5dd2c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e416c98e_85dd82ef",
         "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
         "patchSetId": 4
@@ -30,6 +48,30 @@
       "writtenOn": "2014-06-20T14:17:22Z",
       "side": 1,
       "message": "no more need of the original \"first this then that\" comments (you removed the \"then\" one already) so remove this part too.",
+      "range": {
+        "startLine": 563,
+        "startChar": 78,
+        "endLine": 563,
+        "endChar": 99
+      },
+      "revId": "3809682e8624fec5cd2d582d179d73b32e5dd2c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e416c98e_2babbdad",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-26T15:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e416c98e_85dd82ef",
       "range": {
         "startLine": 563,
         "startChar": 78,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "c413859f_ca5ae7aa",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-26T15:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c413859f_4499ce61",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "3809682e8624fec5cd2d582d179d73b32e5dd2c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4105196_03fb4e5a",
         "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
         "patchSetId": 4
@@ -76,6 +142,24 @@
       "writtenOn": "2014-06-20T14:17:22Z",
       "side": 1,
       "message": "this is gonna break hard...\n\nM a \u003d parseFrom(bytes), b \u003d parseFrom(bytes);\n// a.equals(b) \u003d\u003d true\na.getExtension(e);\n// a.equals(b) \u003d\u003d false",
+      "revId": "3809682e8624fec5cd2d582d179d73b32e5dd2c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e472491f_79356ffb",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-06-26T15:43:07Z",
+      "side": 1,
+      "message": "Done pending https://android-review.googlesource.com/#/c/99274/",
+      "parentUuid": "a4105196_03fb4e5a",
       "revId": "3809682e8624fec5cd2d582d179d73b32e5dd2c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
