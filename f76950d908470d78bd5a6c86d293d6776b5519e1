@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e472491f_59535315",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-26T16:04:46Z",
+      "side": 1,
+      "message": "maybe do this for if (bytes !\u003d null \u0026\u0026 other.bytes !\u003d null) too? You\u0027ll then save at least 4 allocations (2 arrays and 2 CodedOutputByteBufferNano\u0027s)",
+      "revId": "f76950d908470d78bd5a6c86d293d6776b5519e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e472491f_d98d836f",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-26T16:04:46Z",
+      "side": 1,
+      "message": "toByteArray() already contains the tag, so either have a byte array extractor without the tag, or forget the tag in hash code calculation.",
+      "revId": "f76950d908470d78bd5a6c86d293d6776b5519e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
