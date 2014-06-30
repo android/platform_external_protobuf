@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6421f930_ff775754",
+        "filename": "java/src/main/java/com/google/protobuf/nano/UnknownFieldData.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-06-30T13:20:40Z",
+      "side": 1,
+      "message": "If the values are of type \u0027bytes\u0027 or the extension is repeated, then the equals() call will fail most of the time (T[].equals() is identity comparison; where T is primitive or reference type).\n\nSince API19/JDK7 we have java.util.Objects.deepEquals(), but like I said, it\u0027s API19/JDK7 only.\n\nMaybe the following lengthy code is an OK price to pay, since it\u0027s only in 1 single place in the whole bytecode:\n\n    if (extension !\u003d other.extension) {\n        return false;\n    } else if (!value.getClass().isArray()) {\n        // cannot test (!extension.repeated) due to \u0027bytes\u0027 -\u003e \u0027byte[]\u0027\n        return value.equals(other.value);\n    } else if (value instanceof byte[]) {\n        return Arrays.equals((byte[]) value, (byte[]) other.value);\n    } else if ...\n        ... // exhaust all primitive types: boolean, int, long, float, double\n    } else {\n        // reference type; use Object[] as a catch-all and deepEquals to deal with nested arrays\n        return Arrays.deepEquals((Object[]) value, (Object[]) other.value);\n    }",
+      "revId": "da2a02a05a5d0170776016d43a4ceb18fc5a23bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
