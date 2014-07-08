@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "043d9d9e_57d56673",
+        "filename": "java/src/main/java/com/google/protobuf/nano/SparseArray.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-07-08T15:56:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c498e5f7_f03ca801",
+      "revId": "19110d8fb576b732d41391e9f13717a48721a3b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c498e5f7_1042f472",
         "filename": "java/src/main/java/com/google/protobuf/nano/SparseArray.java",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2014-07-08T12:36:43Z",
       "side": 1,
       "message": "take care of mGarbage! although after the API tweaking this may no longer apply.",
+      "revId": "19110d8fb576b732d41391e9f13717a48721a3b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "445eb5fe_673d3cd7",
+        "filename": "java/src/main/java/com/google/protobuf/nano/SparseArray.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-07-08T15:56:42Z",
+      "side": 1,
+      "message": "There\u0027s a call to size() above which checks mGarbage and does a gc() call if necessary. Added a comment.\n\nI was missing the check in hashCode though so I added one there.",
+      "parentUuid": "c498e5f7_1042f472",
       "revId": "19110d8fb576b732d41391e9f13717a48721a3b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
