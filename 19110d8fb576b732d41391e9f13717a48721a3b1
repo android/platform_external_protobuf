@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c498e5f7_f03ca801",
+        "filename": "java/src/main/java/com/google/protobuf/nano/SparseArray.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-08T12:36:43Z",
+      "side": 1,
+      "message": "Well, since you\u0027re also adding isEmpty(), equals() and hashCode(), might as well just make this a proper FieldDataCollection with int[] mFieldNumbers and FieldData[] mFieldData (Data is already plural...) and tweak the API to its minimum.\n\nContainerHelper will only serve this (tweaked) class so might as well merge the two files.",
+      "revId": "19110d8fb576b732d41391e9f13717a48721a3b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c498e5f7_1042f472",
+        "filename": "java/src/main/java/com/google/protobuf/nano/SparseArray.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-08T12:36:43Z",
+      "side": 1,
+      "message": "take care of mGarbage! although after the API tweaking this may no longer apply.",
+      "revId": "19110d8fb576b732d41391e9f13717a48721a3b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
