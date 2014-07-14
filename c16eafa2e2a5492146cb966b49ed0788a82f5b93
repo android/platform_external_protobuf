@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7971a4c6_3ffa2f23",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "you probably don\u0027t need this anymore since you\u0027re guaranteeing tag match at a higher level now.\n\nor use it in another way: if not match, throw exception.",
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7971a4c6_7ff0a742",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "you don\u0027t seem to need this base implementation?",
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7971a4c6_ff0837bb",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "same line?",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 89
+      },
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7971a4c6_7f4c2702",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "rm one of the two spaces",
+      "range": {
+        "startLine": 62,
+        "startChar": 25,
+        "endLine": 62,
+        "endChar": 27
+      },
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7971a4c6_1f516b99",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 73,
+        "startChar": 15,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "996c98f2_a0ee1e90",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "rm",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 31
+      },
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "996c98f2_c0eb127f",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "same double-space; and also the nested if-blocks can become one block.",
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "996c98f2_804c3a03",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "According to gc(), mFieldNumbers and mData can both be longer than mSize, and the elements at [mSize,length) may be arbitrary. You\u0027ll want to cut off the check at mSize. For both equals() and hashCode().",
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "996c98f2_2051ae99",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-14T12:28:14Z",
+      "side": 1,
+      "message": "inline into idealIntArraySize?",
+      "revId": "c16eafa2e2a5492146cb966b49ed0788a82f5b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
