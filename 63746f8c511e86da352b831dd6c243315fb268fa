@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9fb70cc_24329227",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2783,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-17T13:21:29Z",
+      "side": 1,
+      "message": "It might be more valuable to change this setExtension block to (for each line):\n\n  assertFalse(message.hasExtension(...))\n  message.setExtension(...)\n  assertTrue(message.hasExtension(...))",
+      "revId": "63746f8c511e86da352b831dd6c243315fb268fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7938c45c_84b60812",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2952,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-17T13:21:29Z",
+      "side": 1,
+      "message": "and maybe here too,\n\n  assertTrue(hasExtension) // courtesy check\n  setExtension(null)\n  assertFalse(hasExtension)",
+      "revId": "63746f8c511e86da352b831dd6c243315fb268fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
