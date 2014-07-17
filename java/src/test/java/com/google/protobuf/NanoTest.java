@@ -2803,6 +2803,26 @@ public class NanoTest extends TestCase {
     message = Extensions.ExtendableMessage.parseFrom(data);
     assertEquals(5, message.field);
 
+    // Test hasExtension using SingluarExtensions.
+    assertTrue(message.hasExtension(SingularExtensions.someInt32));
+    assertTrue(message.hasExtension(SingularExtensions.someUint32));
+    assertTrue(message.hasExtension(SingularExtensions.someSint32));
+    assertTrue(message.hasExtension(SingularExtensions.someInt64));
+    assertTrue(message.hasExtension(SingularExtensions.someUint64));
+    assertTrue(message.hasExtension(SingularExtensions.someSint64));
+    assertTrue(message.hasExtension(SingularExtensions.someFixed32));
+    assertTrue(message.hasExtension(SingularExtensions.someSfixed32));
+    assertTrue(message.hasExtension(SingularExtensions.someFixed64));
+    assertTrue(message.hasExtension(SingularExtensions.someSfixed64));
+    assertTrue(message.hasExtension(SingularExtensions.someBool));
+    assertTrue(message.hasExtension(SingularExtensions.someFloat));
+    assertTrue(message.hasExtension(SingularExtensions.someDouble));
+    assertTrue(message.hasExtension(SingularExtensions.someEnum));
+    assertTrue(message.hasExtension(SingularExtensions.someString));
+    assertTrue(message.hasExtension(SingularExtensions.someBytes));
+    assertTrue(message.hasExtension(SingularExtensions.someMessage));
+    assertTrue(message.hasExtension(SingularExtensions.someGroup));
+
     // Test reading back using SingularExtensions: the retrieved value should equal the last
     // in each array.
     assertEquals(int32s[1], (int) message.getExtension(SingularExtensions.someInt32));
@@ -2861,10 +2881,26 @@ public class NanoTest extends TestCase {
     assertEquals(group1.a, deserializedRepeatedGroup[0].a);
     assertEquals(group2.a, deserializedRepeatedGroup[1].a);
 
-    // Test reading back using PackedExtensions: the arrays should be equal, even the fields
-    // are non-packed.
     message = Extensions.ExtendableMessage.parseFrom(data);
     assertEquals(5, message.field);
+    // Test hasExtension using PackedExtensions.
+    assertTrue(message.hasExtension(PackedExtensions.packedInt32));
+    assertTrue(message.hasExtension(PackedExtensions.packedUint32));
+    assertTrue(message.hasExtension(PackedExtensions.packedSint32));
+    assertTrue(message.hasExtension(PackedExtensions.packedInt64));
+    assertTrue(message.hasExtension(PackedExtensions.packedUint64));
+    assertTrue(message.hasExtension(PackedExtensions.packedSint64));
+    assertTrue(message.hasExtension(PackedExtensions.packedFixed32));
+    assertTrue(message.hasExtension(PackedExtensions.packedSfixed32));
+    assertTrue(message.hasExtension(PackedExtensions.packedFixed64));
+    assertTrue(message.hasExtension(PackedExtensions.packedSfixed64));
+    assertTrue(message.hasExtension(PackedExtensions.packedBool));
+    assertTrue(message.hasExtension(PackedExtensions.packedFloat));
+    assertTrue(message.hasExtension(PackedExtensions.packedDouble));
+    assertTrue(message.hasExtension(PackedExtensions.packedEnum));
+
+    // Test reading back using PackedExtensions: the arrays should be equal, even the fields
+    // are non-packed.
     assertTrue(Arrays.equals(int32s, message.getExtension(PackedExtensions.packedInt32)));
     assertTrue(Arrays.equals(uint32s, message.getExtension(PackedExtensions.packedUint32)));
     assertTrue(Arrays.equals(sint32s, message.getExtension(PackedExtensions.packedSint32)));
