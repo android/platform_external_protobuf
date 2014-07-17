@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7938c45c_64a3c423",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2783,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-07-17T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9fb70cc_24329227",
+      "revId": "63746f8c511e86da352b831dd6c243315fb268fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7938c45c_84b60812",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-07-17T13:21:29Z",
       "side": 1,
       "message": "and maybe here too,\n\n  assertTrue(hasExtension) // courtesy check\n  setExtension(null)\n  assertFalse(hasExtension)",
+      "revId": "63746f8c511e86da352b831dd6c243315fb268fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f87cd3_c699842d",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2952,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-07-17T17:48:45Z",
+      "side": 1,
+      "message": "Did it inside testNullExtensions",
+      "parentUuid": "7938c45c_84b60812",
       "revId": "63746f8c511e86da352b831dd6c243315fb268fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
