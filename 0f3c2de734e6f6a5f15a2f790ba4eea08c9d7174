@@ -52,6 +52,24 @@
       "revId": "0f3c2de734e6f6a5f15a2f790ba4eea08c9d7174",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f95af4db_df1123bd",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-22T17:24:33Z",
+      "side": 1,
+      "message": "void PrimitiveFieldGenerator::\nGenerateEqualsCode(io::Printer* printer) const {\n  // We define equality as serialized form equality. If generate_has(),\n  // then if the field value equals the default value in both messages,\n  // but one\u0027s \u0027has\u0027 field is set and the other\u0027s is not, the serialized\n  // forms are different and we should return false.\n\nso I don\u0027t think there\u0027s any problem here.",
+      "parentUuid": "79e44451_0d1114b9",
+      "revId": "0f3c2de734e6f6a5f15a2f790ba4eea08c9d7174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
