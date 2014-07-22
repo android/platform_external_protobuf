@@ -16,6 +16,24 @@
       "revId": "0f3c2de734e6f6a5f15a2f790ba4eea08c9d7174",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "195ee8cf_3a5f29cc",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-07-22T10:43:05Z",
+      "side": 1,
+      "message": "by hazzer flavor do you mean the \u0027hasX\u0027 fields, or the accessors?\n\nbut I would say, regardless of the flavor, \"field values\" (when \"field\" means proto field) could be considered the same even if the Java representations differ. I.e.\n\n  optional int32 x \u003d ... [default\u003d0];\n  a.x\u003d1, a.hasX\u003dfalse, b.x\u003d1, b.hasX\u003dtrue\n    \"field value\" of x is \"set to 1\", for both a and b.\n  a.x\u003d0, a.hasX\u003dtrue, b.x\u003d0, b.hasX\u003dfalse\n    \"field value\" of a.x is \"set to 0\" and for b.x is \"unset\".\n\nIIRC, the \u0027hasX\u0027 field is relevant only if x \u003d\u003d default.",
+      "parentUuid": "b9123c0c_6b687c6f",
+      "revId": "0f3c2de734e6f6a5f15a2f790ba4eea08c9d7174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
