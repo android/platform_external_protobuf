@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9123c0c_6b687c6f",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2014-07-22T06:40:24Z",
+      "side": 1,
+      "message": "This is true in the case of vanilla flavor but not the hazzer flavor, right?",
+      "revId": "0f3c2de734e6f6a5f15a2f790ba4eea08c9d7174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
