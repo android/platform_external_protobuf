@@ -34,6 +34,24 @@
       "revId": "0f3c2de734e6f6a5f15a2f790ba4eea08c9d7174",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79e44451_0d1114b9",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2014-07-22T17:15:57Z",
+      "side": 1,
+      "message": "But in this equals implementation, these two would be unequal. Is that ok?",
+      "parentUuid": "195ee8cf_3a5f29cc",
+      "revId": "0f3c2de734e6f6a5f15a2f790ba4eea08c9d7174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
