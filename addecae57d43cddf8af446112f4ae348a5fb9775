@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b37b3d36_abaf4969",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-08-29T10:20:22Z",
+      "side": 1,
+      "message": "actually it might be better to add the mask here.",
+      "revId": "addecae57d43cddf8af446112f4ae348a5fb9775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
