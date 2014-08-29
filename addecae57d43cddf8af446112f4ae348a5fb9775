@@ -16,6 +16,24 @@
       "revId": "addecae57d43cddf8af446112f4ae348a5fb9775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b37b3d36_2bbcb99e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1053813
+      },
+      "writtenOn": "2014-08-29T13:54:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b37b3d36_abaf4969",
+      "revId": "addecae57d43cddf8af446112f4ae348a5fb9775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
