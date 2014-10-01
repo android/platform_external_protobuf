@@ -2963,6 +2963,10 @@ public class NanoTest extends TestCase {
     assertTrue(Arrays.equals(floats, message.getExtension(RepeatedExtensions.repeatedFloat)));
     assertTrue(Arrays.equals(doubles, message.getExtension(RepeatedExtensions.repeatedDouble)));
     assertTrue(Arrays.equals(enums, message.getExtension(RepeatedExtensions.repeatedEnum)));
+
+    // Clone the message and ensure it's still equal.
+    Extensions.ExtendableMessage clone = (Extensions.ExtendableMessage) message.clone();
+    assertEquals(clone, message);
   }
 
   public void testNullExtensions() throws Exception {
@@ -3770,6 +3774,22 @@ public class NanoTest extends TestCase {
     assertTrue(Arrays.equals(nonPacked.doubles, packed.doubles));
     assertTrue(Arrays.equals(nonPacked.bools, packed.bools));
     assertTrue(Arrays.equals(nonPacked.enums, packed.enums));
+  }
+
+  public void testClone() {
+    // A simple message.
+    AnotherMessage anotherMessage = new AnotherMessage();
+    anotherMessage.string = "Hello";
+    anotherMessage.value = true;
+    anotherMessage.integers = new int[] { 1, 2, 3 };
+
+    AnotherMessage clone = (AnotherMessage) anotherMessage.clone();
+    assertEquals(clone, anotherMessage);
+
+    // Verify it was a deep clone - changes to the clone shouldn't affect the
+    // original.
+    clone.integers[1] = 100;
+    assertFalse(clone.equals(anotherMessage));
   }
 
   private void assertHasWireData(MessageNano message, boolean expected) {
