@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90b9d0ac_075296da",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-02T10:45:43Z",
+      "side": 1,
+      "message": "this is no longer true.\n\nadding jjso for comments.",
+      "revId": "c8d513b74f19d1ca3201b25e24fc4e613b211ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
