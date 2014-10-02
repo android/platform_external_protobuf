@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "706c5c15_190c4f2d",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-02T20:09:39Z",
+      "side": 1,
+      "message": "Interesting, the one project on which this is used in the Other Place is not using store_unknown_fields, so it didn\u0027t hit this case.\n\nI\u0027ll take a look.",
+      "parentUuid": "90b9d0ac_a7adcaf9",
+      "range": {
+        "startLine": 509,
+        "startChar": 29,
+        "endLine": 509,
+        "endChar": 38
+      },
+      "revId": "c8d513b74f19d1ca3201b25e24fc4e613b211ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90b9d0ac_075296da",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 1
