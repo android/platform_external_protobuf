@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "90b9d0ac_a7adcaf9",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-10-02T12:56:58Z",
+      "side": 1,
+      "message": "unknownFieldData is not an ArrayList, it\u0027s a FieldArray: https://android.googlesource.com/platform/external/protobuf/+/master/java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+      "range": {
+        "startLine": 509,
+        "startChar": 29,
+        "endLine": 509,
+        "endChar": 38
+      },
+      "revId": "c8d513b74f19d1ca3201b25e24fc4e613b211ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90b9d0ac_075296da",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 1
@@ -13,6 +36,24 @@
       "writtenOn": "2014-10-02T10:45:43Z",
       "side": 1,
       "message": "this is no longer true.\n\nadding jjso for comments.",
+      "revId": "c8d513b74f19d1ca3201b25e24fc4e613b211ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0bfc88a_a9d6fd77",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1042709
+      },
+      "writtenOn": "2014-10-02T12:56:58Z",
+      "side": 1,
+      "message": "Yeah, this has changed quite a bit. https://android-review.googlesource.com/#/c/98434/12 has the main changes.\n\nThere\u0027s now a FieldArray class that contains FieldData instances, one for each field. Each FieldData can have either a List\u003cUnknownFieldData\u003e for unknown fields or an Extension instance and an Object value for extensions that have been deserialised. When the extensions is deserialised by calling getExtension(Extension) the List\u003cUnknownFieldData\u003e is destroyed and the value Object becomes the sources of truth. That object is not immutable so it needs to be cloned as well.\n\nThe best thing to do here is probably to add clone() methods in FieldData and FieldArray. The one in FieldData would either clone the List\u003cUnknownFieldData\u003e or the Extension and value Object.",
+      "parentUuid": "90b9d0ac_075296da",
       "revId": "c8d513b74f19d1ca3201b25e24fc4e613b211ea9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
