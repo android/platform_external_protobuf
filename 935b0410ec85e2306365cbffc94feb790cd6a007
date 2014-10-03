@@ -2,6 +2,166 @@
   "comments": [
     {
       "key": {
+        "uuid": "50c2f81e_f352a8a6",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "seems this should live in MessageNano.java",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0bfc88a_af7a7d10",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "you can simply define the return type as FieldArray to save some casts, I think. It will still be an override.",
+      "range": {
+        "startLine": 275,
+        "startChar": 17,
+        "endLine": 275,
+        "endChar": 23
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c2f81e_53a93c21",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "primitive arrays can simply be clone()\u0027d.\n\nbut you\u0027ll also be cloning the special DELETED marker and ruin the garbage checks for the clone.\n\nMaybe just do a proper copy of this FieldArray? Or you can cheat a bit:\n\n  // Rely on size() to compact the field number and data arrays of this instance.\n  int size \u003d size();\n  FieldArray clone \u003d new FieldArray(size);\n  System.arraycopy(mFieldNumbers, 0, clone.mFieldNumbers, 0, size);\n  for (int i \u003d 0; i \u003c size; i++) { ... }",
+      "range": {
+        "startLine": 278,
+        "startChar": 34,
+        "endLine": 278,
+        "endChar": 64
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90b9d0ac_2d1d39d2",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "FieldData",
+      "range": {
+        "startLine": 174,
+        "startChar": 17,
+        "endLine": 174,
+        "endChar": 23
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90b9d0ac_ed2e41fe",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "IMO I prefer explicitly copying the fields (ref copy for cachedExtension, deep clone for value and unknownFieldData). \n\nThe native clone() is useful only when you have a lot of primitive fields or reference fields for which you don\u0027t need to deep clone, but here you have just one (cachedExtension).",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c2f81e_931484b3",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "I think I prefer seeing MessageNano here, just to make this class as generic as possible. [chances are you can compile one group of protobuf in 2 batches with compatible options except store_unknown_fields, and they still compile together.]",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0bfc88a_cfb8114f",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "short[] and char[] won\u0027t exist in protobuf",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0bfc88a_cfa6d11e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-03T11:09:54Z",
+      "side": 1,
+      "message": "clone() is shallow, these two should be the same instance.",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 91
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c2f81e_d36e8c6f",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
         "patchSetId": 3
