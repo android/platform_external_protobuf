@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "706c5c15_ea11afc1",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50c2f81e_f352a8a6",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0bfc88a_af7a7d10",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
         "patchSetId": 3
