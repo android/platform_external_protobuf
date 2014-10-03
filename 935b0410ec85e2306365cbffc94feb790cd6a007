@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "706c5c15_0a7eab07",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0bfc88a_af7a7d10",
+      "range": {
+        "startLine": 275,
+        "startChar": 17,
+        "endLine": 275,
+        "endChar": 23
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c2f81e_53a93c21",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
         "patchSetId": 3
@@ -53,6 +77,30 @@
       "writtenOn": "2014-10-03T11:09:54Z",
       "side": 1,
       "message": "primitive arrays can simply be clone()\u0027d.\n\nbut you\u0027ll also be cloning the special DELETED marker and ruin the garbage checks for the clone.\n\nMaybe just do a proper copy of this FieldArray? Or you can cheat a bit:\n\n  // Rely on size() to compact the field number and data arrays of this instance.\n  int size \u003d size();\n  FieldArray clone \u003d new FieldArray(size);\n  System.arraycopy(mFieldNumbers, 0, clone.mFieldNumbers, 0, size);\n  for (int i \u003d 0; i \u003c size; i++) { ... }",
+      "range": {
+        "startLine": 278,
+        "startChar": 34,
+        "endLine": 278,
+        "endChar": 64
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30a8245b_6ea9e021",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50c2f81e_53a93c21",
       "range": {
         "startLine": 278,
         "startChar": 34,
@@ -88,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "30a8245b_eeb630d0",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90b9d0ac_2d1d39d2",
+      "range": {
+        "startLine": 174,
+        "startChar": 17,
+        "endLine": 174,
+        "endChar": 23
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90b9d0ac_ed2e41fe",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
         "patchSetId": 3
@@ -99,6 +171,24 @@
       "writtenOn": "2014-10-03T11:09:54Z",
       "side": 1,
       "message": "IMO I prefer explicitly copying the fields (ref copy for cachedExtension, deep clone for value and unknownFieldData). \n\nThe native clone() is useful only when you have a lot of primitive fields or reference fields for which you don\u0027t need to deep clone, but here you have just one (cachedExtension).",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30fbc487_4c6a9f5d",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90b9d0ac_ed2e41fe",
       "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -122,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "706c5c15_8a3c7b5c",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50c2f81e_931484b3",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0bfc88a_cfb8114f",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
         "patchSetId": 3
@@ -133,6 +241,24 @@
       "writtenOn": "2014-10-03T11:09:54Z",
       "side": 1,
       "message": "short[] and char[] won\u0027t exist in protobuf",
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "706c5c15_6a411fd2",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0bfc88a_cfb8114f",
       "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -162,6 +288,30 @@
     },
     {
       "key": {
+        "uuid": "30a8245b_eef95061",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0bfc88a_cfa6d11e",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 91
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c2f81e_d36e8c6f",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
         "patchSetId": 3
@@ -173,6 +323,30 @@
       "writtenOn": "2014-10-03T10:43:01Z",
       "side": 1,
       "message": "Why not let these bubble up?",
+      "range": {
+        "startLine": 212,
+        "startChar": 17,
+        "endLine": 212,
+        "endChar": 43
+      },
+      "revId": "935b0410ec85e2306365cbffc94feb790cd6a007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30fbc487_2c5bd3d2",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2014-10-03T20:04:10Z",
+      "side": 1,
+      "message": "It\u0027s a checked exception that can never be thrown.",
+      "parentUuid": "50c2f81e_d36e8c6f",
       "range": {
         "startLine": 212,
         "startChar": 17,
