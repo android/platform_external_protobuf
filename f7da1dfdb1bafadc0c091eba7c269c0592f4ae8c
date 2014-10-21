@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b5f16652_66900a2c",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-10-21T17:46:02Z",
+      "side": 1,
+      "message": "Hmm... it seems like we need something in the case that someone has a legacy dependency on 2.3.0 but is getting the newer code from https://android-review.googlesource.com/#/c/107725/, since only one of these should be active.\n\nShould we update the other CL to strip out the matching 2.3.0 dependency if it\u0027s present? Or is there another way to do this?",
+      "parentUuid": "106fa0ad_ed3be961",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "106fa0ad_2d6fa16c",
         "filename": "prebuilts/Android.mk",
         "patchSetId": 3
