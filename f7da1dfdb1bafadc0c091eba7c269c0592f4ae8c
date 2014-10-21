@@ -33,6 +33,24 @@
       "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b5f16652_06b6ded1",
+        "filename": "prebuilts/Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-10-21T17:44:18Z",
+      "side": 1,
+      "message": "Sorry, yes, I wasn\u0027t sure about this.\n\nHow can I cross compile these on my workstation, and is there an example somewhere of how to specify the prebuilt to use for each architecture?",
+      "parentUuid": "106fa0ad_2d6fa16c",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
