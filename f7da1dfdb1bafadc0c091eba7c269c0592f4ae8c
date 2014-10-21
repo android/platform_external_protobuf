@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "106fa0ad_6d7ef908",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2014-10-21T17:58:12Z",
+      "side": 1,
+      "message": "You mean the user lists both libprotobuf-cpp-full-gnustl-rtti and libprotobuf-cpp-2.3.0-full-gnustl-rtti in his Android.mk? that\u0027s his error. \tLOCAL_OVERRIDES_PACKAGES won\u0027t prevent that from happening. There is no general build system mechanism for that, unless you explicitly check LOCAL_STATIC_LIBRARIES in the build system, which I don\u0027t think is necessary.",
+      "parentUuid": "b5f16652_66900a2c",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "106fa0ad_2d6fa16c",
         "filename": "prebuilts/Android.mk",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Sorry, yes, I wasn\u0027t sure about this.\n\nHow can I cross compile these on my workstation, and is there an example somewhere of how to specify the prebuilt to use for each architecture?",
       "parentUuid": "106fa0ad_2d6fa16c",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3072e491_9eb45af6",
+        "filename": "prebuilts/Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2014-10-21T17:58:12Z",
+      "side": 1,
+      "message": "\"lunch aosp_\u003carch_name\u003e\" the run \"make \u003cmodule_name\u003e\".\n$(BUILD_MULTI_PREBUILT) doesn\u0027t support multi archs.\nYou\u0027ll need to use $(BUILD_PREBUILT) for each prebuilt library and use LOCAL_SRC_FILES_\u003carch_name\u003e to specify arch-specific source file. I can help write the makefile after you check in the prebuilts.",
+      "parentUuid": "b5f16652_06b6ded1",
       "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
