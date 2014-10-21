@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5633af0_0c6f371d",
+        "filename": "prebuilts/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2014-10-21T23:50:50Z",
+      "side": 1,
+      "message": "I think you also need the following line to enable multilib in 64-bit build:\nLOCAL_MULTILIB :\u003d both",
+      "revId": "db9bce6bb3dadc1affd1655e92c66be17944144e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d5633af0_ac5dcb6f",
+        "filename": "prebuilts/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2014-10-21T23:50:50Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "db9bce6bb3dadc1affd1655e92c66be17944144e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "151b126c_3c9b3580",
+        "filename": "prebuilts/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2014-10-21T23:50:50Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "db9bce6bb3dadc1affd1655e92c66be17944144e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
