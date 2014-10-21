@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "d5633af0_cc2fdff8",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2014-10-21T23:45:22Z",
+      "side": 1,
+      "message": "Yes, you should fix them, maybe also make it an error in the build system if you find both are set.",
+      "parentUuid": "350576fe_3fce83ed",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "106fa0ad_2d6fa16c",
         "filename": "prebuilts/Android.mk",
         "patchSetId": 3
