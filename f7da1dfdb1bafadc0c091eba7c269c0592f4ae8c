@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "350576fe_3fce83ed",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-10-21T20:08:55Z",
+      "side": 1,
+      "message": "I\u0027m referring to the more common case of someone specifying both LOCAL_PROTOC_OPTIMIZE_TYPE\u003dfull and an explicit dependency on, say, libprotobuf-cpp-2.3.0-full.\n\nhttps://android-review.googlesource.com/#/c/107725/4/core/java.mk\n\nShould I update that to replace the existing -2.3.0 dependency if one exists?",
+      "parentUuid": "106fa0ad_6d7ef908",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "106fa0ad_2d6fa16c",
         "filename": "prebuilts/Android.mk",
         "patchSetId": 3
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "\"lunch aosp_\u003carch_name\u003e\" the run \"make \u003cmodule_name\u003e\".\n$(BUILD_MULTI_PREBUILT) doesn\u0027t support multi archs.\nYou\u0027ll need to use $(BUILD_PREBUILT) for each prebuilt library and use LOCAL_SRC_FILES_\u003carch_name\u003e to specify arch-specific source file. I can help write the makefile after you check in the prebuilts.",
       "parentUuid": "b5f16652_06b6ded1",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "350576fe_a2e83a0f",
+        "filename": "prebuilts/Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2014-10-21T20:08:55Z",
+      "side": 1,
+      "message": "Prebuilts added, makefile updated and seems to work but please double check that I have it right :)",
+      "parentUuid": "3072e491_9eb45af6",
       "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
