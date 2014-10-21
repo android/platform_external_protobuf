@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1096c0c9_c4fb7423",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-21T12:02:17Z",
+      "side": 1,
+      "message": "ints",
+      "range": {
+        "startLine": 78,
+        "startChar": 48,
+        "endLine": 78,
+        "endChar": 53
+      },
+      "revId": "b7cf53ba3b46eb17180465d3d3bb151fa4d93f3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "309904fa_258ed48b",
+        "filename": "java/src/main/java/com/google/protobuf/nano/Extension.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-10-21T12:02:17Z",
+      "side": 1,
+      "message": "+ \"The data should be viewed as an unsigned 32-bit value.\" ?",
+      "revId": "b7cf53ba3b46eb17180465d3d3bb151fa4d93f3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
