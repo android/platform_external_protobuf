@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "106fa0ad_ed3be961",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2014-10-21T17:43:43Z",
+      "side": 1,
+      "message": "You don\u0027t need those LOCAL_OVERRIDES_PACKAGES: they will be no-op in those cases.  LOCAL_OVERRIDES_PACKAGES only works for apk module and it means \"If I am installed, please skip those apks\".\nPlease remove them.",
+      "revId": "f7da1dfdb1bafadc0c091eba7c269c0592f4ae8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "106fa0ad_2d6fa16c",
         "filename": "prebuilts/Android.mk",
         "patchSetId": 3
