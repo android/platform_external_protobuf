@@ -1,0 +1,7 @@
+Code-Review+2: Brian Duff <bduff@google.com>
+Verified+1: Brian Duff <bduff@google.com>
+Submitted-by: Behrooz Khorashadi <behrooz@google.com>
+Submitted-at: Thu, 06 Nov 2014 18:46:17 +0000
+Reviewed-on: https://android-review.googlesource.com/113211
+Project: platform/external/protobuf
+Branch: refs/heads/master
