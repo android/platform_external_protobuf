@@ -31,7 +31,11 @@
 package com.google.protobuf.nano;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
+import java.nio.charset.CoderResult;
 
 /**
  * Encodes and writes protocol message fields.
@@ -48,15 +52,17 @@ import java.io.UnsupportedEncodingException;
  * @author kneton@google.com Kenton Varda
  */
 public final class CodedOutputByteBufferNano {
-  private final byte[] buffer;
-  private final int limit;
-  private int position;
+  private static final Charset UTF8_CHARSET = Charset.forName("UTF-8");
+  private final ByteBuffer buffer;
+  private CharsetEncoder charsetEncoder;
 
   private CodedOutputByteBufferNano(final byte[] buffer, final int offset,
                             final int length) {
+    this(ByteBuffer.wrap(buffer, offset, length));
+  }
+
+  private CodedOutputByteBufferNano(final ByteBuffer buffer) {
     this.buffer = buffer;
-    position = offset;
-    limit = offset + length;
   }
 
   /**
@@ -288,12 +294,25 @@ public final class CodedOutputByteBufferNano {
 
   /** Write a {@code string} field to the stream. */
   public void writeStringNoTag(final String value) throws IOException {
-    // Unfortunately there does not appear to be any way to tell Java to encode
-    // UTF-8 directly into our buffer, so we have to let it create its own byte
-    // array and then copy.
-    final byte[] bytes = value.getBytes("UTF-8");
-    writeRawVarint32(bytes.length);
-    writeRawBytes(bytes);
+    writeRawVarint32(encodedLength(value));
+    if (charsetEncoder == null ) {
+      charsetEncoder = UTF8_CHARSET.newEncoder();
+    }
+    try {
+      final CharBuffer charBuffer = CharBuffer.wrap(value);
+      CoderResult coderResult = charsetEncoder.encode(charBuffer, buffer, true /*end of input*/);
+      // Underflow is expected here, we're not planning on filling the buffer
+      if (coderResult.isError() && !coderResult.isUnderflow()) {
+        coderResult.throwException();
+      }
+      coderResult = charsetEncoder.flush(buffer);
+      // Underflow is expected here, we're not planning on filling the buffer
+      if (coderResult.isError() && !coderResult.isUnderflow()) {
+        coderResult.throwException();
+      }
+    } finally {
+      charsetEncoder.reset();
+    }
   }
 
   /** Write a {@code group} field to the stream. */
@@ -603,13 +622,69 @@ public final class CodedOutputByteBufferNano {
    * {@code string} field.
    */
   public static int computeStringSizeNoTag(final String value) {
-    try {
-      final byte[] bytes = value.getBytes("UTF-8");
-      return computeRawVarint32Size(bytes.length) +
-             bytes.length;
-    } catch (UnsupportedEncodingException e) {
-      throw new RuntimeException("UTF-8 not supported.");
+    final int length = encodedLength(value);
+    return computeRawVarint32Size(length) + length;
+  }
+
+  /**
+   * Returns the number of bytes in the UTF-8-encoded form of {@code sequence}. For a string,
+   * this method is equivalent to {@code string.getBytes(UTF_8).length}, but is more efficient in
+   * both time and space.
+   *
+   * @throws IllegalArgumentException if {@code sequence} contains ill-formed UTF-16 (unpaired
+   *     surrogates)
+   */
+  private static int encodedLength(CharSequence sequence) {
+    // Warning to maintainers: this implementation is highly optimized.
+    int utf16Length = sequence.length();
+    int utf8Length = utf16Length;
+    int i = 0;
+
+    // This loop optimizes for pure ASCII.
+    while (i < utf16Length && sequence.charAt(i) < 0x80) {
+      i++;
     }
+
+    // This loop optimizes for chars less than 0x800.
+    for (; i < utf16Length; i++) {
+      char c = sequence.charAt(i);
+      if (c < 0x800) {
+        utf8Length += ((0x7f - c) >>> 31);  // branch free!
+      } else {
+        utf8Length += encodedLengthGeneral(sequence, i);
+        break;
+      }
+    }
+
+    if (utf8Length < utf16Length) {
+      // Necessary and sufficient condition for overflow because of maximum 3x expansion
+      throw new IllegalArgumentException("UTF-8 length does not fit in int: "
+              + (utf8Length + (1L << 32)));
+    }
+    return utf8Length;
+  }
+
+  private static int encodedLengthGeneral(CharSequence sequence, int start) {
+    int utf16Length = sequence.length();
+    int utf8Length = 0;
+    for (int i = start; i < utf16Length; i++) {
+      char c = sequence.charAt(i);
+      if (c < 0x800) {
+        utf8Length += (0x7f - c) >>> 31; // branch free!
+      } else {
+        utf8Length += 2;
+        // jdk7+: if (Character.isSurrogate(c)) {
+        if (Character.MIN_SURROGATE <= c && c <= Character.MAX_SURROGATE) {
+          // Check that we have a well-formed surrogate pair.
+          int cp = Character.codePointAt(sequence, i);
+          if (cp < Character.MIN_SUPPLEMENTARY_CODE_POINT) {
+            throw new IllegalArgumentException("Unpaired surrogate at index " + i);
+          }
+          i++;
+        }
+      }
+    }
+    return utf8Length;
   }
 
   /**
@@ -692,7 +767,7 @@ public final class CodedOutputByteBufferNano {
    * Otherwise, throws {@code UnsupportedOperationException}.
    */
   public int spaceLeft() {
-    return limit - position;
+    return buffer.remaining();
   }
 
   /**
@@ -725,12 +800,12 @@ public final class CodedOutputByteBufferNano {
 
   /** Write a single byte. */
   public void writeRawByte(final byte value) throws IOException {
-    if (position == limit) {
+    if (!buffer.hasRemaining()) {
       // We're writing to a single buffer.
-      throw new OutOfSpaceException(position, limit);
+      throw new OutOfSpaceException(buffer.position(), buffer.limit());
     }
 
-    buffer[position++] = value;
+    buffer.put(value);
   }
 
   /** Write a single byte, represented by an integer value. */
@@ -746,13 +821,11 @@ public final class CodedOutputByteBufferNano {
   /** Write part of an array of bytes. */
   public void writeRawBytes(final byte[] value, int offset, int length)
                             throws IOException {
-    if (limit - position >= length) {
-      // We have room in the current buffer.
-      System.arraycopy(value, offset, buffer, position, length);
-      position += length;
+    if (buffer.remaining() >= length) {
+      buffer.put(value, offset, length);
     } else {
       // We're writing to a single buffer.
-      throw new OutOfSpaceException(position, limit);
+      throw new OutOfSpaceException(buffer.position(), buffer.limit());
     }
   }
 
