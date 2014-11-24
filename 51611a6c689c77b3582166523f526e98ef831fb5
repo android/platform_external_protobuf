@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f526d24_acc387c2",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-11-24T12:56:13Z",
+      "side": 1,
+      "message": "Maybe save it to a static field, or an instance field if this class is not intrinsically thread-safe. Otherwise, seeing the \"new\" keyword in a \"write\" method is pretty hairy.",
+      "revId": "51611a6c689c77b3582166523f526e98ef831fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f526d24_8cc0cbb6",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-11-24T12:56:13Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "51611a6c689c77b3582166523f526e98ef831fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
