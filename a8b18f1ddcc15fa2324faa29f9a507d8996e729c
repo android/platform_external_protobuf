@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df3a79c4_40c4d86e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-11-25T13:04:44Z",
+      "side": 1,
+      "message": "I had no idea CharsetEncoder would be this difficult to work with. Since we\u0027re computing the string length ourselves, might as well also perform the string-to-bytes conversion ourselves to also save the allocation of the CharBuffer, CharsetEncoder and up to 2x CodeResult\u0027s.\n\nA quick search yielded no ready-to-use UTF-16 to UTF-8 conversion. Maybe you can find one?\n\nIf all searches fail, you can probably write your own code and do the same optimization: write all ASCII bytes 1:1, then use a 1-or-2-byte conversion loop for all chars \u003c 0x800, then fall back to a general method that uses sequence.codePointAt(i) to read the characters, does 1-to-4-byte conversion per code point, and advances i with a branch-free expression:\n\n  i +\u003d 1 + ((0xFFFF - codePoint) \u003e\u003e\u003e 31)",
+      "revId": "a8b18f1ddcc15fa2324faa29f9a507d8996e729c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f526d24_b5962a20",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-11-25T13:04:44Z",
+      "side": 1,
+      "message": "instead of this scary comment, let\u0027s say\n\n// This and the next method are copied from Guava\u0027s Utf8 class.",
+      "revId": "a8b18f1ddcc15fa2324faa29f9a507d8996e729c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
