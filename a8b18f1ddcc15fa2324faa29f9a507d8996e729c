@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df7199c8_df6bf35e",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2014-11-25T19:37:33Z",
+      "side": 1,
+      "message": "My first thought is that the API is clunky for sure, but writing and maintaining our own UTF16-\u003eUTF8 encoder seems like quite a lot of complexity to add, for the savings of one encoder + N wrapper charbuffers. The CoderResult objects are constants in the non-error case.\n\nHowever, looking at the actual source code of Android\u0027s CharsetEncoderICU, they\u0027re calling getArray(), which makes a copy of the string\u0027s contents (and potentially the ByteBuffer\u0027s contents, if it was direct). They\u0027re then using the wrong type of byte[] passing via JNI, entailing another copy. \n\nWriting our own zero-copy encoder would now save N CharBuffer allocations and N char[] allocations, plus another N native allocations of byte[]s and N copies. Most galling is that decoding directly into our own ByteBuffer is actually making things worse, as the way they\u0027re sending bytes across entails a copy of the entire contents, for every string in the protobuf. Gross.\n\n*sigh*\n\nPeople just can\u0027t resist making extra copies. I will look into writing my own UTF8 encoder.",
+      "parentUuid": "df3a79c4_40c4d86e",
+      "revId": "a8b18f1ddcc15fa2324faa29f9a507d8996e729c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f526d24_b5962a20",
         "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
         "patchSetId": 2
