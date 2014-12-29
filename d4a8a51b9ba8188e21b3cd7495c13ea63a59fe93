@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0144b839_abf62936",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-12-29T11:04:14Z",
+      "side": 1,
+      "message": "max bytes per char in UTF-8 is actually 4 bytes (the new standard) [6 bytes in old standard].\n\nhttp://en.wikipedia.org/wiki/UTF-8\n\nJava could handle Unicode U+10000 to U+10FFFF through surrogate pairs. Those chars require 4 bytes in UTF-8.\n\nI\u0027m not aware of Protocol Buffer limiting the character range to at most U+FFFF, so better not assume.",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
