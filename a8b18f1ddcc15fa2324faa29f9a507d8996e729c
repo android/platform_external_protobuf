@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "618f34ae_e79eb071",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2014-12-29T02:15:49Z",
+      "side": 1,
+      "message": "I\u0027ve now written my own UTF-8 encoder, benchmarked it (1.5x faster than HotSpot\u0027s string.getBytes() with OpenJDK), that allocates no memory. It\u0027s got a bunch of tests that live in guava. PTAL at latest patchset.",
+      "parentUuid": "df7199c8_df6bf35e",
+      "revId": "a8b18f1ddcc15fa2324faa29f9a507d8996e729c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f526d24_b5962a20",
         "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2014-11-25T13:04:44Z",
       "side": 1,
       "message": "instead of this scary comment, let\u0027s say\n\n// This and the next method are copied from Guava\u0027s Utf8 class.",
+      "revId": "a8b18f1ddcc15fa2324faa29f9a507d8996e729c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "618f34ae_07a47cba",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2014-12-29T02:15:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f526d24_b5962a20",
       "revId": "a8b18f1ddcc15fa2324faa29f9a507d8996e729c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
