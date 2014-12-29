@@ -2318,6 +2318,28 @@ public class NanoTest extends TestCase {
     }
   }
 
+  public void testDifferentStringLengthsNano() throws Exception {
+    for (int i = 1; i < 1 << 17; i = ((i * 11) / 10) + 1) {
+      testEncodingOfString('q', i);
+      testEncodingOfString('\u07FF', i);
+    }
+  }
+
+  private void testEncodingOfString(char c, int length) throws InvalidProtocolBufferNanoException {
+    TestAllTypesNano testAllTypesNano = new TestAllTypesNano();
+    final String fullString = fullString(c, length);
+    testAllTypesNano.optionalString = fullString;
+    final TestAllTypesNano resultNano = new TestAllTypesNano();
+    MessageNano.mergeFrom(resultNano, MessageNano.toByteArray(testAllTypesNano));
+    assertEquals(fullString, resultNano.optionalString);
+  }
+
+  private String fullString(char c, int length) {
+    char[] result = new char[length];
+    Arrays.fill(result, c);
+    return new String(result);
+  }
+
   public void testNanoWithHasParseFrom() throws Exception {
     TestAllTypesNanoHas msg = null;
     // Test false on creation, after clear and upon empty parse.
