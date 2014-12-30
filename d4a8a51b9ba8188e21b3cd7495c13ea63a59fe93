@@ -16,6 +16,24 @@
       "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a12ccc7b_68bb6342",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2014-12-30T02:35:06Z",
+      "side": 1,
+      "message": "Per java char, not per code point. All characters that take 4 bytes in UTF-8 are represented by a surrogate pair, so while they use 4 bytes of UTF-8 they\u0027re two chars in java.",
+      "parentUuid": "0144b839_abf62936",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
