@@ -34,6 +34,41 @@
       "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a185ac8b_86e40ee1",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-12-30T11:40:50Z",
+      "side": 1,
+      "message": "Sorry, my bad at arriving at conclusions without looking. But maybe expand the inline comment as follows and merge it with the comment at the beginning of this method:\n\nUTF-8 byte length of the string is at least its UTF-16 code unit length (value.length()), and at most 3 times of it. Optimize for the case where we know this length results in a constant varint length - saves measuring length of the string.",
+      "parentUuid": "a12ccc7b_68bb6342",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0144b839_ce7d4353",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2321,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-12-30T11:40:50Z",
+      "side": 1,
+      "message": "- not sure about whether this needs to be tested at all; it\u0027s just implementation detail.\n- but if you do want to test string encoding at this detailed level, then this test seems to be a bit inefficient (e.g. testing string lengths 1-9) and ineffective (e.g. no surrogate pair testing; no [apparent] edge case testing).\n\nI would just remove this and put blind trust in the Guava code :)",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
