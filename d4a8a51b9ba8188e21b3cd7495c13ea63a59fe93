@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "418cf0b9_7255fe91",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2014-12-30T21:26:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a185ac8b_86e40ee1",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0144b839_ce7d4353",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "writtenOn": "2014-12-30T11:40:50Z",
       "side": 1,
       "message": "- not sure about whether this needs to be tested at all; it\u0027s just implementation detail.\n- but if you do want to test string encoding at this detailed level, then this test seems to be a bit inefficient (e.g. testing string lengths 1-9) and ineffective (e.g. no surrogate pair testing; no [apparent] edge case testing).\n\nI would just remove this and put blind trust in the Guava code :)",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "418cf0b9_b20786be",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2321,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2014-12-30T21:26:09Z",
+      "side": 1,
+      "message": "I added these because I have some (somewhat complex) code that manages avoiding string measurement based on length, and so I wanted to have coverage of both code paths.",
+      "parentUuid": "0144b839_ce7d4353",
       "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
