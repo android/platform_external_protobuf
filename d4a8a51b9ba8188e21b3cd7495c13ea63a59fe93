@@ -123,6 +123,24 @@
       "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a12ccc7b_abf63536",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2321,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2014-12-31T21:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a185ac8b_c61ff6cd",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
