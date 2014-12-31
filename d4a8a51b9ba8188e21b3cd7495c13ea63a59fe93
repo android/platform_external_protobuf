@@ -105,6 +105,24 @@
       "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a185ac8b_c61ff6cd",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2321,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-12-31T11:27:32Z",
+      "side": 1,
+      "message": "In that case I would hard code some useful lengths instead of going through a for-loop that seems to have an arbitrary limit (1 \u003c\u003c 17) and stepping (* 11/10 + 1).\n\nHow about:\n\n// Test string serialization roundtrip using a pure-ASCII string and a Unicode\n// string of each of the following lengths. For some of them, the length varint\n// requires more bytes for the Unicode string than the ASCII string.\nint[] lengths \u003d {\n  (1 \u003c\u003c 4) - 1,  // 1 byte for ASCII and Unicode\n  (1 \u003c\u003c 7) - 1,  // 1 byte for ASCII, 2 bytes for Unicode\n  (1 \u003c\u003c 11) - 1, // 2 bytes for ASCII and Unicode\n  (1 \u003c\u003c 14) - 1, // 2 bytes for ASCII, 3 bytes for Unicode\n  (1 \u003c\u003c 17) - 1, // 3 bytes for ASCII and Unicode\n};\nfor (int length : lengths) {\n  testEncodingOfString(\u0027q\u0027, length);\n  testEncodingOfString(\u0027\\u07FF\u0027, length);\n}",
+      "parentUuid": "418cf0b9_b20786be",
+      "revId": "d4a8a51b9ba8188e21b3cd7495c13ea63a59fe93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
