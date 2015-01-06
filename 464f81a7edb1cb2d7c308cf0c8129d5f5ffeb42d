@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a185ac8b_0f4651f0",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2325,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-06T12:00:30Z",
+      "side": 1,
+      "message": "without the \"intro comment\" it\u0027s pretty difficult to grasp what these \"bytes\" are. In particular, the \"bytes\" in the lengths[] definition refer to the bytes in the length delimiter varint and the \"bytes\" in the for-loop mean payload bytes, but it\u0027s unclear from reading the current code. \n\nHere\u0027s the revised version of my recommendation in patch set 3, which should provide good enough a context for all \"byte\" references:\n\n // Test string serialization roundtrip using strings of the following lengths,\n // with ASCII and Unicode characters requiring different UTF-8 byte counts per\n // char, hence causing the length delimiter varint to sometimes require more\n // bytes for the Unicode strings than the ASCII string of the same length.\n int[] lengths \u003d ...",
+      "revId": "464f81a7edb1cb2d7c308cf0c8129d5f5ffeb42d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
