@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4e4fbd7e_65e006a4",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2015-01-06T19:07:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e52c124_e9dcd178",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e3065e8_c0d0cc09",
         "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
         "patchSetId": 6
