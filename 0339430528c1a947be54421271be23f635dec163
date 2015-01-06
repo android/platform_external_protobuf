@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e52c124_0695daca",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2015-01-06T18:48:11Z",
+      "side": 1,
+      "message": "Just check if this is \u003c\u003d1 rather than computing min/max.",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3065e8_c0d0cc09",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2015-01-06T18:48:11Z",
+      "side": 1,
+      "message": "encodedLengthGeneral already does that. This seems not entirely necessary.",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0144b839_ff2f0725",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1020814
+      },
+      "writtenOn": "2015-01-06T18:48:11Z",
+      "side": 1,
+      "message": "Don\u0027t strings have to be well-formed anyway?",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
