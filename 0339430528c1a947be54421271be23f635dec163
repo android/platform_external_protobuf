@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e52c124_e9dcd178",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2015-01-06T18:54:38Z",
+      "side": 1,
+      "message": "Why? That produces non-optimal results for all strings greater than 47 chars in length. What we care about is that the length of the varint can be predetermined.",
+      "parentUuid": "6e52c124_0695daca",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e3065e8_c0d0cc09",
         "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4e4fbd7e_85b9c2e9",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2015-01-06T18:54:38Z",
+      "side": 1,
+      "message": "This code has been heavily benchmarked, and this loop allows i to have a fixed stride, which allows bounds check elimination in this loop.",
+      "parentUuid": "0e3065e8_c0d0cc09",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0144b839_ff2f0725",
         "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2015-01-06T18:48:11Z",
       "side": 1,
       "message": "Don\u0027t strings have to be well-formed anyway?",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e4fbd7e_45abca90",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2015-01-06T18:54:38Z",
+      "side": 1,
+      "message": "This method accepts a CharSequence, not a String, and I don\u0027t want it to diverge from the one in Guava.",
+      "parentUuid": "0144b839_ff2f0725",
       "revId": "0339430528c1a947be54421271be23f635dec163",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
