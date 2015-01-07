@@ -122,6 +122,24 @@
       "revId": "0339430528c1a947be54421271be23f635dec163",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce02cd41_919c9c47",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-07T12:42:42Z",
+      "side": 1,
+      "message": "Even String instances seem to allow invalid UTF-16 encoding because they are just char[] under the hood. This assumption is supported by the constructor String(char[]) not throwing any exception at all, and String.codePointAt(int) returning just the charAt(int) on finding invalid encoding at the given index:\n\nhttp://download.java.net/jdk7/archive/b123/docs/api/java/lang/String.html#codePointAt(int)",
+      "parentUuid": "4e4fbd7e_45abca90",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
