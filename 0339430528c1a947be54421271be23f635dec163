@@ -140,6 +140,24 @@
       "revId": "0339430528c1a947be54421271be23f635dec163",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e4a2599_fbd7cf76",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1059543
+      },
+      "writtenOn": "2015-01-07T18:37:56Z",
+      "side": 1,
+      "message": "An invalid String sounds like it should throw an exception. The java behavior when doing getBytes() on a String with unpaired surrogates appears to be replacing it with \u0027?\u0027 [1].\n\n[1] http://bugs.java.com/bugdatabase/view_bug.do?bug_id\u003d4628881",
+      "parentUuid": "ce02cd41_919c9c47",
+      "revId": "0339430528c1a947be54421271be23f635dec163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
