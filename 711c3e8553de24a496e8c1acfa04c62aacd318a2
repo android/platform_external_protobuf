@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ce2badc1_f2935e62",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-01-08T02:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "309904fa_d0bdece0",
+      "range": {
+        "startLine": 280,
+        "startChar": 28,
+        "endLine": 280,
+        "endChar": 40
+      },
+      "revId": "711c3e8553de24a496e8c1acfa04c62aacd318a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "309904fa_10c8347f",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2014-10-21T13:12:12Z",
       "side": 1,
       "message": "size",
+      "range": {
+        "startLine": 285,
+        "startChar": 22,
+        "endLine": 285,
+        "endChar": 27
+      },
+      "revId": "711c3e8553de24a496e8c1acfa04c62aacd318a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce2badc1_d290da58",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldArray.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-01-08T02:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "309904fa_10c8347f",
       "range": {
         "startLine": 285,
         "startChar": 22,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "ce348d09_755d90eb",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-01-08T02:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f064ccc9_ae0c8fdf",
+      "revId": "711c3e8553de24a496e8c1acfa04c62aacd318a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f064ccc9_6ef43766",
         "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
         "patchSetId": 4
@@ -76,6 +142,24 @@
       "writtenOn": "2014-10-21T13:12:12Z",
       "side": 1,
       "message": "I think this needs deep cloning, too, like MessageNano[] below.",
+      "revId": "711c3e8553de24a496e8c1acfa04c62aacd318a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce2badc1_72a00eaa",
+        "filename": "java/src/main/java/com/google/protobuf/nano/FieldData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-01-08T02:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f064ccc9_6ef43766",
       "revId": "711c3e8553de24a496e8c1acfa04c62aacd318a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
