@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeb4f1df_fa48892b",
+        "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3004,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-08T11:53:11Z",
+      "side": 1,
+      "message": "If the code generation is correct, this cast shouldn\u0027t be necessary? (removing the cast would test one more aspect of the codegen, in other words)",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ea8d591_ef48c12b",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-08T11:53:11Z",
+      "side": 1,
+      "message": "implements java.lang.Cloneable",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e8d6144_6edf6fe5",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-08T11:53:11Z",
+      "side": 1,
+      "message": "whole class is generated \u0027final\u0027, so no need for this \u0027final\u0027 keyword",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ea8d591_0fb9859e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-08T11:53:11Z",
+      "side": 1,
+      "message": "catch (java.lang.CloneNotSupportedException...",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ea8d591_4fc38d1a",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-08T11:53:11Z",
+      "side": 1,
+      "message": "hmm, seems this code snippet can live in ExtendableMessageNano.clone(), which overrides MessageNano.clone() and does the unknown field cloning.\n\nBasically, move InternalNano.cloneUnknownFieldData() into ExtendableMessageNano.clone().",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
