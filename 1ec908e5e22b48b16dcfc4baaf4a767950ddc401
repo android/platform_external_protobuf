@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0eb22512_db2cd389",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-09T11:49:19Z",
+      "side": 1,
+      "message": "[following my other comment]\n\nAnd I think this method does nothing. On its own, it only serves as publishing the protected method, but I think this method is never called using this base class. All generated message cloning code looks like:\n\n  cloned.message \u003d this.message.clone();\n\nand both sides of the assign operator has the same (final) subtype of MessageNano, which supposedly has a generated public clone() method returning the right type.\n\nSo, this method can go away; the clone() override in ExtendableMessageNano can be kept protected (and return the right type \u0027M\u0027 directly to save a type cast from the generated code) and throw CloneNotSupportedException appropriately.",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeb4f1df_fa48892b",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 5
@@ -171,6 +188,24 @@
       "side": 1,
       "message": "We only generate this code if the generate_clone generator option is enabled. Putting this code in ExtendableMessageNano would ignore the generator option.",
       "parentUuid": "8ea8d591_4fc38d1a",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2eb529f8_bcaea175",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-01-09T11:49:19Z",
+      "side": 1,
+      "message": "Without generate_clone, there won\u0027t be a Cloneable interface implementation declaration, and super.clone() inside MessageNano would fail with CloneNotSupportedException (correctly).\n\nWhen ExtendableMessageNano is kept (due to store_unknown_fields), FieldArray and FieldData are already kept, along with their clone() methods because they \"override a library method\", so there\u0027s no proguard benefit in not doing the clone in ExtendableMessageNano.\n\nThat\u0027s why I think this base clone process should live in ExtendableMessageNano, like the base serialized size code.\n\nJust my personal opinion; you\u0027re welcome to submit as is :)",
+      "parentUuid": "2ee9a9cf_50c87ce7",
       "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
