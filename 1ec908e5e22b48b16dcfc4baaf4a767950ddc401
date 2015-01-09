@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ef945d6_092d6dad",
+        "filename": "java/src/main/java/com/google/protobuf/nano/MessageNano.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-01-09T21:53:06Z",
+      "side": 1,
+      "message": "This is needed because the deep copy in FieldData.java needs to be able to invoke clone() generally on a MessageNano rather than on a subtype (see FieldData.java:207).",
+      "parentUuid": "0eb22512_db2cd389",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeb4f1df_fa48892b",
         "filename": "java/src/test/java/com/google/protobuf/NanoTest.java",
         "patchSetId": 5
@@ -206,6 +224,24 @@
       "side": 1,
       "message": "Without generate_clone, there won\u0027t be a Cloneable interface implementation declaration, and super.clone() inside MessageNano would fail with CloneNotSupportedException (correctly).\n\nWhen ExtendableMessageNano is kept (due to store_unknown_fields), FieldArray and FieldData are already kept, along with their clone() methods because they \"override a library method\", so there\u0027s no proguard benefit in not doing the clone in ExtendableMessageNano.\n\nThat\u0027s why I think this base clone process should live in ExtendableMessageNano, like the base serialized size code.\n\nJust my personal opinion; you\u0027re welcome to submit as is :)",
       "parentUuid": "2ee9a9cf_50c87ce7",
+      "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ef945d6_a90ad915",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-01-09T21:53:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2eb529f8_bcaea175",
       "revId": "1ec908e5e22b48b16dcfc4baaf4a767950ddc401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
