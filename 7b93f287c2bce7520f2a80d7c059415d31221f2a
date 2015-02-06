@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcdb18ac_294fcdf7",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-02-06T21:01:47Z",
+      "side": 1,
+      "message": "Actually if you are using the platform build system, the build system will use a prebuilt libc++.so in prebuilts/sdk/tools.\nThe problem is when you use it in gradle. You\u0027ll need to copy both aprotoc and libc++.so to the correct place to make it work properly.\nAnyway, I am fine with this CL.",
+      "range": {
+        "startLine": 411,
+        "startChar": 2,
+        "endLine": 411,
+        "endChar": 57
+      },
+      "revId": "7b93f287c2bce7520f2a80d7c059415d31221f2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
