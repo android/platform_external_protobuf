@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56df5d23_3ef2e9f6",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-11T21:28:31Z",
+      "side": 1,
+      "message": "documentation says retention at CLASS though?",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96d55502_c0491ef4",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-11T21:28:31Z",
+      "side": 1,
+      "message": "...IntDef? (sometimes -Int suffix is used to mean internal, so just to lower the chance of name clash here)",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6d09910_01c30a2b",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-11T21:28:31Z",
+      "side": 1,
+      "message": "I think the intdef annotations tend to be long, so newline instead of space?",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6d09910_4196f22f",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-11T21:28:31Z",
+      "side": 1,
+      "message": "same here, newline after \"(\"?",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
