@@ -593,6 +593,30 @@ ignore_services={true,false} (default: false)
 parcelable_messages={true,false} (default: false)
   Android-specific option to generate Parcelable messages.
 
+generate_intdefs={true,false} (default: false)
+  Android-specific option to generate @IntDef annotations for enums.
+
+  One of the major drawbacks of making enum constants integers is the
+  loss of type-safety that results. @IntDef annotations allow for
+  compile-time checks of type-safety by annotating int fields with
+  the set of allowed values, while avoiding runtime overhead. If
+  enabled, this option will generate annotations for each enum can be
+  used when referencing an int constant meant to hold values of that
+  enum type, and annotate variables, getters, and setters
+  accordingly.
+
+  The annotation will have the name of the enum itself. If using
+  Java-style enums, it will be the outer interface. If not, it will
+  be its own class.
+
+  If this option is enabled, your app must declare a compile-time
+  dependency on the android-support-annotations library.
+
+  For more details, see:
+  https://sites.google.com/a/android.com/tools/tech-docs/support-annotations
+  and
+  https://developer.android.com/reference/android/support/annotation/IntDef.html
+
 
 To use nano protobufs within the Android repo:
 
@@ -646,7 +670,7 @@ Please run the following steps to test:
 - "make -j12 aprotoc libprotobuf-java-nano aprotoc-test-nano-params NanoAndroidTest" and
   check for build errors.
 - Plug in an Android device or start an emulator.
-- adb install -r out/target/product/generic/data/app/NanoAndroidTest.apk
+- adb install -r out/target/product/generic/data/app/NanoAndroidTest/NanoAndroidTest.apk
 - Run:
   "adb shell am instrument -w com.google.protobuf.nano.test/android.test.InstrumentationTestRunner"
   and verify all tests pass.
