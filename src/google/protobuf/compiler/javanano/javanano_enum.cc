@@ -82,6 +82,23 @@ void EnumGenerator::Generate(io::Printer* printer) {
     printer->Indent();
   }
 
+  // @IntDef annotation so tools can enforce correctness
+  // Annotations will be discarded by the compiler
+  printer->Print("@java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.SOURCE)\n");
+  printer->Print("@android.support.annotation.IntDef({\n");
+  printer->Indent();
+  for (int i = 0; i < canonical_values_.size(); i++) {
+    printer->Print("$name$,\n", "name", RenameJavaKeywords(canonical_values_[i]->name()));
+  }
+  for (int i = 0; i < aliases_.size(); i++) {
+    printer->Print("$name$,\n", "name", RenameJavaKeywords(aliases_[i].value->name()));
+  }
+  printer->Outdent();
+  printer->Print("})\n");
+  printer->Print(
+    "public @interface $classname$Int {}\n\n",
+    "classname", RenameJavaKeywords(descriptor_->name()));
+
   // Canonical values
   for (int i = 0; i < canonical_values_.size(); i++) {
     printer->Print(
