@@ -436,6 +436,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := aprotoc-test-nano-params
 LOCAL_MODULE_TAGS := tests
 LOCAL_SDK_VERSION := current
+# TODO STOPSHIP: Remove this once the compiler flag is added
+LOCAL_JAVA_LIBRARIES := android-support-annotations
 
 LOCAL_PROTOC_OPTIMIZE_TYPE := nano
 
@@ -462,6 +464,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := android-nano-test-parcelable
 LOCAL_MODULE_TAGS := tests
 LOCAL_SDK_VERSION := current
+# Only needed at compile-time.
+LOCAL_JAVA_LIBRARIES := android-support-annotations
 
 LOCAL_PROTOC_OPTIMIZE_TYPE := nano
 
@@ -480,6 +484,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := android-nano-test-parcelable-extendable
 LOCAL_MODULE_TAGS := tests
 LOCAL_SDK_VERSION := current
+# Only needed at compile-time.
+LOCAL_JAVA_LIBRARIES := android-support-annotations
 
 LOCAL_PROTOC_OPTIMIZE_TYPE := nano
 
