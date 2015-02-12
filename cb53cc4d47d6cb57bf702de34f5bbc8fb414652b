@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "36d10940_d5649c0d",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-12T00:23:02Z",
+      "side": 1,
+      "message": "I was basing things off https://sites.google.com/a/android.com/tools/tech-docs/support-annotations\n\nI\u0027m not sure I see any reason why we\u0027d need to keep the annotation compiled in. Android Studio shows me the errors regardless. Not sure if there are other tool use cases that depend on the annotation being compiled in though...",
+      "parentUuid": "56df5d23_3ef2e9f6",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96d55502_c0491ef4",
         "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-11T21:28:31Z",
       "side": 1,
       "message": "...IntDef? (sometimes -Int suffix is used to mean internal, so just to lower the chance of name clash here)",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6c0ad6a_5a6b1588",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-12T00:23:02Z",
+      "side": 1,
+      "message": "Done.\n\nFWIW my first preference would be to just have it be the classname itself, but that interferes with the container interface. It makes much more sense to have:\n\n@Source private int mSource;\n\nthan:\n\n@SourceIntDef private int mSource;\n\nwhen declaring a field of a given enum type (\"Source\" in the example) outside the generated code.",
+      "parentUuid": "96d55502_c0491ef4",
       "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d6c0ad6a_da0a85cb",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-12T00:23:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6d09910_01c30a2b",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6d09910_4196f22f",
         "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2015-02-11T21:28:31Z",
       "side": 1,
       "message": "same here, newline after \"(\"?",
+      "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56d4bd2d_56a3f4c8",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-12T00:23:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6d09910_4196f22f",
       "revId": "cb53cc4d47d6cb57bf702de34f5bbc8fb414652b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
