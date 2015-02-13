@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2b2600b6_4d5c19c4",
+        "filename": "java/README.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-13T00:49:52Z",
+      "side": 1,
+      "message": "Done, though I said \"for each enum\" instead of \"per enum\" as a slight tweak.",
+      "parentUuid": "56267d9d_c638c2fe",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6326dd2_4aebf37e",
         "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2015-02-13T00:10:37Z",
       "side": 1,
       "message": "Use the funky C-style string continuation:\n\nprinter-\u003ePrint(\"@java.lang.annotation.Retention(\"\n  \"java.lang.annotation.RetentionPolicy.SOURCE)\\n\"\n  \"@android.support.annotation.IntDef({\\n\");",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 1
+      },
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab3af0c2_d1678484",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-13T00:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6326dd2_4aebf37e",
       "range": {
         "startLine": 87,
         "startChar": 0,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "ab3af0c2_51aa741b",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-13T00:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6326dd2_6ae8b781",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "962c757c_487e9f95",
         "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
         "patchSetId": 5
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "ab3af0c2_f1984816",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-13T00:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962c757c_487e9f95",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "962c757c_687b63a4",
         "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
         "patchSetId": 5
@@ -87,6 +165,24 @@
       "writtenOn": "2015-02-13T00:10:37Z",
       "side": 1,
       "message": "and for this expression, construct as \"@\" + ClassName(enum\u0027s container) + \".\" + (enum\u0027s name), basically a reprise of what ClassName(enum) would do for when java_enum_type() \u003d\u003d true.",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b2600b6_900b3a4c",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-13T00:49:52Z",
+      "side": 1,
+      "message": "IIUC, descriptor-\u003eenum_type()-\u003econtainer_type() can return null, so the second part of that would require a null-check. Can you specify exactly how you\u0027d want this to look?",
+      "parentUuid": "962c757c_687b63a4",
       "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
