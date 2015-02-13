@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56267d9d_c638c2fe",
+        "filename": "java/README.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-13T00:10:37Z",
+      "side": 1,
+      "message": "this paragraph doesn\u0027t belong to this README file -- it\u0027s covered in the links below.\n\nMy suggestion (full description):\n\nAndroid-specific option to generate @IntDef annotations for enums.\n\nIf turned on, an @IntDef annotation (a public @interface) will be generated per enum, and every integer parameter and return value in the generated code meant for this enum will be annotated with it. This interface is generated with the same name and at the same place as the enum members\u0027 container interface described above under enum_style\u003djava, regardless of the enum_style option used. When this is combined with enum_style\u003djava, the interface will be both the @IntDef annotation and the container of the enum members; otherwise the interface has an empty body.\n\nYour app must declare a compile-time dependency on the android-support-annotations library.\n\nFor more information on how these @IntDef annotations help with compile-time type safety, see:\nhttps://sites.google.com/a/android.com/tools/tech-docs/support-annotations\nand\nhttps://developer.android.com/reference/android/support/annotation/IntDef.html",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6326dd2_4aebf37e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-13T00:10:37Z",
+      "side": 1,
+      "message": "Use the funky C-style string continuation:\n\nprinter-\u003ePrint(\"@java.lang.annotation.Retention(\"\n  \"java.lang.annotation.RetentionPolicy.SOURCE)\\n\"\n  \"@android.support.annotation.IntDef({\\n\");",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 1
+      },
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6326dd2_6ae8b781",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-13T00:10:37Z",
+      "side": 1,
+      "message": "probably more readable to do an if-else.\n\nconst string constant_name \u003d RenameJavaKeywords(canonical_values_[i]-\u003ename());\nif (use_shell_class) {\n  printer-\u003ePrint(\"$classname$.$name$,\\n\",\n    \"classname\", classname,\n    \"name\", constant_name);\n} else {\n  printer-\u003ePrint(\"$name$,\\n\",\n    \"name\", constant_name);\n}",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "962c757c_487e9f95",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-13T00:10:37Z",
+      "side": 1,
+      "message": "you can probably skip aliases. IntDef doesn\u0027t read text; it reads int values. Aliases by definition duplicate some values in the canonical names.",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "962c757c_687b63a4",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-13T00:10:37Z",
+      "side": 1,
+      "message": "and for this expression, construct as \"@\" + ClassName(enum\u0027s container) + \".\" + (enum\u0027s name), basically a reprise of what ClassName(enum) would do for when java_enum_type() \u003d\u003d true.",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
