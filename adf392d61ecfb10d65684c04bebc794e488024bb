@@ -186,6 +186,24 @@
       "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56267d9d_e63dbeeb",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-13T03:22:22Z",
+      "side": 1,
+      "message": "const EnumDescriptor* enum_type \u003d descriptor-\u003eenum_type();\n(*variables)[\"message_type_intdef\"] \u003d \"@\"\n    + ToJavaName(params, enum_type-\u003ename(), true,\n        enum_type-\u003econtaining_type(), enum_type-\u003efile());\n\n(the java_enum_style() branch of ClassName(Params, EnumDescriptor))\n\nI had completely forgotten the implementation in javanano_helpers.cc, so apologies for the confusion",
+      "parentUuid": "2b2600b6_900b3a4c",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
