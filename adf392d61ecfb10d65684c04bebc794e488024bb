@@ -204,6 +204,24 @@
       "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebca2890_5302e432",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-17T19:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56267d9d_e63dbeeb",
+      "revId": "adf392d61ecfb10d65684c04bebc794e488024bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
