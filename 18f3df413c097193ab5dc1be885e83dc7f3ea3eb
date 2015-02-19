@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4897ba02_fe7601bc",
+        "filename": "java/README.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-02-19T19:54:31Z",
+      "side": 1,
+      "message": "typo: interfaces",
+      "revId": "18f3df413c097193ab5dc1be885e83dc7f3ea3eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
