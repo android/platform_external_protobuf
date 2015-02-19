@@ -16,6 +16,24 @@
       "revId": "18f3df413c097193ab5dc1be885e83dc7f3ea3eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8d676d9_b12d0005",
+        "filename": "java/README.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-02-19T19:55:51Z",
+      "side": 1,
+      "message": "keeping you sharp :) thanks, done",
+      "parentUuid": "4897ba02_fe7601bc",
+      "revId": "18f3df413c097193ab5dc1be885e83dc7f3ea3eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
