@@ -16,6 +16,24 @@
       "revId": "3e3e4b6415987cb97b89c5cf0ade3346360bd83f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "068cdc85_858fc6a7",
+        "filename": "java/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-03-20T19:10:58Z",
+      "side": 1,
+      "message": "whoops - yes, protected works. The only thing that\u0027s needed is for FieldArray itself to be public.\n\nDone.",
+      "parentUuid": "c6f3a419_e127a065",
+      "revId": "3e3e4b6415987cb97b89c5cf0ade3346360bd83f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
