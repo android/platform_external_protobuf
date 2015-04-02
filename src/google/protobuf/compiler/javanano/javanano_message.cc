@@ -154,6 +154,25 @@ void MessageGenerator::Generate(io::Printer* printer) {
   }
   printer->Indent();
 
+  if (params_.parcelable_messages()) {
+    printer->Print(
+      "\n"
+      "// Used by Parcelable\n"
+      "@SuppressWarnings({\"unused\"})\n"
+      "public static final Creator<$classname$> CREATOR =\n"
+      "    new Creator<$classname$>() {\n"
+      "  @Override\n"
+      "  public $classname$ createFromParcel(android.os.Parcel in) {\n"
+      "      return com.google.protobuf.nano.android.ParcelingUtil.createFromParcel(in);\n"
+      "  }\n"
+      "  @Override\n"
+      "  public $classname$[] newArray(int size) {\n"
+      "      return new $classname$[size];\n"
+      "  }\n"
+      "};\n",
+      "classname", descriptor_->name());
+  }
+
   // Nested types and extensions
   for (int i = 0; i < descriptor_->extension_count(); i++) {
     ExtensionGenerator(descriptor_->extension(i), params_).Generate(printer);
