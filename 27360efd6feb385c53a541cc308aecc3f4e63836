@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e3bdfae6_93e978b0",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelingUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-04-03T17:22:25Z",
+      "side": 1,
+      "message": "I don\u0027t think they do, but I don\u0027t want to risk the headache. Reverted. (FWIW it compiled fine without the space).",
+      "parentUuid": "a3d4e237_90f73a0a",
+      "revId": "27360efd6feb385c53a541cc308aecc3f4e63836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3d4e237_70edee34",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "e3bdfae6_f30434cf",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-04-03T17:22:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3d4e237_70edee34",
+      "revId": "27360efd6feb385c53a541cc308aecc3f4e63836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3d4e237_50eaf21e",
         "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2015-04-03T13:59:43Z",
       "side": 1,
       "message": "-2 spaces, same for next method",
+      "revId": "27360efd6feb385c53a541cc308aecc3f4e63836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63f74ae2_a69fa835",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-04-03T17:22:25Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "a3d4e237_50eaf21e",
       "revId": "27360efd6feb385c53a541cc308aecc3f4e63836",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
