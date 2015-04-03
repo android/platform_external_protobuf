@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3d4e237_90f73a0a",
+        "filename": "java/src/device/main/java/com/google/protobuf/nano/android/ParcelingUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-04-03T13:59:43Z",
+      "side": 1,
+      "message": "potential breakage of projects still using 1.6 source compatibility (do they even exist now?)\n\nI\u0027m pretty sure you need a space after each |.",
+      "revId": "27360efd6feb385c53a541cc308aecc3f4e63836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3d4e237_70edee34",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-04-03T13:59:43Z",
+      "side": 1,
+      "message": "android.os.Parcelable.Creator (same for next line)",
+      "revId": "27360efd6feb385c53a541cc308aecc3f4e63836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3d4e237_50eaf21e",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_message.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-04-03T13:59:43Z",
+      "side": 1,
+      "message": "-2 spaces, same for next method",
+      "revId": "27360efd6feb385c53a541cc308aecc3f4e63836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
