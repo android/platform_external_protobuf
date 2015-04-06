@@ -3834,6 +3834,12 @@ public class NanoTest extends TestCase {
     assertFalse(clone.equals(anotherMessage));
   }
 
+  public void testNullStringField() throws Exception {
+    SimpleMessageNano s = new SimpleMessageNano();
+    s.str = null;
+    MessageNano.toByteArray(s);
+  }
+
   private void assertHasWireData(MessageNano message, boolean expected) {
     byte[] bytes = MessageNano.toByteArray(message);
     int wireLength = bytes.length;

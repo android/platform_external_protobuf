@@ -51,4 +51,5 @@ message SimpleMessageNano {
   optional int32 d = 1 [default = 123];
   optional NestedMessage nested_msg = 2;
   optional NestedEnum default_nested_enum = 3 [default = BAZ];
+  optional string str = 4;
 }
