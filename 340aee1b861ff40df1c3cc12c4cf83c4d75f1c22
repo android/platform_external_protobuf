@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03868e96_fb72c863",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-04-09T15:43:37Z",
+      "side": 1,
+      "message": "it looks like this code would fail for null values",
+      "range": {
+        "startLine": 364,
+        "startChar": 6,
+        "endLine": 364,
+        "endChar": 66
+      },
+      "revId": "340aee1b861ff40df1c3cc12c4cf83c4d75f1c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83c43ed3_9f8c24cd",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-04-09T15:43:37Z",
+      "side": 1,
+      "message": "likewise",
+      "range": {
+        "startLine": 377,
+        "startChar": 6,
+        "endLine": 378,
+        "endChar": 70
+      },
+      "revId": "340aee1b861ff40df1c3cc12c4cf83c4d75f1c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
