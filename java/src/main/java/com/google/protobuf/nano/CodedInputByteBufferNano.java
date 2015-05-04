@@ -236,6 +236,8 @@ public final class CodedInputByteBufferNano {
       System.arraycopy(buffer, bufferPos, result, 0, size);
       bufferPos += size;
       return result;
+    } else if (size == 0) {
+      return new byte[0];
     } else {
       // Slow path:  Build a byte array first then copy it.
       return readRawBytes(size);
