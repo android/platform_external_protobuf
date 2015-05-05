@@ -1,0 +1,7 @@
+Code-Review+2: Brian Duff <bduff@google.com>
+Verified+1: Andre Eisenbach <eisenbach@google.com>
+Submitted-by: Andre Eisenbach <eisenbach@google.com>
+Submitted-at: Tue, 05 May 2015 00:31:51 +0000
+Reviewed-on: https://android-review.googlesource.com/149294
+Project: platform/external/protobuf
+Branch: refs/heads/master
