@@ -46,6 +46,30 @@
       "revId": "b6872c8af4117d0e78967e8cced7214a8ac34e2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d6d15ec_4ec73397",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-05-08T21:03:54Z",
+      "side": 1,
+      "message": "Got it, basically eliminates bounds checks. \"horribly inefficient\" seems a bit hyperbolic, but lg (the code is easier to read too).",
+      "parentUuid": "4d6d15ec_c070f205",
+      "range": {
+        "startLine": 1045,
+        "startChar": 4,
+        "endLine": 1045,
+        "endChar": 25
+      },
+      "revId": "b6872c8af4117d0e78967e8cced7214a8ac34e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
