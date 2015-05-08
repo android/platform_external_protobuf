@@ -94,6 +94,30 @@
       "revId": "b6872c8af4117d0e78967e8cced7214a8ac34e2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d679d0f_5eeb65a8",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1041833
+      },
+      "writtenOn": "2015-05-08T21:21:18Z",
+      "side": 1,
+      "message": "Yes, it\u0027s hyperbole.\n\nMain problem is that currently on Android we don\u0027t do really fancy optimizations, and have some specific intrinsics to speed up some calls. So from our POV this code is very inefficient as it has deep call hierarchies and does many things (like little endian) by hand, which our compiler doesn\u0027t recognize/optimize.",
+      "parentUuid": "4d6d15ec_aed5af3a",
+      "range": {
+        "startLine": 1045,
+        "startChar": 4,
+        "endLine": 1045,
+        "endChar": 25
+      },
+      "revId": "b6872c8af4117d0e78967e8cced7214a8ac34e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
