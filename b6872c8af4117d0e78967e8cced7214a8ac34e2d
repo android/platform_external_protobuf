@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d70e1c2_9c6349c3",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1020819
+      },
+      "writtenOn": "2015-05-08T20:15:22Z",
+      "side": 1,
+      "message": "Out of curiosity, why is it faster? HeapByteBuffer.store() seems to be effectively doing the same thing as the old code, albeit in a loop. Is this mainly for direct buffers?",
+      "range": {
+        "startLine": 1045,
+        "startChar": 4,
+        "endLine": 1045,
+        "endChar": 25
+      },
+      "revId": "b6872c8af4117d0e78967e8cced7214a8ac34e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
