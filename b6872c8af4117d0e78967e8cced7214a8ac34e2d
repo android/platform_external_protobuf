@@ -22,6 +22,30 @@
       "revId": "b6872c8af4117d0e78967e8cced7214a8ac34e2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d6d15ec_c070f205",
+        "filename": "java/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-05-08T20:26:56Z",
+      "side": 1,
+      "message": "I\u0027m planning on trying a microbenchmark just to make sure this is right (it had an impact when I was looking at TraceView for a broader performance bug). But two points:\n\n1. writeRawByte() will perform an extra bounds check each time to ensure capacity, so this performs one bounds check instead of 8 (or 4).\n\n2. IIUC Android uses ByteArrayBuffer not HeapByteBuffer. (Although I think the implementation under the covers does something like this as well). Not sure about direct buffers; that might make a larger difference, but it\u0027s (currently) impossible to create this object with a direct byte buffer since the constructor is private.\n\nagampe@ pointed this out, saying:\n\n\"Looking at this, nano protobuf is horribly inefficient. To write a long, they write 8 byte values, and each incurs a \"bounds check,\" basically.\"\n\nThis is my attempt to fix that, but I\u0027m not sure if I\u0027ve done the best I could.",
+      "parentUuid": "2d70e1c2_9c6349c3",
+      "range": {
+        "startLine": 1045,
+        "startChar": 4,
+        "endLine": 1045,
+        "endChar": 25
+      },
+      "revId": "b6872c8af4117d0e78967e8cced7214a8ac34e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
