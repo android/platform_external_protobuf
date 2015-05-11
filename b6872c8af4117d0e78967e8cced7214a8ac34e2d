@@ -1,0 +1,9 @@
+Code-Review+2: Brian Duff <bduff@google.com>
+Code-Review+1: Andreas Gampe <agampe@google.com>
+Verified+1: Deckard Autoverifier <deckard@android.com>
+Code-Review+2: Max Cai <maxtroy@google.com>
+Submitted-by: Jeff Davidson <jpd@google.com>
+Submitted-at: Mon, 11 May 2015 22:51:48 +0000
+Reviewed-on: https://android-review.googlesource.com/149961
+Project: platform/external/protobuf
+Branch: refs/heads/master
