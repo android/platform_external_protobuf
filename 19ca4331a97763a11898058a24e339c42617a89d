@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d531d56_18bd65f9",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_params.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2015-05-11T23:31:48Z",
+      "side": 1,
+      "message": "I would move these to public: void set_bytes_offset_length(bool value), so IDEs can show this to the user more readily than here.\n\n- actually, maybe also change the byte[] field name to [fieldName]Buffer, just to prevent misuse. Then \"adds offset/length fields\" becomes \"uses buffer/offset/length tuples\".\n- not all byte fields; only the required and optional ones (not repeated).\n- add the deserialization behavior (just say the byte buffer is the same instance as that backing the CodedInputByteBufferNano)\n- clarify that \"offset !\u003d -1\" is the field presence signal.\n- \"This feature comes with no SLA\" :)",
+      "revId": "19ca4331a97763a11898058a24e339c42617a89d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
