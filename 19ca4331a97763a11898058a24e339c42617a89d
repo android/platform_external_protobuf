@@ -16,6 +16,24 @@
       "revId": "19ca4331a97763a11898058a24e339c42617a89d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad3e91ea_205464d9",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_params.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2015-05-12T00:14:22Z",
+      "side": 1,
+      "message": "Done. Not really familiar with C++ documentation style so let me know if there are any further nits to clean up.",
+      "parentUuid": "0d531d56_18bd65f9",
+      "revId": "19ca4331a97763a11898058a24e339c42617a89d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
