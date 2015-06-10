@@ -16,7 +16,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-IGNORED_WARNINGS := -Wno-sign-compare -Wno-unused-parameter -Wno-sign-promo -Wno-error=return-type
+IGNORED_WARNINGS := -Wno-sign-compare -Wno-unused-parameter -Wno-sign-promo
 
 CC_LITE_SRC_FILES := \
     src/google/protobuf/stubs/atomicops_internals_x86_gcc.cc         \
