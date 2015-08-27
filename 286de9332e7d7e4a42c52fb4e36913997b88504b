@@ -1,0 +1,7 @@
+Code-Review+2: Elliott Hughes <enh@google.com>
+Verified+1: Dan Albert <danalbert@google.com>
+Submitted-by: Dan Albert <danalbert@google.com>
+Submitted-at: Thu, 27 Aug 2015 23:25:14 +0000
+Reviewed-on: https://android-review.googlesource.com/168610
+Project: platform/external/protobuf
+Branch: refs/heads/master
