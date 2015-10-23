@@ -1,6 +1,7 @@
 syntax = "proto2";
 
 option java_outer_classname = "Extensions";
+option javanano_use_deprecated_package = true;
 option java_package = "com.google.protobuf.nano.testext";
 
 message ExtendableMessage {
