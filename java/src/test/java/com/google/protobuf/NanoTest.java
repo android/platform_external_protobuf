@@ -61,6 +61,8 @@ import com.google.protobuf.nano.UnittestMultipleNano;
 import com.google.protobuf.nano.UnittestRecursiveNano.RecursiveMessageNano;
 import com.google.protobuf.nano.UnittestSimpleNano.SimpleMessageNano;
 import com.google.protobuf.nano.UnittestSingleNano.SingleMessageNano;
+import com.google.protobuf.nano.UnknownEnumValuesNanoOuterClass.VersionA;
+import com.google.protobuf.nano.UnknownEnumValuesNanoOuterClass.VersionB;
 import com.google.protobuf.nano.testext.Extensions;
 import com.google.protobuf.nano.testext.Extensions.AnotherMessage;
 import com.google.protobuf.nano.testext.Extensions.MessageWithGroup;
@@ -3873,6 +3875,45 @@ public class NanoTest extends TestCase {
     byte[] bar = new byte[msg.barLength];
     System.arraycopy(msg.barBuffer, msg.barOffset, bar, 0, msg.barLength);
     assertTrue("bar was not deserialized correctly", Arrays.equals(new byte[] { 7 }, bar));
+  }
+
+  public void testUnknownOptionalEnumValue() throws Exception {
+    VersionA msgA = new VersionA();
+    msgA.optionalA = VersionA.A_VAL_3;
+    byte[] msgABytes = MessageNano.toByteArray(msgA);
+
+    // When parsing and reading, the unknown value appears as UNKNOWN.
+    VersionB msgB = new VersionB();
+    MessageNano.mergeFrom(msgB, msgABytes);
+    assertEquals(VersionB.B_UNKNOWN, msgB.optionalB);
+
+    // When serializing and reparsing as A, the old, unknown value wins out (even if a new one is
+    // set).
+    msgB.optionalB = VersionB.B_VAL_2;
+    byte[] msgBBytes = MessageNano.toByteArray(msgB);
+    VersionA msgAFromB = new VersionA();
+    MessageNano.mergeFrom(msgAFromB, msgBBytes);
+    assertEquals(VersionA.A_VAL_3, msgAFromB.optionalA);
+  }
+
+  public void testUnknownRepeatedEnumValue() throws Exception {
+    VersionA msgA = new VersionA();
+    msgA.repeatedA = new int[] { VersionA.A_VAL_3, VersionA.A_VAL_2 };
+    byte[] msgABytes = MessageNano.toByteArray(msgA);
+
+    // When parsing and reading, the unknown value is stripped out.
+    VersionB msgB = new VersionB();
+    MessageNano.mergeFrom(msgB, msgABytes);
+    assertTrue(Arrays.equals(new int[] { VersionB.B_VAL_2 }, msgB.repeatedB));
+
+    // When serializing and reparsing as A, the old, unknown value reappears, but at the end of
+    // all entries (including any newly added ones).
+    msgB.repeatedB = new int[] { VersionB.B_VAL_2, VersionB.B_VAL_1 };
+    byte[] msgBBytes = MessageNano.toByteArray(msgB);
+    VersionA msgAFromB = new VersionA();
+    MessageNano.mergeFrom(msgAFromB, msgBBytes);
+    assertTrue(Arrays.equals(new int[] { VersionA.A_VAL_2, VersionA.A_VAL_1, VersionA.A_VAL_3 },
+        msgAFromB.repeatedA));
   }
 
   private void assertHasWireData(MessageNano message, boolean expected) {
