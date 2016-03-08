@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "378e9542_ae8b174b",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2016-03-08T20:21:21Z",
+      "side": 1,
+      "message": "Good catch; this was broken and is now fixed. Rather than using tag directly, we use the non_packed_tag variable.\n\nAdded a unit test which is passing and confirmed that full proto behaves the same way (at least per the equivalent unit test and a quick inspection of the code).\n\n(It wasn\u0027t much more difficult, assuming I\u0027ve understood correctly, and we probably wouldn\u0027t want to leave it out because the packed merge handler seems to be generated even if the field isn\u0027t marked as packed).",
+      "parentUuid": "626209c2_4b22059c",
+      "revId": "c2106973e4602078b3a0c3b7f796f84a0b0fe1cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d748d9a2_bbcf0779",
         "filename": "src/google/protobuf/unittest_unknown_enum_values_nano.proto",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-03-08T03:51:41Z",
       "side": 1,
       "message": "VersionA to StandardVersion, and VersionB to VersionWithoutVal3?",
+      "revId": "c2106973e4602078b3a0c3b7f796f84a0b0fe1cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "378e9542_6eeccfb2",
+        "filename": "src/google/protobuf/unittest_unknown_enum_values_nano.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1006780
+      },
+      "writtenOn": "2016-03-08T20:21:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d748d9a2_bbcf0779",
       "revId": "c2106973e4602078b3a0c3b7f796f84a0b0fe1cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
