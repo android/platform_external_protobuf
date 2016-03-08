@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "626209c2_4b22059c",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2016-03-08T03:51:41Z",
+      "side": 1,
+      "message": "not sure if this could go wrong; the input buffer is in the middle of a packed field and \u0027tag\u0027 probably has a \u0027length-delimited\u0027 wire type here.\n\npacked field testing is not covered either.\n\nIf handling packed field is more difficult, I would probably leave this out for now.",
+      "revId": "c2106973e4602078b3a0c3b7f796f84a0b0fe1cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d748d9a2_bbcf0779",
+        "filename": "src/google/protobuf/unittest_unknown_enum_values_nano.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2016-03-08T03:51:41Z",
+      "side": 1,
+      "message": "VersionA to StandardVersion, and VersionB to VersionWithoutVal3?",
+      "revId": "c2106973e4602078b3a0c3b7f796f84a0b0fe1cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
