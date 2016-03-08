@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b783651c_aa730fec",
+        "filename": "src/google/protobuf/compiler/javanano/javanano_enum_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2016-03-08T20:35:38Z",
+      "side": 1,
+      "message": "I can finally see where this comes from :)\n\nI would probably skip all the \"if not return this\" code, i.e. just call storeUnknownField() without using its return value, because per contract, it only returns false if `tag` is \"end group\" and it wouldn\u0027t happen in any case in the context of this file.",
+      "revId": "16fb29841affe916fd2d27fff56f65e46edb037f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
