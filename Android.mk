@@ -173,7 +173,7 @@ LOCAL_SRC_FILES := $(call all-java-files-under, java/src/main/java/com/google/pr
 LOCAL_SRC_FILES += $(call all-java-files-under, java/src/device/main/java/com/google/protobuf/nano)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_STATIC_JAVA_LIBRARY)
+#include $(BUILD_STATIC_JAVA_LIBRARY)
 
 # Java nano library (for host-side users)
 # =======================================================
@@ -185,7 +185,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(call all-java-files-under, java/src/main/java/com/google/protobuf/nano)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_HOST_JAVA_LIBRARY)
+#include $(BUILD_HOST_JAVA_LIBRARY)
 
 # Java micro library (for device-side users)
 # =======================================================
@@ -198,7 +198,7 @@ LOCAL_SDK_VERSION := 8
 LOCAL_SRC_FILES := $(call all-java-files-under, java/src/main/java/com/google/protobuf/micro)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_STATIC_JAVA_LIBRARY)
+#include $(BUILD_STATIC_JAVA_LIBRARY)
 
 # Java micro library (for host-side users)
 # =======================================================
@@ -210,7 +210,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(call all-java-files-under, java/src/main/java/com/google/protobuf/micro)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_HOST_JAVA_LIBRARY)
+#include $(BUILD_HOST_JAVA_LIBRARY)
 
 # Java lite library (for device-side users)
 # =======================================================
@@ -223,7 +223,7 @@ LOCAL_SDK_VERSION := 9
 LOCAL_SRC_FILES := $(JAVA_LITE_SRC_FILES)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_STATIC_JAVA_LIBRARY)
+#include $(BUILD_STATIC_JAVA_LIBRARY)
 
 # Java lite library (for host-side users)
 # =======================================================
@@ -235,7 +235,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(JAVA_LITE_SRC_FILES)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_HOST_JAVA_LIBRARY)
+#include $(BUILD_HOST_JAVA_LIBRARY)
 
 # Java full library (for host-side users)
 # =======================================================
@@ -247,7 +247,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(JAVA_FULL_SRC_FILES)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_HOST_JAVA_LIBRARY)
+#include $(BUILD_HOST_JAVA_LIBRARY)
 
 # C++ lite library for the NDK.
 # =======================================================
@@ -296,7 +296,7 @@ LOCAL_CFLAGS := -DGOOGLE_PROTOBUF_NO_RTTI $(IGNORED_WARNINGS)
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_SHARED_LIBRARY)
+#include $(BUILD_SHARED_LIBRARY)
 
 # C++ lite library for the host.
 # =======================================================
@@ -316,7 +316,7 @@ LOCAL_CFLAGS := -DGOOGLE_PROTOBUF_NO_RTTI $(IGNORED_WARNINGS)
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_HOST_SHARED_LIBRARY)
+#include $(BUILD_HOST_SHARED_LIBRARY)
 
 # C++ lite library + rtti (libc++ flavored for the platform)
 # =======================================================
@@ -338,7 +338,7 @@ LOCAL_CFLAGS := $(IGNORED_WARNINGS)
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_SHARED_LIBRARY)
+#include $(BUILD_SHARED_LIBRARY)
 
 # C++ lite library + rtti (libc++ flavored for the host)
 # =======================================================
@@ -360,7 +360,7 @@ LOCAL_CFLAGS := $(IGNORED_WARNINGS)
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_HOST_SHARED_LIBRARY)
+#include $(BUILD_HOST_SHARED_LIBRARY)
 
 # C++ full library
 # =======================================================
@@ -455,7 +455,7 @@ LOCAL_SHARED_LIBRARIES := libz
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_SHARED_LIBRARY)
+#include $(BUILD_SHARED_LIBRARY)
 
 # C++ full library for the host
 # =======================================================
@@ -475,7 +475,7 @@ LOCAL_SHARED_LIBRARIES := libz-host
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_HOST_SHARED_LIBRARY)
+#include $(BUILD_HOST_SHARED_LIBRARY)
 
 # C++ full library + rtti for the platform.
 # =======================================================
@@ -496,7 +496,7 @@ LOCAL_SHARED_LIBRARIES := libz
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_SHARED_LIBRARY)
+#include $(BUILD_SHARED_LIBRARY)
 
 # C++ full library + rtti for the host.
 # =======================================================
@@ -517,7 +517,7 @@ LOCAL_SHARED_LIBRARIES := libz-host
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
-include $(BUILD_HOST_SHARED_LIBRARY)
+#include $(BUILD_HOST_SHARED_LIBRARY)
 
 # Clean temp vars
 protobuf_cc_full_src_files :=
@@ -550,7 +550,7 @@ LOCAL_LDLIBS_linux := -lpthread
 
 LOCAL_CFLAGS := $(IGNORED_WARNINGS)
 
-include $(BUILD_HOST_EXECUTABLE)
+#include $(BUILD_HOST_EXECUTABLE)
 
 # To test java proto params build rules.
 # =======================================================
@@ -576,7 +576,7 @@ LOCAL_PROTO_JAVA_OUTPUT_PARAMS := \
         java_outer_classname = $(LOCAL_PATH)/src/google/protobuf/unittest_import_nano.proto|UnittestImportNano
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_STATIC_JAVA_LIBRARY)
+#include $(BUILD_STATIC_JAVA_LIBRARY)
 
 # To test Android-specific nanoproto features.
 # =======================================================
@@ -599,7 +599,7 @@ LOCAL_PROTO_JAVA_OUTPUT_PARAMS := \
         parcelable_messages = true, \
         generate_intdefs = true
 
-include $(BUILD_STATIC_JAVA_LIBRARY)
+#include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 
@@ -622,7 +622,7 @@ LOCAL_PROTO_JAVA_OUTPUT_PARAMS := \
         store_unknown_fields = true
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
-include $(BUILD_STATIC_JAVA_LIBRARY)
+#include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 
@@ -643,4 +643,4 @@ LOCAL_STATIC_JAVA_LIBRARIES := libprotobuf-java-nano \
 
 LOCAL_DEX_PREOPT := false
 
-include $(BUILD_PACKAGE)
+#include $(BUILD_PACKAGE)
