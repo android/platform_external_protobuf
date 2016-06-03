@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6f836fd_cada7b2f",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2016-06-03T23:26:42Z",
+      "side": 1,
+      "message": "given the libz below, you shouldn\u0027t need this line.",
+      "revId": "d156b9a5c5c950382e5c73cf69c3315b923a1314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
