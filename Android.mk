@@ -447,7 +447,6 @@ LOCAL_CPP_EXTENSION := .cc
 LOCAL_SRC_FILES := $(protobuf_cc_full_src_files)
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/android \
-    external/zlib \
     $(LOCAL_PATH)/src
 
 LOCAL_CFLAGS := -DGOOGLE_PROTOBUF_NO_RTTI $(IGNORED_WARNINGS)
@@ -457,8 +456,6 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
 include $(BUILD_SHARED_LIBRARY)
 
-# C++ full library for the host
-# =======================================================
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libprotobuf-cpp-full
@@ -467,7 +464,26 @@ LOCAL_CPP_EXTENSION := .cc
 LOCAL_SRC_FILES := $(protobuf_cc_full_src_files)
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/android \
-    external/zlib \
+    $(LOCAL_PATH)/src
+
+LOCAL_CFLAGS := -DGOOGLE_PROTOBUF_NO_RTTI $(IGNORED_WARNINGS)
+LOCAL_STATIC_LIBRARIES := libz
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
+
+include $(BUILD_STATIC_LIBRARY)
+
+# C++ full library for the host
+# =======================================================
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libprotobuf-cpp-full
+LOCAL_MODULE_HOST_OS := darwin linux windows
+LOCAL_MODULE_TAGS := optional
+LOCAL_CPP_EXTENSION := .cc
+LOCAL_SRC_FILES := $(protobuf_cc_full_src_files)
+LOCAL_C_INCLUDES := \
+    $(LOCAL_PATH)/android \
     $(LOCAL_PATH)/src
 
 LOCAL_CFLAGS := -DGOOGLE_PROTOBUF_NO_RTTI $(IGNORED_WARNINGS)
@@ -476,6 +492,24 @@ LOCAL_SHARED_LIBRARIES := libz-host
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
 
 include $(BUILD_HOST_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libprotobuf-cpp-full
+LOCAL_MODULE_HOST_OS := darwin linux windows
+LOCAL_MODULE_TAGS := optional
+LOCAL_CPP_EXTENSION := .cc
+LOCAL_SRC_FILES := $(protobuf_cc_full_src_files)
+LOCAL_C_INCLUDES := \
+    $(LOCAL_PATH)/android \
+    $(LOCAL_PATH)/src
+
+LOCAL_CFLAGS := -DGOOGLE_PROTOBUF_NO_RTTI $(IGNORED_WARNINGS)
+LOCAL_STATIC_LIBRARIES := libz
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/src
+
+include $(BUILD_HOST_STATIC_LIBRARY)
 
 # C++ full library + rtti for the platform.
 # =======================================================
@@ -487,7 +521,6 @@ LOCAL_CPP_EXTENSION := .cc
 LOCAL_SRC_FILES := $(protobuf_cc_full_src_files)
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/android \
-    external/zlib \
     $(LOCAL_PATH)/src
 
 LOCAL_RTTI_FLAG := -frtti
@@ -508,7 +541,6 @@ LOCAL_CPP_EXTENSION := .cc
 LOCAL_SRC_FILES := $(protobuf_cc_full_src_files)
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/android \
-    external/zlib \
     $(LOCAL_PATH)/src
 
 LOCAL_RTTI_FLAG := -frtti
