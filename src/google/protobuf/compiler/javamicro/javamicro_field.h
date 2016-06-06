@@ -54,7 +54,7 @@ namespace javamicro {
 class FieldGenerator {
  public:
   //FieldGenerator() {}
-  FieldGenerator(const Params& params) : params_(params) {}
+  explicit FieldGenerator(const Params& params) : params_(params) {}
   virtual ~FieldGenerator();
 
   virtual void GenerateMembers(io::Printer* printer) const = 0;

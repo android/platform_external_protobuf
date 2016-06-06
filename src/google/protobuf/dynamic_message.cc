@@ -227,7 +227,7 @@ class DynamicMessage : public Message {
     }
   };
 
-  DynamicMessage(const TypeInfo* type_info);
+  explicit DynamicMessage(const TypeInfo* type_info);
   ~DynamicMessage();
 
   // Called on the prototype after construction to initialize message fields.

@@ -265,7 +265,7 @@ class LIBPROTOBUF_EXPORT WireFormat {
 // Subclass of FieldSkipper which saves skipped fields to an UnknownFieldSet.
 class LIBPROTOBUF_EXPORT UnknownFieldSetFieldSkipper : public FieldSkipper {
  public:
-  UnknownFieldSetFieldSkipper(UnknownFieldSet* unknown_fields)
+  explicit UnknownFieldSetFieldSkipper(UnknownFieldSet* unknown_fields)
       : unknown_fields_(unknown_fields) {}
   virtual ~UnknownFieldSetFieldSkipper() {}
 

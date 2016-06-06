@@ -61,7 +61,7 @@ class Params {
   NameSet java_multiple_files_;
 
  public:
-  Params(const string & base_name) :
+  explicit Params(const string & base_name) :
     empty_(""),
     base_name_(base_name),
     optimization_(JAVAMICRO_OPT_DEFAULT),

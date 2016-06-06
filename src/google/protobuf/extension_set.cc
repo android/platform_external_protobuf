@@ -786,7 +786,7 @@ void ExtensionSet::MergeFrom(const ExtensionSet& other) {
         case WireFormatLite::CPPTYPE_##UPPERCASE:                    \
           if (is_new) {                                              \
             extension->repeated_##LOWERCASE##_value =                \
-              new REPEATED_TYPE;                                     \
+              new (REPEATED_TYPE);                                   \
           }                                                          \
           extension->repeated_##LOWERCASE##_value->MergeFrom(        \
             *other_extension.repeated_##LOWERCASE##_value);          \
