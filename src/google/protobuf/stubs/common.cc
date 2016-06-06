@@ -152,8 +152,9 @@ LogMessage& LogMessage::operator<<(const char* value) {
 // the results -- in fact, we probably prefer that.  So we use snprintf()
 // instead of Simple*toa().
 #undef DECLARE_STREAM_OPERATOR
+// NOLINT: clang-tidy adds parentheses around whole declaration.
 #define DECLARE_STREAM_OPERATOR(TYPE, FORMAT)                       \
-  LogMessage& LogMessage::operator<<(TYPE value) {                  \
+  LogMessage& LogMessage::operator<<(TYPE value) {  /* NOLINT */    \
     /* 128 bytes should be big enough for any of the primitive */   \
     /* values which we print with this, but well use snprintf() */  \
     /* anyway to be extra safe. */                                  \

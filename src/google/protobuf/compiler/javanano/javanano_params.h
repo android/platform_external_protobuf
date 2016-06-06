@@ -71,7 +71,7 @@ class Params {
   bool bytes_offset_length_;
 
  public:
-  Params(const string & base_name) :
+  explicit Params(const string & base_name) :
     empty_(""),
     base_name_(base_name),
     override_java_multiple_files_(JAVANANO_MUL_UNSET),

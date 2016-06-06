@@ -185,7 +185,7 @@ bool TryCreateParentDirectory(const string& prefix, const string& filename) {
 class CommandLineInterface::ErrorPrinter : public MultiFileErrorCollector,
                                            public io::ErrorCollector {
  public:
-  ErrorPrinter(ErrorFormat format, DiskSourceTree *tree = NULL)
+  explicit ErrorPrinter(ErrorFormat format, DiskSourceTree *tree = NULL)
     : format_(format), tree_(tree) {}
   ~ErrorPrinter() {}
 
@@ -236,7 +236,7 @@ class CommandLineInterface::ErrorPrinter : public MultiFileErrorCollector,
 // them all to disk on demand.
 class CommandLineInterface::GeneratorContextImpl : public GeneratorContext {
  public:
-  GeneratorContextImpl(const vector<const FileDescriptor*>& parsed_files);
+  explicit GeneratorContextImpl(const vector<const FileDescriptor*>& parsed_files);
   ~GeneratorContextImpl();
 
   // Write all files in the directory to disk at the given output location,

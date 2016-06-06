@@ -462,7 +462,7 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
 
 #define PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(ONEOF, FIELD)     \
   static_cast<int>(                                                   \
-      reinterpret_cast<const char*>(&(ONEOF->FIELD))                  \
+      reinterpret_cast<const char*>(&((ONEOF)->FIELD))                \
       - reinterpret_cast<const char*>(ONEOF))
 
 // There are some places in proto2 where dynamic_cast would be useful as an

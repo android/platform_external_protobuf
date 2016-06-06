@@ -208,7 +208,7 @@ class LIBPROTOBUF_EXPORT Parser {
   class LIBPROTOBUF_EXPORT LocationRecorder {
    public:
     // Construct the file's "root" location.
-    LocationRecorder(Parser* parser);
+    explicit LocationRecorder(Parser* parser);
 
     // Construct a location that represents a declaration nested within the
     // given parent.  E.g. a field's location is nested within the location

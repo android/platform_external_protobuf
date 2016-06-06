@@ -86,9 +86,9 @@ namespace internal {  // Implementation details.
 
 class SubstituteArg {
  public:
-  inline SubstituteArg(const char* value)
+  inline SubstituteArg(const char* value)  // NOLINT, implicit
     : text_(value), size_(strlen(text_)) {}
-  inline SubstituteArg(const string& value)
+  inline SubstituteArg(const string& value)  // NOLINT, implicit
     : text_(value.data()), size_(value.size()) {}
 
   // Indicates that no argument was given.
@@ -101,29 +101,29 @@ class SubstituteArg {
   // probably actually using them as 8-bit integers and would probably
   // prefer an integer representation.  But, we don't really know.  So, we
   // make the caller decide what to do.
-  inline SubstituteArg(char value)
+  inline SubstituteArg(char value)  // NOLINT, implicit
     : text_(scratch_), size_(1) { scratch_[0] = value; }
-  inline SubstituteArg(short value)
+  inline SubstituteArg(short value)  // NOLINT, implicit
     : text_(FastInt32ToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(unsigned short value)
+  inline SubstituteArg(unsigned short value)  // NOLINT, implicit
     : text_(FastUInt32ToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(int value)
+  inline SubstituteArg(int value)  // NOLINT, implicit
     : text_(FastInt32ToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(unsigned int value)
+  inline SubstituteArg(unsigned int value)  // NOLINT, implicit
     : text_(FastUInt32ToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(long value)
+  inline SubstituteArg(long value)  // NOLINT, implicit
     : text_(FastLongToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(unsigned long value)
+  inline SubstituteArg(unsigned long value)  // NOLINT, implicit
     : text_(FastULongToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(long long value)
+  inline SubstituteArg(long long value)  // NOLINT, implicit
     : text_(FastInt64ToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(unsigned long long value)
+  inline SubstituteArg(unsigned long long value)  // NOLINT, implicit
     : text_(FastUInt64ToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(float value)
+  inline SubstituteArg(float value)  // NOLINT, implicit
     : text_(FloatToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(double value)
+  inline SubstituteArg(double value)  // NOLINT, implicit
     : text_(DoubleToBuffer(value, scratch_)), size_(strlen(text_)) {}
-  inline SubstituteArg(bool value)
+  inline SubstituteArg(bool value)  // NOLINT, implicit
     : text_(value ? "true" : "false"), size_(strlen(text_)) {}
 
   inline const char* data() const { return text_; }

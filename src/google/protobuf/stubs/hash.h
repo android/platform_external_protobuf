@@ -91,7 +91,7 @@ template <typename Key, typename Data,
           typename EqualKey = int >
 class hash_map : public std::map<Key, Data, HashFcn> {
  public:
-  hash_map(int = 0) {}
+  explicit hash_map(int = 0) {}
 };
 
 template <typename Key,
@@ -99,7 +99,7 @@ template <typename Key,
           typename EqualKey = int >
 class hash_set : public std::set<Key, HashFcn> {
  public:
-  hash_set(int = 0) {}
+  explicit hash_set(int = 0) {}
 };
 
 #elif defined(_MSC_VER) && !defined(_STLPORT_VERSION)
