@@ -239,8 +239,8 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   // that file to use these.
 
 // Avoid ugly line wrapping
-#define input  io::CodedInputStream*  input_arg
-#define output io::CodedOutputStream* output_arg
+#define input  io::CodedInputStream*  input_arg   // NOLINT
+#define output io::CodedOutputStream* output_arg  // NOLINT
 #define field_number int field_number_arg
 #define INL GOOGLE_ATTRIBUTE_ALWAYS_INLINE
 
@@ -378,7 +378,7 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
     field_number, const MessageType& value, output);
 
 #undef output
-#define output uint8* target
+#define output uint8* target  // NOLINT
 
   // Like above, but use only *ToArray methods of CodedOutputStream.
   static inline uint8* WriteTagToArray(field_number, WireType type, output) INL;

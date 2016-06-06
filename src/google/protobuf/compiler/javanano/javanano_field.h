@@ -53,7 +53,7 @@ namespace javanano {
 
 class FieldGenerator {
  public:
-  FieldGenerator(const Params& params) : params_(params) {}
+  explicit FieldGenerator(const Params& params) : params_(params) {}
   virtual ~FieldGenerator();
 
   virtual bool SavedDefaultNeeded() const;

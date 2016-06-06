@@ -75,7 +75,7 @@ class DiskSourceTree;
 //   FindFileContainingExtension(); these will always return false.
 class LIBPROTOBUF_EXPORT SourceTreeDescriptorDatabase : public DescriptorDatabase {
  public:
-  SourceTreeDescriptorDatabase(SourceTree* source_tree);
+  explicit SourceTreeDescriptorDatabase(SourceTree* source_tree);
   ~SourceTreeDescriptorDatabase();
 
   // Instructs the SourceTreeDescriptorDatabase to report any parse errors
@@ -111,7 +111,7 @@ class LIBPROTOBUF_EXPORT SourceTreeDescriptorDatabase : public DescriptorDatabas
 
   class LIBPROTOBUF_EXPORT ValidationErrorCollector : public DescriptorPool::ErrorCollector {
    public:
-    ValidationErrorCollector(SourceTreeDescriptorDatabase* owner);
+    explicit ValidationErrorCollector(SourceTreeDescriptorDatabase* owner);
     ~ValidationErrorCollector();
 
     // implements ErrorCollector ---------------------------------------

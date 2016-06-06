@@ -1275,7 +1275,7 @@ class RepeatedPtrIterator
   // Allow "upcasting" from RepeatedPtrIterator<T**> to
   // RepeatedPtrIterator<const T*const*>.
   template<typename OtherElement>
-  RepeatedPtrIterator(const RepeatedPtrIterator<OtherElement>& other)
+  explicit RepeatedPtrIterator(const RepeatedPtrIterator<OtherElement>& other)
       : it_(other.it_) {
     // Force a compiler error if the other type is not convertible to ours.
     if (false) {
@@ -1509,7 +1509,7 @@ template<typename T> class RepeatedFieldBackInsertIterator
 template<typename T> class RepeatedPtrFieldBackInsertIterator
     : public std::iterator<std::output_iterator_tag, T> {
  public:
-  RepeatedPtrFieldBackInsertIterator(
+  explicit RepeatedPtrFieldBackInsertIterator(
       RepeatedPtrField<T>* const mutable_field)
       : field_(mutable_field) {
   }

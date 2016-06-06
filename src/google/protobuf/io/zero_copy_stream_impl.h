@@ -96,7 +96,7 @@ class LIBPROTOBUF_EXPORT FileInputStream : public ZeroCopyInputStream {
  private:
   class LIBPROTOBUF_EXPORT CopyingFileInputStream : public CopyingInputStream {
    public:
-    CopyingFileInputStream(int file_descriptor);
+    explicit CopyingFileInputStream(int file_descriptor);
     ~CopyingFileInputStream();
 
     bool Close();
@@ -178,7 +178,7 @@ class LIBPROTOBUF_EXPORT FileOutputStream : public ZeroCopyOutputStream {
  private:
   class LIBPROTOBUF_EXPORT CopyingFileOutputStream : public CopyingOutputStream {
    public:
-    CopyingFileOutputStream(int file_descriptor);
+    explicit CopyingFileOutputStream(int file_descriptor);
     ~CopyingFileOutputStream();
 
     bool Close();
@@ -230,7 +230,7 @@ class LIBPROTOBUF_EXPORT IstreamInputStream : public ZeroCopyInputStream {
  private:
   class LIBPROTOBUF_EXPORT CopyingIstreamInputStream : public CopyingInputStream {
    public:
-    CopyingIstreamInputStream(istream* input);
+    explicit CopyingIstreamInputStream(istream* input);
     ~CopyingIstreamInputStream();
 
     // implements CopyingInputStream ---------------------------------
@@ -273,7 +273,7 @@ class LIBPROTOBUF_EXPORT OstreamOutputStream : public ZeroCopyOutputStream {
  private:
   class LIBPROTOBUF_EXPORT CopyingOstreamOutputStream : public CopyingOutputStream {
    public:
-    CopyingOstreamOutputStream(ostream* output);
+    explicit CopyingOstreamOutputStream(ostream* output);
     ~CopyingOstreamOutputStream();
 
     // implements CopyingOutputStream --------------------------------

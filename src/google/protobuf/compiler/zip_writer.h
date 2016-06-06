@@ -70,7 +70,7 @@ namespace compiler {
 
 class ZipWriter {
  public:
-  ZipWriter(io::ZeroCopyOutputStream* raw_output);
+  explicit ZipWriter(io::ZeroCopyOutputStream* raw_output);
   ~ZipWriter();
 
   bool Write(const string& filename, const string& contents);
