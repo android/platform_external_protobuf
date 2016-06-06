@@ -126,7 +126,7 @@ class LIBPROTOBUF_EXPORT ExtensionFinder {
 // files which have been compiled into the binary.
 class LIBPROTOBUF_EXPORT GeneratedExtensionFinder : public ExtensionFinder {
  public:
-  GeneratedExtensionFinder(const MessageLite* containing_type)
+  explicit GeneratedExtensionFinder(const MessageLite* containing_type)
       : containing_type_(containing_type) {}
   virtual ~GeneratedExtensionFinder() {}
 

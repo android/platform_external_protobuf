@@ -75,7 +75,7 @@ class GeneratorFactory {
 // Factory that creates generators for immutable-default messages.
 class ImmutableGeneratorFactory : public GeneratorFactory {
  public:
-  ImmutableGeneratorFactory(Context* context);
+  explicit ImmutableGeneratorFactory(Context* context);
   virtual ~ImmutableGeneratorFactory();
 
   virtual MessageGenerator* NewMessageGenerator(
