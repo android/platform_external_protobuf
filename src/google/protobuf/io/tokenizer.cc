@@ -112,8 +112,9 @@ namespace {
 // Note:  No class is allowed to contain '\0', since this is used to mark end-
 //   of-input and is handled specially.
 
+// NOLINT: clang-tiday adds parentheses around 'NAME'.
 #define CHARACTER_CLASS(NAME, EXPRESSION)      \
-  class NAME {                                 \
+  class NAME {          /* NOLINT */           \
    public:                                     \
     static inline bool InClass(char c) {       \
       return EXPRESSION;                       \

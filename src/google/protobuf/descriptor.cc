@@ -3243,10 +3243,10 @@ template<class DescriptorT> void DescriptorBuilder::AllocateOptionsImpl(
 // A common pattern:  We want to convert a repeated field in the descriptor
 // to an array of values, calling some method to build each value.
 #define BUILD_ARRAY(INPUT, OUTPUT, NAME, METHOD, PARENT)             \
-  OUTPUT->NAME##_count_ = INPUT.NAME##_size();                       \
-  AllocateArray(INPUT.NAME##_size(), &OUTPUT->NAME##s_);             \
-  for (int i = 0; i < INPUT.NAME##_size(); i++) {                    \
-    METHOD(INPUT.NAME(i), PARENT, OUTPUT->NAME##s_ + i);             \
+  OUTPUT->NAME##_count_ = (INPUT).NAME##_size();                     \
+  AllocateArray((INPUT).NAME##_size(), &(OUTPUT)->NAME##s_);         \
+  for (int i = 0; i < (INPUT).NAME##_size(); i++) {                  \
+    METHOD((INPUT).NAME(i), PARENT, (OUTPUT)->NAME##s_ + i);         \
   }
 
 void DescriptorBuilder::AddRecursiveImportError(
@@ -4436,8 +4436,8 @@ void DescriptorBuilder::CrossLinkMethod(
 // -------------------------------------------------------------------
 
 #define VALIDATE_OPTIONS_FROM_ARRAY(descriptor, array_name, type)  \
-  for (int i = 0; i < descriptor->array_name##_count(); ++i) {     \
-    Validate##type##Options(descriptor->array_name##s_ + i,        \
+  for (int i = 0; i < (descriptor)->array_name##_count(); ++i) {   \
+    Validate##type##Options((descriptor)->array_name##s_ + i,      \
                             proto.array_name(i));                  \
   }
 
