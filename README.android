@@ -3,6 +3,9 @@ Version: 2.2.0a
 License: Google BSD like
 Description: "Protobuf: The Google protobuf compiler and runtimes for various languages"
 
+Local changes:
+  go/aog/589664: const FieldDescriptorCompare
+
 Local Modifications: Initial changes include support for the micro
 protobuf compiler and the assoicated runtime.
 
