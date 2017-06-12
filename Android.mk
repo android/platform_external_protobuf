@@ -133,6 +133,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := host-libprotobuf-java-full
 LOCAL_MODULE_TAGS := optional
 
+LOCAL_COMPATIBILITY_SUITE := general-tests
+
 LOCAL_SRC_FILES := $(JAVA_FULL_SRC_FILES)
 
 LOCAL_JAVA_LANGUAGE_VERSION := 1.7
