@@ -58,6 +58,8 @@ LOCAL_MODULE := libprotobuf-java-nano
 LOCAL_MODULE_TAGS := optional
 LOCAL_SDK_VERSION := 8
 
+LOCAL_COMPATIBILITY_SUITE := general-tests
+
 LOCAL_SRC_FILES := $(call all-java-files-under, java/src/main/java/com/google/protobuf/nano)
 LOCAL_SRC_FILES += $(call all-java-files-under, java/src/device/main/java/com/google/protobuf/nano)
 
