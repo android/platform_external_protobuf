@@ -1,0 +1,8 @@
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Verified+1: Colin Cross <ccross@android.com>
+Code-Review+2: Dan Willemsen <dwillemsen@google.com>
+Submitted-by: Colin Cross <ccross@android.com>
+Submitted-at: Tue, 03 Oct 2017 23:02:50 +0000
+Reviewed-on: https://android-review.googlesource.com/499050
+Project: platform/external/protobuf
+Branch: refs/heads/master
