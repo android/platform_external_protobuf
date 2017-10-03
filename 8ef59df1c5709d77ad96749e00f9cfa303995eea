@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e602689b_dee5477e",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1074628
+      },
+      "writtenOn": "2017-10-03T01:51:42Z",
+      "side": 1,
+      "message": "You may need to add the new one to build/make/core/tasks/tools/compatibility.mk",
+      "revId": "8ef59df1c5709d77ad96749e00f9cfa303995eea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
