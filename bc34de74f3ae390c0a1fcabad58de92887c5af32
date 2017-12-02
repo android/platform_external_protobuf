@@ -1,0 +1,8 @@
+Code-Review+2: Armand Navabi <navabi@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Verified+1: Esteban de la Canal <estebandlc@google.com>
+Submitted-by: Esteban de la Canal <estebandlc@google.com>
+Submitted-at: Sat, 02 Dec 2017 01:34:01 +0000
+Reviewed-on: https://android-review.googlesource.com/554344
+Project: platform/external/protobuf
+Branch: refs/heads/studio-master-dev
