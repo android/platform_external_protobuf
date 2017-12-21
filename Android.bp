@@ -87,7 +87,7 @@ cc_defaults {
     cflags: IGNORED_WARNINGS,
 }
 
-// C++ lite library for the NDK.
+// C++ lite library for the NDK (stlport flavored).
 // =======================================================
 cc_library_static {
     name: "libprotobuf-cpp-lite-ndk",
@@ -98,6 +98,19 @@ cc_library_static {
     sdk_version: "9",
 
     stl: "stlport_static",
+}
+
+// C++ lite library for the NDK (libc++ flavored).
+// =======================================================
+cc_library_static {
+    name: "libprotobuf-cpp-lite-ndk-libc++",
+    defaults: ["libprotobuf-cpp-lite-defaults"],
+
+    cflags: ["-DGOOGLE_PROTOBUF_NO_RTTI"],
+
+    sdk_version: "9",
+
+    stl: "libc++_static",
 }
 
 // C++ lite library for the platform and host.
