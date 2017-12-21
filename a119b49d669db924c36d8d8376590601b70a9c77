@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97665b84_5e59771c",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2017-12-21T00:25:34Z",
+      "side": 1,
+      "message": "but leaving stlport again?",
+      "revId": "a119b49d669db924c36d8d8376590601b70a9c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
