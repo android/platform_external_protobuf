@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fb907d1_73ab995c",
+        "filename": "README.android",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040443
+      },
+      "writtenOn": "2018-01-16T19:11:08Z",
+      "side": 1,
+      "message": "update also this to v3.0.0-beta3",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "f854fb8e88da1e0af7d6eba8f852e66dbae9abf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9eca00a_cf1abfa0",
+        "filename": "README.android",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1040443
+      },
+      "writtenOn": "2018-01-16T19:11:08Z",
+      "side": 1,
+      "message": "merge with the section below\n\nLocal Changes (or modifications, whatever):\n - Initial changes include support for the micro\nprotobuf compiler and the assoicated runtime.\n - https://github.com/google/protobuf/pull/2732: const FieldDescriptorCompare",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 14
+      },
+      "revId": "f854fb8e88da1e0af7d6eba8f852e66dbae9abf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
