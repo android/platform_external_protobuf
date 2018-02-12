@@ -22,6 +22,30 @@
       "revId": "de7f1ba6f179e75f1b0f8299ab8444059948cdbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db5b77f3_4e25197e",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2018-02-12T09:42:39Z",
+      "side": 1,
+      "message": "I intentionally put this class into this library. Otherwise, the classes that have non-reflective references to this class (Utf8 and CodedOutputStream) will fail to load when Unsafe is not provided by the runtime.",
+      "parentUuid": "a646c6ed_9fca2811",
+      "range": {
+        "startLine": 549,
+        "startChar": 42,
+        "endLine": 549,
+        "endChar": 48
+      },
+      "revId": "de7f1ba6f179e75f1b0f8299ab8444059948cdbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
