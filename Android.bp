@@ -504,7 +504,7 @@ java_library_host {
 java_library_static {
     name: "libprotobuf-java-lite",
     host_supported: true,
-    no_framework_libs: true,
+    sdk_version: "core_current",
 
     srcs: [
         "java/core/src/main/java/com/google/protobuf/AbstractMessageLite.java",
@@ -546,6 +546,7 @@ java_library_static {
         "java/core/src/main/java/com/google/protobuf/UnmodifiableLazyStringList.java",
         "java/core/src/main/java/com/google/protobuf/Utf8.java",
         "java/core/src/main/java/com/google/protobuf/WireFormat.java",
+        "java/core/src/main/java/sun/misc/Unsafe.java",
     ],
 
     java_version: "1.7",
