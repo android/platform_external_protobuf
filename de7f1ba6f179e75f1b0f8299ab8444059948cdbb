@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a646c6ed_9fca2811",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1038039
+      },
+      "writtenOn": "2018-02-12T09:19:14Z",
+      "side": 1,
+      "message": "Although it won\u0027t be used at runtime, this\u0027ll end up in the resulting module. It probably makes more sense to have a new module for this and not include it as a static dep.\n\nTo avoid dealing with license complexity, it probably also makes sense to add something in libcore rather than here: like we have for libcore/ojluni/src/lambda but without the public jar (perhaps ojluni/src/internals to avoid making it just about \"Unsafe\", although I can\u0027t think of any other classes in this category).\n\nThis wouldn\u0027t be to solve the same need as our lambda stubs (ojluni/src/lambda is to deal with compile-time compiler dependencies we can\u0027t do anything about) but it\u0027s similar. We\u0027d need some good docs in a README to make it clear it\u0027s for compile-time dependencies on classes like sun.misc.Unsafe.",
+      "range": {
+        "startLine": 549,
+        "startChar": 42,
+        "endLine": 549,
+        "endChar": 48
+      },
+      "revId": "de7f1ba6f179e75f1b0f8299ab8444059948cdbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
