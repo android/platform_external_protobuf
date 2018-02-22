@@ -34,6 +34,24 @@
       "revId": "7726b00343b41fc97d9a508211e194424d17d319",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "286d01c5_afda9d4a",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2018-02-22T23:19:00Z",
+      "side": 1,
+      "message": "Yeah, but its mostly the same files as libprotobuf-cpp-full",
+      "parentUuid": "f1ead7c0_07c5c75d",
+      "revId": "7726b00343b41fc97d9a508211e194424d17d319",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
