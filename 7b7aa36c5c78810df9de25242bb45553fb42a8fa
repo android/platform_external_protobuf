@@ -70,6 +70,24 @@
       "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c80f6ba_09e7bdc7",
+        "filename": "java/core/src/stubs/sun/misc/Unsafe.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1074959
+      },
+      "writtenOn": "2018-03-04T05:35:20Z",
+      "side": 1,
+      "message": "We did a quick VC. It turns out that the comment in this class is outdated and this stub is indeed only used at build time like blaze\u0027s \"neverlink\". This resolves my other concern.\n\nPlease update the comment and resolve this thread. I\u0027m +1 after that. Note that I don\u0027t know how to actually *verify* that this stub is used in that manner - I trust other reviewers can do that.",
+      "parentUuid": "b740249c_959fee02",
+      "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
