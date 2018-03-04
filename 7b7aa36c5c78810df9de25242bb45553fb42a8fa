@@ -16,6 +16,24 @@
       "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70662af7_01f758f6",
+        "filename": "java/core/src/stubs/sun/misc/Unsafe.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2018-03-04T05:20:34Z",
+      "side": 1,
+      "message": "Thanks for the prompt response. Yes, I know that upstream protobuf is using both classes (you\u0027ve already explained this in the bug), but when will it be merged here? Right now, here in Android, these are the set of APIs that are used. I think we can add more APIs to this file when the upstream is merged here. This file is exclusive to protobuf... and thus should/can be adjusted by protobuf\u0027s need.\n\nMy main concern is on the mechanism part, and I want to separate the discussion about the mechanism (using stubs lib to provide build-time only info of the private symbols) from the discussion about the policy (the selection of APIs that are exposed here). And I thought you have no objection at least to the mechanism part, don\u0027t you?",
+      "parentUuid": "97485976_1ece6fa6",
+      "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
