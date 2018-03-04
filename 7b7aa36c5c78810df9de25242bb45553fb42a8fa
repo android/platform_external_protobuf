@@ -52,6 +52,24 @@
       "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b740249c_959fee02",
+        "filename": "java/core/src/stubs/sun/misc/Unsafe.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1074959
+      },
+      "writtenOn": "2018-03-04T05:26:24Z",
+      "side": 1,
+      "message": "I do not know when it will be merged here. I do not own protobuf in Gerrit and I do not even know who uses it to point to them as the owners :) tberghammer@ did the last update IIRC. We\u0027ll open source our code shortly at which point someone can pull it down here and save folks a boat load of binary size.\n\nIs your mechanism to ship this unnecessary class in production? If so, do you have an equivalent to blaze\u0027s \"neverlink\" in AOSP build? I\u0027d use that instead. If not, I have one other concern that requires a VC to discuss.",
+      "parentUuid": "70662af7_01f758f6",
+      "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
