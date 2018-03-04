@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97485976_1ece6fa6",
+        "filename": "java/core/src/stubs/sun/misc/Unsafe.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1074959
+      },
+      "writtenOn": "2018-03-04T04:56:27Z",
+      "side": 1,
+      "message": "Again, this statement is wrong. Today\u0027s version of lite protobuf *requires* sun.misc.Unsafe *and* libcore.io.Memory to function. If they are not present, protobuf will not execute and will cause process death. Please refer to https://cs.corp.google.com/piper///depot/google3/java/com/google/protobuf/MessageSchema.java?q\u003dMessageSchema.java\u0026sq\u003dpackage:piper+file://depot/google3+-file:google3/experimental\u0026l\u003d1 and https://docs.google.com/document/d/1_z6-tIa31Pq6MUi_79eA5S6214J13idRbAHTgn3vqXY/edit#heading\u003dh.zcn0x0ceatz5\n\nI am -2 on this change because I don\u0027t understand the implications of it, coupled with statements like these in the code that demonstrate a misunderstanding of the situation from libcore team.\n\nI suggest that we prioritize a discussion on what the current state is and how we should move forward. I\u0027m on the East Coast US on Monday but I see you are in Korea and Narayan is in London. I have no idea how to properly schedule this...",
+      "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
