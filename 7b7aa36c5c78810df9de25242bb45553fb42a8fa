@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6c2030da_683bcb43",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2018-03-04T05:45:59Z",
+      "side": 1,
+      "message": "This \u0027libs\u0027 prevents the stubs lib from embedded into this library. (\u0027static_libs\u0027 is for embedding)",
+      "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "97485976_1ece6fa6",
         "filename": "java/core/src/stubs/sun/misc/Unsafe.java",
         "patchSetId": 1
@@ -85,6 +102,24 @@
       "side": 1,
       "message": "We did a quick VC. It turns out that the comment in this class is outdated and this stub is indeed only used at build time like blaze\u0027s \"neverlink\". This resolves my other concern.\n\nPlease update the comment and resolve this thread. I\u0027m +1 after that. Note that I don\u0027t know how to actually *verify* that this stub is used in that manner - I trust other reviewers can do that.",
       "parentUuid": "b740249c_959fee02",
+      "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "019f99f6_cc37182f",
+        "filename": "java/core/src/stubs/sun/misc/Unsafe.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2018-03-04T05:45:59Z",
+      "side": 1,
+      "message": "sure. I just double checked that Unsafe class isn\u0027t included in the protobuf.\n\n$ unzip -l out/soong/.intermediates/external/protobuf/libprotobuf-java-lite/android_common/javac/libprotobuf-java-lite.jar | grep Unsafe.class\n\u003cshows nothing\u003e",
+      "parentUuid": "6c80f6ba_09e7bdc7",
       "revId": "7b7aa36c5c78810df9de25242bb45553fb42a8fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
