@@ -46,6 +46,30 @@
       "revId": "dc08924dc7262e5c06c1108f67f66e82598af806",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9cca295e_ce9244b7",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1014443
+      },
+      "writtenOn": "2018-03-05T11:52:44Z",
+      "side": 1,
+      "message": "I think it would still make sense to set \"installable: false\" as a safeguard, even if it\u0027s not 100% foolproof. You can do that in a separate change if you agree.",
+      "parentUuid": "ef45fa97_ad9e7244",
+      "range": {
+        "startLine": 590,
+        "startChar": 4,
+        "endLine": 590,
+        "endChar": 34
+      },
+      "revId": "dc08924dc7262e5c06c1108f67f66e82598af806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
