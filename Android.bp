@@ -591,4 +591,5 @@ java_library {
     host_supported: true,
     srcs: ["java/core/src/stubs/**/*.java"],
     sdk_version: "core_current",
+    installable: false,
 }
