@@ -22,6 +22,30 @@
       "revId": "dc08924dc7262e5c06c1108f67f66e82598af806",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef45fa97_ad9e7244",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2018-03-05T11:45:25Z",
+      "side": 1,
+      "message": "LOCAL_UNINSTALLABLE_MODULES :\u003d true or (installable: false) does not prevent static linking to a library. The options only prevent the lib from being installed as a standalone jar library file on the device.\n\nYes, Anton (or the build team) may follow up on this.",
+      "parentUuid": "9c648b72_d513086d",
+      "range": {
+        "startLine": 590,
+        "startChar": 4,
+        "endLine": 590,
+        "endChar": 34
+      },
+      "revId": "dc08924dc7262e5c06c1108f67f66e82598af806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
