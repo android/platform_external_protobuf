@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c648b72_d513086d",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1014443
+      },
+      "writtenOn": "2018-03-05T11:30:24Z",
+      "side": 1,
+      "message": "Two questions :\n\n(a) is there some way we can make sure this is never lands up on a device ? (the soong equivalent of LOCAL_UNINSTALLABLE_MODULES ?)\n\n(b) we need to figure out hwo to prevent other targets from linking against this. Anton\u0027s looking to come up with a more general solution to that problem.",
+      "range": {
+        "startLine": 590,
+        "startChar": 4,
+        "endLine": 590,
+        "endChar": 34
+      },
+      "revId": "dc08924dc7262e5c06c1108f67f66e82598af806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
