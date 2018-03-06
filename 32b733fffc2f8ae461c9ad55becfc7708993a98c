@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a743c80b_1cd1b361",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1103203
+      },
+      "writtenOn": "2018-03-06T15:13:39Z",
+      "side": 1,
+      "message": "Interesting. I would have expected it to conflict with module java.base for target, but apparently not? \n\nI couldn\u0027t find where the build target libprotobuf-java-lite lives, is that prebuilt? What is the target that actually breaks if it doesn\u0027t find the Unsafe class? In what .mk / .bp file is that make target defined?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
