@@ -70,6 +70,30 @@
       "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5574a006_ad4a4fee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2018-03-06T16:53:44Z",
+      "side": 1,
+      "message": "If I read the code correctly, we don\u0027t (temporarily) use modules when sdk_version is set. \n\n\t// TODO(ccross): re-enable these once we generate stubs, until then\n\t// use the stubs in prebuilts/sdk/*current\n\t//case \"current\":\n\t//\treturn toModule(\"android_stubs_current\")\n\t//case \"system_current\":\n\t//\treturn toModule(\"android_system_stubs_current\")\n\t//case \"test_current\":\n\t//\treturn toModule(\"android_test_stubs_current\")\n\nThis is why this CL is working right now. And even when the stubs are used as system modules, I think this CL is still okay since the modules do not have sun.misc package.",
+      "parentUuid": "704c2ebf_c2cff63f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
