@@ -46,6 +46,30 @@
       "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "704c2ebf_c2cff63f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1103203
+      },
+      "writtenOn": "2018-03-06T16:37:22Z",
+      "side": 1,
+      "message": "The line you refer to is:\nbootClasspath \u003d flags.systemModules.FormJavaSystemModulesPath(\"--system\u003d\", ctx.Device())\n\nI expected that it would only be \"none\" if the target that is being built specified LOCAL_NO_STANDARD_LIBRARIES or LOCAL_NO_FRAMEWORK_LIBS or similar, but that is not used in the Android.bp touched by this CL. But I remember that we now only have a single system module target that includes core-all, so it makes sense that we use \"none\" for all the stub cases (I actually wrote this logic myself but I forget the details :-D). So, as long as your CL builds, it should be fine.",
+      "parentUuid": "94e619f0_65ebbcd8",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
