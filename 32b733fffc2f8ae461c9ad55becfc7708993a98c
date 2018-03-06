@@ -22,6 +22,30 @@
       "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94e619f0_65ebbcd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2018-03-06T15:20:52Z",
+      "side": 1,
+      "message": "No it wasn\u0027t. I now see that --system is set to none when building for device. Please refer to build/soong/java/builder.go:288\n\nlibprotobuf-java-lite isn\u0027t a prebuilt. It\u0027s in Android.bp in this directory. The target that actually breaks is the one for host. The lib is built for both device and target since \u0027host_supported\u0027 is set to true.",
+      "parentUuid": "a743c80b_1cd1b361",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
