@@ -1,0 +1,10 @@
+Verified+1: Jiyong Park <jiyong@google.com>
+Code-Review+2: Jiyong Park <jiyong@google.com>
+Code-Review+2: Tobias Thierer <tobiast@google.com>
+Autosubmit+1: Jiyong Park <jiyong@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Tue, 06 Mar 2018 18:47:42 +0000
+Reviewed-on: https://android-review.googlesource.com/634385
+Project: platform/external/protobuf
+Branch: refs/heads/master
