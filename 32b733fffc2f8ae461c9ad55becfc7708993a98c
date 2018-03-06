@@ -94,6 +94,30 @@
       "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c364c652_99b18ff4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1103203
+      },
+      "writtenOn": "2018-03-06T17:34:01Z",
+      "side": 1,
+      "message": "Thanks for the investigation, I had forgotten about that bit.\n\nI think you\u0027re right, because those modules-from-stubs will only contain classes that are in the Android API, ie. they will not have sun.misc.",
+      "parentUuid": "5574a006_ad4a4fee",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "32b733fffc2f8ae461c9ad55becfc7708993a98c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
