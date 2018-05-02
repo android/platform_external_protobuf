@@ -1,0 +1,8 @@
+Code-Review+2: Mathew Inwood <mathewi@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Verified+1: Anton Hansson <hansson@google.com>
+Submitted-by: Anton Hansson <hansson@google.com>
+Submitted-at: Wed, 02 May 2018 08:02:17 +0000
+Reviewed-on: https://android-review.googlesource.com/676062
+Project: platform/external/protobuf
+Branch: refs/heads/master
