@@ -610,6 +610,7 @@ python_library {
         ":libprotobuf-internal-python-srcs",
         ":libprotobuf-internal-protos",
     ],
+    canonical_pkg_from_root: false,
     version: {
         py2: {
             enabled: true,
