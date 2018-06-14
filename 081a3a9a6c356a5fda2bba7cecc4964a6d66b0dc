@@ -1,0 +1,9 @@
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Verified+1: Andreas Gampe <agampe@google.com>
+Autosubmit+1: Andreas Gampe <agampe@google.com>
+Code-Review+2: Tobias Thierer <tobiast@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Thu, 14 Jun 2018 20:55:07 +0000
+Reviewed-on: https://android-review.googlesource.com/705344
+Project: platform/external/protobuf
+Branch: refs/heads/master
