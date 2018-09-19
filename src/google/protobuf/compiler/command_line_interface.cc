@@ -1506,31 +1506,31 @@ bool CommandLineInterface::GenerateDependencyManifestFile(
   }
 
   io::FileOutputStream out(fd);
-  io::Printer printer(&out, '$');
 
-  for (int i = 0; i < output_filenames.size(); i++) {
-    printer.Print(output_filenames[i].c_str());
-    if (i == output_filenames.size() - 1) {
-      printer.Print(":");
-    } else {
-      printer.Print(" \\\n");
+  {
+    io::Printer printer(&out, '$');
+
+    for (auto const& out_name : output_filenames) {
+      printer.Print("$out_name$:", "out_name", out_name);
+      const char *sep = " ";
+      for (int i = 0; i < file_set.file_size(); i++) {
+        const FileDescriptorProto& file = file_set.file(i);
+        const string& virtual_file = file.name();
+        string disk_file;
+        if (!source_tree ||
+            !source_tree->VirtualFileToDiskFile(virtual_file, &disk_file)) {
+          std::cerr << "Unable to identify path for file " << virtual_file
+                    << std::endl;
+          return false;
+        }
+        printer.PrintRaw(sep);
+        sep = "\\\n ";
+        printer.PrintRaw(disk_file.c_str());
+      }
+      printer.PrintRaw("\n");
     }
   }
-
-  for (int i = 0; i < file_set.file_size(); i++) {
-    const FileDescriptorProto& file = file_set.file(i);
-    const string& virtual_file = file.name();
-    string disk_file;
-    if (source_tree &&
-        source_tree->VirtualFileToDiskFile(virtual_file, &disk_file)) {
-      printer.Print(" $disk_file$", "disk_file", disk_file);
-      if (i < file_set.file_size() - 1) printer.Print("\\\n");
-    } else {
-      std::cerr << "Unable to identify path for file " << virtual_file
-                << std::endl;
-      return false;
-    }
-  }
+  out.Close();
 
   return true;
 }
