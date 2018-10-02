@@ -466,19 +466,12 @@ java_defaults {
 java_library_static {
     name: "libprotobuf-java-nano",
     defaults: ["libprotobuf_errorprone_defaults"],
-    host_supported: true,
-
-    sdk_version: "9",
 
     srcs: [
         "javanano/src/main/java/com/google/protobuf/nano/**/*.java",
+        "javanano/src/device/main/java/com/google/protobuf/nano/**/*.java",
     ],
-
-    target: {
-        android: {
-            srcs: ["javanano/src/device/main/java/com/google/protobuf/nano/**/*.java"],
-        },
-    },
+    sdk_version: "9",
 
     java_version: "1.7",
 }
@@ -487,7 +480,11 @@ java_library_static {
 // =======================================================
 java_library_host {
     name: "host-libprotobuf-java-nano",
-    static_libs: ["libprotobuf-java-nano"],
+    defaults: ["libprotobuf_errorprone_defaults"],
+
+    srcs: [
+        "javanano/src/main/java/com/google/protobuf/nano/**/*.java",
+    ],
 
     java_version: "1.7",
 }
