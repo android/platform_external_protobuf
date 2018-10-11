@@ -1,0 +1,9 @@
+Presubmit-Ready+1: Colin Cross <ccross@android.com>
+Verified+1: Colin Cross <ccross@android.com>
+Autosubmit+1: Colin Cross <ccross@android.com>
+Code-Review+2: Dan Willemsen <dwillemsen@google.com>
+Submitted-by: Colin Cross <ccross@android.com>
+Submitted-at: Thu, 11 Oct 2018 20:38:52 +0000
+Reviewed-on: https://android-review.googlesource.com/787141
+Project: platform/external/protobuf
+Branch: refs/heads/master
