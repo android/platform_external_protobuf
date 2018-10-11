@@ -109,6 +109,7 @@
                   <arg value="src/test/java/com/google/protobuf/nano/unittest_extension_packed_nano.proto" />
                 </exec>
                 <exec executable="../src/protoc">
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
                   <arg value="--javanano_out=store_unknown_fields=true:target/generated-test-sources" />
                   <arg value="--proto_path=src/test/java/com" />
                   <arg value="src/test/java/com/google/protobuf/unittest_unknown_enum_values_nano.proto" />
@@ -157,6 +158,46 @@
                   <arg value="--javanano_out=bytes_offset_length=true:target/generated-test-sources" />
                   <arg value="--proto_path=src/test/java/com" />
                   <arg value="src/test/google/protobuf/unittest_bytes_offset_length_nano.proto" />
+=======
+                  <arg value="--javanano_out=java_nano_generate_has=true,generate_equals=true,generate_clone=true:target/generated-test-sources" />
+                  <arg value="--proto_path=src/test/java/com" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_has_nano.proto" />
+                </exec>
+                <exec executable="../src/protoc">
+                  <arg value="--javanano_out=optional_field_style=accessors,generate_equals=true:target/generated-test-sources" />
+                  <arg value="--proto_path=src/test/java/com" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_accessors_nano.proto" />
+                </exec>
+                <exec executable="../src/protoc">
+                  <arg value="--javanano_out=enum_style=java:target/generated-test-sources" />
+                  <arg value="--proto_path=src/test/java/com" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_enum_class_nano.proto" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_enum_class_multiple_nano.proto" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_repeated_packables_nano.proto" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_enum_validity_nano.proto" />
+                </exec>
+                <exec executable="../src/protoc">
+                  <arg value="--javanano_out=
+                                  optional_field_style=accessors,
+                                  java_outer_classname=google/protobuf/nano/unittest_enum_validity_nano.proto|EnumValidityAccessors
+                                :target/generated-test-sources" />
+                  <arg value="--proto_path=src/test/java/com" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_enum_validity_nano.proto" />
+                </exec>
+                <exec executable="../src/protoc">
+                  <arg value="--javanano_out=optional_field_style=reftypes,generate_equals=true:target/generated-test-sources" />
+                  <arg value="--proto_path=src/test/java/com" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_reference_types_nano.proto" />
+                </exec>
+                <exec executable="../src/protoc">
+                  <arg value="--javanano_out=
+                                  optional_field_style=reftypes_compat_mode,
+                                  generate_equals=true,
+                                  java_outer_classname=google/protobuf/nano/unittest_reference_types_nano.proto|NanoReferenceTypesCompat
+                                  :target/generated-test-sources" />
+                  <arg value="--proto_path=src/test/java/com" />
+                  <arg value="src/test/java/com/google/protobuf/nano/unittest_reference_types_nano.proto" />
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
                 </exec>
               </tasks>
               <testSourceRoot>target/generated-test-sources</testSourceRoot>

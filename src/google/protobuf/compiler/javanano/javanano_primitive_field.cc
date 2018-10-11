@@ -267,6 +267,7 @@ GenerateMembers(io::Printer* printer, bool lazy_init) const {
     }
   }
 
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
   JavaType java_type = GetJavaType(descriptor_);
   if (java_type == JAVATYPE_BYTES && params_.bytes_offset_length()) {
     printer->Print(variables_,
@@ -414,6 +415,102 @@ GenerateComputeSizeCode(io::Printer* printer) const {
     printer->Print(variables_,
       "size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
       "    .compute$capitalized_type$Size($number$, this.$name$);\n");
+=======
+  printer->Print(variables_,
+    "public $type$ $name$;\n");
+
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "public boolean has$capitalized_name$;\n");
+  }
+}
+
+void PrimitiveFieldGenerator::
+GenerateClearCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "$name$ = $default_copy_if_needed$;\n");
+
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "has$capitalized_name$ = false;\n");
+  }
+}
+
+void PrimitiveFieldGenerator::
+GenerateMergingCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "this.$name$ = input.read$capitalized_type$();\n");
+
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "has$capitalized_name$ = true;\n");
+  }
+}
+
+void PrimitiveFieldGenerator::
+GenerateSerializationConditional(io::Printer* printer) const {
+  if (params_.use_reference_types_for_primitives()) {
+    // For reference type mode, serialize based on equality
+    // to null.
+    printer->Print(variables_,
+      "if (this.$name$ != null) {\n");
+    return;
+  }
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "if (has$capitalized_name$ || ");
+  } else {
+    printer->Print(variables_,
+      "if (");
+  }
+  JavaType java_type = GetJavaType(descriptor_);
+  if (IsArrayType(java_type)) {
+    printer->Print(variables_,
+      "!java.util.Arrays.equals(this.$name$, $default$)) {\n");
+  } else if (IsReferenceType(java_type)) {
+    printer->Print(variables_,
+      "!this.$name$.equals($default$)) {\n");
+  } else if (java_type == JAVATYPE_FLOAT) {
+    printer->Print(variables_,
+      "java.lang.Float.floatToIntBits(this.$name$)\n"
+      "    != java.lang.Float.floatToIntBits($default$)) {\n");
+  } else if (java_type == JAVATYPE_DOUBLE) {
+    printer->Print(variables_,
+      "java.lang.Double.doubleToLongBits(this.$name$)\n"
+      "    != java.lang.Double.doubleToLongBits($default$)) {\n");
+  } else {
+    printer->Print(variables_,
+      "this.$name$ != $default$) {\n");
+  }
+}
+
+void PrimitiveFieldGenerator::
+GenerateSerializationCode(io::Printer* printer) const {
+  if (descriptor_->is_required() && !params_.generate_has()) {
+    // Always serialize a required field if we don't have the 'has' signal.
+    printer->Print(variables_,
+      "output.write$capitalized_type$($number$, this.$name$);\n");
+  } else {
+    GenerateSerializationConditional(printer);
+    printer->Print(variables_,
+      "  output.write$capitalized_type$($number$, this.$name$);\n"
+      "}\n");
+  }
+}
+
+void PrimitiveFieldGenerator::
+GenerateSerializedSizeCode(io::Printer* printer) const {
+  if (descriptor_->is_required() && !params_.generate_has()) {
+    printer->Print(variables_,
+      "size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
+      "    .compute$capitalized_type$Size($number$, this.$name$);\n");
+  } else {
+    GenerateSerializationConditional(printer);
+    printer->Print(variables_,
+      "  size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
+      "      .compute$capitalized_type$Size($number$, this.$name$);\n"
+      "}\n");
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
   }
 }
 

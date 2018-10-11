@@ -145,11 +145,16 @@ class LIBPROTOBUF_EXPORT InternalMetadataWithArena {
   GOOGLE_ATTRIBUTE_NOINLINE UnknownFieldSet* mutable_unknown_fields_slow() {
     Arena* my_arena = arena();
     Container* container = Arena::Create<Container>(my_arena);
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
     // Two-step assignment works around a bug in clang's static analyzer:
     // https://bugs.llvm.org/show_bug.cgi?id=34198.
     ptr_ = container;
     ptr_ = reinterpret_cast<void*>(
         reinterpret_cast<intptr_t>(ptr_) | kTagContainer);
+=======
+    ptr_ = reinterpret_cast<void*>(
+        reinterpret_cast<intptr_t>(container) | kTagContainer);
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
     container->arena_ = my_arena;
     return &(container->unknown_fields_);
   }

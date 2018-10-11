@@ -34,6 +34,7 @@
 #include <google/protobuf/compiler/cpp/cpp_generator.h>
 #include <google/protobuf/compiler/python/python_generator.h>
 #include <google/protobuf/compiler/java/java_generator.h>
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
 #include <google/protobuf/compiler/javamicro/javamicro_generator.h>
 #include <google/protobuf/compiler/javanano/javanano_generator.h>
 #include <google/protobuf/compiler/ruby/ruby_generator.h>
@@ -71,6 +72,39 @@ int main(int argc, char* argv[]) {
   google::protobuf::compiler::javamicro::JavaMicroGenerator javamicro_generator;
   cli.RegisterGenerator("--javamicro_out", &javamicro_generator,
                         "Generate Java Micro source file.");
+=======
+#include <google/protobuf/compiler/javanano/javanano_generator.h>
+#include <google/protobuf/compiler/ruby/ruby_generator.h>
+#include <google/protobuf/compiler/csharp/csharp_generator.h>
+#include <google/protobuf/compiler/objectivec/objectivec_generator.h>
+#include <google/protobuf/compiler/js/js_generator.h>
+
+int main(int argc, char* argv[]) {
+
+  google::protobuf::compiler::CommandLineInterface cli;
+  cli.AllowPlugins("protoc-");
+
+  // Proto2 C++
+  google::protobuf::compiler::cpp::CppGenerator cpp_generator;
+  cli.RegisterGenerator("--cpp_out", "--cpp_opt", &cpp_generator,
+                        "Generate C++ header and source.");
+
+  // Proto2 Java
+  google::protobuf::compiler::java::JavaGenerator java_generator;
+  cli.RegisterGenerator("--java_out", &java_generator,
+                        "Generate Java source file.");
+
+
+  // Proto2 Python
+  google::protobuf::compiler::python::Generator py_generator;
+  cli.RegisterGenerator("--python_out", &py_generator,
+                        "Generate Python source file.");
+
+  // Java Nano
+  google::protobuf::compiler::javanano::JavaNanoGenerator javanano_generator;
+  cli.RegisterGenerator("--javanano_out", &javanano_generator,
+                        "Generate Java Nano source file.");
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
 
   // Ruby
   google::protobuf::compiler::ruby::Generator rb_generator;

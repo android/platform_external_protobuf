@@ -428,6 +428,7 @@ class enable_shared_from_this {
   shared_ptr<T> shared_from_this() {
     // Behavior is undefined if the precondition isn't satisfied; we choose
     // to die with a CHECK failure.
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
     GOOGLE_CHECK(!weak_this_.expired()) << "No shared_ptr owns this object";
     return weak_this_.lock();
   }
@@ -457,6 +458,37 @@ template<typename T>
 void shared_ptr<T>::MaybeSetupWeakThis(enable_shared_from_this<T>* ptr) {
   if (ptr) {
     GOOGLE_CHECK(ptr->weak_this_.expired()) << "Object already owned by a shared_ptr";
+=======
+    CHECK(!weak_this_.expired()) << "No shared_ptr owns this object";
+    return weak_this_.lock();
+  }
+  shared_ptr<const T> shared_from_this() const {
+    CHECK(!weak_this_.expired()) << "No shared_ptr owns this object";
+    return weak_this_.lock();
+  }
+
+ protected:
+  enable_shared_from_this() { }
+  enable_shared_from_this(const enable_shared_from_this& other) { }
+  enable_shared_from_this& operator=(const enable_shared_from_this& other) {
+    return *this;
+  }
+  ~enable_shared_from_this() { }
+
+ private:
+  weak_ptr<T> weak_this_;
+};
+
+// This is a helper function called by shared_ptr's constructor from a raw
+// pointer. If T inherits from enable_shared_from_this<T>, it sets up
+// weak_this_ so that shared_from_this works correctly. If T does not inherit
+// from weak_this we get a different overload, defined inline, which does
+// nothing.
+template<typename T>
+void shared_ptr<T>::MaybeSetupWeakThis(enable_shared_from_this<T>* ptr) {
+  if (ptr) {
+    CHECK(ptr->weak_this_.expired()) << "Object already owned by a shared_ptr";
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
     ptr->weak_this_ = *this;
   }
 }

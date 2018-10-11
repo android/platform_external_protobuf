@@ -63,8 +63,11 @@ class PrimitiveFieldGenerator : public FieldGenerator {
 
  private:
   void GenerateSerializationConditional(io::Printer* printer) const;
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
   void GenerateWriteCode(io::Printer* printer) const;
   void GenerateComputeSizeCode(io::Printer* printer) const;
+=======
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
 
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;

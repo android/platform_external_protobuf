@@ -169,11 +169,17 @@ void SharedCodeGenerator::GenerateDescriptors(io::Printer* printer) {
   for (int i = 0; i < file_->dependency_count(); i++) {
     if (ShouldIncludeDependency(file_->dependency(i))) {
       string filename = file_->dependency(i)->name();
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
       string classname = FileJavaPackage(file_->dependency(i));
       if (!classname.empty()) {
         classname += ".";
       }
       classname += name_resolver_->GetDescriptorClassName(file_->dependency(i));
+=======
+      string classname = FileJavaPackage(file_->dependency(i)) + "." +
+                         name_resolver_->GetDescriptorClassName(
+                             file_->dependency(i));
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
       dependencies.push_back(std::make_pair(filename, classname));
     }
   }

@@ -144,6 +144,7 @@ GenerateClearCode(io::Printer* printer) const {
 
 void EnumFieldGenerator::
 GenerateMergingCode(io::Printer* printer) const {
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
   if (params_.store_unknown_fields()) {
     printer->Print("int initialPos = input.getPosition();\n");
   }
@@ -499,6 +500,307 @@ GenerateMergingCodeFromPacked(io::Printer* printer) const {
       "        break;\n");
   }
   printer->Print(variables_,
+=======
+  printer->Print(variables_,
+    "int value = input.readInt32();\n"
+    "switch (value) {\n");
+  PrintCaseLabels(printer, canonical_values_);
+  printer->Print(variables_,
+    "    this.$name$ = value;\n");
+  if (params_.generate_has()) {
+    printer->Print(variables_,
+      "    has$capitalized_name$ = true;\n");
+  }
+  printer->Print(
+    "    break;\n"
+    "}\n");
+  // No default case: in case of invalid value from the wire, preserve old
+  // field value. Also we are not storing the invalid value into the unknown
+  // fields, because there is no way to get the value out.
+}
+
+void EnumFieldGenerator::
+GenerateSerializationCode(io::Printer* printer) const {
+  if (descriptor_->is_required() && !params_.generate_has()) {
+    // Always serialize a required field if we don't have the 'has' signal.
+    printer->Print(variables_,
+      "output.writeInt32($number$, this.$name$);\n");
+  } else {
+    if (params_.generate_has()) {
+      printer->Print(variables_,
+        "if (this.$name$ != $default$ || has$capitalized_name$) {\n");
+    } else {
+      printer->Print(variables_,
+        "if (this.$name$ != $default$) {\n");
+    }
+    printer->Print(variables_,
+      "  output.writeInt32($number$, this.$name$);\n"
+      "}\n");
+  }
+}
+
+void EnumFieldGenerator::
+GenerateSerializedSizeCode(io::Printer* printer) const {
+  if (descriptor_->is_required() && !params_.generate_has()) {
+    printer->Print(variables_,
+      "size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
+      "  .computeInt32Size($number$, this.$name$);\n");
+  } else {
+    if (params_.generate_has()) {
+      printer->Print(variables_,
+        "if (this.$name$ != $default$ || has$capitalized_name$) {\n");
+    } else {
+      printer->Print(variables_,
+        "if (this.$name$ != $default$) {\n");
+    }
+    printer->Print(variables_,
+      "  size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
+      "    .computeInt32Size($number$, this.$name$);\n"
+      "}\n");
+  }
+}
+
+void EnumFieldGenerator::GenerateEqualsCode(io::Printer* printer) const {
+  if (params_.use_reference_types_for_primitives()
+        && !params_.reftypes_primitive_enums()) {
+    printer->Print(variables_,
+      "if (this.$name$ == null) {\n"
+      "  if (other.$name$ != null) {\n"
+      "    return false;\n"
+      "  }\n"
+      "} else if (!this.$name$.equals(other.$name$)) {\n"
+      "  return false;"
+      "}\n");
+  } else {
+    // We define equality as serialized form equality. If generate_has(),
+    // then if the field value equals the default value in both messages,
+    // but one's 'has' field is set and the other's is not, the serialized
+    // forms are different and we should return false.
+    printer->Print(variables_,
+      "if (this.$name$ != other.$name$");
+    if (params_.generate_has()) {
+      printer->Print(variables_,
+        "\n"
+        "    || (this.$name$ == $default$\n"
+        "        && this.has$capitalized_name$ != other.has$capitalized_name$)");
+    }
+    printer->Print(") {\n"
+      "  return false;\n"
+      "}\n");
+  }
+}
+
+void EnumFieldGenerator::GenerateHashCodeCode(io::Printer* printer) const {
+  printer->Print(
+    "result = 31 * result + ");
+  if (params_.use_reference_types_for_primitives()
+        && !params_.reftypes_primitive_enums()) {
+    printer->Print(variables_,
+      "(this.$name$ == null ? 0 : this.$name$)");
+  } else {
+    printer->Print(variables_,
+      "this.$name$");
+  }
+  printer->Print(";\n");
+}
+
+// ===================================================================
+
+AccessorEnumFieldGenerator::
+AccessorEnumFieldGenerator(const FieldDescriptor* descriptor,
+    const Params& params, int has_bit_index)
+  : FieldGenerator(params), descriptor_(descriptor) {
+  SetEnumVariables(params, descriptor, &variables_);
+  LoadEnumValues(params, descriptor->enum_type(), &canonical_values_);
+  SetBitOperationVariables("has", has_bit_index, &variables_);
+}
+
+AccessorEnumFieldGenerator::~AccessorEnumFieldGenerator() {}
+
+void AccessorEnumFieldGenerator::
+GenerateMembers(io::Printer* printer, bool /* unused lazy_init */) const {
+  printer->Print(variables_, "private int $name$_;\n");
+  if (params_.generate_intdefs()) {
+    printer->Print(variables_, "$message_type_intdef$\n");
+  }
+  printer->Print(variables_,
+    "public int get$capitalized_name$() {\n"
+    "  return $name$_;\n"
+    "}\n"
+    "public $message_name$ set$capitalized_name$(");
+  if (params_.generate_intdefs()) {
+    printer->Print(variables_,
+      "\n"
+      "    $message_type_intdef$ ");
+  }
+  printer->Print(variables_,
+    "int value) {\n"
+    "  $name$_ = value;\n"
+    "  $set_has$;\n"
+    "  return this;\n"
+    "}\n"
+    "public boolean has$capitalized_name$() {\n"
+    "  return $get_has$;\n"
+    "}\n"
+    "public $message_name$ clear$capitalized_name$() {\n"
+    "  $name$_ = $default$;\n"
+    "  $clear_has$;\n"
+    "  return this;\n"
+    "}\n");
+}
+
+void AccessorEnumFieldGenerator::
+GenerateClearCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "$name$_ = $default$;\n");
+}
+
+void AccessorEnumFieldGenerator::
+GenerateMergingCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "int value = input.readInt32();\n"
+    "switch (value) {\n");
+  PrintCaseLabels(printer, canonical_values_);
+  printer->Print(variables_,
+    "    $name$_ = value;\n"
+    "    $set_has$;\n"
+    "    break;\n"
+    "}\n");
+  // No default case: in case of invalid value from the wire, preserve old
+  // field value. Also we are not storing the invalid value into the unknown
+  // fields, because there is no way to get the value out.
+}
+
+void AccessorEnumFieldGenerator::
+GenerateSerializationCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "if ($get_has$) {\n"
+    "  output.writeInt32($number$, $name$_);\n"
+    "}\n");
+}
+
+void AccessorEnumFieldGenerator::
+GenerateSerializedSizeCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "if ($get_has$) {\n"
+    "  size += com.google.protobuf.nano.CodedOutputByteBufferNano\n"
+    "    .computeInt32Size($number$, $name$_);\n"
+    "}\n");
+}
+
+void AccessorEnumFieldGenerator::
+GenerateEqualsCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "if ($different_has$\n"
+    "    || $name$_ != other.$name$_) {\n"
+    "  return false;\n"
+    "}\n");
+}
+
+void AccessorEnumFieldGenerator::
+GenerateHashCodeCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "result = 31 * result + $name$_;\n");
+}
+
+// ===================================================================
+
+RepeatedEnumFieldGenerator::
+RepeatedEnumFieldGenerator(const FieldDescriptor* descriptor, const Params& params)
+  : FieldGenerator(params), descriptor_(descriptor) {
+  SetEnumVariables(params, descriptor, &variables_);
+  LoadEnumValues(params, descriptor->enum_type(), &canonical_values_);
+}
+
+RepeatedEnumFieldGenerator::~RepeatedEnumFieldGenerator() {}
+
+void RepeatedEnumFieldGenerator::
+GenerateMembers(io::Printer* printer, bool /* unused lazy_init */) const {
+  printer->Print(variables_,
+    "public $type$[] $name$;\n");
+}
+
+void RepeatedEnumFieldGenerator::
+GenerateClearCode(io::Printer* printer) const {
+  printer->Print(variables_,
+    "$name$ = $repeated_default$;\n");
+}
+
+void RepeatedEnumFieldGenerator::
+GenerateMergingCode(io::Printer* printer) const {
+  // First, figure out the maximum length of the array, then parse,
+  // and finally copy the valid values to the field.
+  printer->Print(variables_,
+    "int length = com.google.protobuf.nano.WireFormatNano\n"
+    "    .getRepeatedFieldArrayLength(input, $non_packed_tag$);\n"
+    "int[] validValues = new int[length];\n"
+    "int validCount = 0;\n"
+    "for (int i = 0; i < length; i++) {\n"
+    "  if (i != 0) { // tag for first value already consumed.\n"
+    "    input.readTag();\n"
+    "  }\n"
+    "  int value = input.readInt32();\n"
+    "  switch (value) {\n");
+  printer->Indent();
+  PrintCaseLabels(printer, canonical_values_);
+  printer->Outdent();
+  printer->Print(variables_,
+    "      validValues[validCount++] = value;\n"
+    "      break;\n"
+    "  }\n"
+    "}\n"
+    "if (validCount != 0) {\n"
+    "  int i = this.$name$ == null ? 0 : this.$name$.length;\n"
+    "  if (i == 0 && validCount == validValues.length) {\n"
+    "    this.$name$ = validValues;\n"
+    "  } else {\n"
+    "    int[] newArray = new int[i + validCount];\n"
+    "    if (i != 0) {\n"
+    "      java.lang.System.arraycopy(this.$name$, 0, newArray, 0, i);\n"
+    "    }\n"
+    "    java.lang.System.arraycopy(validValues, 0, newArray, i, validCount);\n"
+    "    this.$name$ = newArray;\n"
+    "  }\n"
+    "}\n");
+}
+
+void RepeatedEnumFieldGenerator::
+GenerateMergingCodeFromPacked(io::Printer* printer) const {
+  printer->Print(variables_,
+    "int bytes = input.readRawVarint32();\n"
+    "int limit = input.pushLimit(bytes);\n"
+    "// First pass to compute array length.\n"
+    "int arrayLength = 0;\n"
+    "int startPos = input.getPosition();\n"
+    "while (input.getBytesUntilLimit() > 0) {\n"
+    "  switch (input.readInt32()) {\n");
+  printer->Indent();
+  PrintCaseLabels(printer, canonical_values_);
+  printer->Outdent();
+  printer->Print(variables_,
+    "      arrayLength++;\n"
+    "      break;\n"
+    "  }\n"
+    "}\n"
+    "if (arrayLength != 0) {\n"
+    "  input.rewindToPosition(startPos);\n"
+    "  int i = this.$name$ == null ? 0 : this.$name$.length;\n"
+    "  int[] newArray = new int[i + arrayLength];\n"
+    "  if (i != 0) {\n"
+    "    java.lang.System.arraycopy(this.$name$, 0, newArray, 0, i);\n"
+    "  }\n"
+    "  while (input.getBytesUntilLimit() > 0) {\n"
+    "    int value = input.readInt32();\n"
+    "    switch (value) {\n");
+  printer->Indent();
+  printer->Indent();
+  PrintCaseLabels(printer, canonical_values_);
+  printer->Outdent();
+  printer->Outdent();
+  printer->Print(variables_,
+    "        newArray[i++] = value;\n"
+    "        break;\n"
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
     "    }\n"
     "  }\n"
     "  this.$name$ = newArray;\n"

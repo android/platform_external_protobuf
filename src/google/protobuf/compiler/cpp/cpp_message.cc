@@ -2313,6 +2313,7 @@ GenerateStructors(io::Printer* printer) {
       GlobalAddDescriptorsName(descriptor_->file()->name()));
 
   printer->Print(
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
     "  return *default_instance_; /* NOLINT */\n"
     "}\n"
     "\n"
@@ -2404,6 +2405,99 @@ GenerateClear(io::Printer* printer) {
       "#endif\n\n"
       "#define ZR_(first, last) do {\\\n"
       "  ::memset(&(first), 0,\\\n"
+=======
+    "  return *default_instance_;\n"
+    "}\n"
+    "\n"
+    "$classname$* $classname$::default_instance_ = NULL;\n"
+    "\n",
+    "classname", classname_);
+
+  if (SupportsArenas(descriptor_)) {
+    printer->Print(
+      "$classname$* $classname$::New(::google::protobuf::Arena* arena) const {\n"
+      "  return ::google::protobuf::Arena::CreateMessage<$classname$>(arena);\n"
+      "}\n",
+      "classname", classname_);
+  } else {
+    printer->Print(
+      "$classname$* $classname$::New(::google::protobuf::Arena* arena) const {\n"
+      "  $classname$* n = new $classname$;\n"
+      "  if (arena != NULL) {\n"
+      "    arena->Own(n);\n"
+      "  }\n"
+      "  return n;\n"
+      "}\n",
+      "classname", classname_);
+  }
+
+}
+
+// Return the number of bits set in n, a non-negative integer.
+static int popcnt(uint32 n) {
+  int result = 0;
+  while (n != 0) {
+    result += (n & 1);
+    n = n / 2;
+  }
+  return result;
+}
+
+void MessageGenerator::
+GenerateClear(io::Printer* printer) {
+  printer->Print(
+      "void $classname$::Clear() {\n"
+      "// @@protoc_insertion_point(message_clear_start:$full_name$)\n",
+      "classname", classname_, "full_name", descriptor_->full_name());
+  printer->Indent();
+
+  // Step 1: Extensions
+  if (descriptor_->extension_range_count() > 0) {
+    printer->Print("_extensions_.Clear();\n");
+  }
+
+  // Step 2: Everything but extensions, repeateds, unions.
+  // These are handled in chunks of 8.  The first chunk is
+  // the non-extensions-non-repeateds-non-unions in
+  //  descriptor_->field(0), descriptor_->field(1), ... descriptor_->field(7),
+  // and the second chunk is the same for
+  //  descriptor_->field(8), descriptor_->field(9), ... descriptor_->field(15),
+  // etc.
+  set<int> step2_indices;
+  hash_map<string, int> fieldname_to_chunk;
+  hash_map<int, string> memsets_for_chunk;
+  hash_map<int, int> memset_field_count_for_chunk;
+  hash_set<string> handled;  // fields that appear anywhere in memsets_for_chunk
+  hash_map<int, uint32> fields_mask_for_chunk;
+  for (int i = 0; i < descriptor_->field_count(); i++) {
+    const FieldDescriptor* field = descriptor_->field(i);
+    if (!field->is_repeated() && !field->containing_oneof()) {
+      step2_indices.insert(i);
+      int chunk = i / 8;
+      fieldname_to_chunk[FieldName(field)] = chunk;
+      fields_mask_for_chunk[chunk] |= static_cast<uint32>(1) << (i % 32);
+    }
+  }
+
+  // Step 2a: Greedily seek runs of fields that can be cleared by memset-to-0.
+  // The generated code uses two macros to help it clear runs of fields:
+  // ZR_HELPER_(f1) - ZR_HELPER_(f0) computes the difference, in bytes, of the
+  // positions of two fields in the Message.
+  // ZR_ zeroes a non-empty range of fields via memset.
+  const char* macros =
+      "#if defined(__clang__)\n"
+      "#define ZR_HELPER_(f) \\\n"
+      "  _Pragma(\"clang diagnostic push\") \\\n"
+      "  _Pragma(\"clang diagnostic ignored \\\"-Winvalid-offsetof\\\"\") \\\n"
+      "  __builtin_offsetof($classname$, f) \\\n"
+      "  _Pragma(\"clang diagnostic pop\")\n"
+      "#else\n"
+      "#define ZR_HELPER_(f) reinterpret_cast<char*>(\\\n"
+      "  &reinterpret_cast<$classname$*>(16)->f)\n"
+      "#endif\n\n"
+      "#define ZR_(first, last) do {\\\n"
+      "  ::memset(&first, 0,\\\n"
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
       "           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\\\n"
       "} while (0)\n\n";
   for (int i = 0; i < runs_of_fields_.size(); i++) {

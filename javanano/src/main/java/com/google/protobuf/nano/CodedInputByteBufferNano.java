@@ -543,6 +543,7 @@ public final class CodedInputByteBufferNano {
   }
 
   /**
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
    * Get current (absolute) position in buffer.
    */
   public int getAbsolutePosition() {
@@ -557,6 +558,8 @@ public final class CodedInputByteBufferNano {
   }
 
   /**
+=======
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
    * Retrieves a subset of data in the buffer. The returned array is not backed by the original
    * buffer array.
    *

@@ -633,6 +633,7 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
 // On MSVC, this should be detected automatically.
 template<typename To, typename From>
 inline To dynamic_cast_if_available(From from) {
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
 #if defined(GOOGLE_PROTOBUF_NO_RTTI) || defined(__GXX_RTTI) || \
   (defined(_MSC_VER)&&!defined(_CPPRTTI))
   // Avoid the compiler warning about unused variables.
@@ -664,6 +665,36 @@ T* DynamicCastToGenerated(const Message* from) {
 
 #if defined(GOOGLE_PROTOBUF_NO_RTTI) || defined(__GXX_RTTI) || \
   (defined(_MSC_VER)&&!defined(_CPPRTTI))
+=======
+#if defined(GOOGLE_PROTOBUF_NO_RTTI) || (defined(_MSC_VER)&&!defined(_CPPRTTI))
+  return NULL;
+#else
+  return dynamic_cast<To>(from);
+#endif
+}
+
+// Tries to downcast this message to a generated message type.
+// Returns NULL if this class is not an instance of T.
+//
+// This is like dynamic_cast_if_available, except it works even when
+// dynamic_cast is not available by using Reflection.  However it only works
+// with Message objects.
+//
+// TODO(haberman): can we remove dynamic_cast_if_available in favor of this?
+template <typename T>
+T* DynamicCastToGenerated(const Message* from) {
+  // Compile-time assert that T is a generated type that has a
+  // default_instance() accessor, but avoid actually calling it.
+  const T&(*get_default_instance)() = &T::default_instance;
+  (void)get_default_instance;
+
+  // Compile-time assert that T is a subclass of google::protobuf::Message.
+  const Message* unused = static_cast<T*>(NULL);
+  (void)unused;
+
+#if defined(GOOGLE_PROTOBUF_NO_RTTI) || \
+  (defined(_MSC_VER) && !defined(_CPPRTTI))
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
   bool ok = &T::default_instance() ==
             from->GetReflection()->GetMessageFactory()->GetPrototype(
                 from->GetDescriptor());

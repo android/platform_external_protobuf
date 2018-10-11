@@ -208,6 +208,7 @@ typename Collection::value_type::second_type::element_type&
 FindLinkedPtrOrDie(const Collection& collection,
                    const typename Collection::value_type::first_type& key) {
   typename Collection::const_iterator it = collection.find(key);
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
   GOOGLE_CHECK(it != collection.end()) <<  "key not found: " << key;
   // Since linked_ptr::operator*() is a const member returning a non const,
   // we do not need a version of this function taking a non const collection.
@@ -345,6 +346,145 @@ template <class Collection>
 void InsertOrDieNoPrint(Collection* const collection,
                         const typename Collection::value_type& value) {
   GOOGLE_CHECK(InsertIfNotPresent(collection, value)) << "duplicate value.";
+=======
+  CHECK(it != collection.end()) <<  "key not found: " << key;
+  // Since linked_ptr::operator*() is a const member returning a non const,
+  // we do not need a version of this function taking a non const collection.
+  return *it->second;
+}
+
+// Finds the value associated with the given key and copies it to *value (if not
+// NULL). Returns false if the key was not found, true otherwise.
+template <class Collection, class Key, class Value>
+bool FindCopy(const Collection& collection,
+              const Key& key,
+              Value* const value) {
+  typename Collection::const_iterator it = collection.find(key);
+  if (it == collection.end()) {
+    return false;
+  }
+  if (value) {
+    *value = it->second;
+  }
+  return true;
+}
+
+//
+// Contains*()
+//
+
+// Returns true if and only if the given collection contains the given key.
+template <class Collection, class Key>
+bool ContainsKey(const Collection& collection, const Key& key) {
+  return collection.find(key) != collection.end();
+}
+
+// Returns true if and only if the given collection contains the given key-value
+// pair.
+template <class Collection, class Key, class Value>
+bool ContainsKeyValuePair(const Collection& collection,
+                          const Key& key,
+                          const Value& value) {
+  typedef typename Collection::const_iterator const_iterator;
+  std::pair<const_iterator, const_iterator> range = collection.equal_range(key);
+  for (const_iterator it = range.first; it != range.second; ++it) {
+    if (it->second == value) {
+      return true;
+    }
+  }
+  return false;
+}
+
+//
+// Insert*()
+//
+
+// Inserts the given key-value pair into the collection. Returns true if and
+// only if the key from the given pair didn't previously exist. Otherwise, the
+// value in the map is replaced with the value from the given pair.
+template <class Collection>
+bool InsertOrUpdate(Collection* const collection,
+                    const typename Collection::value_type& vt) {
+  std::pair<typename Collection::iterator, bool> ret = collection->insert(vt);
+  if (!ret.second) {
+    // update
+    ret.first->second = vt.second;
+    return false;
+  }
+  return true;
+}
+
+// Same as above, except that the key and value are passed separately.
+template <class Collection>
+bool InsertOrUpdate(Collection* const collection,
+                    const typename Collection::value_type::first_type& key,
+                    const typename Collection::value_type::second_type& value) {
+  return InsertOrUpdate(
+      collection, typename Collection::value_type(key, value));
+}
+
+// Inserts/updates all the key-value pairs from the range defined by the
+// iterators "first" and "last" into the given collection.
+template <class Collection, class InputIterator>
+void InsertOrUpdateMany(Collection* const collection,
+                        InputIterator first, InputIterator last) {
+  for (; first != last; ++first) {
+    InsertOrUpdate(collection, *first);
+  }
+}
+
+// Change the value associated with a particular key in a map or hash_map
+// of the form map<Key, Value*> which owns the objects pointed to by the
+// value pointers.  If there was an existing value for the key, it is deleted.
+// True indicates an insert took place, false indicates an update + delete.
+template <class Collection>
+bool InsertAndDeleteExisting(
+    Collection* const collection,
+    const typename Collection::value_type::first_type& key,
+    const typename Collection::value_type::second_type& value) {
+  std::pair<typename Collection::iterator, bool> ret =
+      collection->insert(typename Collection::value_type(key, value));
+  if (!ret.second) {
+    delete ret.first->second;
+    ret.first->second = value;
+    return false;
+  }
+  return true;
+}
+
+// Inserts the given key and value into the given collection if and only if the
+// given key did NOT already exist in the collection. If the key previously
+// existed in the collection, the value is not changed. Returns true if the
+// key-value pair was inserted; returns false if the key was already present.
+template <class Collection>
+bool InsertIfNotPresent(Collection* const collection,
+                        const typename Collection::value_type& vt) {
+  return collection->insert(vt).second;
+}
+
+// Same as above except the key and value are passed separately.
+template <class Collection>
+bool InsertIfNotPresent(
+    Collection* const collection,
+    const typename Collection::value_type::first_type& key,
+    const typename Collection::value_type::second_type& value) {
+  return InsertIfNotPresent(
+      collection, typename Collection::value_type(key, value));
+}
+
+// Same as above except dies if the key already exists in the collection.
+template <class Collection>
+void InsertOrDie(Collection* const collection,
+                 const typename Collection::value_type& value) {
+  CHECK(InsertIfNotPresent(collection, value)) << "duplicate value: " << value;
+}
+
+// Same as above except doesn't log the value on error.
+template <class Collection>
+void InsertOrDieNoPrint(Collection* const collection,
+                        const typename Collection::value_type& value) {
+  CHECK(InsertIfNotPresent(collection, value)) << "duplicate value.";
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
 }
 
 // Inserts the key-value pair into the collection. Dies if key was already

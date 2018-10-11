@@ -87,6 +87,7 @@
 #include <stdlib.h>  // NOLINT(build/include)
 #elif defined(__APPLE__)
 #include <libkern/OSByteOrder.h>
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
 #elif defined(__GLIBC__) || defined(__BIONIC__) || defined(__CYGWIN__)
 #include <byteswap.h>  // IWYU pragma: export
 #endif
@@ -291,6 +292,212 @@ inline void GOOGLE_UNALIGNED_STORE64(void *p, uint64 v) {
 #define bswap_64(x) OSSwapInt64(x)
 
 #elif !defined(__GLIBC__) && !defined(__BIONIC__) && !defined(__CYGWIN__)
+=======
+#elif defined(__GLIBC__) || defined(__CYGWIN__)
+#include <byteswap.h>  // IWYU pragma: export
+#endif
+
+// ===================================================================
+// from google3/base/port.h
+namespace google {
+namespace protobuf {
+
+typedef unsigned int uint;
+
+#ifdef _MSC_VER
+typedef signed __int8  int8;
+typedef __int16 int16;
+typedef __int32 int32;
+typedef __int64 int64;
+
+typedef unsigned __int8  uint8;
+typedef unsigned __int16 uint16;
+typedef unsigned __int32 uint32;
+typedef unsigned __int64 uint64;
+#else
+typedef signed char  int8;
+typedef short int16;
+typedef int int32;
+typedef long long int64;
+
+typedef unsigned char  uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long uint64;
+#endif
+
+// long long macros to be used because gcc and vc++ use different suffixes,
+// and different size specifiers in format strings
+#undef GOOGLE_LONGLONG
+#undef GOOGLE_ULONGLONG
+#undef GOOGLE_LL_FORMAT
+
+#ifdef _MSC_VER
+#define GOOGLE_LONGLONG(x) x##I64
+#define GOOGLE_ULONGLONG(x) x##UI64
+#define GOOGLE_LL_FORMAT "I64"  // As in printf("%I64d", ...)
+#else
+#define GOOGLE_LONGLONG(x) x##LL
+#define GOOGLE_ULONGLONG(x) x##ULL
+#define GOOGLE_LL_FORMAT "ll"  // As in "%lld". Note that "q" is poor form also.
+#endif
+
+static const int32 kint32max = 0x7FFFFFFF;
+static const int32 kint32min = -kint32max - 1;
+static const int64 kint64max = GOOGLE_LONGLONG(0x7FFFFFFFFFFFFFFF);
+static const int64 kint64min = -kint64max - 1;
+static const uint32 kuint32max = 0xFFFFFFFFu;
+static const uint64 kuint64max = GOOGLE_ULONGLONG(0xFFFFFFFFFFFFFFFF);
+
+// -------------------------------------------------------------------
+// Annotations:  Some parts of the code have been annotated in ways that might
+//   be useful to some compilers or tools, but are not supported universally.
+//   You can #define these annotations yourself if the default implementation
+//   is not right for you.
+
+#ifndef GOOGLE_ATTRIBUTE_ALWAYS_INLINE
+#if defined(__GNUC__) && (__GNUC__ > 3 ||(__GNUC__ == 3 && __GNUC_MINOR__ >= 1))
+// For functions we want to force inline.
+// Introduced in gcc 3.1.
+#define GOOGLE_ATTRIBUTE_ALWAYS_INLINE __attribute__ ((always_inline))
+#else
+// Other compilers will have to figure it out for themselves.
+#define GOOGLE_ATTRIBUTE_ALWAYS_INLINE
+#endif
+#endif
+
+#ifndef GOOGLE_ATTRIBUTE_NOINLINE
+#if defined(__GNUC__) && (__GNUC__ > 3 ||(__GNUC__ == 3 && __GNUC_MINOR__ >= 1))
+// For functions we want to force not inline.
+// Introduced in gcc 3.1.
+#define GOOGLE_ATTRIBUTE_NOINLINE __attribute__ ((noinline))
+#elif defined(_MSC_VER) && (_MSC_VER >= 1400)
+// Seems to have been around since at least Visual Studio 2005
+#define GOOGLE_ATTRIBUTE_NOINLINE __declspec(noinline)
+#else
+// Other compilers will have to figure it out for themselves.
+#define GOOGLE_ATTRIBUTE_NOINLINE
+#endif
+#endif
+
+#ifndef GOOGLE_ATTRIBUTE_DEPRECATED
+#ifdef __GNUC__
+// If the method/variable/type is used anywhere, produce a warning.
+#define GOOGLE_ATTRIBUTE_DEPRECATED __attribute__((deprecated))
+#else
+#define GOOGLE_ATTRIBUTE_DEPRECATED
+#endif
+#endif
+
+#ifndef GOOGLE_PREDICT_TRUE
+#ifdef __GNUC__
+// Provided at least since GCC 3.0.
+#define GOOGLE_PREDICT_TRUE(x) (__builtin_expect(!!(x), 1))
+#else
+#define GOOGLE_PREDICT_TRUE(x) (x)
+#endif
+#endif
+
+#ifndef GOOGLE_PREDICT_FALSE
+#ifdef __GNUC__
+// Provided at least since GCC 3.0.
+#define GOOGLE_PREDICT_FALSE(x) (__builtin_expect(x, 0))
+#else
+#define GOOGLE_PREDICT_FALSE(x) (x)
+#endif
+#endif
+
+// Delimits a block of code which may write to memory which is simultaneously
+// written by other threads, but which has been determined to be thread-safe
+// (e.g. because it is an idempotent write).
+#ifndef GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN
+#define GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN()
+#endif
+#ifndef GOOGLE_SAFE_CONCURRENT_WRITES_END
+#define GOOGLE_SAFE_CONCURRENT_WRITES_END()
+#endif
+
+#if defined(__clang__) && defined(__has_cpp_attribute) \
+    && !defined(GOOGLE_PROTOBUF_OS_APPLE)
+# if defined(GOOGLE_PROTOBUF_OS_NACL) || defined(EMSCRIPTEN) || \
+     __has_cpp_attribute(clang::fallthrough)
+#  define GOOGLE_FALLTHROUGH_INTENDED [[clang::fallthrough]]
+# endif
+#endif
+
+#ifndef GOOGLE_FALLTHROUGH_INTENDED
+# define GOOGLE_FALLTHROUGH_INTENDED
+#endif
+
+#define GOOGLE_GUARDED_BY(x)
+#define GOOGLE_ATTRIBUTE_COLD
+
+// x86 and x86-64 can perform unaligned loads/stores directly.
+#if defined(_M_X64) || defined(__x86_64__) || \
+    defined(_M_IX86) || defined(__i386__)
+
+#define GOOGLE_UNALIGNED_LOAD16(_p) (*reinterpret_cast<const uint16 *>(_p))
+#define GOOGLE_UNALIGNED_LOAD32(_p) (*reinterpret_cast<const uint32 *>(_p))
+#define GOOGLE_UNALIGNED_LOAD64(_p) (*reinterpret_cast<const uint64 *>(_p))
+
+#define GOOGLE_UNALIGNED_STORE16(_p, _val) (*reinterpret_cast<uint16 *>(_p) = (_val))
+#define GOOGLE_UNALIGNED_STORE32(_p, _val) (*reinterpret_cast<uint32 *>(_p) = (_val))
+#define GOOGLE_UNALIGNED_STORE64(_p, _val) (*reinterpret_cast<uint64 *>(_p) = (_val))
+
+#else
+inline uint16 GOOGLE_UNALIGNED_LOAD16(const void *p) {
+  uint16 t;
+  memcpy(&t, p, sizeof t);
+  return t;
+}
+
+inline uint32 GOOGLE_UNALIGNED_LOAD32(const void *p) {
+  uint32 t;
+  memcpy(&t, p, sizeof t);
+  return t;
+}
+
+inline uint64 GOOGLE_UNALIGNED_LOAD64(const void *p) {
+  uint64 t;
+  memcpy(&t, p, sizeof t);
+  return t;
+}
+
+inline void GOOGLE_UNALIGNED_STORE16(void *p, uint16 v) {
+  memcpy(p, &v, sizeof v);
+}
+
+inline void GOOGLE_UNALIGNED_STORE32(void *p, uint32 v) {
+  memcpy(p, &v, sizeof v);
+}
+
+inline void GOOGLE_UNALIGNED_STORE64(void *p, uint64 v) {
+  memcpy(p, &v, sizeof v);
+}
+#endif
+
+#if defined(_MSC_VER)
+#define GOOGLE_THREAD_LOCAL __declspec(thread)
+#else
+#define GOOGLE_THREAD_LOCAL __thread
+#endif
+
+// The following guarantees declaration of the byte swap functions, and
+// defines __BYTE_ORDER for MSVC
+#ifdef _MSC_VER
+#define __BYTE_ORDER __LITTLE_ENDIAN
+#define bswap_16(x) _byteswap_ushort(x)
+#define bswap_32(x) _byteswap_ulong(x)
+#define bswap_64(x) _byteswap_uint64(x)
+
+#elif defined(__APPLE__)
+// Mac OS X / Darwin features
+#define bswap_16(x) OSSwapInt16(x)
+#define bswap_32(x) OSSwapInt32(x)
+#define bswap_64(x) OSSwapInt64(x)
+
+#elif !defined(__GLIBC__) && !defined(__CYGWIN__)
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
 
 static inline uint16 bswap_16(uint16 x) {
   return static_cast<uint16>(((x & 0xFF) << 8) | ((x & 0xFF00) >> 8));

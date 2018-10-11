@@ -49,9 +49,15 @@ namespace converter {
 namespace {
 const StringPiece SkipWhiteSpace(StringPiece str) {
   StringPiece::size_type i;
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
   for (i = 0; i < str.size() && ascii_isspace(str[i]); ++i) {
   }
   GOOGLE_DCHECK(i == str.size() || !ascii_isspace(str[i]));
+=======
+  for (i = 0; i < str.size() && isspace(str[i]); ++i) {
+  }
+  GOOGLE_DCHECK(i == str.size() || !isspace(str[i]));
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
   return StringPiece(str, i);
 }
 }  // namespace

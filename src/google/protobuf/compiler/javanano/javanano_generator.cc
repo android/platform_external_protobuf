@@ -163,6 +163,7 @@ bool JavaNanoGenerator::Generate(const FileDescriptor* file,
       params.set_generate_intdefs(option_value == "true");
     } else if (option_name == "generate_clear") {
       params.set_generate_clear(option_value == "true");
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
     } else if (option_name == "bytes_offset_length") {
       params.set_bytes_offset_length(option_value == "true");
     } else {
@@ -187,6 +188,22 @@ bool JavaNanoGenerator::Generate(const FileDescriptor* file,
       && (params.optional_field_accessors() || params.generate_equals())) {
     error->assign("bytes_offset_length=true cannot be used in conjunction"
         " with optional_field_style=accessors or generate_equals=true");
+=======
+    } else {
+      *error = "Ignore unknown javanano generator option: " + option_name;
+    }
+  }
+
+  // Check illegal parameter combinations
+  // Note: the enum-like optional_field_style generator param ensures
+  // that we can never have illegal combinations of field styles
+  // (e.g. reftypes and accessors can't be on at the same time).
+  if (params.generate_has()
+      && (params.optional_field_accessors()
+          || params.use_reference_types_for_primitives())) {
+    error->assign("java_nano_generate_has=true cannot be used in conjunction"
+        " with optional_field_style=accessors or optional_field_style=reftypes");
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
     return false;
   }
 

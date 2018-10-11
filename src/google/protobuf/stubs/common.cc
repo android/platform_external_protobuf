@@ -41,6 +41,7 @@
 #include <stdio.h>
 #include <vector>
 
+<<<<<<< HEAD   (e9ab58 Merge "Suppress clang-analyzer-core.uninitialized.UndefRetur)
 #include "config.h"
 
 #ifdef _WIN32
@@ -56,6 +57,19 @@
 #ifdef GOOGLE_PROTOBUF_MIN_LOG_LEVEL
 #include <android/log.h>
 #endif
+=======
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN  // We only need minimal includes
+#include <windows.h>
+#define snprintf _snprintf    // see comment in strutil.cc
+#elif defined(HAVE_PTHREAD)
+#include <pthread.h>
+#else
+#error "No suitable threading library available."
+#endif
+#if defined(__ANDROID__)
+#include <android/log.h>
+>>>>>>> BRANCH (3470b6 Merge pull request #1540 from pherl/changelog)
 #endif
 
 namespace google {
