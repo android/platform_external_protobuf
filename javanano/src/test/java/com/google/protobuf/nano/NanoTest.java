@@ -30,10 +30,17 @@
 
 package com.google.protobuf.nano;
 
+<<<<<<< HEAD   (872d74 Revert "Remove 2 usage of isspace as they are not stl port c)
 import com.google.protobuf.nano.MapTestProto.TestMap;
 import com.google.protobuf.nano.BytesOffsetLengthTestNanoOuterClass.BytesOffsetLengthTestNano;
 import com.google.protobuf.nano.CodedInputByteBufferNano;
+=======
+>>>>>>> BRANCH (b5fbb7 Bump version number to 3.5.2)
 import com.google.protobuf.nano.CodedOutputByteBufferNano;
+import com.google.protobuf.nano.EnumClassNanos.EnumClassNano;
+import com.google.protobuf.nano.EnumClassNanos.EnumClassNano.MessageScopeEnum;
+import com.google.protobuf.nano.EnumClassNanos.FileScopeEnum;
+import com.google.protobuf.nano.MapTestProto.TestMap;
 import com.google.protobuf.nano.MapTestProto.TestMap.MessageValue;
 import com.google.protobuf.nano.NanoAccessorsOuterClass.TestNanoAccessors;
 import com.google.protobuf.nano.NanoHasOuterClass.TestAllTypesNanoHas;
