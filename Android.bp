@@ -109,6 +109,7 @@ cc_library {
     vendor_available: true,
     vndk: {
         enabled: true,
+        must_use_vendor_variant: true,
     },
     defaults: ["libprotobuf-cpp-lite-defaults"],
 
@@ -229,6 +230,7 @@ cc_library_shared {
     vendor_available: true,
     vndk: {
         enabled: true,
+        must_use_vendor_variant: true,
     },
 
     cflags: ["-DGOOGLE_PROTOBUF_NO_RTTI"],
