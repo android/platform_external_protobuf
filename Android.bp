@@ -77,13 +77,11 @@ cc_defaults {
         "src/google/protobuf/io/zero_copy_stream.cc",
         "src/google/protobuf/io/zero_copy_stream_impl_lite.cc",
     ],
-
     local_include_dirs: [
         "android",
         "src",
     ],
     export_include_dirs: ["src"],
-
     cflags: IGNORED_WARNINGS,
 }
 
@@ -92,11 +90,8 @@ cc_defaults {
 cc_library_static {
     name: "libprotobuf-cpp-lite-ndk",
     defaults: ["libprotobuf-cpp-lite-defaults"],
-
     cflags: ["-DGOOGLE_PROTOBUF_NO_RTTI"],
-
     sdk_version: "9",
-
     stl: "c++_static",
 }
 
@@ -111,9 +106,7 @@ cc_library {
         enabled: true,
     },
     defaults: ["libprotobuf-cpp-lite-defaults"],
-
     cflags: ["-DGOOGLE_PROTOBUF_NO_RTTI"],
-
     target: {
         windows: {
             enabled: true,
@@ -137,7 +130,6 @@ cc_library_shared {
     host_supported: true,
     vendor_available: true,
     defaults: ["libprotobuf-cpp-lite-defaults"],
-
     rtti: true,
 }
 
@@ -146,7 +138,6 @@ cc_library_shared {
 cc_defaults {
     name: "libprotobuf-cpp-full-defaults",
     defaults: ["libprotobuf-cpp-lite-defaults"],
-
     srcs: [
         "src/google/protobuf/any.pb.cc",
         "src/google/protobuf/api.pb.cc",
@@ -202,7 +193,6 @@ cc_defaults {
         "src/google/protobuf/util/time_util.cc",
         "src/google/protobuf/util/type_resolver_util.cc",
     ],
-
     cflags: ["-DHAVE_ZLIB=1"],
     shared_libs: ["libz"],
 }
@@ -212,11 +202,8 @@ cc_defaults {
 cc_library_static {
     name: "libprotobuf-cpp-full-ndk",
     defaults: ["libprotobuf-cpp-full-defaults"],
-
     cflags: ["-DGOOGLE_PROTOBUF_NO_RTTI"],
-
     sdk_version: "9",
-
     stl: "c++_static",
 }
 
@@ -230,7 +217,6 @@ cc_library_shared {
     vndk: {
         enabled: true,
     },
-
     cflags: ["-DGOOGLE_PROTOBUF_NO_RTTI"],
     target: {
         android: {
@@ -245,7 +231,6 @@ cc_library_shared {
     name: "libprotobuf-cpp-full-rtti",
     defaults: ["libprotobuf-cpp-full-defaults"],
     vendor_available: true,
-
     rtti: true,
     target: {
         android: {
@@ -259,13 +244,11 @@ cc_library_shared {
 cc_library_host_shared {
     name: "libprotoc",
     defaults: ["libprotobuf-cpp-full-defaults"],
-
     srcs: [
         "src/google/protobuf/compiler/code_generator.cc",
         "src/google/protobuf/compiler/plugin.cc",
         "src/google/protobuf/compiler/plugin.pb.cc",
     ],
-
     local_include_dirs: [
         "config",
     ],
@@ -273,7 +256,6 @@ cc_library_host_shared {
         "src",
         "config",
     ],
-
     rtti: true,
 }
 
@@ -284,7 +266,6 @@ cc_library_host_shared {
 cc_binary_host {
     name: "aprotoc",
     defaults: ["protobuf-cflags-defaults"],
-
     target: {
         windows: {
             enabled: true,
@@ -440,18 +421,14 @@ cc_binary_host {
         "src/google/protobuf/stubs/substitute.cc",
         "src/google/protobuf/stubs/stringprintf.cc",
     ],
-
     local_include_dirs: [
         "android",
         "src",
     ],
-
     static_libs: ["libz"],
-
     cflags: IGNORED_WARNINGS + [
         "-DHAVE_ZLIB=1",
     ],
-
 }
 
 java_defaults {
@@ -467,19 +444,15 @@ java_library_static {
     name: "libprotobuf-java-nano",
     defaults: ["libprotobuf_errorprone_defaults"],
     host_supported: true,
-
     sdk_version: "9",
-
     srcs: [
         "javanano/src/main/java/com/google/protobuf/nano/**/*.java",
     ],
-
     target: {
         android: {
             srcs: ["javanano/src/device/main/java/com/google/protobuf/nano/**/*.java"],
         },
     },
-
     java_version: "1.7",
 }
 
@@ -488,7 +461,6 @@ java_library_static {
 java_library_host {
     name: "host-libprotobuf-java-nano",
     static_libs: ["libprotobuf-java-nano"],
-
     java_version: "1.7",
 }
 
@@ -498,9 +470,7 @@ java_library_static {
     name: "libprotobuf-java-micro",
     defaults: ["libprotobuf_errorprone_defaults"],
     host_supported: true,
-
     sdk_version: "8",
-
     srcs: ["javamicro/src/main/java/com/google/protobuf/micro/**/*.java"],
 }
 
@@ -517,7 +487,6 @@ java_library_static {
     name: "libprotobuf-java-lite",
     host_supported: true,
     sdk_version: "core_current",
-
     srcs: [
         "java/core/src/main/java/com/google/protobuf/AbstractMessageLite.java",
         "java/core/src/main/java/com/google/protobuf/AbstractParser.java",
@@ -559,13 +528,11 @@ java_library_static {
         "java/core/src/main/java/com/google/protobuf/Utf8.java",
         "java/core/src/main/java/com/google/protobuf/WireFormat.java",
     ],
-
     target: {
         android: {
             libs: ["libcore_private.stubs"],
         },
     },
-
     java_version: "1.7",
 }
 
@@ -581,19 +548,16 @@ java_library_host {
 java_library_host {
     name: "libprotobuf-java-full",
     defaults: ["libprotobuf_errorprone_defaults"],
-
     srcs: [
         "java/core/src/main/java/**/*.java",
         ":libprotobuf-internal-protos",
     ],
-
     proto: {
         local_include_dirs: [
             "src",
         ],
         canonical_path_from_root: false,
     },
-
     java_version: "1.7",
 }
 
@@ -664,4 +628,102 @@ filegroup {
         "src/google/protobuf/wrappers.proto",
     ],
     path: "src",
+}
+
+// To test java proto params build rules.
+// =======================================================
+java_test {
+
+    name: "aprotoc-test-nano-params",
+    sdk_version: "current",
+
+    proto: {
+        type: "nano",
+        local_include_dirs: ["src"],
+        output_params: [
+	    "java_package=external/protobuf/javanano/src/test/java/com/google/protobuf/nano/unittest_import_nano.proto|com.google.protobuf.nano",
+            "java_outer_classname=external/protobuf/javanano/src/test/java/com/google/protobuf/nano/unittest_import_nano.proto|UnittestImportNano",
+        ],
+    },
+
+    srcs: [
+        "javanano/src/test/java/com/google/protobuf/nano/unittest_import_nano.proto",
+        "javanano/src/test/java/com/google/protobuf/nano/unittest_simple_nano.proto",
+        "javanano/src/test/java/com/google/protobuf/nano/unittest_stringutf8_nano.proto",
+        "javanano/src/test/java/com/google/protobuf/nano/unittest_recursive_nano.proto",
+    ],
+    java_version: "1.7",
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_PROTO_JAVA_OUTPUT_PARAMS
+    // LOCAL_PROTO_JAVA_OUTPUT_PARAMS := java_package = $(LOCAL_PATH)javanano/src/test/java/com/google/protobuf/nano/unittest_import_nano.proto|com.google.protobuf.nano,          java_outer_classname = $(LOCAL_PATH)/javanano/src/test/java/com/google/protobuf/nano/unittest_import_nano.proto|UnittestImportNano
+
+}
+
+// To test Android-specific nanoproto features.
+// =======================================================
+java_test {
+
+    // Parcelable messages
+    name: "android-nano-test-parcelable",
+    sdk_version: "current",
+    // Only needed at compile-time.
+    libs: ["android-support-annotations"],
+    proto: {
+        type: "nano",
+        local_include_dirs: ["src"],
+	output_params: [
+	    "parcelable_messages=true",
+            "generate_intdefs=true",
+	],
+    },
+    srcs: ["javanano/src/test/java/com/google/protobuf/nano/unittest_simple_nano.proto"],
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_PROTOC_FLAGS
+    // LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/src
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_PROTO_JAVA_OUTPUT_PARAMS
+    // LOCAL_PROTO_JAVA_OUTPUT_PARAMS := parcelable_messages = true,          generate_intdefs = true
+}
+
+java_test {
+
+    // Parcelable and extendable messages
+    name: "android-nano-test-parcelable-extendable",
+    sdk_version: "current",
+    // Only needed at compile-time.
+    libs: ["android-support-annotations"],
+    proto: {
+        type: "nano",
+        local_include_dirs: ["src"],
+	output_params: [
+	    "parcelable_messages=true",
+	    "generate_intdefs=true",
+	    "store_unknown_fields=true",
+	],
+    },
+    srcs: ["javanano/src/test/java/com/google/protobuf/nano/unittest_extension_nano.proto"],
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_PROTOC_FLAGS
+    // LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/src
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_PROTO_JAVA_OUTPUT_PARAMS
+    // LOCAL_PROTO_JAVA_OUTPUT_PARAMS := parcelable_messages = true,          generate_intdefs = true,          store_unknown_fields = true
+
+    java_version: "1.7",
+}
+
+android_test {
+    // Test APK
+    name: "NanoAndroidTest",
+    sdk_version: "8",
+    srcs: ["javanano/src/device/test/java/com/google/protobuf/nano/**/*.java"],
+    manifest: "javanano/src/device/test/AndroidManifest.xml",
+    static_libs: [
+        "libprotobuf-java-nano",
+        "android-nano-test-parcelable",
+        "android-nano-test-parcelable-extendable",
+    ],
+    dex_preopt: {
+        enabled: false,
+    },
 }
