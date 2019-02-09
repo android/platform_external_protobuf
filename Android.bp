@@ -222,13 +222,15 @@ cc_library_static {
 
 // C++ full library for the platform and host
 // =======================================================
-cc_library_shared {
+cc_library {
     name: "libprotobuf-cpp-full",
     defaults: ["libprotobuf-cpp-full-defaults"],
     host_supported: true,
     vendor_available: true,
+    recovery_available: true,
     vndk: {
         enabled: true,
+	support_system_process: true,
     },
 
     cflags: ["-DGOOGLE_PROTOBUF_NO_RTTI"],
