@@ -1,0 +1,7 @@
+Code-Review+2: Colin Cross <ccross@android.com>
+Presubmit-Ready+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Joe Onorato <joeo@google.com>
+Submitted-at: Tue, 26 Mar 2019 18:33:45 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/933043
+Project: platform/external/protobuf
+Branch: refs/heads/master
