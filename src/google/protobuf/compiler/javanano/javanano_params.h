@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (10dcdb Re-apply merge of tag v3.5.2)
 // Protocol Buffers - Google's data interchange format
 // Copyright 2010 Google Inc.  All rights reserved.
 // http://code.google.com/p/protobuf/
@@ -276,3 +277,5 @@ class Params {
 }  // namespace protobuf
 }  // namespace google
 #endif  // PROTOBUF_COMPILER_JAVANANO_JAVANANO_PARAMS_H_
+=======
+>>>>>>> BRANCH (655310 Update protobuf version (#6472))
