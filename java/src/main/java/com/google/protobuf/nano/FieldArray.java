@@ -38,7 +38,7 @@ package com.google.protobuf.nano;
  * <p>This class is an internal implementation detail of nano and should not
  * be called directly by clients.
  *
- * Based on {@link android.support.v4.util.SpareArrayCompat}.
+ * Based on {@link androidx.core.util.SpareArrayCompat}.
  */
 public final class FieldArray implements Cloneable {
     private static final FieldData DELETED = new FieldData();
