@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (86b212 Re-apply merge of tag v3.5.2)
 // Protocol Buffers - Google's data interchange format
 // Copyright 2013 Google Inc.  All rights reserved.
 // https://developers.google.com/protocol-buffers/
@@ -1244,3 +1245,5 @@ public final class CodedOutputByteBufferNano {
   }
 
 }
+=======
+>>>>>>> BRANCH (655310 Update protobuf version (#6472))
