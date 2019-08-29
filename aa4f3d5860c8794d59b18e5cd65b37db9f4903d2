@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b750eaf_8c954c93",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1074628
+      },
+      "writtenOn": "2019-08-29T17:50:58Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 391,
+        "startChar": 0,
+        "endLine": 391,
+        "endChar": 23
+      },
+      "revId": "aa4f3d5860c8794d59b18e5cd65b37db9f4903d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
