@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (3ed2fc Re-apply merge of tag v3.5.2)
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
 // http://code.google.com/p/protobuf/
@@ -150,3 +151,5 @@ class RepeatedPrimitiveFieldGenerator : public FieldGenerator {
 
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_COMPILER_JAVANANO_PRIMITIVE_FIELD_H__
+=======
+>>>>>>> BRANCH (655310 Update protobuf version (#6472))
