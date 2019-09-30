@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d593dbfb_dc61e419",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2019-09-30T18:00:36Z",
+      "side": 1,
+      "message": "if this wasn\u0027t supported, do we know why it worked before? Was it just running from a system context?",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "05811da4c10fa927961b6a7f4c68d79206035072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a64e8841_0ea6baad",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2019-09-30T18:00:36Z",
+      "side": 1,
+      "message": "especially for external contributors, please explain the exact problem (e.g. \"enable when vendor tests are supported\")",
+      "range": {
+        "startLine": 3,
+        "startChar": 21,
+        "endLine": 3,
+        "endChar": 60
+      },
+      "revId": "05811da4c10fa927961b6a7f4c68d79206035072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
