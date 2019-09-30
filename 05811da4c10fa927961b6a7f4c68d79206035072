@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "19c6b6e4_0cb24c23",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2019-09-30T18:02:55Z",
+      "side": 1,
+      "message": "It worked before as we don\u0027t enforce adb unroot during the suite run. So the test could be running in a device has adb root run before that or at the start of the suite run.",
+      "parentUuid": "d593dbfb_dc61e419",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "05811da4c10fa927961b6a7f4c68d79206035072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a64e8841_0ea6baad",
         "filename": "TEST_MAPPING",
         "patchSetId": 1
