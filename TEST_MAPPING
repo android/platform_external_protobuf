@@ -1,7 +1,8 @@
 {
   "presubmit": [
-    {
-      "name": "libprotobuf_vendor_suffix_test"
-    }
+// TODO(b/138450837): re-enable the test after bug is fixed.
+//    {
+//      "name": "libprotobuf_vendor_suffix_test"
+//    }
   ]
 }
