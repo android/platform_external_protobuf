@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89a472a1_0919dc4d",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2019-11-14T20:30:06Z",
+      "side": 1,
+      "message": "This looks like a superset of libprotoc, should we just add these files to libprotoc?",
+      "revId": "bd37bdd11c729ce69f02718fcdbe56dfab92dc78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "301f5dfb_2b6878db",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2019-11-14T20:30:06Z",
+      "side": 1,
+      "message": "This looks like an odd file for \"plugin support\"",
+      "revId": "bd37bdd11c729ce69f02718fcdbe56dfab92dc78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff20a7b2_ca4e00e4",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2019-11-14T20:30:06Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 286,
+        "startChar": 4,
+        "endLine": 288,
+        "endChar": 6
+      },
+      "revId": "bd37bdd11c729ce69f02718fcdbe56dfab92dc78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
