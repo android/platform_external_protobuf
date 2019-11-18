@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "5780718d_1f55a4b0",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1344584
+      },
+      "writtenOn": "2019-11-18T17:52:53Z",
+      "side": 1,
+      "message": "This might be needed to Python extractor. I\u0027ll do this later.",
+      "parentUuid": "301f5dfb_2b6878db",
+      "revId": "bd37bdd11c729ce69f02718fcdbe56dfab92dc78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff20a7b2_ca4e00e4",
         "filename": "Android.bp",
         "patchSetId": 1
@@ -56,6 +74,30 @@
       "revId": "bd37bdd11c729ce69f02718fcdbe56dfab92dc78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3e7f017_22c4d4d6",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1344584
+      },
+      "writtenOn": "2019-11-18T17:52:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff20a7b2_ca4e00e4",
+      "range": {
+        "startLine": 286,
+        "startChar": 4,
+        "endLine": 288,
+        "endChar": 6
+      },
+      "revId": "bd37bdd11c729ce69f02718fcdbe56dfab92dc78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
