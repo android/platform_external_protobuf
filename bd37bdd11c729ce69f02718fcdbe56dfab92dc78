@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "c5969df0_a999ebf5",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1344584
+      },
+      "writtenOn": "2019-11-21T02:02:54Z",
+      "side": 1,
+      "message": "The new module is used only when compiling on the clang-tools branch, so it\u0027s not worth building it when it is not needed. I can merge them if this isn\u0027t important.",
+      "parentUuid": "5780718d_1f55a4b0",
+      "revId": "bd37bdd11c729ce69f02718fcdbe56dfab92dc78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff20a7b2_ca4e00e4",
         "filename": "Android.bp",
         "patchSetId": 1
