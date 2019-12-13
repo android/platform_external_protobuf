@@ -202,6 +202,16 @@ cc_library_static {
     stl: "c++_static",
 }
 
+// C++ full library for packages/modules/DnsResolver/tests
+// =======================================================
+cc_library_static {
+    name: "libprotobuf-cpp-full-resolv",
+    visibility: [
+        "//packages/modules/DnsResolver/tests:__subpackages__",
+    ],
+    defaults: ["libprotobuf-cpp-full-defaults"],
+}
+
 // C++ full library for the platform and host
 // =======================================================
 cc_library {
