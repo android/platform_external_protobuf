@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59525580_dc58861f",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2020-01-07T07:35:56Z",
+      "side": 1,
+      "message": "I think this target could be generally useful outside the resolver.\n\nIf the owners of this repository agree, I\u0027d call this \"libprotobuf-cpp-full\" (or \"libprotobuf-cpp-full-static\" if soong doesn\u0027t like the duplicate target).",
+      "range": {
+        "startLine": 208,
+        "startChar": 11,
+        "endLine": 208,
+        "endChar": 38
+      },
+      "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "283b37a3_bb787595",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2020-01-07T07:35:56Z",
+      "side": 1,
+      "message": "Question to owners: was this required, or just an optimization to avoid unnecessarily building a static library?",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 14
+      },
+      "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
