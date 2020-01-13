@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "45bd0a53_13dfed43",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2020-01-13T22:26:04Z",
+      "side": 1,
+      "message": "I think before we make anything like this available we would want to add a testonly property like Bazel to ensure it doesn\u0027t end up on the device.",
+      "parentUuid": "59525580_dc58861f",
+      "range": {
+        "startLine": 208,
+        "startChar": 11,
+        "endLine": 208,
+        "endChar": 38
+      },
+      "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "283b37a3_bb787595",
         "filename": "Android.bp",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-01-07T07:35:56Z",
       "side": 1,
       "message": "Question to owners: was this required, or just an optimization to avoid unnecessarily building a static library?",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 14
+      },
+      "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0afb17b7_df4417be",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2020-01-13T22:26:04Z",
+      "side": 1,
+      "message": "We don\u0027t want libprotobuf-cpp-full on the device at all, but especially not as a static library.",
+      "parentUuid": "283b37a3_bb787595",
       "range": {
         "startLine": 227,
         "startChar": 0,
