@@ -93,6 +93,10 @@ cc_library_static {
     defaults: ["libprotobuf-cpp-lite-defaults"],
 
     sdk_version: "9",
+    apex_available: [
+        "//apex_available:anyapex",
+        "//apex_available:platform",
+    ]
 
     stl: "c++_static",
 }
@@ -105,6 +109,10 @@ cc_library {
     recovery_available: true,
     vendor_available: true,
     double_loadable: true,
+    apex_available: [
+        "//apex_available:anyapex",
+        "//apex_available:platform",
+    ]
     defaults: ["libprotobuf-cpp-lite-defaults"],
 
     target: {
@@ -428,6 +436,10 @@ java_library_static {
     name: "libprotobuf-java-nano",
     defaults: ["libprotobuf_errorprone_defaults"],
     host_supported: true,
+    apex_available: [
+        "//apex_available:anyapex",
+        "//apex_available:platform",
+    ]
 
     sdk_version: "9",
 
@@ -459,6 +471,10 @@ java_library_static {
     name: "libprotobuf-java-micro",
     defaults: ["libprotobuf_errorprone_defaults"],
     host_supported: true,
+    apex_available: [
+        "//apex_available:anyapex",
+        "//apex_available:platform",
+    ]
 
     sdk_version: "8",
 
@@ -477,6 +493,10 @@ java_library_host {
 java_library_static {
     name: "libprotobuf-java-lite",
     host_supported: true,
+    apex_available: [
+        "//apex_available:anyapex",
+        "//apex_available:platform",
+    ]
     sdk_version: "core_current",
 
     srcs: [
