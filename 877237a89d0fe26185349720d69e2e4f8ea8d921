@@ -93,6 +93,30 @@
       "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4164afa9_3c9ccabc",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1349877
+      },
+      "writtenOn": "2020-03-03T09:35:36Z",
+      "side": 1,
+      "message": "@Colin,\nOut of curiosity, why?\n\nOur test code need google::protobuf::TextFormat::ParseFromString() which is only available from libprotobuf-cpp-full, not form libprotobuf-cpp-lite. However, the shared linked libprotobuf-cpp-full has compatibility issue between Android Q and R (b/145176964). And there is no static version of libprotobuf-cpp-full on Android. It seems to me that add a new binary for this is not a good idea. Do we have alternative solution?",
+      "parentUuid": "0afb17b7_df4417be",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 14
+      },
+      "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
