@@ -117,6 +117,30 @@
       "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fc317c9_f6d95234",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2020-03-03T21:14:21Z",
+      "side": 1,
+      "message": "The runtime is large, and linking it statically into multiple binaries on the device will cause unnecessary disk usage and memory increases.  It can also cause ODR issues if the runtime is loaded multiple times into the same process.  These issues don\u0027t apply as much to tests, but until we implement b/147820620 we don\u0027t have any way to allow that without allowing it everywhere.",
+      "parentUuid": "4164afa9_3c9ccabc",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 14
+      },
+      "revId": "877237a89d0fe26185349720d69e2e4f8ea8d921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
