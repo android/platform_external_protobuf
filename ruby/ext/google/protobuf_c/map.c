@@ -71,6 +71,9 @@ static VALUE table_key(Map* self, VALUE key,
     case UPB_TYPE_BYTES:
     case UPB_TYPE_STRING:
       // Strings: use string content directly.
+      if (TYPE(key) == T_SYMBOL) {
+        key = rb_id2str(SYM2ID(key));
+      }
       Check_Type(key, T_STRING);
       key = native_slot_encode_and_freeze_string(self->key_type, key);
       *out_key = RSTRING_PTR(key);
@@ -82,7 +85,7 @@ static VALUE table_key(Map* self, VALUE key,
     case UPB_TYPE_INT64:
     case UPB_TYPE_UINT32:
     case UPB_TYPE_UINT64:
-      native_slot_set(self->key_type, Qnil, buf, key);
+      native_slot_set("", self->key_type, Qnil, buf, key);
       *out_key = buf;
       *out_length = native_slot_size(self->key_type);
       break;
@@ -386,6 +389,8 @@ VALUE Map_index(VALUE _self, VALUE key) {
  * was just inserted.
  */
 VALUE Map_index_set(VALUE _self, VALUE key, VALUE value) {
+  rb_check_frozen(_self);
+
   Map* self = ruby_to_Map(_self);
 
   char keybuf[TABLE_KEY_BUF_LENGTH];
@@ -395,8 +400,13 @@ VALUE Map_index_set(VALUE _self, VALUE key, VALUE value) {
   void* mem;
   key = table_key(self, key, keybuf, &keyval, &length);
 
+  if (TYPE(value) == T_HASH) {
+    VALUE args[1] = { value };
+    value = rb_class_new_instance(1, args, self->value_type_class);
+  }
+
   mem = value_memory(&v);
-  native_slot_set(self->value_type, self->value_type_class, mem, value);
+  native_slot_set("", self->value_type, self->value_type_class, mem, value);
 
   // Replace any existing value by issuing a 'remove' operation first.
   upb_strtable_remove2(&self->table, keyval, length, NULL);
@@ -438,6 +448,8 @@ VALUE Map_has_key(VALUE _self, VALUE key) {
  * nil if none was present. Throws an exception if the key is of the wrong type.
  */
 VALUE Map_delete(VALUE _self, VALUE key) {
+  rb_check_frozen(_self);
+
   Map* self = ruby_to_Map(_self);
 
   char keybuf[TABLE_KEY_BUF_LENGTH];
@@ -461,6 +473,8 @@ VALUE Map_delete(VALUE _self, VALUE key) {
  * Removes all entries from the map.
  */
 VALUE Map_clear(VALUE _self) {
+  rb_check_frozen(_self);
+
   Map* self = ruby_to_Map(_self);
 
   // Uninit and reinit the table -- this is faster than iterating and doing a
@@ -841,7 +855,6 @@ void Map_register(VALUE module) {
   rb_define_method(klass, "dup", Map_dup, 0);
   rb_define_method(klass, "==", Map_eq, 1);
   rb_define_method(klass, "hash", Map_hash, 0);
-  rb_define_method(klass, "to_hash", Map_to_h, 0);
   rb_define_method(klass, "to_h", Map_to_h, 0);
   rb_define_method(klass, "inspect", Map_inspect, 0);
   rb_define_method(klass, "merge", Map_merge, 1);

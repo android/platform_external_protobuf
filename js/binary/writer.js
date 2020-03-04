@@ -800,6 +800,38 @@ jspb.BinaryWriter.prototype.writeMessage = function(
 
 
 /**
+ * Writes a message set extension to the buffer.
+ * @param {number} field The field number for the extension.
+ * @param {?MessageType} value The extension message object to write. Note that
+ *     message set can only have extensions with type of optional message.
+ * @param {function(!MessageTypeNonNull, !jspb.BinaryWriter)} writerCallback
+ *     Will be invoked with the value to write and the writer to write it with.
+ * @template MessageType
+ * Use go/closure-ttl to declare a non-nullable version of MessageType.  Replace
+ * the null in blah|null with none.  This is necessary because the compiler will
+ * infer MessageType to be nullable if the value parameter is nullable.
+ * @template MessageTypeNonNull :=
+ *     cond(isUnknown(MessageType), unknown(),
+ *       mapunion(MessageType, (X) =>
+ *         cond(eq(X, 'null'), none(), X)))
+ * =:
+ */
+jspb.BinaryWriter.prototype.writeMessageSet = function(
+    field, value, writerCallback) {
+  if (value == null) return;
+  // The wire format for a message set is defined by
+  // google3/net/proto/message_set.proto
+  this.writeFieldHeader_(1, jspb.BinaryConstants.WireType.START_GROUP);
+  this.writeFieldHeader_(2, jspb.BinaryConstants.WireType.VARINT);
+  this.encoder_.writeSignedVarint32(field);
+  var bookmark = this.beginDelimited_(3);
+  writerCallback(value, this);
+  this.endDelimited_(bookmark);
+  this.writeFieldHeader_(1, jspb.BinaryConstants.WireType.END_GROUP);
+};
+
+
+/**
  * Writes a group message to the buffer.
  *
  * @param {number} field The field number.
@@ -855,6 +887,32 @@ jspb.BinaryWriter.prototype.writeVarintHash64 = function(field, value) {
 
 
 /**
+ * Writes a 64-bit field to the buffer as a fixed64.
+ * @param {number} field The field number.
+ * @param {number} lowBits The low 32 bits.
+ * @param {number} highBits The high 32 bits.
+ */
+jspb.BinaryWriter.prototype.writeSplitFixed64 = function(
+    field, lowBits, highBits) {
+  this.writeFieldHeader_(field, jspb.BinaryConstants.WireType.FIXED64);
+  this.encoder_.writeSplitFixed64(lowBits, highBits);
+};
+
+
+/**
+ * Writes a 64-bit field to the buffer as a varint.
+ * @param {number} field The field number.
+ * @param {number} lowBits The low 32 bits.
+ * @param {number} highBits The high 32 bits.
+ */
+jspb.BinaryWriter.prototype.writeSplitVarint64 = function(
+    field, lowBits, highBits) {
+  this.writeFieldHeader_(field, jspb.BinaryConstants.WireType.VARINT);
+  this.encoder_.writeSplitVarint64(lowBits, highBits);
+};
+
+
+/**
  * Writes an array of numbers to the buffer as a repeated 32-bit int field.
  * @param {number} field The field number.
  * @param {?Array<number>} value The array of ints to write.
@@ -890,6 +948,40 @@ jspb.BinaryWriter.prototype.writeRepeatedInt64 = function(field, value) {
   if (value == null) return;
   for (var i = 0; i < value.length; i++) {
     this.writeSignedVarint64_(field, value[i]);
+  }
+};
+
+
+/**
+ * Writes an array of 64-bit values to the buffer as a fixed64.
+ * @param {number} field The field number.
+ * @param {?Array<T>} value The value.
+ * @param {function(T): number} lo Function to get low bits.
+ * @param {function(T): number} hi Function to get high bits.
+ * @template T
+ */
+jspb.BinaryWriter.prototype.writeRepeatedSplitFixed64 = function(
+    field, value, lo, hi) {
+  if (value == null) return;
+  for (var i = 0; i < value.length; i++) {
+    this.writeSplitFixed64(field, lo(value[i]), hi(value[i]));
+  }
+};
+
+
+/**
+ * Writes an array of 64-bit values to the buffer as a varint.
+ * @param {number} field The field number.
+ * @param {?Array<T>} value The value.
+ * @param {function(T): number} lo Function to get low bits.
+ * @param {function(T): number} hi Function to get high bits.
+ * @template T
+ */
+jspb.BinaryWriter.prototype.writeRepeatedSplitVarint64 = function(
+    field, value, lo, hi) {
+  if (value == null) return;
+  for (var i = 0; i < value.length; i++) {
+    this.writeSplitVarint64(field, lo(value[i]), hi(value[i]));
   }
 };
 
@@ -1276,6 +1368,44 @@ jspb.BinaryWriter.prototype.writePackedInt64 = function(field, value) {
   var bookmark = this.beginDelimited_(field);
   for (var i = 0; i < value.length; i++) {
     this.encoder_.writeSignedVarint64(value[i]);
+  }
+  this.endDelimited_(bookmark);
+};
+
+
+/**
+ * Writes an array of 64-bit values to the buffer as a fixed64.
+ * @param {number} field The field number.
+ * @param {?Array<T>} value The value.
+ * @param {function(T): number} lo Function to get low bits.
+ * @param {function(T): number} hi Function to get high bits.
+ * @template T
+ */
+jspb.BinaryWriter.prototype.writePackedSplitFixed64 = function(
+    field, value, lo, hi) {
+  if (value == null) return;
+  var bookmark = this.beginDelimited_(field);
+  for (var i = 0; i < value.length; i++) {
+    this.encoder_.writeSplitFixed64(lo(value[i]), hi(value[i]));
+  }
+  this.endDelimited_(bookmark);
+};
+
+
+/**
+ * Writes an array of 64-bit values to the buffer as a varint.
+ * @param {number} field The field number.
+ * @param {?Array<T>} value The value.
+ * @param {function(T): number} lo Function to get low bits.
+ * @param {function(T): number} hi Function to get high bits.
+ * @template T
+ */
+jspb.BinaryWriter.prototype.writePackedSplitVarint64 = function(
+    field, value, lo, hi) {
+  if (value == null) return;
+  var bookmark = this.beginDelimited_(field);
+  for (var i = 0; i < value.length; i++) {
+    this.encoder_.writeSplitVarint64(lo(value[i]), hi(value[i]));
   }
   this.endDelimited_(bookmark);
 };
