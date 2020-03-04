@@ -1,0 +1,19 @@
+<<<<<<< HEAD   (2f0242 Merge "Fix windows unit test." into emu-master-dev)
+=======
+syntax = "proto3";
+
+package foo;
+
+import "google/protobuf/descriptor.proto";
+
+message TestImportDescriptorProto {
+  extend google.protobuf.MethodOptions {
+    int32 a = 72295727;
+  }
+}
+
+extend google.protobuf.MethodOptions {
+  int32 a = 72295728;
+}
+
+>>>>>>> BRANCH (d0bfd5 Skip building distribution tar files for 32 bit Mac (#7214))

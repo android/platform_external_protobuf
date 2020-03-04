@@ -215,12 +215,8 @@ namespace Google.Protobuf
                     }
                 case WireFormat.WireType.StartGroup:
                     {
-                        uint endTag = WireFormat.MakeTag(number, WireFormat.WireType.EndGroup);
                         UnknownFieldSet set = new UnknownFieldSet();
-                        while (input.ReadTag() != endTag)
-                        {
-                            set.MergeFieldFrom(input);
-                        }
+                        input.ReadGroup(number, set);
                         GetOrAddField(number).AddGroup(set);
                         return true;
                     }
@@ -229,7 +225,23 @@ namespace Google.Protobuf
                         return false;
                     }
                 default:
-                    throw new InvalidOperationException("Wire Type is invalid.");
+                    throw InvalidProtocolBufferException.InvalidWireType();
+            }
+        }
+
+        internal void MergeGroupFrom(CodedInputStream input)
+        {
+            while (true)
+            {
+                uint tag = input.ReadTag();
+                if (tag == 0)
+                {
+                    break;
+                }
+                if (!MergeFieldFrom(input))
+                {
+                    break;
+                }
             }
         }
 
@@ -259,29 +271,6 @@ namespace Google.Protobuf
                 throw new InvalidProtocolBufferException("Merge an unknown field of end-group tag, indicating that the corresponding start-group was missing."); // match the old code-gen
             }
             return unknownFields;
-        }
-
-        /// <summary>
-        /// Create a new UnknownFieldSet if unknownFields is null.
-        /// Parse a single field from <paramref name="input"/> and merge it
-        /// into unknownFields. If <paramref name="input"/> is configured to discard unknown fields,
-        /// <paramref name="unknownFields"/> will be returned as-is and the field will be skipped.
-        /// </summary>
-        /// <param name="unknownFields">The UnknownFieldSet which need to be merged</param>
-        /// <param name="input">The coded input stream containing the field</param>
-        /// <returns>The merged UnknownFieldSet</returns>
-        public static bool MergeFieldFrom(ref UnknownFieldSet unknownFields, CodedInputStream input)
-        {
-            if (input.DiscardUnknownFields)
-            {
-                input.SkipLastField();
-                return true;
-            }
-            if (unknownFields == null)
-            {
-                unknownFields = new UnknownFieldSet();
-            }
-            return unknownFields.MergeFieldFrom(input);
         }
 
         /// <summary>

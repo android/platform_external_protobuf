@@ -6,16 +6,7 @@ set -e
 test_version() {
   version=$1
 
-  # TODO(teboring): timestamp parsing is incorrect only on mac due to mktime.
-  if [[ $(uname -s) == Linux ]]
-  then
-    RUBY_CONFORMANCE=test_ruby
-  elif [[ $(uname -s) == Darwin ]]
-  then
-    # TODO(teboring): timestamp parsing is incorrect only on mac due to mktime.
-    RUBY_CONFORMANCE=test_ruby_mac
-  fi
-  return 0
+  RUBY_CONFORMANCE=test_ruby
 
   if [ "$version" == "jruby-1.7" ] ; then
     # No conformance tests yet -- JRuby is too broken to run them.
@@ -37,8 +28,11 @@ test_version() {
        cd ../ruby/compatibility_tests/v3.0.0 &&
        cp -R ../../lib lib && ./test.sh"
   else
+    # Recent versions of OSX have deprecated OpenSSL, so we have to explicitly
+    # provide a path to the OpenSSL directory installed via Homebrew.
     bash --login -c \
-      "rvm install $version && rvm use $version && \
+      "rvm install $version --with-openssl-dir=`brew --prefix openssl` && \
+       rvm use $version && \
        which ruby && \
        git clean -f && \
        gem install bundler -v 1.17.3 && bundle && \

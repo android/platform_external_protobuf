@@ -31,8 +31,8 @@ namespace Google.Protobuf.WellKnownTypes {
             "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.WellKnownTypes.Empty), global::Google.Protobuf.WellKnownTypes.Empty.Parser, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.WellKnownTypes.Empty), global::Google.Protobuf.WellKnownTypes.Empty.Parser, null, null, null, null, null)
           }));
     }
     #endregion
@@ -143,9 +143,7 @@ namespace Google.Protobuf.WellKnownTypes {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
         }
       }

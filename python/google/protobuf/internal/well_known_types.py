@@ -41,10 +41,16 @@ This files defines well known classes which need extra maintenance including:
 __author__ = 'jieluo@google.com (Jie Luo)'
 
 import calendar
-import collections
 from datetime import datetime
 from datetime import timedelta
 import six
+
+try:
+  # Since python 3
+  import collections.abc as collections_abc
+except ImportError:
+  # Won't work after python 3.8
+  import collections as collections_abc
 
 from google.protobuf.descriptor import FieldDescriptor
 
@@ -58,16 +64,10 @@ _SECONDS_PER_DAY = 24 * 3600
 _DURATION_SECONDS_MAX = 315576000000
 
 
-class Error(Exception):
-  """Top-level module error."""
-
-
-class ParseError(Error):
-  """Thrown in case of parsing error."""
-
-
 class Any(object):
   """Class for Any Message type."""
+
+  __slots__ = ()
 
   def Pack(self, msg, type_url_prefix='type.googleapis.com/',
            deterministic=None):
@@ -96,8 +96,13 @@ class Any(object):
     return '/' in self.type_url and self.TypeName() == descriptor.full_name
 
 
+_EPOCH_DATETIME = datetime.utcfromtimestamp(0)
+
+
 class Timestamp(object):
   """Class for Timestamp message type."""
+
+  __slots__ = ()
 
   def ToJsonString(self):
     """Converts Timestamp to RFC 3339 date string format.
@@ -136,7 +141,7 @@ class Timestamp(object):
           Example of accepted format: '1972-01-01T10:00:20.021-05:00'
 
     Raises:
-      ParseError: On parsing problems.
+      ValueError: On parsing problems.
     """
     timezone_offset = value.find('Z')
     if timezone_offset == -1:
@@ -144,7 +149,7 @@ class Timestamp(object):
     if timezone_offset == -1:
       timezone_offset = value.rfind('-')
     if timezone_offset == -1:
-      raise ParseError(
+      raise ValueError(
           'Failed to parse timestamp: missing valid timezone offset.')
     time_value = value[0:timezone_offset]
     # Parse datetime and nanos.
@@ -159,7 +164,7 @@ class Timestamp(object):
     td = date_object - datetime(1970, 1, 1)
     seconds = td.seconds + td.days * _SECONDS_PER_DAY
     if len(nano_value) > 9:
-      raise ParseError(
+      raise ValueError(
           'Failed to parse Timestamp: nanos {0} more than '
           '9 fractional digits.'.format(nano_value))
     if nano_value:
@@ -169,13 +174,13 @@ class Timestamp(object):
     # Parse timezone offsets.
     if value[timezone_offset] == 'Z':
       if len(value) != timezone_offset + 1:
-        raise ParseError('Failed to parse timestamp: invalid trailing'
+        raise ValueError('Failed to parse timestamp: invalid trailing'
                          ' data {0}.'.format(value))
     else:
       timezone = value[timezone_offset:]
       pos = timezone.find(':')
       if pos == -1:
-        raise ParseError(
+        raise ValueError(
             'Invalid timezone offset value: {0}.'.format(timezone))
       if timezone[0] == '+':
         seconds -= (int(timezone[1:pos])*60+int(timezone[pos+1:]))*60
@@ -229,8 +234,9 @@ class Timestamp(object):
 
   def ToDatetime(self):
     """Converts Timestamp to datetime."""
-    return datetime.utcfromtimestamp(
-        self.seconds + self.nanos / float(_NANOS_PER_SECOND))
+    return _EPOCH_DATETIME + timedelta(
+        seconds=self.seconds, microseconds=_RoundTowardZero(
+            self.nanos, _NANOS_PER_MICROSECOND))
 
   def FromDatetime(self, dt):
     """Converts datetime to Timestamp."""
@@ -247,6 +253,8 @@ class Timestamp(object):
 
 class Duration(object):
   """Class for Duration message type."""
+
+  __slots__ = ()
 
   def ToJsonString(self):
     """Converts Duration to string format.
@@ -289,10 +297,10 @@ class Duration(object):
           precision. For example: "1s", "1.01s", "1.0000001s", "-3.100s
 
     Raises:
-      ParseError: On parsing problems.
+      ValueError: On parsing problems.
     """
     if len(value) < 1 or value[-1] != 's':
-      raise ParseError(
+      raise ValueError(
           'Duration must end with letter "s": {0}.'.format(value))
     try:
       pos = value.find('.')
@@ -308,9 +316,9 @@ class Duration(object):
       _CheckDurationValid(seconds, nanos)
       self.seconds = seconds
       self.nanos = nanos
-    except ValueError:
-      raise ParseError(
-          'Couldn\'t parse duration: {0}.'.format(value))
+    except ValueError as e:
+      raise ValueError(
+          'Couldn\'t parse duration: {0} : {1}.'.format(value, e))
 
   def ToNanoseconds(self):
     """Converts a Duration to nanoseconds."""
@@ -375,15 +383,15 @@ class Duration(object):
 
 def _CheckDurationValid(seconds, nanos):
   if seconds < -_DURATION_SECONDS_MAX or seconds > _DURATION_SECONDS_MAX:
-    raise Error(
+    raise ValueError(
         'Duration is not valid: Seconds {0} must be in range '
         '[-315576000000, 315576000000].'.format(seconds))
   if nanos <= -_NANOS_PER_SECOND or nanos >= _NANOS_PER_SECOND:
-    raise Error(
+    raise ValueError(
         'Duration is not valid: Nanos {0} must be in range '
         '[-999999999, 999999999].'.format(nanos))
   if (nanos < 0 and seconds > 0) or (nanos > 0 and seconds < 0):
-    raise Error(
+    raise ValueError(
         'Duration is not valid: Sign mismatch.')
 
 
@@ -405,6 +413,8 @@ def _RoundTowardZero(value, divider):
 class FieldMask(object):
   """Class for FieldMask message type."""
 
+  __slots__ = ()
+
   def ToJsonString(self):
     """Converts FieldMask to string according to proto3 JSON spec."""
     camelcase_paths = []
@@ -415,8 +425,9 @@ class FieldMask(object):
   def FromJsonString(self, value):
     """Converts string to FieldMask according to proto3 JSON spec."""
     self.Clear()
-    for path in value.split(','):
-      self.paths.append(_CamelCaseToSnakeCase(path))
+    if value:
+      for path in value.split(','):
+        self.paths.append(_CamelCaseToSnakeCase(path))
 
   def IsValidForDescriptor(self, message_descriptor):
     """Checks whether the FieldMask is valid for Message Descriptor."""
@@ -509,24 +520,26 @@ def _SnakeCaseToCamelCase(path_name):
   after_underscore = False
   for c in path_name:
     if c.isupper():
-      raise Error('Fail to print FieldMask to Json string: Path name '
-                  '{0} must not contain uppercase letters.'.format(path_name))
+      raise ValueError(
+          'Fail to print FieldMask to Json string: Path name '
+          '{0} must not contain uppercase letters.'.format(path_name))
     if after_underscore:
       if c.islower():
         result.append(c.upper())
         after_underscore = False
       else:
-        raise Error('Fail to print FieldMask to Json string: The '
-                    'character after a "_" must be a lowercase letter '
-                    'in path name {0}.'.format(path_name))
+        raise ValueError(
+            'Fail to print FieldMask to Json string: The '
+            'character after a "_" must be a lowercase letter '
+            'in path name {0}.'.format(path_name))
     elif c == '_':
       after_underscore = True
     else:
       result += c
 
   if after_underscore:
-    raise Error('Fail to print FieldMask to Json string: Trailing "_" '
-                'in path name {0}.'.format(path_name))
+    raise ValueError('Fail to print FieldMask to Json string: Trailing "_" '
+                     'in path name {0}.'.format(path_name))
   return ''.join(result)
 
 
@@ -535,7 +548,7 @@ def _CamelCaseToSnakeCase(path_name):
   result = []
   for c in path_name:
     if c == '_':
-      raise ParseError('Fail to parse FieldMask: Path name '
+      raise ValueError('Fail to parse FieldMask: Path name '
                        '{0} must not contain "_"s.'.format(path_name))
     if c.isupper():
       result += '_'
@@ -557,6 +570,8 @@ class _FieldMaskTree(object):
             +- bar --- baz
   In the tree, each leaf node represents a field path.
   """
+
+  __slots__ = ('_root',)
 
   def __init__(self, field_mask=None):
     """Initializes the tree by FieldMask."""
@@ -682,7 +697,7 @@ def _MergeMessage(
 
 def _AddFieldPaths(node, prefix, field_mask):
   """Adds the field paths descended from node to field_mask."""
-  if not node:
+  if not node and prefix:
     field_mask.paths.append(prefix)
     return
   for name in sorted(node):
@@ -707,10 +722,10 @@ def _SetStructValue(struct_value, value):
     struct_value.string_value = value
   elif isinstance(value, _INT_OR_FLOAT):
     struct_value.number_value = value
-  elif isinstance(value, dict):
+  elif isinstance(value, (dict, Struct)):
     struct_value.struct_value.Clear()
     struct_value.struct_value.update(value)
-  elif isinstance(value, list):
+  elif isinstance(value, (list, ListValue)):
     struct_value.list_value.Clear()
     struct_value.list_value.extend(value)
   else:
@@ -738,7 +753,7 @@ def _GetStructValue(struct_value):
 class Struct(object):
   """Class for Struct message type."""
 
-  __slots__ = []
+  __slots__ = ()
 
   def __getitem__(self, key):
     return _GetStructValue(self.fields[key])
@@ -785,11 +800,13 @@ class Struct(object):
     for key, value in dictionary.items():
       _SetStructValue(self.fields[key], value)
 
-collections.MutableMapping.register(Struct)
+collections_abc.MutableMapping.register(Struct)
 
 
 class ListValue(object):
   """Class for ListValue message type."""
+
+  __slots__ = ()
 
   def __len__(self):
     return len(self.values)
@@ -829,7 +846,7 @@ class ListValue(object):
     list_value.Clear()
     return list_value
 
-collections.MutableSequence.register(ListValue)
+collections_abc.MutableSequence.register(ListValue)
 
 
 WKTBASES = {

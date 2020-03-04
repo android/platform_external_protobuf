@@ -45,7 +45,7 @@ if api_implementation.Type() == 'cpp':
   import binascii
   import os
   from google.protobuf.pyext import _message
-  _USE_C_DESCRIPTORS = getattr(_message, '_USE_C_DESCRIPTORS', False)
+  _USE_C_DESCRIPTORS = True
 
 
 class Error(Exception):
@@ -657,7 +657,8 @@ class EnumDescriptor(_NestedDescriptorBase):
     for value in self.values:
       value.type = self
     self.values_by_name = dict((v.name, v) for v in values)
-    self.values_by_number = dict((v.number, v) for v in values)
+    # Values are reversed to ensure that the first alias is retained.
+    self.values_by_number = dict((v.number, v) for v in reversed(values))
 
   def CopyToProto(self, proto):
     """Copies this to a descriptor_pb2.EnumDescriptorProto.
@@ -855,7 +856,7 @@ class FileDescriptor(DescriptorBase):
   dependencies: List of other FileDescriptors this FileDescriptor depends on.
   public_dependencies: A list of FileDescriptors, subset of the dependencies
     above, which were declared as "public".
-  message_types_by_name: Dict of message names of their descriptors.
+  message_types_by_name: Dict of message names and their descriptors.
   enum_types_by_name: Dict of enum names and their descriptors.
   extensions_by_name: Dict of extension names and their descriptors.
   services_by_name: Dict of services names and their descriptors.
@@ -872,9 +873,14 @@ class FileDescriptor(DescriptorBase):
                 syntax=None, pool=None):
       # FileDescriptor() is called from various places, not only from generated
       # files, to register dynamic proto files and messages.
-      if serialized_pb:
-        # TODO(amauryfa): use the pool passed as argument. This will work only
-        # for C++-implemented DescriptorPools.
+      # pylint: disable=g-explicit-bool-comparison
+      if serialized_pb == '':
+        # Cpp generated code must be linked in if serialized_pb is ''
+        try:
+          return _message.default_pool.FindFileByName(name)
+        except KeyError:
+          raise RuntimeError('Please link in cpp generated lib for %s' % (name))
+      elif serialized_pb:
         return _message.default_pool.AddSerializedFile(serialized_pb)
       else:
         return super(FileDescriptor, cls).__new__(cls)
@@ -902,10 +908,6 @@ class FileDescriptor(DescriptorBase):
     self.services_by_name = {}
     self.dependencies = (dependencies or [])
     self.public_dependencies = (public_dependencies or [])
-
-    if (api_implementation.Type() == 'cpp' and
-        self.serialized_pb is not None):
-      _message.default_pool.AddSerializedFile(self.serialized_pb)
 
   def CopyToProto(self, proto):
     """Copies this to a descriptor_pb2.FileDescriptorProto.

@@ -108,7 +108,7 @@ public abstract class AbstractMessage
 
   @Override
   public final String toString() {
-    return TextFormat.printToString(this);
+    return TextFormat.printer().printToString(this);
   }
 
   @Override
@@ -193,7 +193,7 @@ public abstract class AbstractMessage
     if (list.isEmpty()) {
       return Collections.emptyMap();
     }
-    Map result = new HashMap();
+    Map result = new HashMap<>();
     Iterator iterator = list.iterator();
     Message entry = (Message) iterator.next();
     Descriptors.Descriptor descriptor = entry.getDescriptorForType();
@@ -468,7 +468,7 @@ public abstract class AbstractMessage
 
     @Override
     public String toString() {
-      return TextFormat.printToString(this);
+      return TextFormat.printer().printToString(this);
     }
 
     /** Construct an UninitializedMessageException reporting missing fields in the given message. */

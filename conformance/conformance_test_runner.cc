@@ -53,28 +53,27 @@
 //   3. testee sends 4-byte length M (little endian)
 //   4. testee sends M bytes representing a ConformanceResponse proto
 
-#include <algorithm>
 #include <errno.h>
-#include <fstream>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+#include <algorithm>
+#include <fstream>
 #include <vector>
 
 #include <google/protobuf/stubs/stringprintf.h>
-
 #include "conformance.pb.h"
 #include "conformance_test.h"
 
 using conformance::ConformanceResponse;
-using google::protobuf::StringAppendF;
 using google::protobuf::ConformanceTestSuite;
 using std::string;
 using std::vector;
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
-#define CHECK_SYSCALL(call) \
+#define GOOGLE_CHECK_SYSCALL(call) \
   if (call < 0) { \
     perror(#call " " __FILE__ ":" TOSTRING(__LINE__)); \
     exit(1); \
@@ -119,6 +118,19 @@ void UsageError() {
           "                              should contain one test name per\n");
   fprintf(stderr,
           "                              line.  Use '#' for comments.\n");
+  fprintf(stderr,
+          "  --text_format_failure_list <filename>   Use to specify list \n");
+  fprintf(stderr,
+          "                              of tests that are expected to \n");
+  fprintf(stderr,
+          "                              fail in the \n");
+  fprintf(stderr,
+          "                              text_format_conformance_suite.  \n");
+  fprintf(stderr,
+          "                              File should contain one test name \n");
+  fprintf(stderr,
+          "                              per line.  Use '#' for comments.\n");
+
   fprintf(stderr,
           "  --enforce_recommended       Enforce that recommended test\n");
   fprintf(stderr,
@@ -175,41 +187,57 @@ void ForkPipeRunner::RunTest(
 }
 
 int ForkPipeRunner::Run(
-    int argc, char *argv[], ConformanceTestSuite* suite) {
-  char *program;
-  string failure_list_filename;
-  conformance::FailureSet failure_list;
-
-  for (int arg = 1; arg < argc; ++arg) {
-    if (strcmp(argv[arg], "--failure_list") == 0) {
-      if (++arg == argc) UsageError();
-      failure_list_filename = argv[arg];
-      ParseFailureList(argv[arg], &failure_list);
-    } else if (strcmp(argv[arg], "--verbose") == 0) {
-      suite->SetVerbose(true);
-    } else if (strcmp(argv[arg], "--enforce_recommended") == 0) {
-      suite->SetEnforceRecommended(true);
-    } else if (argv[arg][0] == '-') {
-      fprintf(stderr, "Unknown option: %s\n", argv[arg]);
-      UsageError();
-    } else {
-      if (arg != argc - 1) {
-        fprintf(stderr, "Too many arguments.\n");
-        UsageError();
-      }
-      program = argv[arg];
-    }
+    int argc, char *argv[], const std::vector<ConformanceTestSuite*>& suites) {
+  if (suites.empty()) {
+    fprintf(stderr, "No test suites found.\n");
+    return EXIT_FAILURE;
   }
+  bool all_ok = true;
+  for (ConformanceTestSuite* suite : suites) {
+    string program;
+    std::vector<string> program_args;
+    string failure_list_filename;
+    conformance::FailureSet failure_list;
 
-  ForkPipeRunner runner(program);
+    for (int arg = 1; arg < argc; ++arg) {
+      if (strcmp(argv[arg], suite->GetFailureListFlagName().c_str()) == 0) {
+        if (++arg == argc) UsageError();
+        failure_list_filename = argv[arg];
+        ParseFailureList(argv[arg], &failure_list);
+      } else if (strcmp(argv[arg], "--verbose") == 0) {
+        suite->SetVerbose(true);
+      } else if (strcmp(argv[arg], "--enforce_recommended") == 0) {
+        suite->SetEnforceRecommended(true);
+      } else if (argv[arg][0] == '-') {
+        bool recognized_flag = false;
+        for (ConformanceTestSuite* suite : suites) {
+          if (strcmp(argv[arg], suite->GetFailureListFlagName().c_str()) == 0) {
+            if (++arg == argc) UsageError();
+            recognized_flag = true;
+          }
+        }
+        if (!recognized_flag) {
+          fprintf(stderr, "Unknown option: %s\n", argv[arg]);
+          UsageError();
+        }
+      } else {
+        program += argv[arg];
+        while (arg < argc) {
+          program_args.push_back(argv[arg]);
+          arg++;
+        }
+      }
+    }
 
-  std::string output;
-  bool ok =
-      suite->RunSuite(&runner, &output, failure_list_filename, &failure_list);
+    ForkPipeRunner runner(program, program_args);
 
-  fwrite(output.c_str(), 1, output.size(), stderr);
+    std::string output;
+    all_ok = all_ok &&
+        suite->RunSuite(&runner, &output, failure_list_filename, &failure_list);
 
-  return ok ? EXIT_SUCCESS : EXIT_FAILURE;
+    fwrite(output.c_str(), 1, output.size(), stderr);
+  }
+  return all_ok ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
 // TODO(haberman): make this work on Windows, instead of using these
@@ -246,37 +274,42 @@ void ForkPipeRunner::SpawnTestProgram() {
 
   if (pid) {
     // Parent.
-    CHECK_SYSCALL(close(toproc_pipe_fd[0]));
-    CHECK_SYSCALL(close(fromproc_pipe_fd[1]));
+    GOOGLE_CHECK_SYSCALL(close(toproc_pipe_fd[0]));
+    GOOGLE_CHECK_SYSCALL(close(fromproc_pipe_fd[1]));
     write_fd_ = toproc_pipe_fd[1];
     read_fd_ = fromproc_pipe_fd[0];
     child_pid_ = pid;
   } else {
     // Child.
-    CHECK_SYSCALL(close(STDIN_FILENO));
-    CHECK_SYSCALL(close(STDOUT_FILENO));
-    CHECK_SYSCALL(dup2(toproc_pipe_fd[0], STDIN_FILENO));
-    CHECK_SYSCALL(dup2(fromproc_pipe_fd[1], STDOUT_FILENO));
+    GOOGLE_CHECK_SYSCALL(close(STDIN_FILENO));
+    GOOGLE_CHECK_SYSCALL(close(STDOUT_FILENO));
+    GOOGLE_CHECK_SYSCALL(dup2(toproc_pipe_fd[0], STDIN_FILENO));
+    GOOGLE_CHECK_SYSCALL(dup2(fromproc_pipe_fd[1], STDOUT_FILENO));
 
-    CHECK_SYSCALL(close(toproc_pipe_fd[0]));
-    CHECK_SYSCALL(close(fromproc_pipe_fd[1]));
-    CHECK_SYSCALL(close(toproc_pipe_fd[1]));
-    CHECK_SYSCALL(close(fromproc_pipe_fd[0]));
+    GOOGLE_CHECK_SYSCALL(close(toproc_pipe_fd[0]));
+    GOOGLE_CHECK_SYSCALL(close(fromproc_pipe_fd[1]));
+    GOOGLE_CHECK_SYSCALL(close(toproc_pipe_fd[1]));
+    GOOGLE_CHECK_SYSCALL(close(fromproc_pipe_fd[0]));
 
     std::unique_ptr<char[]> executable(new char[executable_.size() + 1]);
     memcpy(executable.get(), executable_.c_str(), executable_.size());
     executable[executable_.size()] = '\0';
 
-    char *const argv[] = {executable.get(), NULL};
-    CHECK_SYSCALL(execv(executable.get(), argv));  // Never returns.
+    std::vector<const char *> argv;
+    argv.push_back(executable.get());
+    for (int i = 0; i < executable_args_.size(); ++i) {
+      argv.push_back(executable_args_[i].c_str());
+    }
+    argv.push_back(nullptr);
+    // Never returns.
+    GOOGLE_CHECK_SYSCALL(execv(executable.get(), const_cast<char **>(argv.data())));
   }
 }
 
 void ForkPipeRunner::CheckedWrite(int fd, const void *buf, size_t len) {
   if (write(fd, buf, len) != len) {
     GOOGLE_LOG(FATAL) << current_test_name_
-                      << ": error writing to test program: "
-                      << strerror(errno);
+               << ": error writing to test program: " << strerror(errno);
   }
 }
 
@@ -286,13 +319,11 @@ bool ForkPipeRunner::TryRead(int fd, void *buf, size_t len) {
     ssize_t bytes_read = read(fd, (char*)buf + ofs, len);
 
     if (bytes_read == 0) {
-      GOOGLE_LOG(ERROR) << current_test_name_
-                        << ": unexpected EOF from test program";
+      GOOGLE_LOG(ERROR) << current_test_name_ << ": unexpected EOF from test program";
       return false;
     } else if (bytes_read < 0) {
       GOOGLE_LOG(ERROR) << current_test_name_
-                        << ": error reading from test program: "
-                        << strerror(errno);
+                 << ": error reading from test program: " << strerror(errno);
       return false;
     }
 
@@ -306,8 +337,7 @@ bool ForkPipeRunner::TryRead(int fd, void *buf, size_t len) {
 void ForkPipeRunner::CheckedRead(int fd, void *buf, size_t len) {
   if (!TryRead(fd, buf, len)) {
     GOOGLE_LOG(FATAL) << current_test_name_
-                      << ": error reading from test program: "
-                      << strerror(errno);
+               << ": error reading from test program: " << strerror(errno);
   }
 }
 

@@ -17,7 +17,6 @@ module BasicTest
     add_message "BadFieldNames" do
       optional :dup, :int32, 1
       optional :class, :int32, 2
-      optional :"a.b", :int32, 3
     end
   end
 
@@ -154,12 +153,12 @@ module BasicTest
       e = assert_raise ArgumentError do
         MapMessage.new(:map_string_int32 => "hello")
       end
-      assert_equal e.message, "Expected Hash object as initializer value for map field 'map_string_int32'."
+      assert_equal e.message, "Expected Hash object as initializer value for map field 'map_string_int32' (given String)."
 
       e = assert_raise ArgumentError do
         TestMessage.new(:repeated_uint32 => "hello")
       end
-      assert_equal e.message, "Expected array as initializer value for repeated field 'repeated_uint32'."
+      assert_equal e.message, "Expected array as initializer value for repeated field 'repeated_uint32' (given String)."
     end
 
     def test_map_field
@@ -170,10 +169,12 @@ module BasicTest
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
       assert m.map_string_int32.keys.sort == ["a", "b"]
       assert m.map_string_int32["a"] == 1
       assert m.map_string_msg["b"].foo == 2
+      assert m.map_string_enum["a"] == :A
 
       m.map_string_int32["c"] = 3
       assert m.map_string_int32["c"] == 3
@@ -202,12 +203,27 @@ module BasicTest
       end
     end
 
+    def test_map_field_with_symbol
+      m = MapMessage.new
+      assert m.map_string_int32 == {}
+      assert m.map_string_msg == {}
+
+      m = MapMessage.new(
+        :map_string_int32 => {a: 1, "b" => 2},
+        :map_string_msg => {a: TestMessage2.new(:foo => 1),
+                            b: TestMessage2.new(:foo => 10)})
+      assert_equal 1, m.map_string_int32[:a]
+      assert_equal 2, m.map_string_int32[:b]
+      assert_equal 10, m.map_string_msg[:b].foo
+    end
+
     def test_map_inspect
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
-      expected = "<BasicTest::MapMessage: map_string_int32: {\"b\"=>2, \"a\"=>1}, map_string_msg: {\"b\"=><BasicTest::TestMessage2: foo: 2>, \"a\"=><BasicTest::TestMessage2: foo: 1>}>"
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
+      expected = "<BasicTest::MapMessage: map_string_int32: {\"b\"=>2, \"a\"=>1}, map_string_msg: {\"b\"=><BasicTest::TestMessage2: foo: 2>, \"a\"=><BasicTest::TestMessage2: foo: 1>}, map_string_enum: {\"b\"=>:B, \"a\"=>:A}>"
       assert_equal expected, m.inspect
     end
 
@@ -216,6 +232,128 @@ module BasicTest
       m = MapMessage.new(map_string_int32: { "aaa" => 1 })
       m.map_string_int32['podid'] = 2
       m.map_string_int32['aaa'] = 3
+    end
+
+    def test_map_wrappers
+      run_asserts = ->(m) {
+        assert_equal 2.0, m.map_double[0].value
+        assert_equal 4.0, m.map_float[0].value
+        assert_equal 3, m.map_int32[0].value
+        assert_equal 4, m.map_int64[0].value
+        assert_equal 5, m.map_uint32[0].value
+        assert_equal 6, m.map_uint64[0].value
+        assert_equal true, m.map_bool[0].value
+        assert_equal 'str', m.map_string[0].value
+        assert_equal 'fun', m.map_bytes[0].value
+      }
+
+      m = proto_module::Wrapper.new(
+        map_double: {0 => Google::Protobuf::DoubleValue.new(value: 2.0)},
+        map_float: {0 => Google::Protobuf::FloatValue.new(value: 4.0)},
+        map_int32: {0 => Google::Protobuf::Int32Value.new(value: 3)},
+        map_int64: {0 => Google::Protobuf::Int64Value.new(value: 4)},
+        map_uint32: {0 => Google::Protobuf::UInt32Value.new(value: 5)},
+        map_uint64: {0 => Google::Protobuf::UInt64Value.new(value: 6)},
+        map_bool: {0 => Google::Protobuf::BoolValue.new(value: true)},
+        map_string: {0 => Google::Protobuf::StringValue.new(value: 'str')},
+        map_bytes: {0 => Google::Protobuf::BytesValue.new(value: 'fun')},
+      )
+
+      run_asserts.call(m)
+      serialized = proto_module::Wrapper::encode(m)
+      m2 = proto_module::Wrapper::decode(serialized)
+      run_asserts.call(m2)
+
+      # Test the case where we are serializing directly from the parsed form
+      # (before anything lazy is materialized).
+      m3 = proto_module::Wrapper::decode(serialized)
+      serialized2 = proto_module::Wrapper::encode(m3)
+      m4 = proto_module::Wrapper::decode(serialized2)
+      run_asserts.call(m4)
+
+      # Test that the lazy form compares equal to the expanded form.
+      m5 = proto_module::Wrapper::decode(serialized2)
+      assert_equal m5, m
+    end
+
+    def test_map_wrappers_with_default_values
+      run_asserts = ->(m) {
+        assert_equal 0.0, m.map_double[0].value
+        assert_equal 0.0, m.map_float[0].value
+        assert_equal 0, m.map_int32[0].value
+        assert_equal 0, m.map_int64[0].value
+        assert_equal 0, m.map_uint32[0].value
+        assert_equal 0, m.map_uint64[0].value
+        assert_equal false, m.map_bool[0].value
+        assert_equal '', m.map_string[0].value
+        assert_equal '', m.map_bytes[0].value
+      }
+
+      m = proto_module::Wrapper.new(
+        map_double: {0 => Google::Protobuf::DoubleValue.new(value: 0.0)},
+        map_float: {0 => Google::Protobuf::FloatValue.new(value: 0.0)},
+        map_int32: {0 => Google::Protobuf::Int32Value.new(value: 0)},
+        map_int64: {0 => Google::Protobuf::Int64Value.new(value: 0)},
+        map_uint32: {0 => Google::Protobuf::UInt32Value.new(value: 0)},
+        map_uint64: {0 => Google::Protobuf::UInt64Value.new(value: 0)},
+        map_bool: {0 => Google::Protobuf::BoolValue.new(value: false)},
+        map_string: {0 => Google::Protobuf::StringValue.new(value: '')},
+        map_bytes: {0 => Google::Protobuf::BytesValue.new(value: '')},
+      )
+
+      run_asserts.call(m)
+      serialized = proto_module::Wrapper::encode(m)
+      m2 = proto_module::Wrapper::decode(serialized)
+      run_asserts.call(m2)
+
+      # Test the case where we are serializing directly from the parsed form
+      # (before anything lazy is materialized).
+      m3 = proto_module::Wrapper::decode(serialized)
+      serialized2 = proto_module::Wrapper::encode(m3)
+      m4 = proto_module::Wrapper::decode(serialized2)
+      run_asserts.call(m4)
+
+      # Test that the lazy form compares equal to the expanded form.
+      m5 = proto_module::Wrapper::decode(serialized2)
+      assert_equal m5, m
+    end
+
+    def test_map_wrappers_with_no_value
+      run_asserts = ->(m) {
+        assert_equal 0.0, m.map_double[0].value
+        assert_equal 0.0, m.map_float[0].value
+        assert_equal 0, m.map_int32[0].value
+        assert_equal 0, m.map_int64[0].value
+        assert_equal 0, m.map_uint32[0].value
+        assert_equal 0, m.map_uint64[0].value
+        assert_equal false, m.map_bool[0].value
+        assert_equal '', m.map_string[0].value
+        assert_equal '', m.map_bytes[0].value
+      }
+
+      m = proto_module::Wrapper.new(
+        map_double: {0 => Google::Protobuf::DoubleValue.new()},
+        map_float: {0 => Google::Protobuf::FloatValue.new()},
+        map_int32: {0 => Google::Protobuf::Int32Value.new()},
+        map_int64: {0 => Google::Protobuf::Int64Value.new()},
+        map_uint32: {0 => Google::Protobuf::UInt32Value.new()},
+        map_uint64: {0 => Google::Protobuf::UInt64Value.new()},
+        map_bool: {0 => Google::Protobuf::BoolValue.new()},
+        map_string: {0 => Google::Protobuf::StringValue.new()},
+        map_bytes: {0 => Google::Protobuf::BytesValue.new()},
+      )
+      run_asserts.call(m)
+
+      serialized = proto_module::Wrapper::encode(m)
+      m2 = proto_module::Wrapper::decode(serialized)
+      run_asserts.call(m2)
+
+      # Test the case where we are serializing directly from the parsed form
+      # (before anything lazy is materialized).
+      m3 = proto_module::Wrapper::decode(serialized)
+      serialized2 = proto_module::Wrapper::encode(m3)
+      m4 = proto_module::Wrapper::decode(serialized2)
+      run_asserts.call(m4)
     end
 
     def test_concurrent_decoding
@@ -237,7 +375,8 @@ module BasicTest
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
       m2 = MapMessage.decode(MapMessage.encode(m))
       assert m == m2
 
@@ -266,6 +405,14 @@ module BasicTest
       end
       assert_match(/No such field: not_in_message/, e.message)
     end
+
+    #def test_json_quoted_string
+    #  m = TestMessage.decode_json(%q(
+    #    "optionalInt64": "1",,
+    #  }))
+    #  puts(m)
+    #  assert_equal 1, m.optional_int32
+    #end
 
     def test_to_h
       m = TestMessage.new(:optional_bool => true, :optional_double => -10.100001, :optional_string => 'foo', :repeated_string => ['bar1', 'bar2'], :repeated_msg => [TestMessage2.new(:foo => 100)])
@@ -298,10 +445,12 @@ module BasicTest
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
       expected_result = {
         :map_string_int32 => {"a" => 1, "b" => 2},
-        :map_string_msg => {"a" => {:foo => 1}, "b" => {:foo => 2}}
+        :map_string_msg => {"a" => {:foo => 1}, "b" => {:foo => 2}},
+        :map_string_enum => {"a" => :A, "b" => :B}
       }
       assert_equal expected_result, m.to_h
     end
@@ -311,26 +460,26 @@ module BasicTest
       # TODO: Fix JSON in JRuby version.
       return if RUBY_PLATFORM == "java"
       m = MapMessage.new(:map_string_int32 => {"a" => 1})
-      expected = {mapStringInt32: {a: 1}, mapStringMsg: {}}
-      expected_preserve = {map_string_int32: {a: 1}, map_string_msg: {}}
-      assert JSON.parse(MapMessage.encode_json(m), :symbolize_names => true) == expected
+      expected = {mapStringInt32: {a: 1}, mapStringMsg: {}, mapStringEnum: {}}
+      expected_preserve = {map_string_int32: {a: 1}, map_string_msg: {}, map_string_enum: {}}
+      assert_equal JSON.parse(MapMessage.encode_json(m), :symbolize_names => true), expected
 
       json = MapMessage.encode_json(m, :preserve_proto_fieldnames => true)
-      assert JSON.parse(json, :symbolize_names => true) == expected_preserve
+      assert_equal JSON.parse(json, :symbolize_names => true), expected_preserve
 
       m2 = MapMessage.decode_json(MapMessage.encode_json(m))
-      assert m == m2
+      assert_equal m, m2
     end
 
     def test_json_maps_emit_defaults_submsg
       # TODO: Fix JSON in JRuby version.
       return if RUBY_PLATFORM == "java"
       m = MapMessage.new(:map_string_msg => {"a" => TestMessage2.new})
-      expected = {mapStringInt32: {}, mapStringMsg: {a: {foo: 0}}}
+      expected = {mapStringInt32: {}, mapStringMsg: {a: {foo: 0}}, mapStringEnum: {}}
 
       actual = MapMessage.encode_json(m, :emit_defaults => true)
 
-      assert JSON.parse(actual, :symbolize_names => true) == expected
+      assert_equal JSON.parse(actual, :symbolize_names => true), expected
     end
 
     def test_respond_to
@@ -351,11 +500,26 @@ module BasicTest
       assert nil != file_descriptor
       assert_equal "tests/basic_test.proto", file_descriptor.name
       assert_equal :proto3, file_descriptor.syntax
+    end
 
-      file_descriptor = BadFieldNames.descriptor.file_descriptor
-      assert nil != file_descriptor
-      assert_equal nil, file_descriptor.name
-      assert_equal :proto3, file_descriptor.syntax
+    # Ruby 2.5 changed to raise FrozenError instead of RuntimeError
+    FrozenErrorType = Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.5') ? RuntimeError : FrozenError
+
+    def test_map_freeze
+      m = proto_module::MapMessage.new
+      m.map_string_int32['a'] = 5
+      m.map_string_msg['b'] = proto_module::TestMessage2.new
+
+      m.map_string_int32.freeze
+      m.map_string_msg.freeze
+
+      assert m.map_string_int32.frozen?
+      assert m.map_string_msg.frozen?
+
+      assert_raise(FrozenErrorType) { m.map_string_int32['foo'] = 1 }
+      assert_raise(FrozenErrorType) { m.map_string_msg['bar'] = proto_module::TestMessage2.new }
+      assert_raise(FrozenErrorType) { m.map_string_int32.delete('a') }
+      assert_raise(FrozenErrorType) { m.map_string_int32.clear }
     end
   end
 end
