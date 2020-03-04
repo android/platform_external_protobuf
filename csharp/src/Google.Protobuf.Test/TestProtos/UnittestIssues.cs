@@ -54,16 +54,16 @@ namespace UnitTest.Issues.TestProtos {
             "cy5UZXN0UHJvdG9zYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::UnitTest.Issues.TestProtos.NegativeEnum), typeof(global::UnitTest.Issues.TestProtos.DeprecatedEnum), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.Issue307), global::UnitTest.Issues.TestProtos.Issue307.Parser, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce), global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce.Parser, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce.Types.NestedTwice), global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce.Types.NestedTwice.Parser, null, null, null, null)})}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.NegativeEnumMessage), global::UnitTest.Issues.TestProtos.NegativeEnumMessage.Parser, new[]{ "Value", "Values", "PackedValues" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.DeprecatedChild), global::UnitTest.Issues.TestProtos.DeprecatedChild.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.DeprecatedFieldsMessage), global::UnitTest.Issues.TestProtos.DeprecatedFieldsMessage.Parser, new[]{ "PrimitiveValue", "PrimitiveArray", "MessageValue", "MessageArray", "EnumValue", "EnumArray" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.ItemField), global::UnitTest.Issues.TestProtos.ItemField.Parser, new[]{ "Item" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.ReservedNames), global::UnitTest.Issues.TestProtos.ReservedNames.Parser, new[]{ "Types_", "Descriptor_" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.ReservedNames.Types.SomeNestedType), global::UnitTest.Issues.TestProtos.ReservedNames.Types.SomeNestedType.Parser, null, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.TestJsonFieldOrdering), global::UnitTest.Issues.TestProtos.TestJsonFieldOrdering.Parser, new[]{ "PlainInt32", "O1String", "O1Int32", "PlainString", "O2Int32", "O2String" }, new[]{ "O1", "O2" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.TestJsonName), global::UnitTest.Issues.TestProtos.TestJsonName.Parser, new[]{ "Name", "Description", "Guid" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.OneofMerging), global::UnitTest.Issues.TestProtos.OneofMerging.Parser, new[]{ "Text", "Nested" }, new[]{ "Value" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.OneofMerging.Types.Nested), global::UnitTest.Issues.TestProtos.OneofMerging.Types.Nested.Parser, new[]{ "X", "Y" }, null, null, null)})
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::UnitTest.Issues.TestProtos.NegativeEnum), typeof(global::UnitTest.Issues.TestProtos.DeprecatedEnum), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.Issue307), global::UnitTest.Issues.TestProtos.Issue307.Parser, null, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce), global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce.Parser, null, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce.Types.NestedTwice), global::UnitTest.Issues.TestProtos.Issue307.Types.NestedOnce.Types.NestedTwice.Parser, null, null, null, null, null)})}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.NegativeEnumMessage), global::UnitTest.Issues.TestProtos.NegativeEnumMessage.Parser, new[]{ "Value", "Values", "PackedValues" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.DeprecatedChild), global::UnitTest.Issues.TestProtos.DeprecatedChild.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.DeprecatedFieldsMessage), global::UnitTest.Issues.TestProtos.DeprecatedFieldsMessage.Parser, new[]{ "PrimitiveValue", "PrimitiveArray", "MessageValue", "MessageArray", "EnumValue", "EnumArray" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.ItemField), global::UnitTest.Issues.TestProtos.ItemField.Parser, new[]{ "Item" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.ReservedNames), global::UnitTest.Issues.TestProtos.ReservedNames.Parser, new[]{ "Types_", "Descriptor_" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.ReservedNames.Types.SomeNestedType), global::UnitTest.Issues.TestProtos.ReservedNames.Types.SomeNestedType.Parser, null, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.TestJsonFieldOrdering), global::UnitTest.Issues.TestProtos.TestJsonFieldOrdering.Parser, new[]{ "PlainInt32", "O1String", "O1Int32", "PlainString", "O2Int32", "O2String" }, new[]{ "O1", "O2" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.TestJsonName), global::UnitTest.Issues.TestProtos.TestJsonName.Parser, new[]{ "Name", "Description", "Guid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.OneofMerging), global::UnitTest.Issues.TestProtos.OneofMerging.Parser, new[]{ "Text", "Nested" }, new[]{ "Value" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UnitTest.Issues.TestProtos.OneofMerging.Types.Nested), global::UnitTest.Issues.TestProtos.OneofMerging.Types.Nested.Parser, new[]{ "X", "Y" }, null, null, null, null)})
           }));
     }
     #endregion
@@ -181,9 +181,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
         }
       }
@@ -286,9 +284,7 @@ namespace UnitTest.Issues.TestProtos {
           while ((tag = input.ReadTag()) != 0) {
             switch(tag) {
               default:
-                if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-                  return;
-                }
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
             }
           }
@@ -391,9 +387,7 @@ namespace UnitTest.Issues.TestProtos {
               while ((tag = input.ReadTag()) != 0) {
                 switch(tag) {
                   default:
-                    if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-                      return;
-                    }
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                     break;
                 }
               }
@@ -449,7 +443,7 @@ namespace UnitTest.Issues.TestProtos {
 
     /// <summary>Field number for the "value" field.</summary>
     public const int ValueFieldNumber = 1;
-    private global::UnitTest.Issues.TestProtos.NegativeEnum value_ = 0;
+    private global::UnitTest.Issues.TestProtos.NegativeEnum value_ = global::UnitTest.Issues.TestProtos.NegativeEnum.Zero;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::UnitTest.Issues.TestProtos.NegativeEnum Value {
       get { return value_; }
@@ -500,7 +494,7 @@ namespace UnitTest.Issues.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Value != 0) hash ^= Value.GetHashCode();
+      if (Value != global::UnitTest.Issues.TestProtos.NegativeEnum.Zero) hash ^= Value.GetHashCode();
       hash ^= values_.GetHashCode();
       hash ^= packedValues_.GetHashCode();
       if (_unknownFields != null) {
@@ -516,7 +510,7 @@ namespace UnitTest.Issues.TestProtos {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Value != 0) {
+      if (Value != global::UnitTest.Issues.TestProtos.NegativeEnum.Zero) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Value);
       }
@@ -530,7 +524,7 @@ namespace UnitTest.Issues.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Value != 0) {
+      if (Value != global::UnitTest.Issues.TestProtos.NegativeEnum.Zero) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Value);
       }
       size += values_.CalculateSize(_repeated_values_codec);
@@ -546,7 +540,7 @@ namespace UnitTest.Issues.TestProtos {
       if (other == null) {
         return;
       }
-      if (other.Value != 0) {
+      if (other.Value != global::UnitTest.Issues.TestProtos.NegativeEnum.Zero) {
         Value = other.Value;
       }
       values_.Add(other.values_);
@@ -560,9 +554,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
             Value = (global::UnitTest.Issues.TestProtos.NegativeEnum) input.ReadEnum();
@@ -677,9 +669,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
         }
       }
@@ -774,7 +764,7 @@ namespace UnitTest.Issues.TestProtos {
 
     /// <summary>Field number for the "EnumValue" field.</summary>
     public const int EnumValueFieldNumber = 5;
-    private global::UnitTest.Issues.TestProtos.DeprecatedEnum enumValue_ = 0;
+    private global::UnitTest.Issues.TestProtos.DeprecatedEnum enumValue_ = global::UnitTest.Issues.TestProtos.DeprecatedEnum.DeprecatedZero;
     [global::System.ObsoleteAttribute]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::UnitTest.Issues.TestProtos.DeprecatedEnum EnumValue {
@@ -824,7 +814,7 @@ namespace UnitTest.Issues.TestProtos {
       hash ^= primitiveArray_.GetHashCode();
       if (messageValue_ != null) hash ^= MessageValue.GetHashCode();
       hash ^= messageArray_.GetHashCode();
-      if (EnumValue != 0) hash ^= EnumValue.GetHashCode();
+      if (EnumValue != global::UnitTest.Issues.TestProtos.DeprecatedEnum.DeprecatedZero) hash ^= EnumValue.GetHashCode();
       hash ^= enumArray_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -849,7 +839,7 @@ namespace UnitTest.Issues.TestProtos {
         output.WriteMessage(MessageValue);
       }
       messageArray_.WriteTo(output, _repeated_messageArray_codec);
-      if (EnumValue != 0) {
+      if (EnumValue != global::UnitTest.Issues.TestProtos.DeprecatedEnum.DeprecatedZero) {
         output.WriteRawTag(40);
         output.WriteEnum((int) EnumValue);
       }
@@ -870,7 +860,7 @@ namespace UnitTest.Issues.TestProtos {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MessageValue);
       }
       size += messageArray_.CalculateSize(_repeated_messageArray_codec);
-      if (EnumValue != 0) {
+      if (EnumValue != global::UnitTest.Issues.TestProtos.DeprecatedEnum.DeprecatedZero) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) EnumValue);
       }
       size += enumArray_.CalculateSize(_repeated_enumArray_codec);
@@ -896,7 +886,7 @@ namespace UnitTest.Issues.TestProtos {
         MessageValue.MergeFrom(other.MessageValue);
       }
       messageArray_.Add(other.messageArray_);
-      if (other.EnumValue != 0) {
+      if (other.EnumValue != global::UnitTest.Issues.TestProtos.DeprecatedEnum.DeprecatedZero) {
         EnumValue = other.EnumValue;
       }
       enumArray_.Add(other.enumArray_);
@@ -909,9 +899,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
             PrimitiveValue = input.ReadInt32();
@@ -1068,9 +1056,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
             Item = input.ReadInt32();
@@ -1223,9 +1209,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
             Types_ = input.ReadInt32();
@@ -1339,9 +1323,7 @@ namespace UnitTest.Issues.TestProtos {
           while ((tag = input.ReadTag()) != 0) {
             switch(tag) {
               default:
-                if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-                  return;
-                }
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
             }
           }
@@ -1665,9 +1647,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
             PlainString = input.ReadString();
@@ -1867,9 +1847,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
             Name = input.ReadString();
@@ -2069,9 +2047,7 @@ namespace UnitTest.Issues.TestProtos {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
             Text = input.ReadString();
@@ -2235,9 +2211,7 @@ namespace UnitTest.Issues.TestProtos {
           while ((tag = input.ReadTag()) != 0) {
             switch(tag) {
               default:
-                if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-                  return;
-                }
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
               case 8: {
                 X = input.ReadInt32();

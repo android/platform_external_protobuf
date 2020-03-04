@@ -154,12 +154,12 @@ module BasicTest
       e = assert_raise ArgumentError do
         MapMessage.new(:map_string_int32 => "hello")
       end
-      assert_equal e.message, "Expected Hash object as initializer value for map field 'map_string_int32'."
+      assert_equal e.message, "Expected Hash object as initializer value for map field 'map_string_int32' (given String)."
 
       e = assert_raise ArgumentError do
         TestMessage.new(:repeated_uint32 => "hello")
       end
-      assert_equal e.message, "Expected array as initializer value for repeated field 'repeated_uint32'."
+      assert_equal e.message, "Expected array as initializer value for repeated field 'repeated_uint32' (given String)."
     end
 
     def test_map_field
@@ -170,10 +170,12 @@ module BasicTest
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
       assert m.map_string_int32.keys.sort == ["a", "b"]
       assert m.map_string_int32["a"] == 1
       assert m.map_string_msg["b"].foo == 2
+      assert m.map_string_enum["a"] == :A
 
       m.map_string_int32["c"] = 3
       assert m.map_string_int32["c"] == 3
@@ -202,12 +204,27 @@ module BasicTest
       end
     end
 
+    def test_map_field_with_symbol
+      m = MapMessage.new
+      assert m.map_string_int32 == {}
+      assert m.map_string_msg == {}
+
+      m = MapMessage.new(
+        :map_string_int32 => {a: 1, "b" => 2},
+        :map_string_msg => {a: TestMessage2.new(:foo => 1),
+                            b: TestMessage2.new(:foo => 10)})
+      assert_equal 1, m.map_string_int32[:a]
+      assert_equal 2, m.map_string_int32[:b]
+      assert_equal 10, m.map_string_msg[:b].foo
+    end
+
     def test_map_inspect
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
-      expected = "<BasicTest::MapMessage: map_string_int32: {\"b\"=>2, \"a\"=>1}, map_string_msg: {\"b\"=><BasicTest::TestMessage2: foo: 2>, \"a\"=><BasicTest::TestMessage2: foo: 1>}>"
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
+      expected = "<BasicTest::MapMessage: map_string_int32: {\"b\"=>2, \"a\"=>1}, map_string_msg: {\"b\"=><BasicTest::TestMessage2: foo: 2>, \"a\"=><BasicTest::TestMessage2: foo: 1>}, map_string_enum: {\"b\"=>:B, \"a\"=>:A}>"
       assert_equal expected, m.inspect
     end
 
@@ -237,7 +254,8 @@ module BasicTest
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
       m2 = MapMessage.decode(MapMessage.encode(m))
       assert m == m2
 
@@ -298,10 +316,12 @@ module BasicTest
       m = MapMessage.new(
         :map_string_int32 => {"a" => 1, "b" => 2},
         :map_string_msg => {"a" => TestMessage2.new(:foo => 1),
-                            "b" => TestMessage2.new(:foo => 2)})
+                            "b" => TestMessage2.new(:foo => 2)},
+        :map_string_enum => {"a" => :A, "b" => :B})
       expected_result = {
         :map_string_int32 => {"a" => 1, "b" => 2},
-        :map_string_msg => {"a" => {:foo => 1}, "b" => {:foo => 2}}
+        :map_string_msg => {"a" => {:foo => 1}, "b" => {:foo => 2}},
+        :map_string_enum => {"a" => :A, "b" => :B}
       }
       assert_equal expected_result, m.to_h
     end
@@ -311,26 +331,26 @@ module BasicTest
       # TODO: Fix JSON in JRuby version.
       return if RUBY_PLATFORM == "java"
       m = MapMessage.new(:map_string_int32 => {"a" => 1})
-      expected = {mapStringInt32: {a: 1}, mapStringMsg: {}}
-      expected_preserve = {map_string_int32: {a: 1}, map_string_msg: {}}
-      assert JSON.parse(MapMessage.encode_json(m), :symbolize_names => true) == expected
+      expected = {mapStringInt32: {a: 1}, mapStringMsg: {}, mapStringEnum: {}}
+      expected_preserve = {map_string_int32: {a: 1}, map_string_msg: {}, map_string_enum: {}}
+      assert_equal JSON.parse(MapMessage.encode_json(m), :symbolize_names => true), expected
 
       json = MapMessage.encode_json(m, :preserve_proto_fieldnames => true)
-      assert JSON.parse(json, :symbolize_names => true) == expected_preserve
+      assert_equal JSON.parse(json, :symbolize_names => true), expected_preserve
 
       m2 = MapMessage.decode_json(MapMessage.encode_json(m))
-      assert m == m2
+      assert_equal m, m2
     end
 
     def test_json_maps_emit_defaults_submsg
       # TODO: Fix JSON in JRuby version.
       return if RUBY_PLATFORM == "java"
       m = MapMessage.new(:map_string_msg => {"a" => TestMessage2.new})
-      expected = {mapStringInt32: {}, mapStringMsg: {a: {foo: 0}}}
+      expected = {mapStringInt32: {}, mapStringMsg: {a: {foo: 0}}, mapStringEnum: {}}
 
       actual = MapMessage.encode_json(m, :emit_defaults => true)
 
-      assert JSON.parse(actual, :symbolize_names => true) == expected
+      assert_equal JSON.parse(actual, :symbolize_names => true), expected
     end
 
     def test_respond_to
@@ -356,6 +376,26 @@ module BasicTest
       assert nil != file_descriptor
       assert_equal nil, file_descriptor.name
       assert_equal :proto3, file_descriptor.syntax
+    end
+
+    # Ruby 2.5 changed to raise FrozenError instead of RuntimeError
+    FrozenErrorType = Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.5') ? RuntimeError : FrozenError
+
+    def test_map_freeze
+      m = proto_module::MapMessage.new
+      m.map_string_int32['a'] = 5
+      m.map_string_msg['b'] = proto_module::TestMessage2.new
+
+      m.map_string_int32.freeze
+      m.map_string_msg.freeze
+
+      assert m.map_string_int32.frozen?
+      assert m.map_string_msg.frozen?
+
+      assert_raise(FrozenErrorType) { m.map_string_int32['foo'] = 1 }
+      assert_raise(FrozenErrorType) { m.map_string_msg['bar'] = proto_module::TestMessage2.new }
+      assert_raise(FrozenErrorType) { m.map_string_int32.delete('a') }
+      assert_raise(FrozenErrorType) { m.map_string_int32.clear }
     end
   end
 end

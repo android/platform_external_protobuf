@@ -553,11 +553,11 @@ const zend_class_entry* field_type_class(
     const upb_fielddef* field PHP_PROTO_TSRMLS_DC) {
   if (upb_fielddef_type(field) == UPB_TYPE_MESSAGE) {
     Descriptor* desc = UNBOX_HASHTABLE_VALUE(
-        Descriptor, get_def_obj(upb_fielddef_subdef(field)));
+        Descriptor, get_def_obj(upb_fielddef_msgsubdef(field)));
     return desc->klass;
   } else if (upb_fielddef_type(field) == UPB_TYPE_ENUM) {
     EnumDescriptor* desc = UNBOX_HASHTABLE_VALUE(
-        EnumDescriptor, get_def_obj(upb_fielddef_subdef(field)));
+        EnumDescriptor, get_def_obj(upb_fielddef_enumsubdef(field)));
     return desc->klass;
   }
   return NULL;
@@ -572,8 +572,8 @@ static size_t align_up_to(size_t offset, size_t granularity) {
   return (offset + granularity - 1) & ~(granularity - 1);
 }
 
-static uint32_t* slot_oneof_case(MessageLayout* layout, const void* storage,
-                                 const upb_fielddef* field) {
+uint32_t* slot_oneof_case(MessageLayout* layout, const void* storage,
+                          const upb_fielddef* field) {
   return (uint32_t*)(((uint8_t*)storage) +
                      layout->fields[upb_fielddef_index(field)].case_offset);
 }
@@ -742,16 +742,13 @@ MessageLayout* create_layout(const upb_msgdef* msgdef) {
   }
 
   layout->size = off;
-
   layout->msgdef = msgdef;
-  upb_msgdef_ref(layout->msgdef, &layout->msgdef);
 
   return layout;
 }
 
 void free_layout(MessageLayout* layout) {
   FREE(layout->fields);
-  upb_msgdef_unref(layout->msgdef, &layout->msgdef);
   FREE(layout);
 }
 
