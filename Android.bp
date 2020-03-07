@@ -114,8 +114,7 @@ cc_library {
     },
     apex_available: [
         "//apex_available:platform",
-        "com.android.adbd",
-        "test_com.android.adbd",
+        "//apex_available:anyapex",
     ],
 }
 
@@ -447,6 +446,11 @@ java_library_static {
     },
 
     java_version: "1.7",
+
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
 }
 
 // Java nano library (compatibility for old host-side users)
@@ -468,6 +472,11 @@ java_library_static {
     sdk_version: "8",
 
     srcs: ["javamicro/src/main/java/com/google/protobuf/micro/**/*.java"],
+
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
 }
 
 // Java micro library (compatibility for old host-side users)
@@ -580,6 +589,11 @@ java_library_static {
     },
 
     java_version: "1.7",
+
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
 }
 
 // Java lite library (compatibility for old host-side users)
