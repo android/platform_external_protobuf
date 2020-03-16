@@ -55,6 +55,8 @@ static  zend_function_entry message_methods[] = {
   PHP_ME(Message, serializeToJsonString, NULL, ZEND_ACC_PUBLIC)
   PHP_ME(Message, mergeFromJsonString, NULL, ZEND_ACC_PUBLIC)
   PHP_ME(Message, mergeFrom, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(Message, readWrapperValue, NULL, ZEND_ACC_PROTECTED)
+  PHP_ME(Message, writeWrapperValue, NULL, ZEND_ACC_PROTECTED)
   PHP_ME(Message, readOneof, NULL, ZEND_ACC_PROTECTED)
   PHP_ME(Message, writeOneof, NULL, ZEND_ACC_PROTECTED)
   PHP_ME(Message, whichOneof, NULL, ZEND_ACC_PROTECTED)
@@ -73,8 +75,13 @@ static zval** message_get_property_ptr_ptr(zval* object, zval* member, int type,
                                            php_proto_zend_literal key TSRMLS_DC);
 static HashTable* message_get_gc(zval* object, zval*** table, int* n TSRMLS_DC);
 #else
+#if PHP_VERSION_ID < 70400
 static void message_set_property(zval* object, zval* member, zval* value,
                                  void** cache_slot);
+#else
+static zval* message_set_property(zval* object, zval* member, zval* value,
+                                  void** cache_slot);
+#endif
 static zval* message_get_property(zval* object, zval* member, int type,
                                   void** cache_slot, zval* rv);
 static zval* message_get_property_ptr_ptr(zval* object, zval* member, int type,
@@ -89,14 +96,16 @@ static HashTable* message_get_properties(zval* object TSRMLS_DC);
 
 // Define object free method.
 PHP_PROTO_OBJECT_FREE_START(MessageHeader, message)
-  if (*(void**)intern->data != NULL) {
-    stringsink_uninit_opaque(*(void**)intern->data);
-    FREE(*(void**)intern->data);
+  if (intern->data) {
+    if (*(void**)intern->data != NULL) {
+      stringsink_uninit_opaque(*(void**)intern->data);
+      FREE(*(void**)intern->data);
+    }
+    FREE(intern->data);
   }
-  FREE(intern->data);
 PHP_PROTO_OBJECT_FREE_END
 
-PHP_PROTO_OBJECT_DTOR_START(MessageHeader, message)
+PHP_PROTO_OBJECT_EMPTY_DTOR_START(MessageHeader, message)
 PHP_PROTO_OBJECT_DTOR_END
 
 // Define object create method.
@@ -136,13 +145,20 @@ static void message_set_property_internal(zval* object, zval* member,
 #if PHP_MAJOR_VERSION < 7
 static void message_set_property(zval* object, zval* member, zval* value,
                                  php_proto_zend_literal key TSRMLS_DC) {
-#else
+#elif PHP_VERSION_ID < 70400
 static void message_set_property(zval* object, zval* member, zval* value,
                                  void** cache_slot) {
+#else
+static zval* message_set_property(zval* object, zval* member, zval* value,
+                                  void** cache_slot) {
 #endif
   if (Z_TYPE_P(member) != IS_STRING) {
     zend_error(E_USER_ERROR, "Unexpected type for field name");
+#if PHP_VERSION_ID < 70400
     return;
+#else
+    return value;
+#endif
   }
 
 #if PHP_MAJOR_VERSION < 7 || (PHP_MAJOR_VERSION == 7 && PHP_MINOR_VERSION == 0)
@@ -152,10 +168,17 @@ static void message_set_property(zval* object, zval* member, zval* value,
 #endif
     // User cannot set property directly (e.g., $m->a = 1)
     zend_error(E_USER_ERROR, "Cannot access private property.");
+#if PHP_VERSION_ID < 70400
     return;
+#else
+    return value;
+#endif
   }
 
   message_set_property_internal(object, member, value TSRMLS_CC);
+#if PHP_VERSION_ID >= 70400
+  return value;
+#endif
 }
 
 static zval* message_get_property_internal(zval* object,
@@ -176,7 +199,7 @@ static zval* message_get_property_internal(zval* object,
       zend_get_property_info(Z_OBJCE_P(object), Z_STR_P(member), true);
 #endif
   return layout_get(
-      self->descriptor->layout, message_data(self), field,
+      self->descriptor->layout, self, field,
       OBJ_PROP(Z_OBJ_P(object), property_info->offset) TSRMLS_CC);
 }
 
@@ -189,7 +212,7 @@ static void message_get_oneof_property_internal(zval* object, zval* member,
     return;
   }
 
-  layout_get(self->descriptor->layout, message_data(self), field,
+  layout_get(self->descriptor->layout, self, field,
              ZVAL_PTR_TO_CACHED_PTR(return_value) TSRMLS_CC);
 }
 
@@ -251,9 +274,8 @@ void* message_data(MessageHeader* msg) {
 
 void custom_data_init(const zend_class_entry* ce,
                       MessageHeader* intern PHP_PROTO_TSRMLS_DC) {
-  Descriptor* desc = UNBOX_HASHTABLE_VALUE(Descriptor, get_ce_obj(ce));
+  DescriptorInternal* desc = get_ce_desc(ce);
   intern->data = ALLOC_N(uint8_t, desc->layout->size);
-  memset(message_data(intern), 0, desc->layout->size);
   // We wrap first so that everything in the message object is GC-rooted in
   // case a collection happens during object creation in layout_init().
   intern->descriptor = desc;
@@ -271,37 +293,71 @@ void custom_data_init(const zend_class_entry* ce,
     Message_construct(getThis(), array_wrapper);                   \
   }
 
-void build_class_from_descriptor(
-    PHP_PROTO_HASHTABLE_VALUE php_descriptor TSRMLS_DC) {
-  Descriptor* desc = UNBOX_HASHTABLE_VALUE(Descriptor, php_descriptor);
-
-  // Map entries don't have existing php class.
-  if (upb_msgdef_mapentry(desc->msgdef)) {
-    return;
-  }
-
-  zend_class_entry* registered_ce = desc->klass;
-
-  if (desc->layout == NULL) {
-    MessageLayout* layout = create_layout(desc->msgdef);
-    desc->layout = layout;
-  }
-
-  registered_ce->create_object = message_create;
-}
-
 // -----------------------------------------------------------------------------
 // PHP Methods
 // -----------------------------------------------------------------------------
+
+static void append_wrapper_message(
+    zend_class_entry* subklass, RepeatedField* intern, zval* value TSRMLS_DC) {
+  MessageHeader* submsg;
+  const upb_fielddef* field;
+#if PHP_MAJOR_VERSION < 7
+  zval* val = NULL;
+  MAKE_STD_ZVAL(val);
+  ZVAL_OBJ(val, subklass->create_object(subklass TSRMLS_CC));
+  repeated_field_push_native(intern, &val);
+  submsg = UNBOX(MessageHeader, val);
+#else
+  zend_object* obj = subklass->create_object(subklass TSRMLS_CC);
+  repeated_field_push_native(intern, &obj);
+  submsg = (MessageHeader*)((char*)obj - XtOffsetOf(MessageHeader, std));
+#endif
+  custom_data_init(subklass, submsg PHP_PROTO_TSRMLS_CC);
+
+  field = upb_msgdef_itof(submsg->descriptor->msgdef, 1);
+  layout_set(submsg->descriptor->layout, submsg, field, value TSRMLS_CC);
+}
+
+static void set_wrapper_message_as_map_value(
+    zend_class_entry* subklass, zval* map, zval* key,  zval* value TSRMLS_DC) {
+  MessageHeader* submsg;
+  const upb_fielddef* field;
+#if PHP_MAJOR_VERSION < 7
+  zval* val = NULL;
+  MAKE_STD_ZVAL(val);
+  ZVAL_OBJ(val, subklass->create_object(subklass TSRMLS_CC));
+  map_field_handlers->write_dimension(
+      map, key, val TSRMLS_CC);
+  submsg = UNBOX(MessageHeader, val);
+#else
+  zval val;
+  zend_object* obj = subklass->create_object(subklass TSRMLS_CC);
+  ZVAL_OBJ(&val, obj);
+  map_field_handlers->write_dimension(map, key, &val TSRMLS_CC);
+  submsg = (MessageHeader*)((char*)obj - XtOffsetOf(MessageHeader, std));
+#endif
+  custom_data_init(subklass, submsg PHP_PROTO_TSRMLS_CC);
+
+  field = upb_msgdef_itof(submsg->descriptor->msgdef, 1);
+  layout_set(submsg->descriptor->layout, submsg, field, value TSRMLS_CC);
+}
 
 void Message_construct(zval* msg, zval* array_wrapper) {
   TSRMLS_FETCH();
   zend_class_entry* ce = Z_OBJCE_P(msg);
   MessageHeader* intern = NULL;
-  if (EXPECTED(class_added(ce))) {
-    intern = UNBOX(MessageHeader, msg);
-    custom_data_init(ce, intern PHP_PROTO_TSRMLS_CC);
+
+  if (!class_added(ce)) {
+#if PHP_MAJOR_VERSION < 7
+    DescriptorInternal* desc = get_class_desc(ce->name);
+#else
+    DescriptorInternal* desc = get_class_desc(ZSTR_VAL(ce->name));
+#endif
+    register_class(desc, false TSRMLS_CC);
   }
+
+  intern = UNBOX(MessageHeader, msg);
+  custom_data_init(ce, intern PHP_PROTO_TSRMLS_CC);
 
   if (array_wrapper == NULL) {
     return;
@@ -336,14 +392,37 @@ void Message_construct(zval* msg, zval* array_wrapper) {
       HashPosition subpointer;
       zval subkey;
       void* memory;
+      bool is_wrapper = false;
+      zend_class_entry* subklass = NULL;
+      const upb_msgdef* mapentry = upb_fielddef_msgsubdef(field);
+      const upb_fielddef *value_field = upb_msgdef_itof(mapentry, 2);
+
+      if (upb_fielddef_issubmsg(value_field)) {
+        const upb_msgdef* submsgdef = upb_fielddef_msgsubdef(value_field);
+        is_wrapper = is_wrapper_msg(submsgdef);
+
+        if (is_wrapper) {
+          DescriptorInternal* subdesc = get_msgdef_desc(submsgdef);
+          register_class(subdesc, false TSRMLS_CC);
+          subklass = subdesc->klass;
+        }
+      }
+
       for (zend_hash_internal_pointer_reset_ex(subtable, &subpointer);
            php_proto_zend_hash_get_current_data_ex(subtable, (void**)&memory,
                                                    &subpointer) == SUCCESS;
            zend_hash_move_forward_ex(subtable, &subpointer)) {
         zend_hash_get_current_key_zval_ex(subtable, &subkey, &subpointer);
-        map_field_handlers->write_dimension(
-            submap, &subkey,
-            CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory) TSRMLS_CC);
+        if (is_wrapper &&
+            Z_TYPE_P(CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory)) != IS_OBJECT) {
+          set_wrapper_message_as_map_value(
+              subklass, submap, &subkey,
+              CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory) TSRMLS_CC);
+        } else {
+          map_field_handlers->write_dimension(
+              submap, &subkey,
+              CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory) TSRMLS_CC);
+        }
         zval_dtor(&subkey);
       }
     } else if (upb_fielddef_isseq(field)) {
@@ -354,29 +433,66 @@ void Message_construct(zval* msg, zval* array_wrapper) {
           CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)value));
       HashPosition subpointer;
       void* memory;
+      bool is_wrapper = false;
+      zend_class_entry* subklass = NULL;
+
+      if (upb_fielddef_issubmsg(field)) {
+        const upb_msgdef* submsgdef = upb_fielddef_msgsubdef(field);
+        is_wrapper = is_wrapper_msg(submsgdef);
+
+        if (is_wrapper) {
+          DescriptorInternal* subdesc = get_msgdef_desc(submsgdef);
+          register_class(subdesc, false TSRMLS_CC);
+          subklass = subdesc->klass;
+        }
+      }
+
       for (zend_hash_internal_pointer_reset_ex(subtable, &subpointer);
            php_proto_zend_hash_get_current_data_ex(subtable, (void**)&memory,
                                                    &subpointer) == SUCCESS;
            zend_hash_move_forward_ex(subtable, &subpointer)) {
-        repeated_field_handlers->write_dimension(
-            subarray, NULL,
-            CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory) TSRMLS_CC);
+        if (is_wrapper &&
+            Z_TYPE_P(CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory)) != IS_OBJECT) {
+          RepeatedField* intern = UNBOX(RepeatedField, subarray);
+          append_wrapper_message(
+              subklass, intern,
+              CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory) TSRMLS_CC);
+        } else {
+          repeated_field_handlers->write_dimension(
+              subarray, NULL,
+              CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)memory) TSRMLS_CC);
+        }
       }
     } else if (upb_fielddef_issubmsg(field)) {
       const upb_msgdef* submsgdef = upb_fielddef_msgsubdef(field);
-      PHP_PROTO_HASHTABLE_VALUE desc_php = get_def_obj(submsgdef);
-      Descriptor* desc = UNBOX_HASHTABLE_VALUE(Descriptor, desc_php);
-      zend_property_info* property_info;
-      PHP_PROTO_FAKE_SCOPE_BEGIN(Z_OBJCE_P(msg));
+      DescriptorInternal* desc = get_msgdef_desc(submsgdef);
+      register_class(desc, false TSRMLS_CC);
+
+      CACHED_VALUE* cached = NULL;
+      if (upb_fielddef_containingoneof(field)) {
+        void* memory = slot_memory(intern->descriptor->layout,
+                                   message_data(intern), field);
+        uint32_t* oneof_case = slot_oneof_case(intern->descriptor->layout,
+                                               message_data(intern), field);
+        int property_cache_index =
+            intern->descriptor->layout->fields[upb_fielddef_index(field)]
+                .cache_index;
+        cached = OBJ_PROP(Z_OBJ_P(msg), property_cache_index);
+        *(CACHED_VALUE**)(memory) = cached;
+        *oneof_case = upb_fielddef_number(field);
+      } else {
+        zend_property_info* property_info;
+        PHP_PROTO_FAKE_SCOPE_BEGIN(Z_OBJCE_P(msg));
 #if PHP_MAJOR_VERSION < 7
-      property_info =
-          zend_get_property_info(Z_OBJCE_P(msg), &key, true TSRMLS_CC);
+        property_info =
+            zend_get_property_info(Z_OBJCE_P(msg), &key, true TSRMLS_CC);
 #else
-      property_info =
-          zend_get_property_info(Z_OBJCE_P(msg), Z_STR_P(&key), true);
+        property_info =
+            zend_get_property_info(Z_OBJCE_P(msg), Z_STR_P(&key), true);
 #endif
-      PHP_PROTO_FAKE_SCOPE_END;
-      CACHED_VALUE* cached = OBJ_PROP(Z_OBJ_P(msg), property_info->offset);
+        PHP_PROTO_FAKE_SCOPE_END;
+        cached = OBJ_PROP(Z_OBJ_P(msg), property_info->offset);
+      }
 #if PHP_MAJOR_VERSION < 7
       SEPARATE_ZVAL_IF_NOT_REF(cached);
 #endif
@@ -384,7 +500,7 @@ void Message_construct(zval* msg, zval* array_wrapper) {
       ZVAL_OBJ(submsg, desc->klass->create_object(desc->klass TSRMLS_CC));
       Message_construct(submsg, NULL);
       MessageHeader* to = UNBOX(MessageHeader, submsg);
-      const upb_filedef *file = upb_def_file(upb_msgdef_upcast(submsgdef));
+      const upb_filedef *file = upb_msgdef_file(submsgdef);
       if (!strcmp(upb_filedef_name(file), "google/protobuf/wrappers.proto") &&
           Z_TYPE_P(CACHED_PTR_TO_ZVAL_PTR((CACHED_VALUE*)value)) != IS_OBJECT) {
         const upb_fielddef *value_field = upb_msgdef_itof(submsgdef, 1);
@@ -420,7 +536,8 @@ PHP_METHOD(Message, __construct) {
 
 PHP_METHOD(Message, clear) {
   MessageHeader* msg = UNBOX(MessageHeader, getThis());
-  Descriptor* desc = msg->descriptor;
+  DescriptorInternal* desc = msg->descriptor;
+  register_class(desc, false TSRMLS_CC);
   zend_class_entry* ce = desc->klass;
 
   zend_object_std_dtor(&msg->std TSRMLS_CC);
@@ -447,6 +564,135 @@ PHP_METHOD(Message, mergeFrom) {
   layout_merge(from->descriptor->layout, from, to TSRMLS_CC);
 }
 
+PHP_METHOD(Message, readWrapperValue) {
+  char* member;
+  PHP_PROTO_SIZE length;
+  if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &member,
+                            &length) == FAILURE) {
+    return;
+  }
+
+  MessageHeader* msg = UNBOX(MessageHeader, getThis());
+  const upb_fielddef* field =
+      upb_msgdef_ntofz(msg->descriptor->msgdef, member);
+
+  if (upb_fielddef_containingoneof(field)) {
+    uint32_t* oneof_case =
+        slot_oneof_case(msg->descriptor->layout, message_data(msg), field);
+    if (*oneof_case != upb_fielddef_number(field)) {
+      RETURN_NULL();
+    }
+  }
+
+  zval* cached_zval =
+      CACHED_PTR_TO_ZVAL_PTR(find_zval_property(msg, field));
+
+  if (Z_TYPE_P(cached_zval) == IS_NULL) {
+    RETURN_NULL();
+  }
+
+  if (Z_TYPE_P(cached_zval) == IS_OBJECT) {
+    const upb_msgdef* submsgdef = upb_fielddef_msgsubdef(field);
+    const upb_fielddef* value_field = upb_msgdef_itof(submsgdef, 1);
+    MessageHeader* submsg = UNBOX(MessageHeader, cached_zval);
+    CACHED_VALUE* cached_value = find_zval_property(submsg, value_field);
+    layout_get(submsg->descriptor->layout, submsg, value_field,
+               cached_value TSRMLS_CC);
+    RETURN_ZVAL(CACHED_PTR_TO_ZVAL_PTR(cached_value), 1, 0);
+  } else {
+    RETURN_ZVAL(cached_zval, 1, 0);
+  }
+}
+
+PHP_METHOD(Message, writeWrapperValue) {
+  char* member;
+  PHP_PROTO_SIZE length;
+  zval* value;
+  if (zend_parse_parameters(
+      ZEND_NUM_ARGS() TSRMLS_CC, "sz", &member, &length, &value) ==
+      FAILURE) {
+    return;
+  }
+
+  MessageHeader* msg = UNBOX(MessageHeader, getThis());
+  const upb_fielddef* field = upb_msgdef_ntofz(msg->descriptor->msgdef, member);
+
+  zval* cached_zval =
+      CACHED_PTR_TO_ZVAL_PTR(find_zval_property(msg, field));
+
+  if (Z_TYPE_P(value) == IS_NULL) {
+    MessageHeader* msg = UNBOX(MessageHeader, getThis());
+    layout_set(msg->descriptor->layout, msg,
+               field, value TSRMLS_CC);
+    return;
+  }
+
+  {
+    // Type Checking
+    const upb_msgdef* submsgdef = upb_fielddef_msgsubdef(field);
+    const upb_fielddef* value_field = upb_msgdef_itof(submsgdef, 1);
+    upb_fieldtype_t type = upb_fielddef_type(value_field);
+    switch(type) {
+      case UPB_TYPE_STRING:
+      case UPB_TYPE_BYTES: {
+        if (!protobuf_convert_to_string(value)) {
+          return;
+        }
+        if (type == UPB_TYPE_STRING &&
+            !is_structurally_valid_utf8(Z_STRVAL_P(value), Z_STRLEN_P(value))) {
+          zend_error(E_USER_ERROR, "Given string is not UTF8 encoded.");
+          return;
+        }
+      }
+      break;
+#define CASE_TYPE(upb_type, type, c_type)                    \
+  case UPB_TYPE_##upb_type: {                                \
+    c_type type##_value;                                     \
+    if (!protobuf_convert_to_##type(value, &type##_value)) { \
+      return;                                                \
+    }                                                        \
+    break;                                                   \
+  }
+      CASE_TYPE(INT32,  int32,  int32_t)
+      CASE_TYPE(UINT32, uint32, uint32_t)
+      CASE_TYPE(ENUM,   int32,  int32_t)
+      CASE_TYPE(INT64,  int64,  int64_t)
+      CASE_TYPE(UINT64, uint64, uint64_t)
+      CASE_TYPE(FLOAT,  float,  float)
+      CASE_TYPE(DOUBLE, double, double)
+      CASE_TYPE(BOOL,   bool,   int8_t)
+
+#undef CASE_TYPE
+      case UPB_TYPE_MESSAGE:
+        zend_error(E_ERROR, "No wrapper for message.");
+        break;
+    }
+  }
+
+  if (upb_fielddef_containingoneof(field)) {
+    uint32_t* oneof_case =
+        slot_oneof_case(msg->descriptor->layout, message_data(msg), field);
+    if (*oneof_case != upb_fielddef_number(field)) {
+      zval null_value;
+      ZVAL_NULL(&null_value);
+      layout_set(msg->descriptor->layout, msg, field, &null_value TSRMLS_CC);
+      cached_zval = CACHED_PTR_TO_ZVAL_PTR(find_zval_property(msg, field));
+      ZVAL_ZVAL(cached_zval, value, 1, 0);
+      return;
+    }
+  }
+
+  if (Z_TYPE_P(cached_zval) == IS_OBJECT) {
+    const upb_msgdef* submsgdef = upb_fielddef_msgsubdef(field);
+    const upb_fielddef* value_field = upb_msgdef_itof(submsgdef, 1);
+    MessageHeader* submsg = UNBOX(MessageHeader, cached_zval);
+    layout_set(submsg->descriptor->layout, submsg,
+               value_field, value TSRMLS_CC);
+  } else {
+    ZVAL_ZVAL(cached_zval, value, 1, 0);
+  }
+}
+
 PHP_METHOD(Message, readOneof) {
   PHP_PROTO_LONG index;
 
@@ -460,9 +706,9 @@ PHP_METHOD(Message, readOneof) {
   const upb_fielddef* field = upb_msgdef_itof(msg->descriptor->msgdef, index);
 
   // Unlike singular fields, oneof fields share cached property. So we cannot
-  // let lay_get modify the cached property. Instead, we pass in the return
+  // let layout_get modify the cached property. Instead, we pass in the return
   // value directly.
-  layout_get(msg->descriptor->layout, message_data(msg), field,
+  layout_get(msg->descriptor->layout, msg, field,
              ZVAL_PTR_TO_CACHED_PTR(return_value) TSRMLS_CC);
 }
 
@@ -929,7 +1175,11 @@ PHP_METHOD(Field_Cardinality, name) {
       zend_throw_exception_ex(
           NULL, 0 TSRMLS_CC,
           "Enum Google\\Protobuf\\Field_Cardinality has no name "
+#if PHP_MAJOR_VERSION < 7
           "defined for value %d.",
+#else
+          "defined for value " ZEND_LONG_FMT ".",
+#endif
           value);
   }
 }
@@ -1064,7 +1314,11 @@ PHP_METHOD(Field_Kind, name) {
     default:
       zend_throw_exception_ex(NULL, 0 TSRMLS_CC,
                               "Enum Google\\Protobuf\\Field_Kind has no name "
+#if PHP_MAJOR_VERSION < 7
                               "defined for value %d.",
+#else
+                              "defined for value " ZEND_LONG_FMT ".",
+#endif
                               value);
   }
 }
@@ -1135,7 +1389,11 @@ PHP_METHOD(NullValue, name) {
     default:
       zend_throw_exception_ex(NULL, 0 TSRMLS_CC,
                               "Enum Google\\Protobuf\\NullValue has no name "
+#if PHP_MAJOR_VERSION < 7
                               "defined for value %d.",
+#else
+                              "defined for value " ZEND_LONG_FMT ".",
+#endif
                               value);
   }
 }
@@ -1192,7 +1450,11 @@ PHP_METHOD(Syntax, name) {
     default:
       zend_throw_exception_ex(NULL, 0 TSRMLS_CC,
                               "Enum Google\\Protobuf\\Syntax has no name "
+#if PHP_MAJOR_VERSION < 7
                               "defined for value %d.",
+#else
+                              "defined for value " ZEND_LONG_FMT ".",
+#endif
                               value);
   }
 }
@@ -1268,7 +1530,6 @@ static void hex_to_binary(const char* hex, char** binary, int* binary_len) {
 
 PHP_METHOD(Any, __construct) {
   init_file_any(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1299,14 +1560,14 @@ PHP_METHOD(Any, unpack) {
   }
 
   const char* fully_qualified_name = type_url + url_prefix_len;
-  PHP_PROTO_HASHTABLE_VALUE desc_php = get_proto_obj(fully_qualified_name);
-  if (desc_php == NULL) {
+  DescriptorInternal* desc = get_proto_desc(fully_qualified_name);
+  if (desc == NULL) {
     zend_throw_exception(
         NULL, "Specified message in any hasn't been added to descriptor pool",
         0 TSRMLS_CC);
     return;
   }
-  Descriptor* desc = UNBOX_HASHTABLE_VALUE(Descriptor, desc_php);
+  register_class(desc, false TSRMLS_CC);
   zend_class_entry* klass = desc->klass;
   ZVAL_OBJ(return_value, klass->create_object(klass TSRMLS_CC));
   MessageHeader* msg = UNBOX(MessageHeader, return_value);
@@ -1352,8 +1613,7 @@ PHP_METHOD(Any, pack) {
   PHP_PROTO_FAKE_SCOPE_END;
 
   // Set type url.
-  Descriptor* desc =
-      UNBOX_HASHTABLE_VALUE(Descriptor, get_ce_obj(Z_OBJCE_P(val)));
+  DescriptorInternal* desc = get_ce_desc(Z_OBJCE_P(val));
   const char* fully_qualified_name = upb_msgdef_fullname(desc->msgdef);
   size_t type_url_len =
       strlen(TYPE_URL_PREFIX) + strlen(fully_qualified_name) + 1;
@@ -1380,14 +1640,12 @@ PHP_METHOD(Any, is) {
     return;
   }
 
-  PHP_PROTO_HASHTABLE_VALUE desc_php = get_ce_obj(klass);
-  if (desc_php == NULL) {
+  DescriptorInternal* desc = get_ce_desc(klass);
+  if (desc == NULL) {
     RETURN_BOOL(false);
   }
 
   // Create corresponded type url.
-  Descriptor* desc =
-      UNBOX_HASHTABLE_VALUE(Descriptor, get_ce_obj(klass));
   const char* fully_qualified_name = upb_msgdef_fullname(desc->msgdef);
   size_t type_url_len =
       strlen(TYPE_URL_PREFIX) + strlen(fully_qualified_name) + 1;
@@ -1436,7 +1694,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Duration, __construct) {
   init_file_duration(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1471,7 +1728,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Timestamp, __construct) {
   init_file_timestamp(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1480,7 +1736,6 @@ PHP_PROTO_FIELD_ACCESSORS(Timestamp, timestamp, Nanos,   "nanos")
 
 PHP_METHOD(Timestamp, fromDateTime) {
   zval* datetime;
-  zval member;
 
   PHP_PROTO_CE_DECLARE date_interface_ce;
   if (php_proto_zend_lookup_class("\\DatetimeInterface", 18,
@@ -1655,25 +1910,24 @@ zend_class_entry* api_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Api",
                                  Api, api)
-  zend_declare_property_null(api_type, "name", strlen("name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(api_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(api_type, "methods", strlen("methods"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(api_type, "options", strlen("options"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(api_type, "version", strlen("version"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(api_type, "version", strlen("version"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(api_type, "source_context", strlen("source_context"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(api_type, "mixins", strlen("mixins"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(api_type, "syntax", strlen("syntax"),
+  zend_declare_property_long(api_type, "syntax", strlen("syntax"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Api, __construct) {
   init_file_api(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1701,13 +1955,12 @@ zend_class_entry* bool_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\BoolValue",
                                  BoolValue, bool_value)
-  zend_declare_property_null(bool_value_type, "value", strlen("value"),
+  zend_declare_property_bool(bool_value_type, "value", strlen("value"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(BoolValue, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1729,13 +1982,12 @@ zend_class_entry* bytes_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\BytesValue",
                                  BytesValue, bytes_value)
-  zend_declare_property_null(bytes_value_type, "value", strlen("value"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(bytes_value_type, "value", strlen("value"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(BytesValue, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1757,13 +2009,12 @@ zend_class_entry* double_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\DoubleValue",
                                  DoubleValue, double_value)
-  zend_declare_property_null(double_value_type, "value", strlen("value"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_double(double_value_type, "value", strlen("value"), 0,
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(DoubleValue, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1793,21 +2044,20 @@ zend_class_entry* enum_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Enum",
                                  Enum, enum)
-  zend_declare_property_null(enum_type, "name", strlen("name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(enum_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(enum_type, "enumvalue", strlen("enumvalue"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(enum_type, "options", strlen("options"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(enum_type, "source_context", strlen("source_context"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(enum_type, "syntax", strlen("syntax"),
+  zend_declare_property_long(enum_type, "syntax", strlen("syntax"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Enum, __construct) {
   init_file_type(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1837,9 +2087,9 @@ zend_class_entry* enum_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\EnumValue",
                                  EnumValue, enum_value)
-  zend_declare_property_null(enum_value_type, "name", strlen("name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(enum_value_type, "number", strlen("number"),
+  zend_declare_property_string(enum_value_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_long(enum_value_type, "number", strlen("number"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(enum_value_type, "options", strlen("options"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
@@ -1847,7 +2097,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(EnumValue, __construct) {
   init_file_type(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1877,7 +2126,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(FieldMask, __construct) {
   init_file_field_mask(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1917,31 +2165,31 @@ zend_class_entry* field_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Field",
                                  Field, field)
-  zend_declare_property_null(field_type, "kind", strlen("kind"),
+  zend_declare_property_long(field_type, "kind", strlen("kind"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "cardinality", strlen("cardinality"),
+  zend_declare_property_long(field_type, "cardinality", strlen("cardinality"),
+                             0, ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_long(field_type, "number", strlen("number"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "number", strlen("number"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "name", strlen("name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "type_url", strlen("type_url"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "oneof_index", strlen("oneof_index"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "packed", strlen("packed"),
+  zend_declare_property_string(field_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(field_type, "type_url", strlen("type_url"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_long(field_type, "oneof_index", strlen("oneof_index"),
+                             0, ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_bool(field_type, "packed", strlen("packed"), false,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(field_type, "options", strlen("options"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "json_name", strlen("json_name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(field_type, "default_value", strlen("default_value"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(field_type, "json_name", strlen("json_name"),
+                               "", ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(field_type, "default_value",
+                               strlen("default_value"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Field, __construct) {
   init_file_type(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -1972,13 +2220,12 @@ zend_class_entry* float_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\FloatValue",
                                  FloatValue, float_value)
-  zend_declare_property_null(float_value_type, "value", strlen("value"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_double(float_value_type, "value", strlen("value"), 0,
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(FloatValue, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2002,7 +2249,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(GPBEmpty, __construct) {
   init_file_empty(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2023,13 +2269,12 @@ zend_class_entry* int32_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Int32Value",
                                  Int32Value, int32_value)
-  zend_declare_property_null(int32_value_type, "value", strlen("value"),
+  zend_declare_property_long(int32_value_type, "value", strlen("value"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Int32Value, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2051,13 +2296,12 @@ zend_class_entry* int64_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Int64Value",
                                  Int64Value, int64_value)
-  zend_declare_property_null(int64_value_type, "value", strlen("value"),
+  zend_declare_property_long(int64_value_type, "value", strlen("value"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Int64Value, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2085,7 +2329,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(ListValue, __construct) {
   init_file_struct(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2119,25 +2362,28 @@ zend_class_entry* method_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Method",
                                  Method, method)
-  zend_declare_property_null(method_type, "name", strlen("name"),
+  zend_declare_property_string(method_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(method_type, "request_type_url",
+                               strlen("request_type_url"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_bool(method_type, "request_streaming",
+                             strlen("request_streaming"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(method_type, "request_type_url", strlen("request_type_url"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(method_type, "request_streaming", strlen("request_streaming"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(method_type, "response_type_url", strlen("response_type_url"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(method_type, "response_streaming", strlen("response_streaming"),
+  zend_declare_property_string(method_type, "response_type_url",
+                               strlen("response_type_url"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_bool(method_type, "response_streaming",
+                             strlen("response_streaming"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(method_type, "options", strlen("options"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(method_type, "syntax", strlen("syntax"),
+  zend_declare_property_long(method_type, "syntax", strlen("syntax"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Method, __construct) {
   init_file_api(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2167,15 +2413,14 @@ zend_class_entry* mixin_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Mixin",
                                  Mixin, mixin)
-  zend_declare_property_null(mixin_type, "name", strlen("name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(mixin_type, "root", strlen("root"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(mixin_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(mixin_type, "root", strlen("root"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Mixin, __construct) {
   init_file_api(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2200,15 +2445,14 @@ zend_class_entry* option_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Option",
                                  Option, option)
-  zend_declare_property_null(option_type, "name", strlen("name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(option_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(option_type, "value", strlen("value"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Option, __construct) {
   init_file_type(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2231,13 +2475,13 @@ zend_class_entry* source_context_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\SourceContext",
                                  SourceContext, source_context)
-  zend_declare_property_null(source_context_type, "file_name", strlen("file_name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(source_context_type, "file_name",
+                               strlen("file_name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(SourceContext, __construct) {
   init_file_source_context(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2259,13 +2503,12 @@ zend_class_entry* string_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\StringValue",
                                  StringValue, string_value)
-  zend_declare_property_null(string_value_type, "value", strlen("value"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(string_value_type, "value", strlen("value"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(StringValue, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2293,7 +2536,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Struct, __construct) {
   init_file_struct(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2325,23 +2567,22 @@ zend_class_entry* type_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\Type",
                                  Type, type)
-  zend_declare_property_null(type_type, "name", strlen("name"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(type_type, "name", strlen("name"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(type_type, "fields", strlen("fields"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(type_type, "oneofs", strlen("oneofs"),
-                             ZEND_ACC_PRIVATE TSRMLS_CC);
+  zend_declare_property_string(type_type, "oneofs", strlen("oneofs"), "",
+                               ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(type_type, "options", strlen("options"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
   zend_declare_property_null(type_type, "source_context", strlen("source_context"),
                              ZEND_ACC_PRIVATE TSRMLS_CC);
-  zend_declare_property_null(type_type, "syntax", strlen("syntax"),
+  zend_declare_property_long(type_type, "syntax", strlen("syntax"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Type, __construct) {
   init_file_type(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2368,13 +2609,12 @@ zend_class_entry* u_int32_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\UInt32Value",
                                  UInt32Value, u_int32_value)
-  zend_declare_property_null(u_int32_value_type, "value", strlen("value"),
+  zend_declare_property_long(u_int32_value_type, "value", strlen("value"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(UInt32Value, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2396,13 +2636,12 @@ zend_class_entry* u_int64_value_type;
 // Init class entry.
 PHP_PROTO_INIT_SUBMSGCLASS_START("Google\\Protobuf\\UInt64Value",
                                  UInt64Value, u_int64_value)
-  zend_declare_property_null(u_int64_value_type, "value", strlen("value"),
+  zend_declare_property_long(u_int64_value_type, "value", strlen("value"), 0,
                              ZEND_ACC_PRIVATE TSRMLS_CC);
 PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(UInt64Value, __construct) {
   init_file_wrappers(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 
@@ -2441,7 +2680,6 @@ PHP_PROTO_INIT_SUBMSGCLASS_END
 
 PHP_METHOD(Value, __construct) {
   init_file_struct(TSRMLS_C);
-  MessageHeader* intern = UNBOX(MessageHeader, getThis());
   INIT_MESSAGE_WITH_ARRAY;
 }
 

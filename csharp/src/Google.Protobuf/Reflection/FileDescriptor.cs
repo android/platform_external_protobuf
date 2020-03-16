@@ -30,6 +30,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endregion
 
+using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,25 @@ using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace Google.Protobuf.Reflection
 {
+    /// <summary>
+    /// The syntax of a .proto file
+    /// </summary>
+    public enum Syntax
+    {
+        /// <summary>
+        /// Proto2 syntax
+        /// </summary>
+        Proto2,
+        /// <summary>
+        /// Proto3 syntax
+        /// </summary>
+        Proto3,
+        /// <summary>
+        /// An unknown declared syntax
+        /// </summary>
+        Unknown
+    }
+
     /// <summary>
     /// Describes a .proto file, including everything defined within.
     /// IDescriptor is implemented such that the File property returns this descriptor,
@@ -83,7 +103,22 @@ namespace Google.Protobuf.Reflection
                                                              (service, index) =>
                                                              new ServiceDescriptor(service, this, index));
 
+            Extensions = new ExtensionCollection(this, generatedCodeInfo?.Extensions);
+
             declarations = new Lazy<Dictionary<IDescriptor, DescriptorDeclaration>>(CreateDeclarationMap, LazyThreadSafetyMode.ExecutionAndPublication);
+
+            if (!proto.HasSyntax || proto.Syntax == "proto2")
+            {
+                Syntax = Syntax.Proto2;
+            }
+            else if (proto.Syntax == "proto3")
+            {
+                Syntax = Syntax.Proto3;
+            }
+            else
+            {
+                Syntax = Syntax.Unknown;
+            }
         }
 
         private Dictionary<IDescriptor, DescriptorDeclaration> CreateDeclarationMap()
@@ -214,6 +249,11 @@ namespace Google.Protobuf.Reflection
         /// </value>
         internal FileDescriptorProto Proto { get; }
 
+        /// <summary>
+        /// The syntax of the file
+        /// </summary>
+        public Syntax Syntax { get; }
+
         /// <value>
         /// The file name.
         /// </value>
@@ -239,6 +279,14 @@ namespace Google.Protobuf.Reflection
         /// Unmodifiable list of top-level services declared in this file.
         /// </value>
         public IList<ServiceDescriptor> Services { get; }
+
+        /// <summary>
+        /// Unmodifiable list of top-level extensions declared in this file.
+        /// Note that some extensions may be incomplete (FieldDescriptor.Extension may be null)
+        /// if this descriptor was generated using a version of protoc that did not fully
+        /// support extensions in C#.
+        /// </summary>
+        public ExtensionCollection Extensions { get; }
 
         /// <value>
         /// Unmodifiable list of this file's dependencies (imports).
@@ -356,6 +404,8 @@ namespace Google.Protobuf.Reflection
             {
                 service.CrossLink();
             }
+
+            Extensions.CrossLink();
         }
 
         /// <summary>
@@ -371,10 +421,13 @@ namespace Google.Protobuf.Reflection
             FileDescriptor[] dependencies,
             GeneratedClrTypeInfo generatedCodeInfo)
         {
+            ExtensionRegistry registry = new ExtensionRegistry();
+            registry.AddRange(GetAllExtensions(dependencies, generatedCodeInfo));
+    
             FileDescriptorProto proto;
             try
             {
-                proto = FileDescriptorProto.Parser.ParseFrom(descriptorData);
+                proto = FileDescriptorProto.Parser.WithExtensionRegistry(registry).ParseFrom(descriptorData);
             }
             catch (InvalidProtocolBufferException e)
             {
@@ -391,6 +444,33 @@ namespace Google.Protobuf.Reflection
             {
                 throw new ArgumentException($"Invalid embedded descriptor for \"{proto.Name}\".", e);
             }
+        }
+
+        private static IEnumerable<Extension> GetAllExtensions(FileDescriptor[] dependencies, GeneratedClrTypeInfo generatedInfo)
+        {
+            return dependencies.SelectMany(GetAllDependedExtensions).Distinct(ExtensionRegistry.ExtensionComparer.Instance).Concat(GetAllGeneratedExtensions(generatedInfo));
+        }
+
+        private static IEnumerable<Extension> GetAllGeneratedExtensions(GeneratedClrTypeInfo generated)
+        {
+            return generated.Extensions.Concat(generated.NestedTypes.Where(t => t != null).SelectMany(GetAllGeneratedExtensions));
+        }
+
+        private static IEnumerable<Extension> GetAllDependedExtensions(FileDescriptor descriptor)
+        {
+            return descriptor.Extensions.UnorderedExtensions
+                .Select(s => s.Extension)
+                .Where(e => e != null)
+                .Concat(descriptor.Dependencies.Concat(descriptor.PublicDependencies).SelectMany(GetAllDependedExtensions))
+                .Concat(descriptor.MessageTypes.SelectMany(GetAllDependedExtensionsFromMessage));
+        }
+
+        private static IEnumerable<Extension> GetAllDependedExtensionsFromMessage(MessageDescriptor descriptor)
+        {
+            return descriptor.Extensions.UnorderedExtensions
+                .Select(s => s.Extension)
+                .Where(e => e != null)
+                .Concat(descriptor.NestedTypes.SelectMany(GetAllDependedExtensionsFromMessage));
         }
 
         /// <summary>
@@ -467,7 +547,25 @@ namespace Google.Protobuf.Reflection
         /// <summary>
         /// The (possibly empty) set of custom options for this file.
         /// </summary>
-        public CustomOptions CustomOptions => Proto.Options?.CustomOptions ?? CustomOptions.Empty;
+        [Obsolete("CustomOptions are obsolete. Use GetOption")]
+        public CustomOptions CustomOptions => new CustomOptions(Proto.Options?._extensions?.ValuesByNumber);
+
+        /// <summary>
+        /// Gets a single value file option for this descriptor
+        /// </summary>
+        public T GetOption<T>(Extension<FileOptions, T> extension)
+        {
+            var value = Proto.Options.GetExtension(extension);
+            return value is IDeepCloneable<T> ? (value as IDeepCloneable<T>).Clone() : value;
+        }
+
+        /// <summary>
+        /// Gets a repeated value file option for this descriptor
+        /// </summary>
+        public RepeatedField<T> GetOption<T>(RepeatedExtension<FileOptions, T> extension)
+        {
+            return Proto.Options.GetExtension(extension).Clone();
+        }
 
         /// <summary>
         /// Performs initialization for the given generic type argument.

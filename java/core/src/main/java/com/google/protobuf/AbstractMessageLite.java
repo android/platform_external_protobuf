@@ -51,6 +51,7 @@ public abstract class AbstractMessageLite<
         BuilderType extends AbstractMessageLite.Builder<MessageType, BuilderType>>
     implements MessageLite {
   protected int memoizedHashCode = 0;
+
   @Override
   public ByteString toByteString() {
     try {
@@ -106,6 +107,15 @@ public abstract class AbstractMessageLite<
   }
 
 
+  int getSerializedSize(Schema schema) {
+    int memoizedSerializedSize = getMemoizedSerializedSize();
+    if (memoizedSerializedSize == -1) {
+      memoizedSerializedSize = schema.getSerializedSize(this);
+      setMemoizedSerializedSize(memoizedSerializedSize);
+    }
+    return memoizedSerializedSize;
+  }
+
   /** Package private helper method for AbstractParser to create UninitializedMessageException. */
   UninitializedMessageException newUninitializedMessageException() {
     return new UninitializedMessageException(this);
@@ -134,6 +144,15 @@ public abstract class AbstractMessageLite<
 
   protected static <T> void addAll(final Iterable<T> values, final List<? super T> list) {
     Builder.addAll(values, list);
+  }
+
+  /** Interface for an enum which signifies which field in a {@code oneof} was specified. */
+  protected interface InternalOneOfEnum {
+    /**
+     * Retrieves the field number of the field which was set in this {@code oneof}, or {@code 0} if
+     * none were.
+     */
+    int getNumber();
   }
 
   /**

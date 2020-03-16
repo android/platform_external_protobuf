@@ -95,7 +95,7 @@ public class FieldMaskTreeTest extends TestCase {
     tree.intersectFieldPath("bar", result);
     assertEquals("bar.baz,bar.quz,foo", result.toString());
   }
-  
+
   public void testMerge() throws Exception {
     testMergeImpl(true);
     testMergeImpl(false);
@@ -182,11 +182,19 @@ public class FieldMaskTreeTest extends TestCase {
 
     FieldMaskUtil.MergeOptions options = new FieldMaskUtil.MergeOptions();
 
-    // Test merging each individual field.
+    // Test merging with an empty FieldMask.
     NestedTestAllTypes.Builder builder = NestedTestAllTypes.newBuilder();
+    builder.getPayloadBuilder().addRepeatedInt32(1000);
+    merge(new FieldMaskTree(), source, builder, options, useDynamicMessage);
+    NestedTestAllTypes.Builder expected = NestedTestAllTypes.newBuilder();
+    expected.getPayloadBuilder().addRepeatedInt32(1000);
+    assertEquals(expected.build(), builder.build());
+
+    // Test merging each individual field.
+    builder = NestedTestAllTypes.newBuilder();
     merge(new FieldMaskTree().addFieldPath("payload.optional_int32"),
         source, builder, options, useDynamicMessage);
-    NestedTestAllTypes.Builder expected = NestedTestAllTypes.newBuilder();
+    expected = NestedTestAllTypes.newBuilder();
     expected.getPayloadBuilder().setOptionalInt32(1234);
     assertEquals(expected.build(), builder.build());
 

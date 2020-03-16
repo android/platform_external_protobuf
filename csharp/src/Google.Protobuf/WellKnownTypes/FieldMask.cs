@@ -32,8 +32,8 @@ namespace Google.Protobuf.WellKnownTypes {
             "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.WellKnownTypes.FieldMask), global::Google.Protobuf.WellKnownTypes.FieldMask.Parser, new[]{ "Paths" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.WellKnownTypes.FieldMask), global::Google.Protobuf.WellKnownTypes.FieldMask.Parser, new[]{ "Paths" }, null, null, null, null)
           }));
     }
     #endregion
@@ -238,7 +238,7 @@ namespace Google.Protobuf.WellKnownTypes {
   ///
   /// The implementation of any API method which has a FieldMask type field in the
   /// request should verify the included field paths, and return an
-  /// `INVALID_ARGUMENT` error if any path is duplicated or unmappable.
+  /// `INVALID_ARGUMENT` error if any path is unmappable.
   /// </summary>
   public sealed partial class FieldMask : pb::IMessage<FieldMask> {
     private static readonly pb::MessageParser<FieldMask> _parser = new pb::MessageParser<FieldMask>(() => new FieldMask());
@@ -352,9 +352,7 @@ namespace Google.Protobuf.WellKnownTypes {
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
           default:
-            if (!pb::UnknownFieldSet.MergeFieldFrom(ref _unknownFields, input)) {
-              return;
-            }
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
             paths_.AddEntriesFrom(input, _repeated_paths_codec);

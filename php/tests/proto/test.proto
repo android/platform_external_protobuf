@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import 'google/protobuf/any.proto';
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
 import 'proto/test_include.proto';
 import 'proto/test_no_namespace.proto';
 import 'proto/test_php_namespace.proto';
@@ -118,6 +120,12 @@ message TestMessage {
   }
 
   reserved 111;
+
+  // Test map with missing message value
+  map<string, TestMessage> map_string_message = 121;
+  map<string, google.protobuf.Any> map_string_any = 122;
+  map<string, google.protobuf.ListValue> map_string_list = 123;
+  map<string, google.protobuf.Struct> map_string_struct = 124;
 }
 
 enum TestEnum {
@@ -205,4 +213,68 @@ enum testLowerCaseEnum {
 
 message TestAny {
   google.protobuf.Any any = 1;
+}
+
+message TestInt32Value {
+  google.protobuf.Int32Value field = 1;
+  repeated google.protobuf.Int32Value repeated_field = 2;
+  oneof oneof_fields {
+    google.protobuf.Int32Value oneof_field = 3;
+    int32 int32_field = 4;
+  }
+}
+
+message TestInt64Value {
+  google.protobuf.Int64Value field = 1;
+  repeated google.protobuf.Int64Value repeated_field = 2;
+  oneof oneof_fields {
+    google.protobuf.Int64Value oneof_field = 3;
+    int32 int32_field = 4;
+  }
+}
+
+message TestUInt32Value {
+  google.protobuf.UInt32Value field = 1;
+  repeated google.protobuf.UInt32Value repeated_field = 2;
+  oneof oneof_fields {
+    google.protobuf.UInt32Value oneof_field = 3;
+    int32 int32_field = 4;
+  }
+}
+
+message TestUInt64Value {
+  google.protobuf.UInt64Value field = 1;
+  repeated google.protobuf.UInt64Value repeated_field = 2;
+  oneof oneof_fields {
+    google.protobuf.UInt64Value oneof_field = 3;
+    int32 int32_field = 4;
+  }
+}
+
+message TestBoolValue {
+  google.protobuf.BoolValue field = 1;
+  repeated google.protobuf.BoolValue repeated_field = 2;
+  oneof oneof_fields {
+    google.protobuf.BoolValue oneof_field = 3;
+    int32 int32_field = 4;
+  }
+}
+
+message TestStringValue {
+  google.protobuf.StringValue field = 1;
+  repeated google.protobuf.StringValue repeated_field = 2;
+  oneof oneof_fields {
+    google.protobuf.StringValue oneof_field = 3;
+    int32 int32_field = 4;
+  }
+  map<int32, google.protobuf.StringValue> map_field = 5;
+}
+
+message TestBytesValue {
+  google.protobuf.BytesValue field = 1;
+  repeated google.protobuf.BytesValue repeated_field = 2;
+  oneof oneof_fields {
+    google.protobuf.BytesValue oneof_field = 3;
+    int32 int32_field = 4;
+  }
 }

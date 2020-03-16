@@ -256,7 +256,7 @@ namespace Google.Protobuf.Reflection
             Assert.AreEqual(unitTestProto3Descriptor, primitiveField.File);
             Assert.AreEqual(FieldType.Int32, primitiveField.FieldType);
             Assert.IsNull(primitiveField.Proto.Options);
-            
+
             Assert.AreEqual("single_nested_enum", enumField.Name);
             Assert.AreEqual(FieldType.Enum, enumField.FieldType);
             Assert.AreEqual(testAllTypesDescriptor.EnumTypes[0], enumField.EnumType);
@@ -352,7 +352,7 @@ namespace Google.Protobuf.Reflection
         // NestedMessage single_nested_message = 200;
         [Test]
         public void FieldListOrderings()
-        { 
+        {
             var fields = TestFieldOrderings.Descriptor.Fields;
             Assert.AreEqual(new[] { 11, 1, 101, 200 }, fields.InDeclarationOrder().Select(x => x.FieldNumber));
             Assert.AreEqual(new[] { 1, 11, 101, 200 }, fields.InFieldNumberOrder().Select(x => x.FieldNumber));
@@ -364,6 +364,24 @@ namespace Google.Protobuf.Reflection
         {
             var descriptor = Google.Protobuf.Reflection.FileDescriptor.DescriptorProtoFileDescriptor;
             Assert.AreEqual("google/protobuf/descriptor.proto", descriptor.Name);
+        }
+
+        [Test]
+        public void DescriptorImportingExtensionsFromOldCodeGen()
+        {
+            // The extension collection includes a null extension. There's not a lot we can do about that
+            // in itself, as the old generator didn't provide us the extension information.
+            var extensions = TestProtos.OldGenerator.OldExtensions2Reflection.Descriptor.Extensions;
+            Assert.AreEqual(1, extensions.UnorderedExtensions.Count);
+            // Note: this assertion is present so that it will fail if OldExtensions2 is regenerated
+            // with a new generator.
+            Assert.Null(extensions.UnorderedExtensions[0].Extension);
+
+            // ... but we can make sure we at least don't cause a failure when retrieving descriptors.
+            // In particular, old_extensions1.proto imports old_extensions2.proto, and this used to cause
+            // an execution-time failure.
+            var importingDescriptor = TestProtos.OldGenerator.OldExtensions1Reflection.Descriptor;
+            Assert.NotNull(importingDescriptor);
         }
     }
 }

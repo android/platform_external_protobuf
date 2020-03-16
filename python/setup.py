@@ -92,6 +92,7 @@ def GenerateUnittestProtos():
   generate_proto("../src/google/protobuf/unittest_mset_wire_format.proto", False)
   generate_proto("../src/google/protobuf/unittest_no_generic_services.proto", False)
   generate_proto("../src/google/protobuf/unittest_proto3_arena.proto", False)
+  generate_proto("../src/google/protobuf/util/json_format.proto", False)
   generate_proto("../src/google/protobuf/util/json_format_proto3.proto", False)
   generate_proto("google/protobuf/internal/any_test.proto", False)
   generate_proto("google/protobuf/internal/descriptor_pool_test1.proto", False)
@@ -188,6 +189,7 @@ if __name__ == '__main__':
 
     if sys.platform == 'darwin':
       extra_compile_args.append("-Wno-shorten-64-to-32");
+      extra_compile_args.append("-Wno-deprecated-register");
 
     # https://developer.apple.com/documentation/xcode_release_notes/xcode_10_release_notes
     # C++ projects must now migrate to libc++ and are recommended to set a

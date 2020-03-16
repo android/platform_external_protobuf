@@ -34,6 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 #if NET35
 // Needed for ReadOnlyDictionary, which does not exist in .NET 3.5
 using Google.Protobuf.Collections;
@@ -63,7 +64,8 @@ namespace Google.Protobuf.Reflection
         private readonly IList<FieldDescriptor> fieldsInDeclarationOrder;
         private readonly IList<FieldDescriptor> fieldsInNumberOrder;
         private readonly IDictionary<string, FieldDescriptor> jsonFieldMap;
-        
+        private Func<IMessage, bool> extensionSetIsInitialized;
+
         internal MessageDescriptor(DescriptorProto proto, FileDescriptor file, MessageDescriptor parent, int typeIndex, GeneratedClrTypeInfo generatedCodeInfo)
             : base(file, file.ComputeFullName(parent, proto.Name), typeIndex)
         {
@@ -88,10 +90,12 @@ namespace Google.Protobuf.Reflection
                 (type, index) =>
                 new EnumDescriptor(type, file, this, index, generatedCodeInfo?.NestedEnums[index]));
 
+            Extensions = new ExtensionCollection(this, generatedCodeInfo?.Extensions);
+
             fieldsInDeclarationOrder = DescriptorUtil.ConvertAndMakeReadOnly(
                 proto.Field,
                 (field, index) =>
-                new FieldDescriptor(field, file, this, index, generatedCodeInfo?.PropertyNames[index]));
+                new FieldDescriptor(field, file, this, index, generatedCodeInfo?.PropertyNames[index], null));
             fieldsInNumberOrder = new ReadOnlyCollection<FieldDescriptor>(fieldsInDeclarationOrder.OrderBy(field => field.FieldNumber).ToArray());
             // TODO: Use field => field.Proto.JsonName when we're confident it's appropriate. (And then use it in the formatter, too.)
             jsonFieldMap = CreateJsonFieldMap(fieldsInNumberOrder);
@@ -131,6 +135,21 @@ namespace Google.Protobuf.Reflection
         }
 
         internal DescriptorProto Proto { get; }
+
+        internal bool IsExtensionsInitialized(IMessage message)
+        {
+            if (Proto.ExtensionRange.Count == 0)
+            {
+                return true;
+            }
+
+            if (extensionSetIsInitialized == null)
+            {
+                extensionSetIsInitialized = ReflectionUtil.CreateIsInitializedCaller(ClrType);
+            }
+
+            return extensionSetIsInitialized(message);
+        }
 
         /// <summary>
         /// The CLR type used to represent message instances from this descriptor.
@@ -195,6 +214,14 @@ namespace Google.Protobuf.Reflection
         /// </value>
         public FieldCollection Fields { get; }
 
+        /// <summary>
+        /// An unmodifiable list of extensions defined in this message's scope.
+        /// Note that some extensions may be incomplete (FieldDescriptor.Extension may be null)
+        /// if they are declared in a file generated using a version of protoc that did not fully
+        /// support extensions in C#.
+        /// </summary>
+        public ExtensionCollection Extensions { get; }
+
         /// <value>
         /// An unmodifiable list of this message type's nested types.
         /// </value>
@@ -236,7 +263,25 @@ namespace Google.Protobuf.Reflection
         /// <summary>
         /// The (possibly empty) set of custom options for this message.
         /// </summary>
-        public CustomOptions CustomOptions => Proto.Options?.CustomOptions ?? CustomOptions.Empty;
+        [Obsolete("CustomOptions are obsolete. Use GetOption")]
+        public CustomOptions CustomOptions => new CustomOptions(Proto.Options?._extensions?.ValuesByNumber);
+
+        /// <summary>
+        /// Gets a single value message option for this descriptor
+        /// </summary>
+        public T GetOption<T>(Extension<MessageOptions, T> extension)
+        {
+            var value = Proto.Options.GetExtension(extension);
+            return value is IDeepCloneable<T> ? (value as IDeepCloneable<T>).Clone() : value;
+        }
+
+        /// <summary>
+        /// Gets a repeated value message option for this descriptor
+        /// </summary>
+        public Collections.RepeatedField<T> GetOption<T>(RepeatedExtension<MessageOptions, T> extension)
+        {
+            return Proto.Options.GetExtension(extension).Clone();
+        }
 
         /// <summary>
         /// Looks up and cross-links all fields and nested types.
@@ -257,6 +302,8 @@ namespace Google.Protobuf.Reflection
             {
                 oneof.CrossLink();
             }
+
+            Extensions.CrossLink();
         }
 
         /// <summary>

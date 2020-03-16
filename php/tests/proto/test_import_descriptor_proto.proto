@@ -1,0 +1,19 @@
+<<<<<<< HEAD   (2f0242 Merge "Fix windows unit test." into emu-master-dev)
+=======
+syntax = "proto3";
+
+package foo;
+
+import "google/protobuf/descriptor.proto";
+
+message TestImportDescriptorProto {
+  extend google.protobuf.MethodOptions {
+    int32 a = 72295727;
+  }
+}
+
+extend google.protobuf.MethodOptions {
+  int32 a = 72295728;
+}
+
+>>>>>>> BRANCH (df2bce Remove 32-bit Mac protoc reference from collect_all_artifact)

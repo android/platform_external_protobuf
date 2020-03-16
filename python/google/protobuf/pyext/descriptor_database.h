@@ -48,8 +48,7 @@ class PyDescriptorDatabase : public DescriptorDatabase {
   // with a copy of FileDescriptorProto.
 
   // Find a file by file name.
-  bool FindFileByName(const std::string& filename,
-                      FileDescriptorProto* output);
+  bool FindFileByName(const std::string& filename, FileDescriptorProto* output);
 
   // Find the file that declares the given fully-qualified symbol name.
   bool FindFileContainingSymbol(const std::string& symbol_name,

@@ -30,6 +30,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endregion
 
+using Google.Protobuf.Collections;
 using Google.Protobuf.Compatibility;
 using System;
 
@@ -41,13 +42,14 @@ namespace Google.Protobuf.Reflection
     public sealed class FieldDescriptor : DescriptorBase, IComparable<FieldDescriptor>
     {
         private EnumDescriptor enumType;
+        private MessageDescriptor extendeeType;
         private MessageDescriptor messageType;
         private FieldType fieldType;
         private readonly string propertyName; // Annoyingly, needed in Crosslink.
         private IFieldAccessor accessor;
 
         /// <summary>
-        /// Get the field's containing message type.
+        /// Get the field's containing message type, or <c>null</c> if it is a field defined at the top level of a file as an extension.
         /// </summary>
         public MessageDescriptor ContainingType { get; }
 
@@ -64,8 +66,13 @@ namespace Google.Protobuf.Reflection
 
         internal FieldDescriptorProto Proto { get; }
 
+        /// <summary>
+        /// An extension identifier for this field, or <c>null</c> if this field isn't an extension.
+        /// </summary>
+        public Extension Extension { get; }
+
         internal FieldDescriptor(FieldDescriptorProto proto, FileDescriptor file,
-                                 MessageDescriptor parent, int index, string propertyName)
+                                 MessageDescriptor parent, int index, string propertyName, Extension extension)
             : base(file, file.ComputeFullName(parent, proto.Name), index)
         {
             Proto = proto;
@@ -96,9 +103,10 @@ namespace Google.Protobuf.Reflection
             // We could trust the generated code and check whether the type of the property is
             // a MapField, but that feels a tad nasty.
             this.propertyName = propertyName;
+            Extension = extension;
             JsonName =  Proto.JsonName == "" ? JsonFormatter.ToJsonName(Proto.Name) : Proto.JsonName;
         }
-    
+
 
         /// <summary>
         /// The brief name of the descriptor's target.
@@ -129,7 +137,7 @@ namespace Google.Protobuf.Reflection
         /// </para>
         /// </remarks>
         public IFieldAccessor Accessor => accessor;
-        
+
         /// <summary>
         /// Maps a field type as included in the .proto file to a FieldType.
         /// </summary>
@@ -196,7 +204,25 @@ namespace Google.Protobuf.Reflection
         /// <summary>
         /// Returns <c>true</c> if this field is a packed, repeated field; <c>false</c> otherwise.
         /// </summary>
-        public bool IsPacked => File.Proto.Syntax == "proto2" ? Proto.Options?.Packed ?? false : !Proto.Options.HasPacked || Proto.Options.Packed;
+        public bool IsPacked
+        {
+            get
+            {
+                if (File.Syntax != Syntax.Proto3)
+                {
+                    return Proto.Options?.Packed ?? false;
+                }
+                else
+                {
+                    return !Proto.Options.HasPacked || Proto.Options.Packed;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns <c>true</c> if this field extends another message type; <c>false</c> otherwise.
+        /// </summary>
+        public bool IsExtension => Proto.HasExtendee;
 
         /// <summary>
         /// Returns the type of the field.
@@ -255,9 +281,42 @@ namespace Google.Protobuf.Reflection
         }
 
         /// <summary>
+        /// For extension fields, returns the extended type
+        /// </summary>
+        public MessageDescriptor ExtendeeType
+        {
+            get
+            {
+                if (!Proto.HasExtendee)
+                {
+                    throw new InvalidOperationException("ExtendeeType is only valid for extension fields.");
+                }
+                return extendeeType;
+            }
+        }
+
+        /// <summary>
         /// The (possibly empty) set of custom options for this field.
         /// </summary>
-        public CustomOptions CustomOptions => Proto.Options?.CustomOptions ?? CustomOptions.Empty;
+        [Obsolete("CustomOptions are obsolete. Use GetOption")]
+        public CustomOptions CustomOptions => new CustomOptions(Proto.Options?._extensions?.ValuesByNumber);
+
+        /// <summary>
+        /// Gets a single value field option for this descriptor
+        /// </summary>
+        public T GetOption<T>(Extension<FieldOptions, T> extension)
+        {
+            var value = Proto.Options.GetExtension(extension);
+            return value is IDeepCloneable<T> ? (value as IDeepCloneable<T>).Clone() : value;
+        }
+
+        /// <summary>
+        /// Gets a repeated value field option for this descriptor
+        /// </summary>
+        public RepeatedField<T> GetOption<T>(RepeatedExtension<FieldOptions, T> extension)
+        {
+            return Proto.Options.GetExtension(extension).Clone();
+        }
 
         /// <summary>
         /// Look up and cross-link all field types etc.
@@ -320,6 +379,11 @@ namespace Google.Protobuf.Reflection
                 }
             }
 
+            if (Proto.HasExtendee)
+            {
+                extendeeType = File.DescriptorPool.LookupSymbol(Proto.Extendee, this) as MessageDescriptor;
+            }
+
             // Note: no attempt to perform any default value parsing
 
             File.DescriptorPool.AddFieldByNumber(this);
@@ -333,6 +397,11 @@ namespace Google.Protobuf.Reflection
 
         private IFieldAccessor CreateAccessor()
         {
+            if (Extension != null)
+            {
+                return new ExtensionAccessor(this);
+            }
+
             // If we're given no property name, that's because we really don't want an accessor.
             // This could be because it's a map message, or it could be that we're loading a FileDescriptor dynamically.
             // TODO: Support dynamic messages.
@@ -340,6 +409,7 @@ namespace Google.Protobuf.Reflection
             {
                 return null;
             }
+
             var property = ContainingType.ClrType.GetProperty(propertyName);
             if (property == null)
             {
@@ -351,3 +421,4 @@ namespace Google.Protobuf.Reflection
         }
     }
 }
+ 

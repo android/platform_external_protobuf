@@ -30,6 +30,10 @@
 
 package com.google.protobuf;
 
+import static com.google.protobuf.TextFormatEscaper.escapeBytes;
+import static java.lang.Integer.toHexString;
+import static java.lang.System.identityHashCode;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -49,15 +53,20 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 
 /**
- * Immutable sequence of bytes. Substring is supported by sharing the reference to the immutable
- * underlying bytes. Concatenation is likewise supported without copying (long strings) by building
- * a tree of pieces in {@link RopeByteString}.
+ * Immutable sequence of bytes. Provides conversions to and from {@code byte[]}, {@link
+ * java.lang.String}, {@link ByteBuffer}, {@link InputStream}, {@link OutputStream}. Also provides a
+ * conversion to {@link CodedInputStream}.
  *
  * <p>Like {@link String}, the contents of a {@link ByteString} can never be observed to change, not
  * even in the presence of a data race or incorrect API usage in the client code.
+ *
+ * <p>Substring is supported by sharing the reference to the immutable underlying bytes.
+ * Concatenation is likewise supported without copying (long strings) by building a tree of pieces
+ * in {@link RopeByteString}.
  *
  * @author crazybob@google.com Bob Lee
  * @author kenton@google.com Kenton Varda
@@ -732,6 +741,16 @@ public abstract class ByteString implements Iterable<Byte>, Serializable {
    */
   abstract void writeTo(ByteOutput byteOutput) throws IOException;
 
+  /**
+   * This method behaves exactly the same as {@link #writeTo(ByteOutput)} unless the {@link
+   * ByteString} is a rope. For ropes, the leaf nodes are written in reverse order to the {@code
+   * byteOutput}.
+   *
+   * @param byteOutput the output target to receive the bytes
+   * @throws IOException if an I/O error occurs
+   * @see UnsafeByteOperations#unsafeWriteToReverse(ByteString, ByteOutput)
+   */
+  abstract void writeToReverse(ByteOutput byteOutput) throws IOException;
 
   /**
    * Constructs a read-only {@code java.nio.ByteBuffer} whose content is equal to the contents of
@@ -862,6 +881,10 @@ public abstract class ByteString implements Iterable<Byte>, Serializable {
       return true;
     }
 
+    @Override
+    void writeToReverse(ByteOutput byteOutput) throws IOException {
+      writeTo(byteOutput);
+    }
 
     /**
      * Check equality of the substring of given length of this object starting at zero with another
@@ -1254,7 +1277,17 @@ public abstract class ByteString implements Iterable<Byte>, Serializable {
   @Override
   public final String toString() {
     return String.format(
-        "<ByteString@%s size=%d>", Integer.toHexString(System.identityHashCode(this)), size());
+        Locale.ROOT,
+        "<ByteString@%s size=%d contents=\"%s\">",
+        toHexString(identityHashCode(this)),
+        size(),
+        truncateAndEscapeForDisplay());
+  }
+
+  private String truncateAndEscapeForDisplay() {
+    final int limit = 50;
+
+    return size() <= limit ? escapeBytes(this) : escapeBytes(substring(0, limit - 3)) + "...";
   }
 
   /**

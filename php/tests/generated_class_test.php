@@ -1447,6 +1447,22 @@ class GeneratedClassTest extends TestBase
         }
     }
 
+    public function testOneofMessageInArrayConstructor()
+    {
+        $m = new TestMessage([
+            'oneof_message' => new Sub(),
+        ]);
+        $this->assertSame('oneof_message', $m->getMyOneof());
+        $this->assertNotNull($m->getOneofMessage());
+    }
+
+    public function testOneofStringInArrayConstructor()
+    {
+        $m = new TestMessage([
+            'oneof_string' => 'abc',
+        ]);
+    }
+
     #########################################################
     # Test message equals.
     #########################################################
@@ -1489,5 +1505,28 @@ class GeneratedClassTest extends TestBase
         array_walk($values, function (&$value) {});
         $m = new TestMessage();
         $m->setOptionalString($values[0]);
+    }
+
+    #########################################################
+    # Test no segfault when error happens
+    #########################################################
+
+    function throwIntendedException()
+    {
+        throw new Exception('Intended');
+    }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testNoSegfaultWithError()
+    {
+        new TestMessage(['optional_int32' => $this->throwIntendedException()]);
+    }
+
+    public function testNoExceptionWithVarDump()
+    {
+        $m = new Sub(['a' => 1]);
+        var_dump($m);
     }
 }

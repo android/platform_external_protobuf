@@ -231,21 +231,23 @@ class BaseContainer(object):
     self._values.sort(*args, **kwargs)
 
 
-class RepeatedScalarFieldContainer(BaseContainer):
+collections_abc.MutableSequence.register(BaseContainer)
 
+
+class RepeatedScalarFieldContainer(BaseContainer):
   """Simple, type-checked, list-like container for holding repeated scalars."""
 
   # Disallows assignment to other attributes.
   __slots__ = ['_type_checker']
 
   def __init__(self, message_listener, type_checker):
-    """
-    Args:
-      message_listener: A MessageListener implementation.
-        The RepeatedScalarFieldContainer will call this object's
-        Modified() method when it is modified.
+    """Args:
+
+      message_listener: A MessageListener implementation. The
+      RepeatedScalarFieldContainer will call this object's Modified() method
+      when it is modified.
       type_checker: A type_checkers.ValueChecker instance to run on elements
-        inserted into this container.
+      inserted into this container.
     """
     super(RepeatedScalarFieldContainer, self).__init__(message_listener)
     self._type_checker = type_checker
@@ -283,6 +285,7 @@ class RepeatedScalarFieldContainer(BaseContainer):
 
   def MergeFrom(self, other):
     """Appends the contents of another repeated field of the same type to this
+
     one. We do not check the types of the individual fields.
     """
     self._values.extend(other._values)
@@ -341,8 +344,6 @@ class RepeatedScalarFieldContainer(BaseContainer):
     # We are presumably comparing against some other sequence type.
     return other == self._values
 
-collections_abc.MutableSequence.register(BaseContainer)
-
 
 class RepeatedCompositeFieldContainer(BaseContainer):
 
@@ -380,8 +381,27 @@ class RepeatedCompositeFieldContainer(BaseContainer):
       self._message_listener.Modified()
     return new_element
 
+  def append(self, value):
+    """Appends one element by copying the message."""
+    new_element = self._message_descriptor._concrete_class()
+    new_element._SetListener(self._message_listener)
+    new_element.CopyFrom(value)
+    self._values.append(new_element)
+    if not self._message_listener.dirty:
+      self._message_listener.Modified()
+
+  def insert(self, key, value):
+    """Inserts the item at the specified position by copying."""
+    new_element = self._message_descriptor._concrete_class()
+    new_element._SetListener(self._message_listener)
+    new_element.CopyFrom(value)
+    self._values.insert(key, new_element)
+    if not self._message_listener.dirty:
+      self._message_listener.Modified()
+
   def extend(self, elem_seq):
     """Extends by appending the given sequence of elements of the same type
+
     as this one, copying each individual message.
     """
     message_class = self._message_descriptor._concrete_class
@@ -396,6 +416,7 @@ class RepeatedCompositeFieldContainer(BaseContainer):
 
   def MergeFrom(self, other):
     """Appends the contents of another repeated field of the same type to this
+
     one, copying each individual message.
     """
     self.extend(other._values)
