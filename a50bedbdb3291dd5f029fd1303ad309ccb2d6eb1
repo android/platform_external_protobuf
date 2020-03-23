@@ -1,0 +1,8 @@
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Jiyong Park <jiyong@google.com>
+Submitted-by: Jiyong Park <jiyong@google.com>
+Submitted-at: Mon, 23 Mar 2020 06:09:17 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/1253406
+Project: platform/external/protobuf
+Branch: refs/heads/master
