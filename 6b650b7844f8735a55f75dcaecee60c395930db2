@@ -1,0 +1,9 @@
+Autosubmit+1: Bob Badour <bbadour@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Code-Review+2: Colin Cross <ccross@android.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Sat, 28 Mar 2020 20:21:24 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/1268668
+Project: platform/external/protobuf
+Branch: refs/heads/master
