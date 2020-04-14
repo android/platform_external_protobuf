@@ -220,6 +220,10 @@ cc_library {
             enabled: true,
         },
     },
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.bluetooth.updatable",
+    ],
 }
 
 // Compiler library for the host
