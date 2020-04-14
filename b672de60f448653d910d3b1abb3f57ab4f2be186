@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dd8dfde_cd2c29a7",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1000701
+      },
+      "writtenOn": "2020-04-14T21:44:19Z",
+      "side": 1,
+      "message": "Why are you using full proto on the device?  You should be using lite.",
+      "revId": "b672de60f448653d910d3b1abb3f57ab4f2be186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
