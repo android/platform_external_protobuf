@@ -16,6 +16,24 @@
       "revId": "b672de60f448653d910d3b1abb3f57ab4f2be186",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "503566ef_2e209ed3",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2020-04-15T00:51:47Z",
+      "side": 1,
+      "message": "The plan is to use descriptors which I understand is not supported with the lite version which is only used on mobile (Android)\n\nBut the usage will be a core native bluetooth stack irrespective of mobile or even Android deployment.\n\nWould this even be supported by the larger Android ecosystem ?",
+      "parentUuid": "7dd8dfde_cd2c29a7",
+      "revId": "b672de60f448653d910d3b1abb3f57ab4f2be186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
