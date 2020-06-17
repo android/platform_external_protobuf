@@ -457,7 +457,8 @@ java_library_static {
     name: "libprotobuf-java-lite",
     host_supported: true,
     sdk_version: "core_current",
-
+    // used by "updatable" mainline modules (e.g. NetworkStack) targeting Q(29)
+    min_sdk_version: "29",
     srcs: [
         "java/core/src/main/java/com/google/protobuf/AbstractMessageLite.java",
         "java/core/src/main/java/com/google/protobuf/AbstractParser.java",
