@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dfeeab7_e6b5c1db",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2020-06-17T17:21:09Z",
+      "side": 1,
+      "message": "This module might be used by unbundled apps that target lower min SDK versions, and I don\u0027t think it requires any modern APIs.  Maybe min_sdk_version should be set lower, or even \"minimum\"?",
+      "revId": "9d78770662357570f7cb88d071cdb693acab2da1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
