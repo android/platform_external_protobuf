@@ -16,6 +16,24 @@
       "revId": "9d78770662357570f7cb88d071cdb693acab2da1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39840b61_9e679e16",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2020-06-18T15:47:22Z",
+      "side": 1,
+      "message": "Thanks.\n\nI\u0027m not sure what will be the best min_sdk_version for \"core_current\" modules? For now, we could skip these modules when checking against sdk_version.\n\nFiled b/159326446",
+      "parentUuid": "6dfeeab7_e6b5c1db",
+      "revId": "9d78770662357570f7cb88d071cdb693acab2da1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
