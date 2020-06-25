@@ -294,10 +294,13 @@
 // headers.
 #define GOOGLE_PROTOBUF_MIN_LIBRARY_VERSION 3009000
 
-// ANDROID: autotdetect RTTI.  Managing RTTI through command line -D
-// parameters is hard across modules, just autodetect it.
-#undef GOOGLE_PROTOBUF_NO_RTTI
+// ANDROID: autodetect RTTI by default.  This will do the correct thing most of
+// the time, but the manual override is still needed to avoid link errors about
+// missing typeinfo when the RTTI flag does not match between the protobuf
+// library and the client code and you want to use functions such as
+// DynamicCastToGenerated.
 
+#if !defined(GOOGLE_PROTOBUF_NO_RTTI)
 #if defined(__clang__)
 #if !__has_feature(cxx_rtti)
 #define GOOGLE_PROTOBUF_NO_RTTI 1
@@ -308,6 +311,7 @@
 #endif
 #else
 #define GOOGLE_PROTOBUF_NO_RTTI 1
+#endif
 #endif
 
 #if defined(GOOGLE_PROTOBUF_NO_RTTI) && GOOGLE_PROTOBUF_NO_RTTI
