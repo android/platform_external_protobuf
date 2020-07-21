@@ -1,0 +1,8 @@
+Verified+1: Diego Perez <diegoperez@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Aurimas Liutikas <aurimas@google.com>
+Submitted-by: Diego Perez <diegoperez@google.com>
+Submitted-at: Tue, 21 Jul 2020 15:30:17 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/1363630
+Project: platform/external/protobuf
+Branch: refs/heads/androidx-master-dev
