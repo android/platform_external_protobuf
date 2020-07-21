@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78981f25_9f1c0fdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086749
+      },
+      "writtenOn": "2020-07-21T15:26:58Z",
+      "side": 1,
+      "message": "s/Exempt-From-Owners-Approval/Exempt-From-Owner-Approval (singular owner)",
+      "revId": "75526349fc89dde41570eff5d657a7b8b502f951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
