@@ -1,0 +1,6 @@
+Code-Review+2: android-build-prod (mdb) <android-build-team-robot@google.com>
+Submitted-by: android-build-prod (mdb) <android-build-team-robot@google.com>
+Submitted-at: Fri, 18 Sep 2020 16:35:08 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/1431612
+Project: platform/external/protobuf
+Branch: refs/heads/androidx-camerax-release
