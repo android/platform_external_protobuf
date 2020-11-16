@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (06eefd Skip ab/6749736 in stage.)
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
 // https://developers.google.com/protocol-buffers/
@@ -1152,3 +1153,5 @@ const char* layout_get_oneof_case(MessageLayout* layout, const void* storage,
   const upb_fielddef* field = upb_oneofdef_itof(oneof, *oneof_case);
   return upb_fielddef_name(field);
 }
+=======
+>>>>>>> BRANCH (2514f0 Removed protoc-artifacts/target directory)

@@ -17,7 +17,11 @@ AC_PREREQ(2.59)
 # In the SVN trunk, the version should always be the next anticipated release
 # version with the "-pre" suffix.  (We used to use "-SNAPSHOT" but this pushed
 # the size of one file name in the dist tarfile over the 99-char limit.)
+<<<<<<< HEAD   (06eefd Skip ab/6749736 in stage.)
 AC_INIT([Protocol Buffers],[3.9.1],[protobuf@googlegroups.com],[protobuf])
+=======
+AC_INIT([Protocol Buffers],[3.14.0],[protobuf@googlegroups.com],[protobuf])
+>>>>>>> BRANCH (2514f0 Removed protoc-artifacts/target directory)
 
 AM_MAINTAINER_MODE([enable])
 

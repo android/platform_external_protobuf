@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (06eefd Skip ab/6749736 in stage.)
 <?php
 
 require_once('generated/NoNamespaceEnum.php');
@@ -1507,3 +1508,5 @@ class GeneratedClassTest extends TestBase
         $m->setOptionalString($values[0]);
     }
 }
+=======
+>>>>>>> BRANCH (2514f0 Removed protoc-artifacts/target directory)
