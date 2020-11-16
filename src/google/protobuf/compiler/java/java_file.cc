@@ -54,7 +54,6 @@
 #include <google/protobuf/dynamic_message.h>
 #include <google/protobuf/stubs/strutil.h>
 
-
 namespace google {
 namespace protobuf {
 namespace compiler {
@@ -92,7 +91,9 @@ bool CollectExtensions(const Message& message, FieldDescriptorSet* extensions) {
   reflection->ListFields(message, &fields);
 
   for (int i = 0; i < fields.size(); i++) {
-    if (fields[i]->is_extension()) extensions->insert(fields[i]);
+    if (fields[i]->is_extension()) {
+      extensions->insert(fields[i]);
+    }
 
     if (GetJavaType(fields[i]) == JAVATYPE_MESSAGE) {
       if (fields[i]->is_repeated()) {
@@ -238,7 +239,8 @@ bool FileGenerator::Validate(std::string* error) {
   }
 
   // Print a warning if optimize_for = LITE_RUNTIME is used.
-  if (file_->options().optimize_for() == FileOptions::LITE_RUNTIME) {
+  if (file_->options().optimize_for() == FileOptions::LITE_RUNTIME &&
+      !options_.enforce_lite) {
     GOOGLE_LOG(WARNING)
         << "The optimize_for = LITE_RUNTIME option is no longer supported by "
         << "protobuf Java code generator and is ignored--protoc will always "
@@ -267,6 +269,7 @@ void FileGenerator::Generate(io::Printer* printer) {
   }
   PrintGeneratedAnnotation(
       printer, '$', options_.annotate_code ? classname_ + ".java.pb.meta" : "");
+
   printer->Print(
       "$deprecation$public final class $classname$ {\n"
       "  private $ctor$() {}\n",
@@ -383,6 +386,7 @@ void FileGenerator::Generate(io::Printer* printer) {
   printer->Outdent();
   printer->Print("}\n");
 }
+
 
 void FileGenerator::GenerateDescriptorInitializationCodeForImmutable(
     io::Printer* printer) {
@@ -521,7 +525,7 @@ void FileGenerator::GenerateDescriptorInitializationCodeForMutable(
         // we want the mutable code to be independent from the immutable code
         // at compile time. It is required to implement dual-compile for
         // mutable and immutable API in blaze.
-        "  java.lang.Class immutableClass = java.lang.Class.forName(\n"
+        "  java.lang.Class<?> immutableClass = java.lang.Class.forName(\n"
         "      \"$immutable_classname$\");\n"
         "} catch (java.lang.ClassNotFoundException e) {\n",
         "immutable_classname", name_resolver_->GetImmutableClassName(file_));
