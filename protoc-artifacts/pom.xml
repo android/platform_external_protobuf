@@ -8,7 +8,11 @@
   </parent>
   <groupId>com.google.protobuf</groupId>
   <artifactId>protoc</artifactId>
+<<<<<<< HEAD   (06eefd Skip ab/6749736 in stage.)
   <version>3.9.1</version>
+=======
+  <version>3.14.0</version>
+>>>>>>> BRANCH (2514f0 Removed protoc-artifacts/target directory)
   <packaging>pom</packaging>
   <name>Protobuf Compiler</name>
   <description>
@@ -71,11 +75,6 @@
                   <type>exe</type>
                 </artifact>
                 <artifact>
-                  <file>${basedir}/target/osx/x86_32/protoc.exe</file>
-                  <classifier>osx-x86_32</classifier>
-                  <type>exe</type>
-                </artifact>
-                <artifact>
                   <file>${basedir}/target/linux/aarch_64/protoc.exe</file>
                   <classifier>linux-aarch_64</classifier>
                   <type>exe</type>
@@ -83,6 +82,11 @@
                 <artifact>
                   <file>${basedir}/target/linux/ppcle_64/protoc.exe</file>
                   <classifier>linux-ppcle_64</classifier>
+                  <type>exe</type>
+	  	</artifact>
+                <artifact>
+                  <file>${basedir}/target/linux/s390x/protoc.exe</file>
+                  <classifier>linux-s390x</classifier>
                   <type>exe</type>
                 </artifact>
               </artifacts>
