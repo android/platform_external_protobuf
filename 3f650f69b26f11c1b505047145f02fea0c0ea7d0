@@ -1,0 +1,212 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9798622a_654f3d12",
+        "filename": "csharp/src/Google.Protobuf/Google.Protobuf.csproj",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cbef1d6c_539c99cb",
+        "filename": "java/core/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6671c03a_e6c0225f",
+        "filename": "java/lite/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d67b4f95_86de8ca7",
+        "filename": "java/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "27829737_5b368f0b",
+        "filename": "java/util/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "576e9eb7_ced33287",
+        "filename": "src/Makefile.am",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6a093998_e18ae6a2",
+        "filename": "src/google/protobuf/port_def.inc",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 321,
+        "startChar": 1,
+        "endLine": 321,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006186041",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1501410?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bba34733_af3c7a86",
+        "filename": "src/google/protobuf/stubs/common.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-11-16T23:31:16Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 85,
+        "endChar": 7
+      },
+      "revId": "3f650f69b26f11c1b505047145f02fea0c0ea7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
