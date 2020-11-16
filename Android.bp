@@ -23,10 +23,11 @@ cc_defaults {
     cflags: [
         "-Wall",
         "-Werror",
-        "-Wno-unused-function",
         "-Wno-sign-compare",
-        "-Wno-unused-parameter",
         "-Wno-sign-promo",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
     ],
 
     target: {
@@ -42,6 +43,7 @@ cc_defaults {
     srcs: [
         "src/google/protobuf/any_lite.cc",
         "src/google/protobuf/arena.cc",
+        "src/google/protobuf/arenastring.cc",
         "src/google/protobuf/extension_set.cc",
         "src/google/protobuf/generated_enum_util.cc",
         "src/google/protobuf/generated_message_table_driven_lite.cc",
@@ -152,13 +154,13 @@ cc_defaults {
         "src/google/protobuf/io/gzip_stream.cc",
         "src/google/protobuf/io/printer.cc",
         "src/google/protobuf/io/tokenizer.cc",
+        "src/google/protobuf/map.cc",
         "src/google/protobuf/map_field.cc",
         "src/google/protobuf/message.cc",
         "src/google/protobuf/reflection_ops.cc",
         "src/google/protobuf/service.cc",
         "src/google/protobuf/source_context.pb.cc",
         "src/google/protobuf/struct.pb.cc",
-        "src/google/protobuf/stubs/mathlimits.cc",
         "src/google/protobuf/stubs/substitute.cc",
         "src/google/protobuf/text_format.cc",
         "src/google/protobuf/timestamp.pb.cc",
