@@ -50,7 +50,17 @@ build_artifact_version() {
   mv wheelhouse/* $ARTIFACT_DIR
 }
 
+export MB_PYTHON_OSX_VER=10.9
 build_artifact_version 2.7
+<<<<<<< HEAD   (06eefd Skip ab/6749736 in stage.)
 build_artifact_version 3.5
+=======
+>>>>>>> BRANCH (2514f0 Removed protoc-artifacts/target directory)
 build_artifact_version 3.6
 build_artifact_version 3.7
+build_artifact_version 3.8
+
+# python OSX10.9 does not have python 3.5
+export MB_PYTHON_OSX_VER=10.6
+build_artifact_version 3.5
+
