@@ -1,0 +1,9 @@
+Lint+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Code-Review+2: Colin Cross <ccross@android.com>
+Autosubmit+1: Jiyong Park <jiyong@google.com>
+Presubmit-Verified+2: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 06 Jan 2021 15:13:27 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/1538732
+Project: platform/external/protobuf
+Branch: refs/heads/master
