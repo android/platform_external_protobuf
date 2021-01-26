@@ -1,0 +1,8 @@
+Lint+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Build-Cop-Override+1: Gavin Corkery <gavincorkery@google.com>
+Presubmit-Verified-1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Jerome Gaillard <jgaillard@google.com>
+Submitted-at: Tue, 26 Jan 2021 16:49:50 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/1560036
+Project: platform/external/protobuf
+Branch: refs/heads/master
