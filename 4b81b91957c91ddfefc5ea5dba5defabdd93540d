@@ -33,6 +33,23 @@
       "message": "Voting -1 on Open-Source-Licensing until Dash approves.",
       "revId": "4b81b91957c91ddfefc5ea5dba5defabdd93540d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47e2f645_9b7decc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1359095
+      },
+      "writtenOn": "2021-01-26T21:54:53Z",
+      "side": 1,
+      "message": "Dash blanket approves PERMISSIVE -\u003e NOTICE and UNENCUMBERED -\u003e NOTICE\n",
+      "revId": "4b81b91957c91ddfefc5ea5dba5defabdd93540d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
