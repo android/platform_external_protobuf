@@ -1,0 +1,6 @@
+Code-Review+2: android-build-prod (mdb) <android-build-team-robot@google.com>
+Submitted-by: android-build-prod (mdb) <android-build-team-robot@google.com>
+Submitted-at: Fri, 12 Feb 2021 18:53:20 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/protobuf/+/1587712
+Project: platform/external/protobuf
+Branch: refs/heads/androidx-g3-release
