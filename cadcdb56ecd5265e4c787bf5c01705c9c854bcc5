@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbb59231_c2380ee3",
+        "filename": "cmake/libprotobuf.cmake",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001146
+      },
+      "writtenOn": "2021-03-05T00:41:26Z",
+      "side": 1,
+      "message": "You might want to leave a comment to explain we added this line.",
+      "revId": "cadcdb56ecd5265e4c787bf5c01705c9c854bcc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
