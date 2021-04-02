@@ -35,11 +35,11 @@
 // This file needs to be included as .inc as it depends on certain macros being
 // defined prior to its inclusion.
 
-#include <google/protobuf/message.h>
-
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+
+#include <google/protobuf/message.h>
 #ifndef _MSC_VER
 #include <unistd.h>
 #endif
@@ -48,7 +48,6 @@
 
 #include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/stubs/common.h>
-#include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/test_util2.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream.h>
@@ -59,6 +58,7 @@
 #include <google/protobuf/generated_message_reflection.h>
 #include <google/protobuf/testing/googletest.h>
 #include <gtest/gtest.h>
+#include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/io/io_win32.h>
 
 
@@ -235,6 +235,10 @@ TEST(MESSAGE_TEST_NAME, DynamicCastToGenerated) {
                 test_all_types_pointer_const));
   EXPECT_EQ(nullptr, DynamicCastToGenerated<const UNITTEST::TestRequired>(
                          test_all_types_pointer_const));
+
+  Message* test_all_types_pointer_nullptr = nullptr;
+  EXPECT_EQ(nullptr, DynamicCastToGenerated<UNITTEST::TestAllTypes>(
+                         test_all_types_pointer_nullptr));
 }
 
 #ifdef PROTOBUF_HAS_DEATH_TEST  // death tests do not work on Windows yet.
@@ -309,7 +313,7 @@ class RepeatedInputStream : public io::ZeroCopyInputStream {
 
  private:
   std::string data_;
-  size_t count_;     // The number of strings that haven't been consuemd.
+  size_t count_;     // The number of strings that haven't been consumed.
   size_t position_;  // Position in the std::string for the next read.
   int64 total_byte_count_;
 };
@@ -331,7 +335,7 @@ TEST(MESSAGE_TEST_NAME, TestParseMessagesCloseTo2G) {
   UNITTEST::TestAllTypes result;
   EXPECT_TRUE(result.ParseFromZeroCopyStream(&input));
 
-  // When there are multiple occurences of a singulr field, the last one
+  // When there are multiple occurrences of a singular field, the last one
   // should win.
   EXPECT_EQ(value, result.optional_string());
 }
@@ -548,6 +552,34 @@ TEST(MESSAGE_TEST_NAME, IsInitialized) {
   EXPECT_TRUE(msg.IsInitialized());
 }
 
+TEST(MESSAGE_TEST_NAME, IsInitializedSplitBytestream) {
+  UNITTEST::TestRequired ab, c;
+  ab.set_a(1);
+  ab.set_b(2);
+  c.set_c(3);
+
+  // The protobuf represented by the concatenated string has all required
+  // fields (a,b,c) set.
+  std::string bytes =
+      ab.SerializePartialAsString() + c.SerializePartialAsString();
+
+  UNITTEST::TestRequired concatenated;
+  EXPECT_TRUE(concatenated.ParsePartialFromString(bytes));
+  EXPECT_TRUE(concatenated.IsInitialized());
+
+  UNITTEST::TestRequiredForeign fab, fc;
+  fab.mutable_optional_message()->set_a(1);
+  fab.mutable_optional_message()->set_b(2);
+  fc.mutable_optional_message()->set_c(3);
+
+  bytes =
+      fab.SerializePartialAsString() + fc.SerializePartialAsString();
+
+  UNITTEST::TestRequiredForeign fconcatenated;
+  EXPECT_TRUE(fconcatenated.ParsePartialFromString(bytes));
+  EXPECT_TRUE(fconcatenated.IsInitialized());
+}
+
 TEST(MESSAGE_FACTORY_TEST_NAME, GeneratedFactoryLookup) {
   EXPECT_EQ(MessageFactory::generated_factory()->GetPrototype(
                 UNITTEST::TestAllTypes::descriptor()),
@@ -628,6 +660,38 @@ TEST(MESSAGE_TEST_NAME, MOMIParserEdgeCases) {
   }
 }
 
+
+TEST(MESSAGE_TEST_NAME, CheckSerializationWhenInterleavedExtensions) {
+  UNITTEST::TestExtensionRangeSerialize in_message;
+
+  in_message.set_foo_one(1);
+  in_message.set_foo_two(2);
+  in_message.set_foo_three(3);
+  in_message.set_foo_four(4);
+
+  in_message.SetExtension(UNITTEST::TestExtensionRangeSerialize::bar_one, 1);
+  in_message.SetExtension(UNITTEST::TestExtensionRangeSerialize::bar_two, 2);
+  in_message.SetExtension(UNITTEST::TestExtensionRangeSerialize::bar_three, 3);
+  in_message.SetExtension(UNITTEST::TestExtensionRangeSerialize::bar_four, 4);
+  in_message.SetExtension(UNITTEST::TestExtensionRangeSerialize::bar_five, 5);
+
+  std::string buffer;
+  in_message.SerializeToString(&buffer);
+
+  UNITTEST::TestExtensionRangeSerialize out_message;
+  out_message.ParseFromString(buffer);
+
+  EXPECT_EQ(1, out_message.foo_one());
+  EXPECT_EQ(2, out_message.foo_two());
+  EXPECT_EQ(3, out_message.foo_three());
+  EXPECT_EQ(4, out_message.foo_four());
+
+  EXPECT_EQ(1, out_message.GetExtension(UNITTEST::TestExtensionRangeSerialize::bar_one));
+  EXPECT_EQ(2, out_message.GetExtension(UNITTEST::TestExtensionRangeSerialize::bar_two));
+  EXPECT_EQ(3, out_message.GetExtension(UNITTEST::TestExtensionRangeSerialize::bar_three));
+  EXPECT_EQ(4, out_message.GetExtension(UNITTEST::TestExtensionRangeSerialize::bar_four));
+  EXPECT_EQ(5, out_message.GetExtension(UNITTEST::TestExtensionRangeSerialize::bar_five));
+}
 
 }  // namespace protobuf
 }  // namespace google
