@@ -1,0 +1,13 @@
+<<<<<<< HEAD   (ca15ad Merge "Merge 3.11.4 into emu-master-dev" into emu-master-dev)
+=======
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+
+install! 'cocoapods', :deterministic_uuids => false
+
+use_frameworks!
+
+target 'iOSCocoaPodsTester' do
+  pod 'Protobuf', :path => '../../../..'
+end
+>>>>>>> BRANCH (f82e26 Remove references to stale benchmark data sources.)

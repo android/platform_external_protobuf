@@ -1,0 +1,11 @@
+<<<<<<< HEAD   (ca15ad Merge "Merge 3.11.4 into emu-master-dev" into emu-master-dev)
+=======
+
+# Skip runtime check for isOnAndroidDevice().
+# One line to make it easy to remove with sed.
+-assumevalues class com.google.protobuf.Android { static boolean ASSUME_ANDROID return true; }
+
+-keepclassmembers class * extends com.google.protobuf.GeneratedMessageLite {
+  <fields>;
+}
+>>>>>>> BRANCH (f82e26 Remove references to stale benchmark data sources.)
