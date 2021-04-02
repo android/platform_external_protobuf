@@ -32,13 +32,15 @@
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
 
+#include <google/protobuf/compiler/java/java_message_field_lite.h>
+
+#include <cstdint>
 #include <map>
 #include <string>
 
 #include <google/protobuf/compiler/java/java_context.h>
 #include <google/protobuf/compiler/java/java_doc_comment.h>
 #include <google/protobuf/compiler/java/java_helpers.h>
-#include <google/protobuf/compiler/java/java_message_field_lite.h>
 #include <google/protobuf/compiler/java/java_name_resolver.h>
 #include <google/protobuf/io/printer.h>
 #include <google/protobuf/wire_format.h>
@@ -70,7 +72,7 @@ void SetMessageVariables(const FieldDescriptor* descriptor, int messageBitIndex,
       descriptor->options().deprecated() ? "@java.lang.Deprecated " : "";
   (*variables)["required"] = descriptor->is_required() ? "true" : "false";
 
-  if (SupportFieldPresence(descriptor->file())) {
+  if (HasHasbit(descriptor)) {
     // For singular messages and builders, one bit is used for the hasField bit.
     (*variables)["get_has_field_bit_message"] = GenerateGetBit(messageBitIndex);
 
@@ -88,9 +90,6 @@ void SetMessageVariables(const FieldDescriptor* descriptor, int messageBitIndex,
     (*variables)["is_field_present_message"] =
         (*variables)["name"] + "_ != null";
   }
-
-  // For repeated builders, the underlying list tracks mutability state.
-  (*variables)["is_mutable"] = (*variables)["name"] + "_.isModifiable()";
 
   (*variables)["get_has_field_bit_from_local"] =
       GenerateGetBitFromLocal(builderBitIndex);
@@ -119,7 +118,11 @@ ImmutableMessageFieldLiteGenerator::ImmutableMessageFieldLiteGenerator(
 ImmutableMessageFieldLiteGenerator::~ImmutableMessageFieldLiteGenerator() {}
 
 int ImmutableMessageFieldLiteGenerator::GetNumBitsForMessage() const {
-  return SupportFieldPresence(descriptor_->file()) ? 1 : 0;
+  // TODO(dweis): We don't need a has bit for messages as they have null
+  // sentinels and no user should be reflecting on this. We could save some
+  // bits by setting to 0 and updating the runtimes but this might come at a
+  // runtime performance cost since we can't memoize has-bit reads.
+  return HasHasbit(descriptor_) ? 1 : 0;
 }
 
 void ImmutableMessageFieldLiteGenerator::GenerateInterfaceMembers(
@@ -136,7 +139,7 @@ void ImmutableMessageFieldLiteGenerator::GenerateMembers(
   printer->Print(variables_, "private $type$ $name$_;\n");
   PrintExtraFieldInfo(variables_, printer);
 
-  if (SupportFieldPresence(descriptor_->file())) {
+  if (HasHasbit(descriptor_)) {
     WriteFieldDocComment(printer, descriptor_);
     printer->Print(
         variables_,
@@ -275,11 +278,11 @@ void ImmutableMessageFieldLiteGenerator::GenerateBuilderMembers(
 }
 
 void ImmutableMessageFieldLiteGenerator::GenerateFieldInfo(
-    io::Printer* printer, std::vector<uint16>* output) const {
+    io::Printer* printer, std::vector<uint16_t>* output) const {
   WriteIntToUtf16CharSequence(descriptor_->number(), output);
   WriteIntToUtf16CharSequence(GetExperimentalJavaFieldType(descriptor_),
                               output);
-  if (SupportFieldPresence(descriptor_->file())) {
+  if (HasHasbit(descriptor_)) {
     WriteIntToUtf16CharSequence(messageBitIndex_, output);
   }
   printer->Print(variables_, "\"$name$_\",\n");
@@ -365,7 +368,7 @@ void ImmutableMessageOneofFieldLiteGenerator::GenerateMembers(
 }
 
 void ImmutableMessageOneofFieldLiteGenerator::GenerateFieldInfo(
-    io::Printer* printer, std::vector<uint16>* output) const {
+    io::Printer* printer, std::vector<uint16_t>* output) const {
   WriteIntToUtf16CharSequence(descriptor_->number(), output);
   WriteIntToUtf16CharSequence(GetExperimentalJavaFieldType(descriptor_),
                               output);
@@ -528,9 +531,11 @@ void RepeatedImmutableMessageFieldLiteGenerator::GenerateMembers(
   printer->Print(
       variables_,
       "private void ensure$capitalized_name$IsMutable() {\n"
-      "  if (!$is_mutable$) {\n"
+      // Use a temporary to avoid a redundant iget-object.
+      "  com.google.protobuf.Internal.ProtobufList<$type$> tmp = $name$_;\n"
+      "  if (!tmp.isModifiable()) {\n"
       "    $name$_ =\n"
-      "        com.google.protobuf.GeneratedMessageLite.mutableCopy($name$_);\n"
+      "        com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);\n"
       "   }\n"
       "}\n"
       "\n");
@@ -728,7 +733,7 @@ void RepeatedImmutableMessageFieldLiteGenerator::GenerateBuilderMembers(
 }
 
 void RepeatedImmutableMessageFieldLiteGenerator::GenerateFieldInfo(
-    io::Printer* printer, std::vector<uint16>* output) const {
+    io::Printer* printer, std::vector<uint16_t>* output) const {
   WriteIntToUtf16CharSequence(descriptor_->number(), output);
   WriteIntToUtf16CharSequence(GetExperimentalJavaFieldType(descriptor_),
                               output);
