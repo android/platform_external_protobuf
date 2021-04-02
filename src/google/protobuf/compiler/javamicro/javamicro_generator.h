@@ -45,6 +45,7 @@ namespace protobuf {
 namespace compiler {
 namespace javamicro {
 
+<<<<<<< HEAD:src/google/protobuf/compiler/javamicro/javamicro_generator.h
 // CodeGenerator implementation which generates Java micro code.  If you create your
 // own protocol compiler binary and you want it to support Java output for the
 // micro runtime, you can do so by registering an instance of this CodeGenerator with
@@ -53,6 +54,10 @@ class LIBPROTOC_EXPORT JavaMicroGenerator : public CodeGenerator {
  public:
   JavaMicroGenerator();
   ~JavaMicroGenerator();
+=======
+// Exercise the java_package option.
+option java_package = "com.google.protobuf.test";
+>>>>>>> upstream-master:java/compatibility_tests/v2.5.0/protos/src/proto/google/protobuf/unittest_import.proto
 
   // implements CodeGenerator ----------------------------------------
   bool Generate(const FileDescriptor* file,

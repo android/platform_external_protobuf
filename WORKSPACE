@@ -1,13 +1,29 @@
 workspace(name = "com_google_protobuf")
 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 local_repository(
     name = "com_google_protobuf_examples",
     path = "examples",
 )
 
-local_repository(
-    name = "submodule_gmock",
-    path = "third_party/googletest",
+http_archive(
+    name = "com_google_googletest",
+    sha256 = "9dc9157a9a1551ec7a7e43daea9a694a0bb5fb8bec81235d8a1e6ef64c716dcb",
+    strip_prefix = "googletest-release-1.10.0",
+    urls = [
+        "https://mirror.bazel.build/github.com/google/googletest/archive/release-1.10.0.tar.gz",
+        "https://github.com/google/googletest/archive/release-1.10.0.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "com_github_google_benchmark",
+    sha256 = "2a778d821997df7d8646c9c59b8edb9a573a6e04c534c01892a40aa524a7b68c",
+    strip_prefix = "benchmark-bf585a2789e30585b4e3ce6baf11ef2750b54677",
+    urls = [
+        "https://github.com/google/benchmark/archive/bf585a2789e30585b4e3ce6baf11ef2750b54677.zip",
+    ],
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -20,16 +36,6 @@ load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 bind(
     name = "python_headers",
     actual = "//util/python:python_headers",
-)
-
-bind(
-    name = "gtest",
-    actual = "@submodule_gmock//:gtest",
-)
-
-bind(
-    name = "gtest_main",
-    actual = "@submodule_gmock//:gtest_main",
 )
 
 jvm_maven_import_external(
