@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000009551223",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1662795?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bb95e048_f3f2f7d4",
+        "filename": "src/google/protobuf/compiler/javamicro/javamicro_generator.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-04-02T06:11:29Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 48,
+        "endChar": 7
+      },
+      "revId": "0640013657bd5d66dfca5f6a4f56b37f27a11cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
